@@ -2,66 +2,70 @@
 
         {% block MainFrame %}
             <div class="plugin-opener row">
-                <div class="container text-center">
-                    <div class="claim mt-3">
-                        <h1 data-link="ignore">plentymarkets plugins - create your own! </h1>
-                    </div>
-                    <div class="download mt-4 mb-4">
-                        <a class="btn btn-secondary btn-large" href="https://github.com/plentymarkets/plenty-plugin-showcase" role="button">Download project on GitHub</a>
-                    </div>
-                    <div class="connect mb-3">
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                            <a href="https://github.com/plentymarkets/" target="_blank">
-                                <p><img src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-mark.png" /></p>
-                                <p class="hidden-xs">plentymarkets</p>
-                            </a>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                            <a href="https://github.com/plentymarkets/plenty-plugin-showcase/network" target="_blank">
-                                <p class="icon-plugin_linked_to_git"></p>
-                                <p class="hidden-xs">Forks </p>
-                                {#{{ curlResult.forks_count }}#}
-                            </a>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><a href="http://twitter.com/#!/plentymarkets" target="_blank">
-                                <p><img src="{{ plugin_path('PlentyPluginShowcase') }}/images/twitter.png" /></p>
-                                <p class="hidden-xs">@plentymarkets</p>
-                            </a>
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                            <a href="https://forum.plentymarkets.com/c/cms" target="_blank">
-                                <p class="icon-forum"></p>
-                                <p class="hidden-xs">Forum</p>
-                            </a>
+                <div class="claim">
+                    <div class="container">
+                        <div class="col-sm-12">
+                            <h1 data-link="ignore">Turbocharging your e-commerce with plentymarkets plugins</h1>
                         </div>
                     </div>
                 </div>
             </div>
-
-
+            <div class="connect">
+                <div class="container">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                        <a href="https://github.com/plentymarkets/" target="_blank">
+                            <p><img src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-mark.png" /></p>
+                            <p class="hidden-xs">plentymarkets</p>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                        <a href="https://github.com/plentymarkets/plenty-plugin-showcase/network" target="_blank">
+                            <p class="icon-plugin_linked_to_git"></p>
+                            <p class="hidden-xs">Forks</p>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                        <a href="http://twitter.com/#!/plentymarkets" target="_blank">
+                            <p><img src="{{ plugin_path('PlentyPluginShowcase') }}/images/twitter.svg" style="width: 32px; height: 32px;" /></p>
+                            <p class="hidden-xs">@plentymarkets</p>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                        <a href="https://forum.plentymarkets.com/" target="_blank">
+                            <p class="icon-forum"></p>
+                            <p class="hidden-xs">Forum</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="hr hr-arrow"></div>
             <section>
                 <div class="container mb-3">
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
-                        <h2 data-link="ignore">Why Plugin?</h2>
+                        <figure>
+                            <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/why-plugin-2.svg" alt="Be a plugin pioneer">
+                        </figure>
+                        <h2 data-link="ignore">Be a plugin pioneer</h2>
                         <p class="text-jst">
-                            For nearly 10 years, plentymarkets has provided all features from one source.
-                            Our customers' needs have always been our main source of inspiration when developing new
-                            features for the software. We have sought to fulfill these needs by adding automatic processes
-                            and making our system fully customisable. In a one-stop software, however, even the best
-                            solutions can never suit all. There is another way: we are opening up plentymarkets for your plugins!
+                            Learn how to create your first plentymarkets plugin. Our <a href="/helloworld">Hello World</a> tutorial for beginners will walk you through the basics of setting up an IDE and Git and creating all necessary files for your first fully functional plugin. Start now - develop your own plugins and offer them to our customers in our plugin store.
                         </p>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
-                        <h2 data-link="ignore">My first plugin
-                        </h2>
+                        <figure>
+                            <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/plugin_customizable.svg" alt="Make your customers happy">
+                        </figure>
+                        <h2 data-link="ignore">Make your customers happy</h2>
                         <p class="text-jst">
-                            Learn how to create your first plentymarkets plugin. Our <a href="/helloworld"><b>Hello World</b></a> tutorial for beginners will walk you through the basics of setting up an IDE and Git and creating all necessary files for your first fully functional plugin.
+                            Provide your plentymarkets customers with individualised service and develop plugins tailored to their needs. Find out about the most wanted plugins in our <a href="https://forum.plentymarkets.com/c/plugin-entwicklung" target="_blank">plentyCommunity</a>. The technology we chose makes plugins compatible for all users. This means you can offer any plugins that you develop to a broad audience in our store.
                         </p>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 text-center">
-                        <h2 data-link="ignore">Coming soon</h2>
+                        <figure>
+                            <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/plugin_store.svg" alt="Optimise your business">
+                        </figure>
+                        <h2 data-link="ignore">Optimise your business</h2>
                         <p class="text-jst">
-                            The plentymarkets plugin store - Discover new plugins in our plugin store. Find beautifully designed templates and themes. Download plugins that add numerous features and functions to your plentymarkets system or upload your own creations and share your plugins with the plentymarkets community.
+                            Discover new plugins in our plugin store. Find beautifully designed templates and themes. Plugins give you complete flexibility when it comes to optimising your business. Regardless whether you develop plugins in-house or hire an agency to build them for you – there are no limits to the functionality of your software. Modify plentymarkets to meet your needs!
                         </p>
                     </div>
                 </div>
@@ -71,20 +75,26 @@
                 <div class="carousel-inner" role="listbox">
                     <div class="item active">
                         <div class="carousel-caption">
-                            <h2 data-link="ignore">plentymarkets Code Camp</h2>
-                            <p>Am 8. und 9. September in Kassel</p>
-                            {#<a class="btn btn-primary" href="https://plentymarkets.eu" role="button">Learn more</a>#}
+                            <figure>
+                            <img src="{{ plugin_path('PlentyPluginShowcase') }}/images/plentydays.png" alt="plentyDays">
+                            </figure>
+                            <div class="item-inner">
+                                <p>
+                                Learn more about plentymarkets plugins and your opportunities - <b>come to Kassel and join us at the first plentyCodeCamp on September 8th and 9th!</b>
+                                </p>
+                                <p>
+                                Day 1 features a range of lectures that introduce plentymarkets plugins in general. Get an overview of our plugin technologies, different plugin types and the overall plugin structure.
+                                </p>
+                                <p>
+                                Day 2 is specifically aimed at coders and developers. We will show you how to build a plentymarkets plugin from scratch. Meet us there and become a plugin pioneer!
+                                </p>
+                                <p>
+                                This plentymarkets event is free. Head over to Xing and get your ticket now.
+                                <p>
+                                <a class="btn btn-secondary btn-large" href="https://www.xing-events.com/plentycodecamp.html" target="_blank"><span>Registration</span><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a>
+                            </div>
                         </div>
                     </div>
-                    {#
-                    <div class="item">
-                        <div class="carousel-caption">
-                            <h2 data-link="ignore">Plugin competition</h2>
-                            <p>Beginners | Advanced | Professionals</p>
-                            <a class="btn btn-primary" href="https://plentymarkets.eu" role="button">Learn more</a>
-                        </div>
-                    </div>
-                    #}
                 </div>
             </div>
 
@@ -93,65 +103,71 @@
                     <div class="container mb-3">
                         <div class="col-lg-12 text-center">
                             <h2 class="text-center" data-link="ignore">Features</h2>
-                            <p></p>
-                            <p>This plentymarkets plugin is open source. It’s developed and maintained on GitHub.</p>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 text-center">
-                            <div class="hoverbox">
-                                <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/sass.png" />
-                                <div class="overlay">
-                                    <div class="more" >
-                                        <h3 data-link="ignore">Preprocessors</h3>
-                                        <hr>
-                                        <p class="text-jst">Sass is the most mature, stable and powerful professional grade CSS extension language in the world.
-                                        It is compatible with all CSS versions and offers a large number of frameworks built with Sass.</p>
-                                        <a class="btn btn-default" href="http://sass-lang.com/" target="_blank">Read more</a>
-                                    </div>
-                                </div>
+                        <div class="col-lg-12">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
+                                <figure class="image-box">
+                                    <a href="https://laravel.com/" target="_blank">
+                                    <img src="{{ plugin_path('PlentyPluginShowcase') }}/images/laravel-logo.png" />
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
+                                <figure class="image-box">
+                                    <a href="http://hacklang.org/" target="_blank">
+                                        <img src="{{ plugin_path('PlentyPluginShowcase') }}/images/hack.png" />
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
+                                <figure class="image-box">
+                                    <a href="http://twig.sensiolabs.org/" target="_blank">
+                                        <img src="{{ plugin_path('PlentyPluginShowcase') }}/images/twig.png" />
+                                    </a>
+                                </figure>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 text-center">
-                            <div class="hoverbox">
-                                <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/twig.png" />
-                                <div class="overlay">
-                                    <div class="more" >
-                                        <h3 data-link="ignore">Template-Engine</h3>
-                                        <hr>
-                                        <p class="text-jst">Twig is a modern template engine for PHP.
-                                        Twig is fast because it compiles templates down to optimized PHP.
-                                        It is secure and evaluates untrusted template code and it is flexible and open to custom tags and filters.</p>
-                                        <a class="btn btn-default" href="http://twig.sensiolabs.org/" target="_blank">Read more</a>
-                                    </div>
-                                </div>
+                        <div class="col-lg-12">
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
+                                <figure class="image-box">
+                                    <a href="http://sass-lang.com/" target="_blank">
+                                        <img src="{{ plugin_path('PlentyPluginShowcase') }}/images/sass.png" />
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
+                                <figure class="image-box">
+                                    <a href="https://github.com/" target="_blank">
+                                        <img src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-logo.png" />
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
+                                <figure class="image-box">
+                                    <a href="http://plentymarkets.eu/" target="_blank">
+                                        <img src="{{ plugin_path('PlentyPluginShowcase') }}/images/plentymarkets.png" />
+                                    </a>
+                                </figure>
                             </div>
                         </div>
+                            <div class="col-lg-6 col-md-6">
+                                <h3 data-link="ignore" class="color-blue">Why we use hack</h3>
+                                <p>
+                                    Hack, a programming language for HHVM, reconsiles the fast development cycle of dynamic typing with the discipline provided by static typing, while adding many features found in modern programming languages. Anyone who already knows how to program in PHP will easily be able to learn Hack as well.
+                                </p>
+                                <p>
+                                    About 80% of all websites use PHP as their server language. However, many developers criticise PHP's dynamic typing because it increases error susceptibility and decreases execution speed. Hack completely compensates this deficit of PHP.
+                                </p>
 
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 text-center">
-                            <div class="hoverbox">
-                                <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/hack.png" />
-                                <div class="overlay">
-                                    <div class="more" >
-                                        <h3 data-link="ignore">Programming Language</h3>
-                                        <hr>
-                                        <p class="text-jst">Hack, a programming language for HHVM, reconsiles the fast development cycle of dynamic typing with the discipline provided by static typing, while adding many features found in modern programming languages.</p>
-                                        <a class="btn btn-default" href="http://hacklang.org/" target="_blank">Read more</a>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 text-center">
-                            <div class="hoverbox">
-                                <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/plentymarkets.png" />
-                                <div class="overlay">
-                                    <div class="more" >
-                                        <h3 data-link="ignore">plentymarkets</h3>
-                                        <hr>
-                                        <p class="text-jst">plentymarkets is the e-commerce ERP solution that includes stock management, a complete online
-                                        store, interfaces to the major online markets and a wide range of payment and shipping service
-                                        providers.</p>
-                                        <a class="btn btn-default" href="http://www.plentymarkets.eu/" target="_blank">Read more</a>
-                                    </div>
-                                </div>
+                            <div class="col-lg-6 col-md-6">
+                                <h3 data-link="ignore" class="color-blue">What exactly is Twig?</h3>
+                                <p>
+                                    Twig is a modern template engine for PHP and it is compatible with HHVM. Thanks to it's syntax, Twig can be learned quite easily and still offers a lot of flexibility. One of Twig's goals is to be as fast as possible. In order to reach this goal, Twig templates are compiled into optimised PHP source code.
+                                </p>
+                                <p>
+                                    Twig has all the characteristics that you need to create powerful store templates: it supports multiple inheritance and allows you to add your own functions and filters to the existing functionalities.
+                                </p>
                             </div>
                         </div>
                     </div>
