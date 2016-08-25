@@ -2,187 +2,533 @@
 
 {% block Content %}
 
-<h1 id="chapter-1">Plugin components</h1>
+<h1 id="components-introduction">Introducing plugin components</h1>
 
 <div class="api-docs-basics">
     <p>
-        On this page, you will find a short description for each plugin component that you can use to create your own plugins.
+        On this page, you will find a short description for each plugin element that you can use to create your own plugins. We will differentiate between components that define the core structure of the plugin usually found in the <strong>src</strong> folder and components for the design found in the <strong>resources</strong> folder. The programming language Hack is mainly used for creating the files in the <strong>src</strong> folder. Technologies used in context with the <strong>resources</strong> folder are:
     </p>
+    <ul>
+      <li>
+        Twig
+      </li>
+      <li>
+        Vue.js
+      </li>
+      <li>
+        SASS
+      </li>
+      <li>
+        Bootstrap 4
+      </li>
+      <li>
+        jQuery
+      </li>
+    </ul>
 </div>
 
-<h2 id="guide-interface">Interfaces</h2>
+<h1 id="components-core">Core components</h1>
 
 <div class="api-docs-basics">
     <p>
-        Interfaces define the core services for plentymarkets plugins. Interfaces contain all necessary methods <!-- properties, events etc. --> for your plugin to communicate with plentymarkets. For each module of plentymarkets, individual interfaces are available:
+        Let's discuss the core structure of a plugin based on the <strong>src</strong> folder of the plentymarkets LayoutCore plugin and the sub-folders and files contained in this folder.
     </p>
-    <table class="table table-striped table-responsive table-bordered table-hover">
-      <thead>
-        <tr>
-        <th>
-          Interface
-        </th>
-        <th>
-          Description
-        </th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>
-          <a href="{{ url() }}/api-doc/Accounting">Accounting</a>
-        </td>
-        <td>
-          Contains a sub module for <strong>VAT</strong> and classes for determining the VAT.
-        </td>
-      </tr>
-      <tr>
-      <td>
-        <a href="{{ url() }}/api-doc/Basket">Basket</a>
-      </td>
-      <td>
-        Contains sub modules for determining the basket and the items within the basket.
-      </td>
-      </tr>
-      <tr>
-      <td>
-        <a href="{{ url() }}/api-doc/Category">Category</a>
-      </td>
-      <td>
-        ##
-      </td>
-      </tr>
-      <tr>
-      <td>
-        <a href="{{ url() }}/api-doc/DataExchange">DataExchange</a>
-      </td>
-      <td>
-        ##
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/Document">Document</a>
-      </td>
-      <td>
-        ##
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/Frontend">Frontend</a>
-      </td>
-      <td>
-        ##
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/Helper">Helper</a>
-      </td>
-      <td>
-        ##
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/Item">Item</a>
-      </td>
-      <td>
-        ##
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/Order">Order</a>
-      </td>
-      <td>
-        ##
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/System">System</a>
-      </td>
-      <td>
-        ##
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/Template">Template</a>
-      </td>
-      <td>
-        ##
-      </td>
-      </tr>
-    </tbody>
-    </table>
 </div>
 
-<h2 id="guide-model">Models</h2>
+<h2 id="layoutcore-api">API</h2>
 
 <div class="api-docs-basics">
     <p>
-        Each database table has a corresponding "Model" which is used to interact with that table. Models allow you to query for data in your tables, as well as insert new records into the table.
+        The <strong>Api</strong> folder contains resources similar to controllers. The <code>ApiResource.hh</code> is a class that extends a controller and enables self-defined REST calls with the related Hack methods. A list of response codes and functions for event registration are saved in <code>ApiResponse.hh</code>. Specific REST calls, such as the <code>update ( string $shippingProfileId )</code> function in the example below, are defined in files in the <strong>Resources</strong> sub-folder.
     </p>
 </div>
 
-<h2 id="guide-service">Services</h2>
+<div class="route-container">
+  <code>PluginLayoutCore/src/Api/Resources/ShippingResource.hh</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-hack grey-back linenums">
+&lt;?hh //strict
+
+    namespace LayoutCore\Api\Resources;
+
+    use Illuminate\Http\Response;
+    use Plenty\Plugin\Http\Request;
+    use LayoutCore\Api\ApiResource;
+    use LayoutCore\Api\ApiResponse;
+    use LayoutCore\Api\ResponseCode;
+    use LayoutCore\Services\ShippingService;
+
+    class ShippingResource extends ApiResource
+    {
+
+        private ShippingService $shippingService;
+
+        public function __construct( Request $request, ApiResponse $response, ShippingService $shippingService )
+        {
+            parent::__construct( $request, $response );
+            $this->shippingService = $shippingService;
+        }
+
+        // put/patch
+        public function update( string $shippingProfileId ):Response
+        {
+            $this->shippingService->setShippingProfileId( (int) $shippingProfileId );
+            return $this->response->create( ResponseCode::OK );
+        }
+
+    }
+</pre>
+</div>
+
+<h2 id="layoutcore-builder">Builder</h2>
 
 <div class="api-docs-basics">
     <p>
-
+        The builder class helps you work with interfaces. <code>ItemColumnBuilder.hh</code>, for example, builds an array of <a href="/api-doc/Item#datalayer_item">ItemDataLayer</a> columns that can be requested with the <code>search</code> method. The fields for this array are defined in the related files in the <strong>Fields</strong> folder.
     </p>
 </div>
 
-<h2 id="guide-factory">Factories</h2>
+<div class="route-container">
+  <code>PluginLayoutCore/src/Builder/Item/ItemColumnBuilder.hh</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-hack grey-back linenums">
+&lt;?hh //strict
+
+    namespace LayoutCore\Builder\Item;
+
+    use LayoutCore\Builder\Item\Fields\ItemBaseFields;
+
+    ...
+
+
+    class ItemColumnBuilder
+    {
+        private array<span><</span>string, array<span><</span>mixed>> $columnFields = array();
+        private array<span><</span>string, array<span><</span>ItemColumnsParams, string>> $columnParams = array();
+
+        public function defaults():ItemColumnBuilder
+        {
+            return $this
+                ->withItemBase(array(
+                    ItemBaseFields::ID,
+                    ItemBaseFields::RATING,
+                    ItemBaseFields::RATING_COUNT,
+                    ItemBaseFields::STORE_SPECIAL,
+                    ItemBaseFields::PRODUCER,
+                    ItemBaseFields::PRODUCING_COUNTRY_ID,
+                    ItemBaseFields::CONDITION,
+                    ItemBaseFields::AGE_RESTRICTION,
+                    ItemBaseFields::CUSTOMS_TARIFF_NUMBER
+                ))
+
+                ...
+
+        }
+
+    ...
+</pre>
+</div>
 
 <div class="api-docs-basics">
     <p>
-
+        This array can be included in services, such as <code>ItemService.hh</code>. Builders also help you validate your code through auto-completion.
     </p>
 </div>
 
-<h2 id="guide-serviceprovider">Service Providers</h2>
+<div class="route-container">
+  <code>PluginLayoutCore/src/Services/ItemService.hh</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-hack grey-back linenums">
+&lt;?hh //strict
+
+    namespace LayoutCore\Services;
+
+    ...
+
+        public function getItems( array<span><</span>int> $itemIds ):RecordList
+        {
+            $columns = $this->columnBuilder
+
+                ->defaults()
+                ->build();
+
+                ...
+
+            );
+        }
+</pre>
+</div>
+
+<h2 id="layoutcore-constants">Constants</h2>
 
 <div class="api-docs-basics">
     <p>
-
+        Constants, e.g. available languages or category types, are organised in the <strong>Constants</strong> folder.
     </p>
 </div>
 
-<h2 id="guide-routeserviceprovider">Route Service Providers</h2>
+<h2 id="layoutcore-controllers">Controllers</h2>
+
+<div class="api-docs-basics">
+    <p>
+        Controllers are the interface between the core and the design. The sub-folder <strong>Controllers</strong> contains the different controllers necessary to render Callisto 4. The file <code>LoginController.hh</code>, for example, contains the <code>showLogin</code> function for rendering the <code>login.twig</code> template.
+    </p>
+</div>
+
+<div class="route-container">
+  <code>PluginLayoutCore/src/Controllers/LoginController.hh</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-hack grey-back linenums">
+&lt;?hh //strict
+
+    namespace LayoutCore\Controllers;
+
+    use LayoutCore\Helper\TemplateContainer;
+
+    class LoginController extends LayoutController
+    {
+        public function showLogin(): string
+        {
+            return $this->renderTemplate(
+                "tpl.login",
+                array(
+                    "login" => ""
+                )
+            );
+        }
+    }
+</pre>
+</div>
+
+<h2 id="layoutcore-extensions">Extensions</h2>
+
+<div class="api-docs-basics">
+    <p>
+        The <strong>Extensions</strong> folder stores components that extend the functionality of Twig. <a href="http://twig.sensiolabs.org/doc/advanced_legacy.html" target="_blank">Extensions</a> can be operators, global variables, functions, etc. Twig also allows you to <a href="http://twig.sensiolabs.org/doc/advanced.html#filters" target="_blank">create your own filters</a>. <code>TwigLayoutCoreExtension.hh</code>, for example, uses filters stored in the <strong>Filters</strong> sub-folder. <code>NumberFormatFilter.hh</code> provides methods for formatting numbers and currencies that can be included in twig templates.
+    </p>
+</div>
+
+<div class="route-container">
+  <code>PluginLayoutCore/src/Extensions/Filters/NumberFormatFilter.hh</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-hack grey-back linenums">
+...
+
+    public function formatMonetary( float $value, string $currencyISO ):string
+    {
+        $locale = 'de_DE';
+        $useCurrencySymbol = true;
+
+        $formatter = numfmt_create( $locale, \NumberFormatter::CURRENCY );
+        if( !$useCurrencySymbol )
+        {
+            $formatter->setTextAttribute( \NumberFormatter::CURRENCY_CODE, $currencyISO );
+            $formatter->setSymbol( \NumberFormatter::CURRENCY_SYMBOL, $currencyISO );
+        }
+
+        if( $this->config->get('PluginLayoutCore.format.use_locale_currency_format') === "0" )
+        {
+            $decimal_separator = $this->config->get('PluginLayoutCore.format.separator_decimal');
+            $thousands_separator = $this->config->get('PluginLayoutCore.format.separator_thousands');
+            $formatter->setSymbol( \NumberFormatter::MONETARY_SEPARATOR_SYMBOL, $decimal_separator );
+            $formatter->setSymbol( \NumberFormatter::MONETARY_GROUPING_SEPARATOR_SYMBOL, $thousands_separator );
+        }
+        return $formatter->format( $value );
+    }
+</pre>
+</div>
+
+<div class="api-docs-basics">
+    <p>
+        In your template, add this method using the pipe within the twig variable. In the example below, the item price will be formatted by adding the ISO code <strong>EUR</strong> to the price.
+    </p>
+</div>
+
+<div class="code-container">
+{% raw %}
+<pre class="prettyprint lang-twig grey-back">
+{{item.price | formatMonetary ("EUR")}}
+</pre>
+{% endraw %}
+</div>
+
+<h2 id="layoutcore-helper">Helper</h2>
+
+<div class="api-docs-basics">
+    <p>
+        The <strong>Helper</strong> folder contains helper classes. <code>TemplateContainer.hh</code>, for example, is a class that controls the data exchange between the Callisto 4 plugin and the LayoutCore plugin.
+    </p>
+</div>
+
+<h2 id="layoutcore-providers">Providers</h2>
+
+<div class="api-docs-basics">
+    <p>
+        Two types of providers are used in plentymarkets plugins: service providers and route service providers.
+    </p>
+</div>
+
+<h3 id="layoutcore-serviceprovider">Service Providers</h3>
+
+<div class="api-docs-basics">
+    <p>
+        Figuratively speaking, the service provider is the starting point of the plugin. Every plugin must have a service provider, which is needed to register the route service provider. All service providers extend the <code>Plenty\Plugin\ServiceProvider</code> class. In the case of Callisto 4, the service provider is also used to boot the design and add various extensions.
+    </p>
+</div>
+
+<h3 id="layoutcore-routeserviceprovider">Route Service Providers</h3>
 
 <div class="api-docs-basics">
     <p>
         Routes are used to point URLs to controllers or anonymous functions that should be executed when a user accesses a given page.
+
+        In line 20 of the example below, the function <code>showLogin</code> is executed when a user opens the <code>/login</code> page. This function is defined in <strong>LoginController.hh</strong>.
     </p>
 </div>
+<div class="route-container">
+  <code>PluginLayoutCore/src/Providers/LayoutCoreRouteServiceProvider.hh</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-hack grey-back linenums">
+&lt;?hh //strict
+
+    namespace LayoutCore\Providers;
 
 
+    use Plenty\Plugin\RouteServiceProvider;
+    use Plenty\Plugin\Routing\Router;
+    use Plenty\Plugin\Routing\ApiRouter;
+    use Plenty\Plugin\Templates\Twig;
 
-<h2 id="guide-controller">Controllers</h2>
+    class LayoutCoreRouteServiceProvider extends RouteServiceProvider
+
+    ...
+
+    {
+        public function map(Router $router, ApiRouter $api):void
+        {
+          ...
+
+          $router->get('login', 'LayoutCore\Controllers\LoginController@showLogin');
+
+          ...
+
+        }
+    }
+</pre>
+</div>
+
+<h2 id="layoutcore-services">Services</h2>
 
 <div class="api-docs-basics">
     <p>
-
+        Services contain the methods for processing data between the user and plentymarkets that can be used by controllers, REST and Twig templates. In the example below, <code>BasketService.hh</code> contains the <code>getBasket()</code> method, which is used in <code>BasketResource.hh</code>.
     </p>
 </div>
 
-<h2 id="guide-validator">Validators</h2>
+<div class="route-container">
+  <code>PluginLayoutCore/src/Services/BasketService.hh</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-hack grey-back linenums">
+...
+
+    public function getBasket():array<span><</span>string, mixed>
+    {
+        $basket = $this->basketRepository->load();
+        $basketItems = $this->basketItemRepository->all();
+        $basketItemData = $this->getBasketItemData( $basketItems );
+        return [
+            "basket" => $basket,
+            "basketItems" => $basketItems,
+            "items" => $basketItemData
+        ];
+    }
+
+...
+</pre>
+</div>
 
 <div class="api-docs-basics">
     <p>
-
+        The example below shows how the <code>getBasket()</code> method is used in a REST call. An array of basket items and a response code are returned.
     </p>
 </div>
 
-<h2 id="guide-policy">Policies</h2>
+<div class="route-container">
+  <code>PluginLayoutCore/src/Api/Resources/BasketResource.hh</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-hack grey-back linenums">
+&lt;?hh //strict
+
+    namespace LayoutCore\Api\Resources;
+
+    use Illuminate\Http\Response;
+    use Plenty\Plugin\Http\Request;
+    use LayoutCore\Api\ApiResource;
+    use LayoutCore\Api\ApiResponse;
+    use LayoutCore\Api\ResponseCode;
+    use LayoutCore\Services\BasketService;
+
+    class BasketResource extends ApiResource
+    {
+        private BasketService $basketService;
+
+        public function __construct( Request $request, ApiResponse $response, BasketService $basketService )
+        {
+            parent::__construct( $request, $response );
+            $this->basketService = $basketService;
+        }
+
+        public function index():Response
+        {
+            $basket = $this->basketService->getBasket();
+            return $this->response->create($basket, ResponseCode::OK);
+        }
+    }
+</pre>
+</div>
+
+<h1 id="components-design">Design components</h1>
 
 <div class="api-docs-basics">
     <p>
+        We will explain the design structure of a plugin based on the <strong>resources</strong> folder of the plentymarkets Callisto 4 plugin and its sub-folders.
+    </p>
+</div>
 
+<h2 id="design-css">CSS</h2>
+
+<div class="api-docs-basics">
+    <p>
+        The <strong>css</strong> folder contains the CSS files based on <a href="http://v4-alpha.getbootstrap.com/components/card/" target="_blank">Bootstrap 4</a>.
+    </p>
+</div>
+
+<h2 id="design-documents">Documents</h2>
+
+<div class="api-docs-basics">
+    <p>
+        The <strong>documents</strong> folder contains fonts, pdf-files and other document resources.
+    </p>
+</div>
+
+<h2 id="design-images">Images</h2>
+
+<div class="api-docs-basics">
+    <p>
+        Images, such as the company logo, are stored in the <strong>images</strong> folder.
+    </p>
+</div>
+
+<h2 id="design-js">JS</h2>
+
+<div class="api-docs-basics">
+    <p>
+        This is the folder for JavaScript files. The <strong>js</strong> folder contains the <strong>dist</strong> and <strong>src</strong> sub-folders. The source files are organised in the <strong>src</strong> folder. These source files are required for building <code>plugin-callisto-app.js</code> - the main JavaScript file, which is included in <code>PageDesign.twig</code>.
+    </p>
+</div>
+<div class="route-container">
+  <code>PluginCallisto/resources/views/PageDesign.twig</code>
+</div>
+<div class="code-container">
+{% raw %}
+<pre class="prettyprint lang-twig grey-back"><span><</span>script src="{{ plugin_path('PluginCallisto') }}/js/dist/plugin-callisto-app.js"><span><</span>/script></pre>
+{% endraw %}
+</div>
+
+<div class="api-docs-basics">
+    <p>
+        The sub-folders <strong>app</strong> and <strong>libraries</strong> are located in <strong>src</strong>. All Vue.js components are saved in <strong>app/components</strong>. Related Twig templates can be found in the <strong>resources/views/templates</strong> folder. <a href="https://vuejs.org/guide/custom-directive.html" target="_blank">Custom Vue.js directives</a>, e.g. the <code>Logout.js</code>, can be found in the <strong>app/directives</strong> folders.
+    </p>
+</div>
+<div class="route-container">
+  <code>PluginCallisto/resources/js/src/app/directives/Logout.js</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-js grey-back linenums">
+var ApiService          = require('services/ApiService');
+var NotificationService = require('services/NotificationService');
+
+    Vue.directive('logout', function ()
+    {
+
+      $(this.el).click(
+        function (e)
+        {
+          ApiService.post("/rest/account/logout")
+          .done(
+            function(response)
+            {
+              NotificationService.success('Sie wurden erfolgreich ausgeloggt.').closeAfter(3000);
+            }
+          );
+
+          e.preventDefault();
+
+        }.bind(this));
+
+    });
+</pre>
+</div>
+<div>
+    <p>
+      Services are saved in the <strong>app/services</strong> folder, e.g. the <code>ApiService.js</code> service for sending REST calls.
+    </p>
+</div>
+
+<div class="route-container">
+  <code>PluginCallisto/resources/js/src/app/services/ApiService.js</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-js grey-back linenums">
+var NotificationService = require('services/NotificationService');
+var WaitScreenService = require('services/WaitScreenService');
+
+module.exports = (function($) {
+
+    var _token;
+
+    return {
+        get:    _get,
+        put:    _put,
+        post:   _post,
+        delete: _delete,
+        send:   _send,
+        setToken: _setToken,
+        getToken: _getToken
+    };
+
+    function _get( url, data, config )
+    {
+        config = config || {};
+        config.method = 'GET';
+        return _send( url, data, config );
+    }
+
+    ...
+</pre>
+</div>
+
+<h2 id="design-scss">SCSS</h2>
+
+<div class="api-docs-basics">
+    <p>
+        In this folder, the <code>PluginCallisto.scss</code> file imports all the other SCSS files stored in sub-folders. A grunt task generates the <code>plugin-callisto.css</code> file that can be found in the <strong>resources/css</strong> folder.
+    </p>
+</div>
+
+<h2 id="design-views">Views</h2>
+
+<div class="api-docs-basics">
+    <p>
+        The <strong>views</strong> folder contains the <code>PageDesign.twig</code> file - the basic framework for your online store. Static content pages, such as the login page, are organised in sub-folders with the related <code>twig</code> files. Vue.js related template files are organised into multiple sub-folders within the <strong>Templates</strong> folder. These files are necessary for rendering dynamic content of the Vue.js components stored in the folder <strong>resources/js/src/app/components</strong>.
     </p>
 </div>
 

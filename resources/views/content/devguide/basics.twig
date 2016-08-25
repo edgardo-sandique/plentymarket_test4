@@ -27,13 +27,13 @@ PluginDirectory/
     |   +-- images/
     |   |   +-- // images
     |   +-- js/
-    |   |   +-- // JavaScript and Coffee-Script
+    |   |   +-- // JavaScript and CoffeeScript
     |   +-- lang/
     |   |   +-- // language files
     |   +-- documents/
     |   |   +-- // fonts, pdf-files or other resources
     |   +-- views/
-    |       +-- // twig templates (can be organised in subdirectories)
+    |       +-- // twig templates (can be organised in sub-folders)
     |
     +-- src/
     |   +-- // plugin source code
@@ -47,6 +47,11 @@ PluginDirectory/
 </pre>
 </div>
 
+<div class="api-docs-basics">
+    <p>
+        For detailed information about the different plugin components, refer to the <a href="components#components-introduction">Components</a> page.
+    </p>
+</div>
 
 <h2 id="plugin-information">Plugin information</h2>
 <div class="api-docs-basics">
@@ -110,7 +115,7 @@ PluginDirectory/
 </div>
 
 <div class="code-container grey-back">
-    <pre class="prettyprint lang-js grey-back">
+    <pre class="prettyprint lang-js grey-back linenums">
 {
     "version"           : 0.1,
     "name"              : "MyPlugin",
@@ -176,7 +181,7 @@ PluginDirectory/
 <code>/config.json</code>
 </div>
 <div class="code-container">
-    <pre class="prettyprint lang-js grey-back">
+    <pre class="prettyprint lang-js grey-back linenums">
 [
     {
         "tab"       : "Categories",
@@ -226,7 +231,7 @@ PluginDirectory/
 
 <h4>Accessing plugin options from <code>HackClass.hh</code></h4>
     <div class="code-container">
-        <pre class="prettyprint lang-hack grey-back">
+        <pre class="prettyprint lang-hack grey-back linenums">
 // access configuration from hack
 function getTitle(ConfigRepository $config):string
 {
@@ -243,11 +248,153 @@ function getTitle(ConfigRepository $config):string
 
 <h4>Accessing plugin options from <code>Template.twig</code></h4>
 <div class="code-container">
-<pre class="prettyprint lang-twig grey-back">
+<pre class="prettyprint lang-twig grey-back linenums">
 {% verbatim %}{% if config('MyPlugin.show_title') == "1" %}
     &lt;h1&gt;{{ config('MyPlugin.title_text') }}&lt;/h1&gt;
 {% endif %}
 {% endverbatim %}</pre>
+</div>
+
+<h2 id="guide-interface">Plugin interfaces</h2>
+
+<div class="api-docs-basics">
+    <p>
+        Interfaces define the core services for plentymarkets plugins. Interfaces contain all necessary methods <!-- properties, events etc. --> for your plugin to communicate with plentymarkets. For each module of plentymarkets, individual interfaces are available:
+    </p>
+    <table class="table table-striped table-responsive table-bordered table-hover">
+      <thead>
+        <tr>
+        <th>
+          Interface
+        </th>
+        <th>
+          Description
+        </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a href="{{ url() }}/api-doc/Account">Account</a>
+          </td>
+          <td>
+            Contains sub-modules for <strong>Addresses</strong> and <strong>Contacts</strong>. This interface is the counterpart to the plentymarkets CRM module.
+          </td>
+        </tr>
+      <tr>
+        <td>
+          <a href="{{ url() }}/api-doc/Accounting">Accounting</a>
+        </td>
+        <td>
+          Contains a sub-module for <strong>VAT</strong> and classes for determining the VAT.
+        </td>
+      </tr>
+      <tr>
+      <td>
+        <a href="{{ url() }}/api-doc/Authorization">Authorization</a>
+      </td>
+      <td>
+        Interface for user access control and role access control.
+      </td>
+      </tr>
+      <tr>
+      <td>
+        <a href="{{ url() }}/api-doc/Basket">Basket</a>
+      </td>
+      <td>
+        Contains sub-modules for determining the basket and the items within the basket.
+      </td>
+      </tr>
+      <tr>
+      <td>
+        <a href="{{ url() }}/api-doc/Category">Category</a>
+      </td>
+      <td>
+        Interface with sub-modules and models for categories.
+      </td>
+      </tr>
+      <tr>
+      <td>
+        <a href="{{ url() }}/api-doc/DataExchange">DataExchange</a>
+      </td>
+      <td>
+        Interface for exchanging data. Contains models for export and filters.
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <a href="{{ url() }}/api-doc/Document">Document</a>
+      </td>
+      <td>
+        Contains the document model.
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <a href="{{ url() }}/api-doc/Frontend">Frontend</a>
+      </td>
+      <td>
+        Interface with services for the online store.
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <a href="{{ url() }}/api-doc/Helper">Helper</a>
+      </td>
+      <td>
+        Interface with contracts, models and services for helpers.
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <a href="{{ url() }}/api-doc/Item">Item</a>
+      </td>
+      <td>
+        Contains sub-modules for attributes, availability, item and variation data, manufacturers, shipping and units.
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <a href="{{ url() }}/api-doc/Market">Market</a>
+      </td>
+      <td>
+        Contains the sub-module <strong>Ebay</strong> for fitments and fitment items.
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <a href="{{ url() }}/api-doc/Order">Order</a>
+      </td>
+      <td>
+        Contains contracts and models for orders and order items as well as the sub-modules <strong>Payment</strong> and <strong>Shipping</strong>. This interface is the counterpart to the plentymarkets order module.
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <a href="{{ url() }}/api-doc/Stock">Stock</a>
+      </td>
+      <td>
+        Contains contracts and models for stock and storage data.
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <a href="{{ url() }}/api-doc/System">System</a>
+      </td>
+      <td>
+        Contains the <strong>Webstore</strong> model.
+      </td>
+      </tr>
+      <tr>
+      <td>
+      <a href="{{ url() }}/api-doc/Template">Template</a>
+      </td>
+      <td>
+        Contains contracts and models for the design and design configuration.
+      </td>
+      </tr>
+    </tbody>
+    </table>
 </div>
 
 <h1 id="plugin-provisioning">Plugin provisioning</h1>
