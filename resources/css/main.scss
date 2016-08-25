@@ -79,6 +79,9 @@ body {
   color: $abbey-black;
 }
 
+.wrapper{
+  min-height: 100vh;
+}
 .api-docs-basics {
   margin-bottom: 30px;
 }
@@ -163,7 +166,13 @@ color: $bondi-blue;
     overflow-x: hidden;
   }
 }
-
+@media (max-width:767px) {
+  .navbar-inverse {
+    .dropdown-menu > li > a {
+      color: #d0d0d0 !important;
+    }
+  }
+}
 /* BIG MENU ---------------------------------------------------------- */
 .dropdown-big-menu {
   position: static !important;
@@ -195,6 +204,7 @@ color: $bondi-blue;
       background-color: #f5f5f5;
       text-decoration: none;
     }
+
   }
 
   .disabled > a:hover,
@@ -202,7 +212,6 @@ color: $bondi-blue;
     text-decoration: none;
     background-color: transparent;
     background-image: none;
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
     cursor: not-allowed;
   }
   .big-header {
@@ -219,13 +228,13 @@ color: $bondi-blue;
     padding: 0 0 20px 0;
     width: 100%;
 
-  a {
+    a {  padding: 5px 15px 5px 25px;
     color: #d0d0d0;
     &:hover{
       background-color: transparent;
     }
       }
-  .big-header {
+    .big-header {
     padding: 3px 15px !important;
     }
   }
@@ -306,7 +315,7 @@ p.h4 {
 .hr {
   display: block;
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   border: none;
   height: 1px;
   background-color: #ddd;
