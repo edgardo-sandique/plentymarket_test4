@@ -34,6 +34,16 @@ Für das Property `fillable` fehlt die Beschreibung (Evtl. `@inheritdoc` und/ode
 
 Für das Property `dates` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
+Für das Property `id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+Für das Property `vat1` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+Für das Property `vat2` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+Für das Property `vat3` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+Für das Property `vat4` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
 ###Methoden
 
 Für die Methode `country` fehlt die Beschreibung.

@@ -160,6 +160,8 @@ Alles gut. :)
 
 Für die Methode `search` fehlt die Beschreibung.
 
+Für die Methode `searchWithPagination` fehlt die Beschreibung.
+
 ##Plenty\Modules\Item\DataLayer\Models\DataLayerModel
 Beschreibung ist zu kurz oder nicht vorhanden:
 
@@ -527,6 +529,8 @@ Alles gut. :)
 Für die Methode `__construct` fehlt die Beschreibung.
 
 Für die Methode `getCurrentIds` fehlt die Beschreibung.
+
+Für die Methode `getNumberOfRowsTotal` fehlt die Beschreibung.
 
 Für die Methode `getNumberOfCalculatedRows` fehlt die Beschreibung.
 

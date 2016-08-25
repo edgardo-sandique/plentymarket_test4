@@ -16,6 +16,161 @@ Alles gut. :)
 
 Alles gut. :)
 
+##Plenty\Modules\Order\Events\Created\CreditNoteCreated
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\Created\DeliveryOrderCreated
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\Created\MultiCreditNoteCreated
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\Created\MultiOrderCreated
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\Created\RepairCreated
+Beschreibung ist zu kurz oder nicht vorhanden:
+
+    Class RepairCreated
+
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\Created\ReturnCreated
+Beschreibung ist zu kurz oder nicht vorhanden:
+
+    Class ReturnCreated
+
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\Created\SalesOrderCreated
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\Created\WarrantyCreated
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\OrderCreated
+Beschreibung ist zu kurz oder nicht vorhanden:
+
+    Class OrderCreated
+
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\OrderEvent
+Beschreibung ist zu kurz oder nicht vorhanden:
+
+    Class OrderEvent
+
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\OrderFullyPaid
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\OrderOverpaid
+Beschreibung ist zu kurz oder nicht vorhanden:
+
+    Class OrderOverpaid
+
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\OrderPaidEvent
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\OrderPartlyPaid
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Events\OrderPaymentAssigned
+###Properties
+
+Für das Property `payment` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+###Methoden
+
+Alles gut. :)
+
 ##Plenty\Modules\Order\Models\Order
 Beschreibung ist zu kurz oder nicht vorhanden:
 
@@ -27,13 +182,9 @@ Alles gut. :)
 
 ###Methoden
 
-Für die Methode `options` fehlt die Beschreibung.
+Alles gut. :)
 
 ##Plenty\Modules\Order\Models\OrderAmount
-Beschreibung ist zu kurz oder nicht vorhanden:
-
-    Class OrderAmount
-
 ###Properties
 
 Alles gut. :)
@@ -62,7 +213,9 @@ Für das Property `dates` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `
 
 ###Methoden
 
-Alles gut. :)
+Für die Methode `getOrderAttribute` fehlt die Beschreibung.
+
+Für die Methode `getTypeAttribute` fehlt die Beschreibung.
 
 ##Plenty\Modules\Order\Models\OrderItemAmount
 ###Properties
@@ -73,7 +226,7 @@ Alles gut. :)
 
 Alles gut. :)
 
-##Plenty\Modules\Order\Models\OrderItemOption
+##Plenty\Modules\Order\Models\OrderItemProperty
 ###Properties
 
 Alles gut. :)
@@ -83,10 +236,6 @@ Alles gut. :)
 Alles gut. :)
 
 ##Plenty\Modules\Order\Models\OrderItemType
-Beschreibung ist zu kurz oder nicht vorhanden:
-
-    Class OrderItemType
-
 ###Properties
 
 Alles gut. :)
@@ -104,11 +253,7 @@ Alles gut. :)
 
 Alles gut. :)
 
-##Plenty\Modules\Order\Models\OrderOption
-Beschreibung ist zu kurz oder nicht vorhanden:
-
-    Class OrderOption
-
+##Plenty\Modules\Order\Models\OrderProperty
 ###Properties
 
 Alles gut. :)
@@ -117,7 +262,7 @@ Alles gut. :)
 
 Alles gut. :)
 
-##Plenty\Modules\Order\Models\OrderOptionSubType
+##Plenty\Modules\Order\Models\OrderPropertySubType
 ###Properties
 
 Alles gut. :)
@@ -126,7 +271,7 @@ Alles gut. :)
 
 Alles gut. :)
 
-##Plenty\Modules\Order\Models\OrderOptionSubTypeName
+##Plenty\Modules\Order\Models\OrderPropertySubTypeName
 ###Properties
 
 Alles gut. :)
@@ -135,7 +280,7 @@ Alles gut. :)
 
 Alles gut. :)
 
-##Plenty\Modules\Order\Models\OrderOptionType
+##Plenty\Modules\Order\Models\OrderPropertyType
 ###Properties
 
 Alles gut. :)
@@ -144,7 +289,7 @@ Alles gut. :)
 
 Alles gut. :)
 
-##Plenty\Modules\Order\Models\OrderOptionTypeName
+##Plenty\Modules\Order\Models\OrderPropertyTypeName
 ###Properties
 
 Alles gut. :)
@@ -160,13 +305,19 @@ Alles gut. :)
 
 ###Methoden
 
-Alles gut. :)
+Für die Methode `references` ist die Beschreibung zu kurz:
+
+    TODO:
+
+Für die Methode `contactReceiver` fehlt die Beschreibung.
+
+Für die Methode `contactSender` fehlt die Beschreibung.
+
+Für die Methode `accountReceiver` fehlt die Beschreibung.
+
+Für die Methode `warehouseReceiver` fehlt die Beschreibung.
 
 ##Plenty\Modules\Order\Models\OrderStatus
-Beschreibung ist zu kurz oder nicht vorhanden:
-
-    Class OrderStatus
-
 ###Properties
 
 Alles gut. :)
@@ -185,10 +336,6 @@ Alles gut. :)
 Alles gut. :)
 
 ##Plenty\Modules\Order\Models\OrderType
-Beschreibung ist zu kurz oder nicht vorhanden:
-
-    Class OrderType
-
 ###Properties
 
 Alles gut. :)
@@ -198,10 +345,6 @@ Alles gut. :)
 Alles gut. :)
 
 ##Plenty\Modules\Order\Models\OrderTypeName
-Beschreibung ist zu kurz oder nicht vorhanden:
-
-    Class OrderTypeName
-
 ###Properties
 
 Alles gut. :)
@@ -323,7 +466,38 @@ Für das Property `showLogo` fehlt die Beschreibung (Evtl. `@inheritdoc` und/ode
 
 Alles gut. :)
 
-##Plenty\Modules\Order\Shipping\DefaultShipping\Models\DefaultShipping
+##Plenty\Modules\Order\Referrer\Contracts\OrderReferrerRepositoryContract
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Referrer\Models\OrderReferrer
+Beschreibung ist zu kurz oder nicht vorhanden:
+
+    Class OrderReferrer
+
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Services\OrderCreatedTypeService
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Shipping\Models\DefaultShipping
 ###Properties
 
 Für das Property `fillable` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).

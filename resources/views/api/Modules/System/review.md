@@ -12,13 +12,11 @@ Für das Property `appends` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder
 
 Für das Property `timestamps` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `hidden` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `fillable` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `visible` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+Für das Property `guarded` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 Für das Property `primaryKey` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+Für das Property `incrementing` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 ###Methoden
 

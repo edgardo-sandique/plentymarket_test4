@@ -86,6 +86,30 @@ Für das Property `fillable` fehlt die Beschreibung (Evtl. `@inheritdoc` und/ode
 
 Alles gut. :)
 
+##Plenty\Modules\DataExchange\Resource\Contracts\ResourceLoaderContract
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Für die Methode `getResource` fehlt die Beschreibung.
+
+Für die Methode `validateSourceOptions` fehlt die Beschreibung.
+
+Für die Methode `getLoaderType` fehlt die Beschreibung.
+
+##Plenty\Modules\DataExchange\Resource\Contracts\ResourceParserContract
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Für die Methode `next` fehlt die Beschreibung.
+
+Für die Methode `getParserType` fehlt die Beschreibung.
+
 ##Plenty\Modules\DataExchange\Services\ExportPresetContainer
 Beschreibung ist zu kurz oder nicht vorhanden:
 

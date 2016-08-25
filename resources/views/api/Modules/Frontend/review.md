@@ -16,6 +16,8 @@ Für die Methode `getSystem` fehlt die Beschreibung.
 
 Für die Methode `getAccount` fehlt die Beschreibung.
 
+Für die Methode `getFile` fehlt die Beschreibung.
+
 ##Plenty\Modules\Frontend\Services\AccountService
 Beschreibung ist zu kurz oder nicht vorhanden:
 

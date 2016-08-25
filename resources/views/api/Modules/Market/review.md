@@ -26,10 +26,6 @@ Alles gut. :)
 Alles gut. :)
 
 ##Plenty\Modules\Market\Ebay\PartsFitment\Models\Fitment
-Beschreibung ist zu kurz oder nicht vorhanden:
-
-    The fitment model.
-
 ###Properties
 
 Alles gut. :)
