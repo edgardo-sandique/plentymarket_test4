@@ -33,6 +33,15 @@
         ga('create', 'UA-925311-7', 'auto');
         ga('set', 'anonymizeIp', true);
         ga('send', 'pageview');
+
+        function handleOutboundLinkClicks(event) {
+            ga('send', 'event', {
+                eventCategory: 'Outbound Link',
+                eventAction: 'click',
+                eventLabel: event.target.href,
+                transport: 'beacon'
+            });
+        }
     </script>
 </head>
 {% block BodyStart %}
