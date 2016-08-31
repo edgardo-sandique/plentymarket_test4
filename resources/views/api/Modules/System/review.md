@@ -12,13 +12,15 @@ Für das Property `appends` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder
 
 Für das Property `timestamps` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `guarded` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+Für das Property `incrementing` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 Für das Property `primaryKey` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `incrementing` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
 ###Methoden
+
+Für die Methode `getIdAttribute` fehlt die Beschreibung.
+
+Für die Methode `getNameAttribute` fehlt die Beschreibung.
 
 Für die Methode `plugins` fehlt die Beschreibung.
 

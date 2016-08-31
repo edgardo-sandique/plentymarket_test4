@@ -59,6 +59,8 @@ Für das Property `plenty_attribute2_group_attribute` fehlt die Beschreibung (Ev
 
 Für das Property `attribute` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
+Für das Property `attributeNames` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
 ###Methoden
 
 Alles gut. :)
@@ -115,6 +117,8 @@ Für das Property `tracdelight_map` fehlt die Beschreibung (Evtl. `@inheritdoc` 
 Für das Property `plenty_attribute_value_percentage_distribution` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 Für das Property `attribute` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+Für das Property `valueNames` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 ###Methoden
 
@@ -332,29 +336,6 @@ Für das Property `tradoriaCategory` fehlt die Beschreibung (Evtl. `@inheritdoc`
 
 Alles gut. :)
 
-##Plenty\Modules\Item\DataLayer\Models\ItemCharacter
-Beschreibung ist zu kurz oder nicht vorhanden:
-
-    Created by ptopczewski, 05.01.16 13:34
-
-###Properties
-
-Für das Property `itemCharacterId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `characterId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `characterValue` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `characterValueType` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `isOrderCharacter` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `characterOrderMarkup` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-###Methoden
-
-Alles gut. :)
-
 ##Plenty\Modules\Item\DataLayer\Models\ItemCrossSelling
 Beschreibung ist zu kurz oder nicht vorhanden:
 
@@ -417,6 +398,31 @@ Für das Property `urlContent` fehlt die Beschreibung (Evtl. `@inheritdoc` und/o
 
 Alles gut. :)
 
+##Plenty\Modules\Item\DataLayer\Models\ItemProperty
+Beschreibung ist zu kurz oder nicht vorhanden:
+
+    
+
+###Properties
+
+Für das Property `PROPERTY_MAP` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+Für das Property `itemPropertyId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+Für das Property `propertyId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+Für das Property `propertyValue` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+Für das Property `propertyValueType` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+Für das Property `isOrderProperty` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+Für das Property `propertyOrderMarkup` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+###Methoden
+
+Für die Methode `__construct` fehlt die Beschreibung.
+
 ##Plenty\Modules\Item\DataLayer\Models\ItemShippingProfiles
 ###Properties
 
@@ -442,7 +448,7 @@ Class Record
 
 Für das Property `itemBase` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `itemCharacterList` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+Für das Property `itemPropertyList` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 Für das Property `itemCrossSellingList` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 

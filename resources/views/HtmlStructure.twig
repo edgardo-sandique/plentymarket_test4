@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="plentymarkets,plugin,twig,hack,laravel,git-hub" />
+    <meta name="keywords" content="plentymarkets,plugin,twig,hack,laravel,git" />
     <meta name="description" content="Start building plentymarkets plugins using hack and twig and offer them in our store! We are happy to support you with tutorials, videos an so much more!" />
     <meta name="robots" content="ALL" />
     <meta name="author" content="plentymarkets GmbH" />
@@ -79,23 +79,35 @@
                         {% include 'PlentyPluginShowcase::content.devguide.navigation' ignore missing %}
                     </ul>
                 </li>
-                <li class="dropdown dropdown-big-menu">
+                <li class="dropdown big-menu">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">
                         Interfaces
                         <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu big-menu">
+                    <ul class="dropdown-menu dropdown-big-menu">
                         {% include 'PlentyPluginShowcase::api.navigation' ignore missing %}
                     </ul>
                 </li>
-                <li class="dropdown dropdown-big-menu">
+                <li class="dropdown big-menu">
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">
                         REST
                         <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu big-menu">
+                    <ul class="dropdown-menu dropdown-big-menu">
                         {% include 'PlentyPluginShowcase::rest.ShowcaseNavigation' %}
                     </ul>
+                </li>
+            </ul>
+            <ul class="social hidden-xs">
+                <li>
+                    <a href="http://twitter.com/#!/plentymarkets" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Twitter">
+                        <img src="{{ plugin_path('PlentyPluginShowcase') }}/images/twitter.svg" style="width: 32px; height: 32px;" alt="twitter logo"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://forum.plentymarkets.com/" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Forum">
+                        <span class="icon-forum"></span>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -115,6 +127,15 @@
                 </li>
                 <li role="presentation">
                     <a href="https://www.plentymarkets.eu/unternehmen/impressum/">Legal disclosure</a>
+                </li>
+                <li class="hidden-lg hidden-md hidden-sm" role="presentation">
+                    <a href="https://www.plentymarkets.eu/unternehmen/">About</a>
+                </li>
+                <li class="hidden-lg hidden-md hidden-sm" role="presentation">
+                    <a href="https://www.plentymarkets.eu/unternehmen/kontakt/">Contact</a>
+                </li>
+                <li class="hidden-lg hidden-md hidden-sm" role="presentation">
+                    <a href="https://www.plentymarkets.eu/blog/">Blog</a>
                 </li>
             </ul>
         </div>
@@ -147,9 +168,14 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="{{ plugin_path('PlentyPluginShowcase') }}/js/bootstrap.min.js"></script>
 <script src="{{ plugin_path('PlentyPluginShowcase') }}/js/scripts.js"></script>
-
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
 {% block AdditionalScripts %}
+
 {% endblock %}
 
 </body>
