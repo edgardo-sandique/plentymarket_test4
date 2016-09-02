@@ -33,16 +33,14 @@
         ga('create', 'UA-925311-7', 'auto');
         ga('set', 'anonymizeIp', true);
         ga('send', 'pageview');
-
-        function handleOutboundLinkClicks(event) {
-            ga('send', 'event', {
-                eventCategory: 'Outbound Link',
-                eventAction: 'click',
-                eventLabel: event.target.href,
-                transport: 'beacon'
+        var trackOutboundLink = function(url) {
+            ga('send', 'event', 'outbound', 'click', url, {
+                'transport': 'beacon',
+                'hitCallback': function(){document.location = url;}
             });
         }
     </script>
+
 </head>
 {% block BodyStart %}
 <body>
@@ -100,12 +98,12 @@
             </ul>
             <ul class="social hidden-xs">
                 <li>
-                    <a href="http://twitter.com/#!/plentymarkets" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Twitter">
+                    <a href="http://twitter.com/#!/plentymarkets" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Twitter" onclick="trackOutboundLink('http://twitter.com/#!/plentymarkets'); return false;">
                         <img src="{{ plugin_path('PlentyPluginShowcase') }}/images/twitter.svg" style="width: 32px; height: 32px;" alt="twitter logo"/>
                     </a>
                 </li>
                 <li>
-                    <a href="https://forum.plentymarkets.com/" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Forum">
+                    <a href="https://forum.plentymarkets.com/" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Forum" onclick="trackOutboundLink('https://forum.plentymarkets.com/'); return false;">
                         <span class="icon-forum"></span>
                     </a>
                 </li>
