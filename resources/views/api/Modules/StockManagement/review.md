@@ -59,25 +59,26 @@ Alles gut. :)
 ##Plenty\Modules\StockManagement\Stock\Models\StorageLocation
 ###Properties
 
-Für das Property `itemId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `variationId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `warehouseId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `storageLocation` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
 Für das Property `attributeValueSet` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `quantity` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `reserved` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 ###Methoden
 
 Alles gut. :)
 
 ##Plenty\Modules\StockManagement\Warehouse\Contracts\WarehouseRepositoryContract
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\StockManagement\Warehouse\Models\Warehouse
+Beschreibung ist zu kurz oder nicht vorhanden:
+
+    
+
 ###Properties
 
 Alles gut. :)

@@ -17,49 +17,11 @@ Für das Property `hidden` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder 
 
 Für das Property `primaryKey` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+Für das Property `filterAttribute` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `backend_name` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+Für das Property `langs` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `contentpage` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `position` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `markup_percental` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `image_attribute` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `filter_attribute` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `amazon_variation` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `fruugo_attribute` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `pixmania_attribute` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `neckermann_attribute` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `shopperella_variation` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `otto_variation` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `googleproducts_variation` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `neckermann_at_ep_variation` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `neckermann_at_cd_variation` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `global_type` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `view_webshop` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `la_redoute_variation` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `plenty_attribute2_group_attribute` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `attribute` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `attributeNames` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+Für das Property `values` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 ###Methoden
 
@@ -80,41 +42,9 @@ Für das Property `hidden` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder 
 
 Für das Property `primaryKey` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+Für das Property `valueMatch` ist die Beschreibung zu kurz:
 
-Für das Property `attribute_id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `backend_name` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `markup` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `position` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `image` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `comment` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `value_match` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `short_name` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `amazon_map` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `neckerman_map` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `otto_map` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `neckermann_at_ep_map` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `neckermann_at_cd_map` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `global_type` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `la_redoute_map` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `tracdelight_map` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `plenty_attribute_value_percentage_distribution` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+    The test
 
 Für das Property `attribute` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
@@ -1091,7 +1021,7 @@ Für das Property `profileId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/od
 
 Alles gut. :)
 
-##Plenty\Modules\Item\Producer\Contracts\ProducerRepositoryContract
+##Plenty\Modules\Item\Manufacturer\Contracts\ManufacturerRepositoryContract
 Beschreibung ist zu kurz oder nicht vorhanden:
 
     Created by IntelliJ IDEA.
@@ -1104,10 +1034,10 @@ Alles gut. :)
 
 Für die Methode `all` fehlt die Beschreibung.
 
-##Plenty\Modules\Item\Producer\Models\Producer
+##Plenty\Modules\Item\Manufacturer\Models\Manufacturer
 Beschreibung ist zu kurz oder nicht vorhanden:
 
-    Class Producer
+    Class Manufacturer
 
 ###Properties
 
@@ -1115,45 +1045,9 @@ Für das Property `table` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `
 
 Für das Property `fillable` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `name` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+Für das Property `maps` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `logo` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `url` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `pixmania_brand_id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `neckermann_brand_id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `external_name` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `neckermann_at_ep_brand_id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `neckermann_at_cd_brand_id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `street` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `house_no` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `zip` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `city` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `country_id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `phone_number` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `fax_number` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `email` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `la_redoute_brand_id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `producer_comment` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `plenty_producer_last_update_timestamp` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+Für das Property `commissions` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 ###Methoden
 
@@ -1185,12 +1079,6 @@ Für das Property `fillable` fehlt die Beschreibung (Evtl. `@inheritdoc` und/ode
 
 Für das Property `primaryKey` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `itemId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `profileId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
 ###Methoden
 
 Alles gut. :)
@@ -1213,18 +1101,6 @@ Für das Property `fillable` fehlt die Beschreibung (Evtl. `@inheritdoc` und/ode
 Für das Property `hidden` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 Für das Property `primaryKey` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `position` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `unitOfMeasurement` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `DecimalPlacesAllowed` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `updatedAt` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `createdAt` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 Für das Property `langs` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 

@@ -14,6 +14,52 @@ Alles gut. :)
 
 ###Methoden
 
+Für die Methode `searchOrders` fehlt die Beschreibung.
+
+##Plenty\Modules\Order\Currency\Contracts\CurrencyRepositoryContract
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Currency\Models\Currency
+Beschreibung ist zu kurz oder nicht vorhanden:
+
+    Class Currency
+
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Currency\Models\CurrencyCountryRelation
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Currency\Models\CurrencyName
+Beschreibung ist zu kurz oder nicht vorhanden:
+
+    Class CurrencyName
+
+###Properties
+
+Für das Property `name` ist die Beschreibung zu kurz:
+
+    The name.
+
+###Methoden
+
 Alles gut. :)
 
 ##Plenty\Modules\Order\Events\Created\CreditNoteCreated

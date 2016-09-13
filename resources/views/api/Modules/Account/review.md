@@ -98,6 +98,15 @@ Alles gut. :)
 
 Für die Methode `getContactAddresses` fehlt die Beschreibung.
 
+##Plenty\Modules\Account\Contact\Contracts\ContactClassRepositoryContract
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
 ##Plenty\Modules\Account\Contact\Contracts\ContactOptionRepositoryContract
 ###Properties
 
