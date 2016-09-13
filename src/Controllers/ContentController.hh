@@ -26,13 +26,9 @@ class ContentController extends Controller
       return $twig->render('PlentyPluginShowcase::content.LandingPage', $templateData);
     }
 
-    public function showTutorialsHello( Twig $twig):string
+    public function showTutorials(Twig $twig, string $pageName):string
     {
-        return $twig->render('PlentyPluginShowcase::content.tutorials.helloworld');
-    }
-    public function showTutorialsTopsellers( Twig $twig):string
-    {
-        return $twig->render('PlentyPluginShowcase::content.tutorials.topsellers');
+        return $twig->render('PlentyPluginShowcase::content.tutorials.' . $pageName);
     }
 
     public function showDevGuidePage(Twig $twig, string $pageName):string
