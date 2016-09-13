@@ -11,7 +11,7 @@
 <h2 id="generate-token">Step 1: Generating a personal access token</h2>
 <div class="api-docs-basics">
     <p>
-        First, go to <a href="https://github.com/settings/tokens" target="_blank">Github</a> and create a new personal access token. This token is used for securing the communication between Github and plentymarkets.
+        First, go to <a href="https://github.com/settings/tokens" target="_blank">Github</a> and create a new personal access token. This token is used for authenticating your Github account in plentymarkets.
     </p>
     <ol>
         <li>
@@ -47,7 +47,7 @@
         <li>
           Copy the <b>token</b> to the clipboard.<br /> → This token is required in step 3.
         </li>
-        <li>Select the branch of the repository you want to copy.</li>
+        <li>Select the branch of the repository you want to clone.</li>
         <li><b>Save</b> the settings.<br /> → The plugin repository is copied to the plentymarkets inbox.</li>
     </ol>
 </div>
@@ -65,14 +65,37 @@
         <li>Click on <b>Webhooks & services</b>.</li>
         <li>Click on <b>Add webhook</b>.</li>
         <li>Enter the <b>Payload URL</b>.<br /> → The payload URL consists of your online store URL and <code>/rest/plugins/hook</code>, e.g. <code>https://www.your-plentystore.co.uk/rest/plugins/hook</code>.</li>
-        <li>Paste the copied token into the <b>Secret</b> field.</li>
+        <li>Paste the copied token into the <b>Secret</b> field.<br /> → This token is used for securing the communication between Github and plentymarkets.</li>
         <li>Click on <b>Add webhook</b>.<br /> → The webhook will be displayed under <b>Webhooks</b>.</li>
     </ol>
 </div>
 <div class="alert alert-info" role="alert">
     <b>Provisioning in Productive:</b> In order to provision the plugin in Productive directly, simply add <code>?mode=production</code> at the end of the payload URL, e.g. <code>https://www.your-plentystore.co.uk/rest/plugins/hook?mode=production</code>.
 </div>
-<h2 id="check-webhook">Step 4: Checking the webhook</h2>
+<h2 id="provision-plugin">Step 4: Provisioning the plugin</h2>
+<div class="api-docs-basics">
+    <p>
+        You have to provision the plugin manually once to integrate it with plentymarkets.
+    </p>
+    <ol>
+        <li>
+            Go to <b>Start » Plugins</b>.
+        </li>
+        <li>
+            In the row of your plugin, click on <b>Select client</b>.
+        </li>
+        <li>
+            Select your client and save it.
+        </li>
+        <li>
+            Activate the plugin in the <b>Stage</b> or <b>Productive</b> column.
+        </li>
+        <li>
+            In the toolbar, click on <b>Provision plugins in Stage</b> or <b>Provision plugins in Productive</b>.
+        </li>
+    </ol>
+</div>
+<h2 id="check-webhook">Step 5: Checking the webhook</h2>
 <div class="api-docs-basics">
   <p>
     When making changes to your Github repository and committing the changes, your plugin will be updated automatically and provisioned in Stage or Productive using the webhook. Changes will be visible shortly after the commit.
