@@ -99,9 +99,9 @@ Für die Methode `getPaymentsByTransactionType` fehlt die Beschreibung.
 
 Für die Methode `getPaymentsByOrderId` fehlt die Beschreibung.
 
-Für die Methode `getPaymentByImportDateInterval` fehlt die Beschreibung.
+Für die Methode `getPaymentsByImportDateInterval` fehlt die Beschreibung.
 
-Für die Methode `getPaymentByEntryDateInterval` fehlt die Beschreibung.
+Für die Methode `getPaymentsByEntryDateInterval` fehlt die Beschreibung.
 
 Für die Methode `createPayment` fehlt die Beschreibung.
 
@@ -250,7 +250,9 @@ Für das Property `value` ist die Beschreibung zu kurz:
 
 ###Methoden
 
-Alles gut. :)
+Für die Methode `type` fehlt die Beschreibung.
+
+Für die Methode `payment` fehlt die Beschreibung.
 
 ##Plenty\Modules\Payment\Models\PaymentPropertyType
 ###Properties
