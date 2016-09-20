@@ -178,29 +178,7 @@ Beschreibung ist zu kurz oder nicht vorhanden:
 
 ###Properties
 
-Für das Property `id` ist die Beschreibung zu kurz:
-
-    id
-
-Für das Property `amount` ist die Beschreibung zu kurz:
-
-    amount
-
-Für das Property `deleted` ist die Beschreibung zu kurz:
-
-    deleted
-
-Für das Property `currency` ist die Beschreibung zu kurz:
-
-    currency
-
-Für das Property `hash` ist die Beschreibung zu kurz:
-
-    hash
-
-Für das Property `origin` ist die Beschreibung zu kurz:
-
-    origin
+Alles gut. :)
 
 ###Methoden
 
@@ -236,18 +214,6 @@ Alles gut. :)
 
 Für das Property `PROPERTY_TYPES` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `id` ist die Beschreibung zu kurz:
-
-    id
-
-Für das Property `typeId` ist die Beschreibung zu kurz:
-
-    type id
-
-Für das Property `value` ist die Beschreibung zu kurz:
-
-    value
-
 ###Methoden
 
 Für die Methode `type` fehlt die Beschreibung.
@@ -257,17 +223,7 @@ Für die Methode `payment` fehlt die Beschreibung.
 ##Plenty\Modules\Payment\Models\PaymentPropertyType
 ###Properties
 
-Für das Property `id` ist die Beschreibung zu kurz:
-
-    id
-
-Für das Property `erasable` ist die Beschreibung zu kurz:
-
-    erasable
-
-Für das Property `position` ist die Beschreibung zu kurz:
-
-    position
+Alles gut. :)
 
 ###Methoden
 
@@ -276,21 +232,7 @@ Für die Methode `names` fehlt die Beschreibung.
 ##Plenty\Modules\Payment\Models\PaymentPropertyTypeName
 ###Properties
 
-Für das Property `id` ist die Beschreibung zu kurz:
-
-    id
-
-Für das Property `typeId` ist die Beschreibung zu kurz:
-
-    type id
-
-Für das Property `lang` ist die Beschreibung zu kurz:
-
-    lang
-
-Für das Property `name` ist die Beschreibung zu kurz:
-
-    name
+Alles gut. :)
 
 ###Methoden
 
