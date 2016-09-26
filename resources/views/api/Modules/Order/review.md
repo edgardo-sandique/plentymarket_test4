@@ -54,9 +54,7 @@ Beschreibung ist zu kurz oder nicht vorhanden:
 
 ###Properties
 
-Für das Property `name` ist die Beschreibung zu kurz:
-
-    The name.
+Alles gut. :)
 
 ###Methoden
 
@@ -363,24 +361,6 @@ Für die Methode `accountReceiver` fehlt die Beschreibung.
 
 Für die Methode `warehouseReceiver` fehlt die Beschreibung.
 
-##Plenty\Modules\Order\Models\OrderStatus
-###Properties
-
-Alles gut. :)
-
-###Methoden
-
-Alles gut. :)
-
-##Plenty\Modules\Order\Models\OrderStatusName
-###Properties
-
-Alles gut. :)
-
-###Methoden
-
-Alles gut. :)
-
 ##Plenty\Modules\Order\Models\OrderType
 ###Properties
 
@@ -522,10 +502,6 @@ Alles gut. :)
 Alles gut. :)
 
 ##Plenty\Modules\Order\Referrer\Models\OrderReferrer
-Beschreibung ist zu kurz oder nicht vorhanden:
-
-    Class OrderReferrer
-
 ###Properties
 
 Alles gut. :)
@@ -561,6 +537,33 @@ Für das Property `paymentMethod1` fehlt die Beschreibung (Evtl. `@inheritdoc` u
 Für das Property `paymentMethod2` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 Für das Property `paymentMethod3` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Status\Contracts\StatusRepositoryContract
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\Order\Status\Models\OrderStatus
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Für die Methode `names` fehlt die Beschreibung.
+
+##Plenty\Modules\Order\Status\Models\OrderStatusName
+###Properties
+
+Alles gut. :)
 
 ###Methoden
 

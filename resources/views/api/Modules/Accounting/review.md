@@ -1,15 +1,18 @@
-##Plenty\Modules\Accounting\Vat\Contracts\VatRepositoryContract
+##Plenty\Modules\Accounting\Models\AccountingLocation
 ###Properties
 
 Alles gut. :)
 
 ###Methoden
 
-Für die Methode `getStandardCountryVat` fehlt die Beschreibung.
+Alles gut. :)
 
-Für die Methode `getVatId` fehlt die Beschreibung.
+##Plenty\Modules\Accounting\Vat\Contracts\VatRepositoryContract
+###Properties
 
-Für die Methode `getVatById` fehlt die Beschreibung.
+Alles gut. :)
+
+###Methoden
 
 Für die Methode `determineCountryVat` fehlt die Beschreibung.
 
@@ -20,31 +23,22 @@ Beschreibung ist zu kurz oder nicht vorhanden:
 
 ###Properties
 
-Für das Property `table` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `primaryKey` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `timestamps` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `maps` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `casts` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `fillable` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `dates` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `id` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `vat1` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `vat2` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `vat3` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `vat4` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+Für das Property `hidden` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 ###Methoden
 
-Für die Methode `country` fehlt die Beschreibung.
+Alles gut. :)
+
+##Plenty\Modules\Accounting\Vat\Models\VatRate
+Beschreibung ist zu kurz oder nicht vorhanden:
+
+    Class VatRate
+
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
 

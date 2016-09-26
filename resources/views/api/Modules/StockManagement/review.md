@@ -10,47 +10,11 @@ Alles gut. :)
 ##Plenty\Modules\StockManagement\Stock\Models\Stock
 Beschreibung ist zu kurz oder nicht vorhanden:
 
-    Class Stock
+    The stock model.
 
 ###Properties
 
-Für das Property `warehouseId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `variationId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `itemId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `stockPhysical` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `reservedStock` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `reservedEbay` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `reorderDelta` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `stockNet` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `updateAmazon` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `updatePixmania` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `warehouseType` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `reordered` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `reservedBundle` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `averagePurchasePrice` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `warehousePriority` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `lastUpdateTimestamp` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `lastCalculateTimestamp` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `reservedOutOfStock` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
-Für das Property `reservedBasket` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+Alles gut. :)
 
 ###Methoden
 
@@ -66,6 +30,68 @@ Für das Property `attributeValueSet` fehlt die Beschreibung (Evtl. `@inheritdoc
 Alles gut. :)
 
 ##Plenty\Modules\StockManagement\Warehouse\Contracts\WarehouseRepositoryContract
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\StockManagement\Warehouse\Management\Contracts\RackManagementRepositoryContract
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\StockManagement\Warehouse\Management\Contracts\ShelfManagementRepositoryContract
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\StockManagement\Warehouse\Management\Contracts\StorageLocationManagementRepositoryContract
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\StockManagement\Warehouse\Management\Models\Rack
+Beschreibung ist zu kurz oder nicht vorhanden:
+
+    The Rack model.
+
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\StockManagement\Warehouse\Management\Models\Shelf
+Beschreibung ist zu kurz oder nicht vorhanden:
+
+    The Shelf model.
+
+###Properties
+
+Alles gut. :)
+
+###Methoden
+
+Alles gut. :)
+
+##Plenty\Modules\StockManagement\Warehouse\Management\Models\StorageLocation
 ###Properties
 
 Alles gut. :)
