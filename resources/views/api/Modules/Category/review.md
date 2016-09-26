@@ -135,13 +135,13 @@ Alles gut. :)
 
 Für das Property `table` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `maps` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
-
 Für das Property `primaryKey` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 Für das Property `hidden` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 Für das Property `fillable` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+
+Für das Property `maps` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 Für das Property `categoryId` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
@@ -177,7 +177,7 @@ Für das Property `singleItemView` fehlt die Beschreibung (Evtl. `@inheritdoc` u
 
 Für das Property `pageView` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
-Für das Property `fulltext,` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
+Für das Property `fulltext` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
 Für das Property `placeholderTranslation` fehlt die Beschreibung (Evtl. `@inheritdoc` und/oder `@internal`?).
 
