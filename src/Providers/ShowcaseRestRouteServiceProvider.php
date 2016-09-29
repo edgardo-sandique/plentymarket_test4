@@ -1,4 +1,4 @@
-<?hh // strict
+<?php // strict
 namespace Showcase\Providers;
 
 use Plenty\Plugin\RouteServiceProvider;
@@ -9,14 +9,14 @@ class ShowcaseRestRouteServiceProvider extends RouteServiceProvider
 	/**
 	 *
 	 */
-	public function register():void
+	public function register()
 	{
 	}
 
 	/**
-	 *
+	 * @param Router $router
 	 */
-	public function map(Router $router):void
+	public function map(Router $router)
 	{
 
 		$router->get('rest-doc/introduction', 'Showcase\Controllers\RestController@showRestIntroduction')

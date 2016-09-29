@@ -1,4 +1,4 @@
-<?hh //strict
+<?php //strict
 
 namespace Showcase\Controllers;
 
@@ -11,41 +11,67 @@ use Plenty\Modules\Category\Models\Category;
 
 class ContentController extends Controller
 {
+    /**
+     * @param Twig $twig
+     * @return string
+     */
     public function showLandingPage(Twig $twig):string
     {
-      $ch = curl_init();
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($ch,CURLOPT_USERAGENT,'plenty-plugin-showcase-fork-count');
-      curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/plentymarkets/plenty-plugin-showcase');
-      $result = curl_exec($ch);
-      curl_close($ch);
-      $payload = json_decode($result, true);
-      $templateData = array(
-          'curlResult' => $payload,
-      );
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch,CURLOPT_USERAGENT,'plenty-plugin-showcase-fork-count');
+        curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/plentymarkets/plenty-plugin-showcase');
+        $result = curl_exec($ch);
+        curl_close($ch);
+        $payload = json_decode($result, true);
+        $templateData = array(
+            'curlResult' => $payload,
+        );
       return $twig->render('PlentyPluginShowcase::content.LandingPage', $templateData);
     }
 
+    /**
+     * @param Twig $twig
+     * @param string $pageName
+     * @return string
+     */
     public function showTutorials(Twig $twig, string $pageName):string
     {
         return $twig->render('PlentyPluginShowcase::content.tutorials.' . $pageName);
     }
 
+    /**
+     * @param Twig $twig
+     * @param string $pageName
+     * @return string
+     */
     public function showDevGuidePage(Twig $twig, string $pageName):string
     {
         return $twig->render('PlentyPluginShowcase::content.devguide.' . $pageName);
     }
 
+    /**
+     * @param Twig $twig
+     * @param CategoryRepository $categoryRepository
+     * @param ItemDataLayerRepositoryContract $itemRepository
+     * @param string|null $lvl1
+     * @param string|null $lvl2
+     * @param string|null $lvl3
+     * @param string|null $lvl4
+     * @param string|null $lvl5
+     * @param string|null $lvl6
+     * @return string
+     */
     public function showCategoryExamples(
         Twig $twig,
         CategoryRepository $categoryRepository,
         ItemDataLayerRepositoryContract $itemRepository,
-        ?string $lvl1 = null,
-        ?string $lvl2 = null,
-        ?string $lvl3 = null,
-        ?string $lvl4 = null,
-        ?string $lvl5 = null,
-        ?string $lvl6 = null
+        string $lvl1 = null,
+        string $lvl2 = null,
+        string $lvl3 = null,
+        string $lvl4 = null,
+        string $lvl5 = null,
+        string $lvl6 = null
         ):string
     {
         $categoryList = $categoryRepository->getSitemapList('content');
@@ -101,7 +127,13 @@ class ContentController extends Controller
         return $twig->render('PlentyPluginShowcase::content.categories', $templateData);
     }
 
-    public function showItemExamples(Twig $twig, ItemDataLayerRepositoryContract $itemRepository, ?string $itemId = null):string
+    /**
+     * @param Twig $twig
+     * @param ItemDataLayerRepositoryContract $itemRepository
+     * @param string|null $itemId
+     * @return string
+     */
+    public function showItemExamples(Twig $twig, ItemDataLayerRepositoryContract $itemRepository, string $itemId = null):string
     {
         $currentItem = null;
 

@@ -1,4 +1,4 @@
-<?hh //strict
+<?php //strict
 
 namespace Showcase\Extensions;
 
@@ -10,8 +10,15 @@ use Plenty\Plugin\Application;
 
 class TwigPluginStringUtils extends Twig_Extension
 {
-	public TwigFactory $factory;
+	/**
+	 * @var TwigFactory
+	 */
+	public $factory;
 
+	/**
+	 * TwigPluginStringUtils constructor.
+	 * @param TwigFactory $factory
+	 */
 	public function __construct(TwigFactory $factory)
 	{
 		$this->factory = $factory;
@@ -31,7 +38,7 @@ class TwigPluginStringUtils extends Twig_Extension
 	 *
 	 * @return array
 	 */
-	public function getFunctions():array<Twig_SimpleFunction>
+	public function getFunctions():array
 	{
 		return [
 			$this->factory->createSimpleFunction('number_format', [$this, 'numberFormat']),
@@ -41,7 +48,7 @@ class TwigPluginStringUtils extends Twig_Extension
 	/**
 	 * @return array
 	 */
-	public function getFilters():array<Twig_SimpleFilter>
+	public function getFilters():array
 	{
 		return [
 			$this->factory->createSimpleFilter('cssSelector', [$this, 'formatCssSelector']),
@@ -53,12 +60,12 @@ class TwigPluginStringUtils extends Twig_Extension
 	 * Format the given number with comma as decimal delimiter.
 	 * The resulting string number has always two decimal digits.
 	 *
-	 * @param string $n	The number to be formated.
+	 * @param float $n	The number to be formated.
 	 * @param integer		$m	The count of decimal digits. [optional, default=2]
 	 *
-	 * @return float|string
+	 * @return string|float
 	 */
-	public function numberFormat(string $n, ?int $m = 2):float
+	public function numberFormat(float $n, int $m = 2):string
 	{
 		if(!is_null($m) && $m < 0)
 		{
@@ -71,7 +78,7 @@ class TwigPluginStringUtils extends Twig_Extension
 	/**
      * Convert the given string to a valid CSS selector.
      * @param string $in 	The unformatted input
-     * @ return string 		a lower case css selector
+     * @return string 		a lower case css selector
      */
     public function formatCssSelector( string $in ):string
     {

@@ -1,4 +1,4 @@
-<?hh // strict
+<?php // strict
 namespace Showcase\Providers;
 
 use Plenty\Plugin\ServiceProvider;
@@ -8,14 +8,20 @@ use Showcase\Extensions\TwigPluginTwigEscaper;
 
 class ShowcaseServiceProvider extends ServiceProvider
 {
-	public function register():void
+	/**
+	 *
+	 */
+	public function register()
 	{
 		$this->getApplication()->register(\Showcase\Providers\ShowcaseRestRouteServiceProvider::class);
 		$this->getApplication()->register(\Showcase\Providers\ShowcaseApiRouteServiceProvider::class);
 		$this->getApplication()->register(\Showcase\Providers\ShowcaseRouteServiceProvider::class);
 	}
 
-	public function boot(Twig $twig):void
+	/**
+	 * @param Twig $twig
+	 */
+	public function boot(Twig $twig)
 	{
 		$twig->addExtension('Twig_Extensions_Extension_Intl');
 		$twig->addExtension(TwigPluginStringUtils::class);
