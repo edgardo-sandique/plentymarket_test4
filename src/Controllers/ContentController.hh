@@ -5,7 +5,7 @@ namespace Showcase\Controllers;
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Templates\Twig;
 
-use Plenty\Modules\Category\Contracts\CategoryRepository;
+use Plenty\Modules\Category\Contracts\CategoryRepositoryContract;
 use Plenty\Modules\Item\DataLayer\Contracts\ItemDataLayerRepositoryContract;
 use Plenty\Modules\Category\Models\Category;
 
@@ -38,7 +38,7 @@ class ContentController extends Controller
 
     public function showCategoryExamples(
         Twig $twig,
-        CategoryRepository $categoryRepository,
+        CategoryRepositoryContract $categoryRepository,
         ItemDataLayerRepositoryContract $itemRepository,
         ?string $lvl1 = null,
         ?string $lvl2 = null,
