@@ -2,6 +2,7 @@
 namespace Showcase\Controllers;
 
 use Plenty\Plugin\Controller;
+use Plenty\Plugin\Http\Response;
 use Plenty\Plugin\Templates\Twig;
 
 class RestController extends Controller
@@ -9,17 +10,35 @@ class RestController extends Controller
 	/**
 	 *
 	 */
-	public function showRestModule(Twig $twig, string $moduleName):string
+	public function showRestModule(Twig $twig, Response $response, string $moduleName):mixed
 	{
-		return $twig->render('PlentyPluginShowcase::rest.intermediate_'.$moduleName);
+		try
+        {
+		    $content = $twig->render('PlentyPluginShowcase::rest.intermediate_'.$moduleName);
+
+            return $content;
+        }
+        catch (\Exception $e)
+        {
+            return $response->make('', 404);
+        }
 	}
 
 	/**
 	*
 	*/
-	public function showRestModuleDetail(Twig $twig, string $moduleName):string
+	public function showRestModuleDetail(Twig $twig, Response $response, string $moduleName):mixed
 	{
-		return $twig->render('PlentyPluginShowcase::rest.'.$moduleName);
+        try
+        {
+            $content = $twig->render('PlentyPluginShowcase::rest.'.$moduleName);
+
+            return $content;
+        }
+        catch (\Exception $e)
+        {
+            return $response->make('', 404);
+        }
 	}
 
 	public function showRestIntroduction(Twig $twig):string
