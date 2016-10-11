@@ -2,96 +2,18 @@
 
 {% block Content %}
 
-<h1 id="payment-method">Payment plugin</h1>
+<h1 id="payment-method">A basic payment plugin</h1>
 <div class="api-docs-basics">
     <p>
-        In this tutorial, we will develop a basic plugin to integrate a payment method in our template plugin. We want to enable our customers to select the payment method <b>Pay upon pickup</b> in the checkout after choosing the shipping method <b>Picked up by customer</b>. The payment method <b>Pay upon pickup</b> allows the customers paying cash when picking up an item.<br /><br />Our basis for this plugin is the plentymarkets <a href="https://github.com/plentymarkets/callisto-4" target"_blank">Callisto 4</a> plugin. In addition, the <a href="https://github.com/plentymarkets/layout-core-4" target"_blank">LayoutCore</a> plugin is required to run Callisto&nbsp;4.
+        In this tutorial, we will develop a basic plugin to integrate a payment method in our template plugin. We want to enable our customers to select the payment method <b>Pay upon pickup</b> in the checkout after choosing the shipping method <b>Picked up by customer</b>. The payment method <b>Pay upon pickup</b> allows the customers paying cash when picking up an item.
     </p>
 </div>
 <h2 id="install-template">Step 1: Installing the template</h2>
 <div class="api-docs-basics">
     <p>
-        If you haven't already set up the Callisto 4 template in your plentymarkets system, do it before you start developping the payment plugin. In this way, you have your test environment ready and can directly check your coding output. Remember that, two plugins are needed to set up the Callisto 4 design.
+        If you haven't already <a href="/tutorials/design">set up a template</a> in your plentymarkets system, do it before you start developping the payment plugin. In this way, you have your test environment ready and can directly check your coding output.
     </p>
 </div>
-
-<h3 id="clone-template">Cloning the template</h3>
-    <ol>
-        <li>
-            Go to <b>Start » Plugins</b>.
-        </li>
-        <li>Click on <b>Add plugin</b>.<br />
-            → The <b>New plugin</b> window will open.
-        </li>
-        <li>Click on <b>Git</b>.<br />
-            → The <b>Settings</b> window will open.
-        </li>
-        <li>
-            Enter the remote URL.<br />
-            → The URL for <b>Callisto 4</b> is: <code>https://github.com/plentymarkets/callisto-4.git</code>.
-        </li>
-        <li>Enter your user name and password.</li>
-        <li>Click on <b>Test connection</b>.<br />
-            → Connectivity to the Git repository is checked and established and the drop-down menu <b>Branch</b> can be selected.
-        </li>
-        <li>Select the branch of the repository that you want to clone and edit.<br />
-            → In our case, <b>Master</b> is set by default.
-        </li>
-        <li><b>Save</b> the settings.<br />
-            → The plugin repository is cloned to the plentymarkets inbox and the plugin is added to the plugin list.
-        </li>
-    </ol>
-    <br />
-<div class="api-docs-basics">
-    <p>
-        Repeat the steps above for the <b>LayoutCore</b> plugin. The <b>remote URL</b> of this repository is: <code>https://github.com/plentymarkets/layout-core-4</code>. Next, provision both plugins in <b>Productive</b>.
-    </p>
-</div>
-
-<h3 id="provision-template">Provisioning the template</h3>
-    <ol>
-        <li>
-            Go to <b>Start » Plugins</b>.
-        </li>
-        <li>
-            In the row of your plugin, click on <b>Select client</b>.
-        </li>
-        <li>
-            Select your client and save it.
-        </li>
-        <li>
-            Activate the plugin in the <b>Productive</b> column.
-        </li>
-        <li>
-            In the toolbar, click on <b>Provision plugins in Productive</b>.
-        </li>
-    </ol>
-
-<h3 id="set-homepage">Setting the home page</h3>
-<div class="api-docs-basics">
-    <p>
-      In order to display your Callisto design in the browser, you need to set the home page of the template.
-    </p>
-</div>
-<ol>
-    <li>
-        Go to <b>Start » Plugins</b>.
-    </li>
-    <li>
-        In the list of plugins, click on <b>PluginCallisto</b>.<br />
-        → The plugin config file will open.
-    </li>
-    <li>
-        In the <b>Categories</b> tab, click on <b>Search</b> to select the <b>Home page</b>.<br />
-        → The <b>Categories</b> window will open.
-    </li>
-    <li>
-        <b>Select</b> the <b>Home page</b> category.
-    </li>
-    <li>
-        <b>Save</b> the settings.
-    </li>
-</ol>
 
 <h2 id="create-plugin-files">Step 2: Creating the plugin files</h2>
 <div class="api-docs-basics">
@@ -144,7 +66,7 @@ PluginPayUponPickup/
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: The plugin is of the <code>payment</code> type. An array of keywords describing the plugin is entered under <code>keywords</code>.
+    <b>Explanation</b>: The plugin is of the <code>payment</code> type. A list of keywords describing the plugin is entered under <code>keywords</code>.
 </div>
 
 <h3 id="code-configjson">Code for the config.json</h3>
@@ -389,7 +311,7 @@ PluginPayUponPickup/
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: Helpers are used to outsource general functions that are usually found in <a href="/dev-doc/components#layoutcore-controllers">controllers</a>. These functions can then be used at different locations in the code, e.g. in the ServiceProvider.<br /><br />The <code>constructor</code> is loaded only once - when initialising the <code>class</code>. All required default values are loaded and executed with <code>__construct</code>. In our example, this function is used to load the ID of the payment method based on an array.<br /><br />The <code><span>$</span>paymentMethodData</code> array includes the plugin key, the payment key and the name of the payment method. This information is used to generate a unique ID. When using a payment plugin for the first time, the ID of the payment method is created and saved in the plentymarkets data base.
+    <b>Explanation</b>: Helpers contain general functions. These functions can then be used at different locations in the code, e.g. in the ServiceProvider or a controller.<br /><br />The <code>constructor</code> is loaded only once - when initialising the <code>class</code>. All required default values are loaded and executed with <code>__construct</code>. In our example, this function is used to load the ID of the payment method based on an array.<br /><br />The <code><span>$</span>paymentMethodData</code> array includes the plugin key, the payment key and the name of the payment method. This information is used to generate a unique ID. When using a payment plugin for the first time, the ID of the payment method is created and saved in the plentymarkets data base.
 </div>
 
 <h3 id="code-paymentmethod">Code for the PaymentMethod</h3>

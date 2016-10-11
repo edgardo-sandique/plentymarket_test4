@@ -1,0 +1,91 @@
+{% extends 'PlentyPluginShowcase::templates.ExamplePage' %}
+
+{% block Content %}
+
+<h1 id="install-template">Installing the Callisto 4 template</h1>
+<div class="api-docs-basics">
+    <p>
+        In this tutorial, you will learn how to set up the Callisto 4 design in your plentymarkets 7 system. Remember that, the two plugins <a href="https://github.com/plentymarkets/callisto-4" target"_blank">Callisto 4</a> and <a href="https://github.com/plentymarkets/layout-core-4" target"_blank">LayoutCore</a> are required to run our design.
+    </p>
+</div>
+
+<h2 id="clone-template">Cloning the template</h2>
+    <ol>
+        <li>
+            Go to <b>Start » Plugins</b>.
+        </li>
+        <li>Click on <b>Add plugin</b>.<br />
+            → The <b>New plugin</b> window will open.
+        </li>
+        <li>Click on <b>Git</b>.<br />
+            → The <b>Settings</b> window will open.
+        </li>
+        <li>
+            Enter the remote URL.<br />
+            → The URL for <b>Callisto 4</b> is: <code>https://github.com/plentymarkets/callisto-4.git</code>.
+        </li>
+        <li>Enter your user name and password.</li>
+        <li>Click on <b>Test connection</b>.<br />
+            → Connectivity to the Git repository is checked and established and the drop-down menu <b>Branch</b> can be selected.
+        </li>
+        <li>Select the branch of the repository that you want to clone and edit.<br />
+            → In our case, <b>Master</b> is set by default.
+        </li>
+        <li><b>Save</b> the settings.<br />
+            → The plugin repository is cloned to the plentymarkets inbox and the plugin is added to the plugin list.
+        </li>
+    </ol>
+    <br />
+<div class="api-docs-basics">
+    <p>
+        Repeat the steps above for the <b>LayoutCore</b> plugin. The <b>remote URL</b> of this repository is: <code>https://github.com/plentymarkets/layout-core-4.git</code>. Next, provision both plugins in <b>Productive</b>.
+    </p>
+</div>
+
+<h2 id="provision-template">Provisioning the template</h2>
+    <ol>
+        <li>
+            Go to <b>Start » Plugins</b>.
+        </li>
+        <li>
+            In the row of your plugin, click on <b>Select client</b>.
+        </li>
+        <li>
+            Select your client and save it.
+        </li>
+        <li>
+            Activate the plugin in the <b>Productive</b> column.
+        </li>
+        <li>
+            In the toolbar, click on <b>Provision plugins in Productive</b>.
+        </li>
+    </ol>
+
+<h2 id="set-homepage">Setting the home page</h2>
+<div class="api-docs-basics">
+    <p>
+      In order to display your Callisto design in the browser, you need to set the home page of the template.
+    </p>
+</div>
+<ol>
+    <li>
+        Go to <b>Start » Plugins</b>.
+    </li>
+    <li>
+        In the list of plugins, click on <b>PluginCallisto</b>.<br />
+        → The plugin config file will open.
+    </li>
+    <li>
+        In the <b>Categories</b> tab, click on <b>Search</b> to select the <b>Home page</b>.<br />
+        → The <b>Categories</b> window will open.
+    </li>
+    <li>
+        <b>Select</b> the <b>Home page</b> category.<br />
+        → The category must be of the <b>Content</b> type.
+    </li>
+    <li>
+        <b>Save</b> the settings.
+    </li>
+</ol>
+
+{% endblock %}
