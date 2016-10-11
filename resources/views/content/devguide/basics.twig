@@ -133,7 +133,7 @@ PluginDirectory/
 <div class="api-docs-basics">
     <p>
         You can define multiple options that will be displayed in the <b>Start » Plugins » Tab: Plugins</b> menu to be configured by admin users.
-        The value of each option can be accessed in your hack code by using the <code>ConfigRepository</code> or from
+        The value of each option can be accessed in your PHP code by using the <code>ConfigRepository</code> or from
         Twig templates by using the <code>config()</code> macro.
     </p>
 
@@ -229,10 +229,10 @@ PluginDirectory/
 ]</pre>
 </div>
 
-<h4>Accessing plugin options from <code>HackClass.hh</code></h4>
+<h4>Accessing plugin options from <code>PhpClass.php</code></h4>
     <div class="code-container">
-        <pre class="prettyprint lang-hack grey-back linenums">
-// access configuration from hack
+        <pre class="prettyprint lang-php grey-back linenums">
+// access configuration from PHP
 function getTitle(ConfigRepository $config):string
 {
     if( $config->get('MyPlugin.show_title') == "1" )
@@ -460,16 +460,14 @@ function getTitle(ConfigRepository $config):string
 <h1 id="ide-support">Recommended IDEs</h1>
     <div class="api-docs-basics">
         <p>
-            We recommend using an IDE which supports the Hack language and Twig syntax.
-            For this purpose, we suggest using one of the following IDEs. For improved language support and easier development,
-            it is recommended that you <a href="https://docs.hhvm.com/hhvm/installation/introduction" target="_blank">install HHVM</a>
-            (including a Hack compiler) locally.
+            We recommend using an IDE which supports the PHP language and Twig syntax.
+            For this purpose, we suggest using one of the following IDEs.
         </p>
     </div>
 
-<h2 id="atom-nuclide">Atom with Nuclide</h2>
+<h2 id="atom">Atom</h2>
 <div class="api-docs-basics">
-    <p>Facebook provides this IDE for Hack development. It can be extended to also support Twig syntax.</p>
+    <p>Atom is a customisable editor working across operating systems. It can be extended to also support Twig syntax.</p>
 </div>
 <h3>Installation</h3>
 <div class="api-docs-basics">
@@ -478,9 +476,6 @@ function getTitle(ConfigRepository $config):string
             <a href="https://github.com/atom/atom/releases/latest" target="_blank">Download</a>
             and <a href="https://atom.io/docs/latest/getting-started-installing-atom" target="_blank">install</a>
             Atom IDE
-        </li>
-        <li>
-            <a href="http://nuclide.io/docs/editor/setup" target="_blank">Install Nuclide Plugin</a><sup>*</sup> for Hack language support
         </li>
         <li>
             <a href="https://atom.io/packages/php-twig" target="_blank">Install Twig Plugin</a><sup>*</sup> for Twig syntax highlighting
@@ -501,7 +496,6 @@ function getTitle(ConfigRepository $config):string
     <ol>
         <li><a href="https://www.sublimetext.com/2" target="_blank">Install Sublime Text</a></li>
         <li>Install Sublime Text's <a href="https://packagecontrol.io/installation" target="_blank">Package-Control</a></li>
-        <li>Install <a href="https://packagecontrol.io/packages/Hacklang%20Typechecker%20and%20Autocompletion" target="_blank">Hack Plugin</a></li>
         <li>Install <a href="https://packagecontrol.io/packages/PHP-Twig" target="_blank">Twig Plugin</a></li>
     </ol>
 </div>

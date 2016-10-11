@@ -58,4 +58,4 @@ PR['registerLangHandler'](
 
          ['func',               /^(?:[a-z][A-Za-z0-9_]+)/]
         ]),
-    ['hack']);
+    ['php']);
