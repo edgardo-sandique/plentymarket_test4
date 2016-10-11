@@ -5,7 +5,7 @@
 <h1 id="payment-method">Payment plugin</h1>
 <div class="api-docs-basics">
     <p>
-        In this tutorial, we will develop a basic plugin to integrate a payment method in our template plugin. We want to enable our customers to select the payment method <b>Pay upon pickup</b> in the checkout. This payment method allows the customers paying cash when picking up an item. Our basis for this plugin is the plentymarkets <a href="https://github.com/plentymarkets/callisto-4" target"_blank">Callisto 4</a> plugin. In addition, the <a href="https://github.com/plentymarkets/layout-core-4" target"_blank">LayoutCore</a> plugin is required to run Callisto&nbsp;4.
+        In this tutorial, we will develop a basic plugin to integrate a payment method in our template plugin. We want to enable our customers to select the payment method <b>Pay upon pickup</b> in the checkout after choosing the shipping method <b>Picked up by customer</b>. The payment method <b>Pay upon pickup</b> allows the customers paying cash when picking up an item.<br /><br />Our basis for this plugin is the plentymarkets <a href="https://github.com/plentymarkets/callisto-4" target"_blank">Callisto 4</a> plugin. In addition, the <a href="https://github.com/plentymarkets/layout-core-4" target"_blank">LayoutCore</a> plugin is required to run Callisto&nbsp;4.
     </p>
 </div>
 <h2 id="install-template">Step 1: Installing the template</h2>
@@ -14,6 +14,7 @@
         If you haven't already set up the Callisto 4 template in your plentymarkets system, do it before you start developping the payment plugin. In this way, you have your test environment ready and can directly check your coding output. Remember that, two plugins are needed to set up the Callisto 4 design.
     </p>
 </div>
+
 <h3 id="clone-template">Cloning the template</h3>
     <ol>
         <li>
@@ -42,10 +43,11 @@
     </ol>
     <br />
 <div class="api-docs-basics">
-<p>
-  Repeat the steps above for the <b>LayoutCore</b> plugin. The <b>remote URL</b> of this repository is: <code>https://github.com/plentymarkets/layout-core-4</code>. Next, provision both plugins in <b>Productive</b>.
-</p>
+    <p>
+        Repeat the steps above for the <b>LayoutCore</b> plugin. The <b>remote URL</b> of this repository is: <code>https://github.com/plentymarkets/layout-core-4</code>. Next, provision both plugins in <b>Productive</b>.
+    </p>
 </div>
+
 <h3 id="provision-template">Provisioning the template</h3>
     <ol>
         <li>
@@ -67,9 +69,9 @@
 
 <h3 id="set-homepage">Setting the home page</h3>
 <div class="api-docs-basics">
-<p>
-  In order to display your Callisto design in the browser, you need to set the home page of the template.
-</p>
+    <p>
+      In order to display your Callisto design in the browser, you need to set the home page of the template.
+    </p>
 </div>
 <ol>
     <li>
@@ -203,13 +205,20 @@ PluginPayUponPickup/
         "label"   : "Logo URL",
         "type"    : "text",
         "default" : ""
+    },
+    {
+        "tab"     : "Settings",
+        "key"     : "shippingProfileId",
+        "label"   : "Shipping profile ID",
+        "type"    : "text",
+        "default" : ""
     }
 ]
 </pre>
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: In total, we have 6 different settings options available for configuring our plugin. These options will be displayed in the <b>Config</b> tab of the plugin in the plentymarkets back end.<br /><br />The <code>tab</code> property organises all our options in the <b>Settings</b> tab. Under <code>label</code>, we enter the name of each option.<br /><br />In this <code>config.json</code> we use 3 different <code>types</code>: text, dropdown and category_select. The <code>text</code> type displays a normal input field. The <code>dropdown</code> type creates a dropdown list with the values stated under <code>possibleValues</code>. The <code>category_select</code> type creates a category picker allowing you to select a category. The content of this category will then be displayed in the payment wall in the checkout.
+    <b>Explanation</b>: In total, we have 7 different settings options available for configuring our plugin. These options will be displayed in the <b>Config</b> tab of the plugin in the plentymarkets back end.<br /><br />The <code>tab</code> property organises all our options in the <b>Settings</b> tab. Under <code>label</code>, we enter the name of each option.<br /><br />In this <code>config.json</code> we use 3 different <code>types</code>: text, dropdown and category_select. The <code>text</code> type displays a normal input field. The <code>dropdown</code> type creates a drop-down list with the values stated under <code>possibleValues</code>. The <code>category_select</code> type creates a category picker allowing you to select a category. The content of this category will then be displayed in the payment wall in the checkout.
 </div>
 
 <figure>
@@ -422,6 +431,14 @@ PluginPayUponPickup/
             /** @var Basket $basket */
             $basket = $basketRepositoryContract->load();
 
+            /**
+             * Check the shipping profile ID. The ID can be entered in the config.json.
+             */
+            if( $configRepository->get('PayUponPickup.shippingProfileId') != $basket->shippingProfileId)
+            {
+                $active = false;
+            }
+
             return $active;
         }
 
@@ -485,15 +502,88 @@ PluginPayUponPickup/
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: In this file, we find the logic to connect the settings options saved in the <code>config.json</code>. The <code>isActive</code> function checks whether the payment method is active.<br /><br />The other 3 functions are then used to get the information from the <code>config.json</code> and return the information in the checkout.
+    <b>Explanation</b>: In this file, we find the logic to connect the settings options saved in the <code>config.json</code>. The <code>isActive</code> function checks whether the payment method is active. It also checks the shipping profile ID making our payment method only available for the shipping profile that is set in the <a href="/tutorials/payment#open-plugin">plugin config</a>.<br /><br />The other 3 functions are then used to get the information from the <code>config.json</code> and return the information in the checkout.
 </div>
+
+<h2 id="shipping-profile">Step 4: Setting up a shipping profile</h2>
+<div class="api-docs-basics">
+    <p>
+        We have to get a few things done in the plentymarkets back end, before our customers can actively use the payment method. In the <code>PayUponPickupPaymentMethod.php</code> file, we included checking the shipping profile ID. For this purpose, we have to set up a suitable shipping profile.
+    </p>
+</div>
+
+<h3 id="add-shipping-provider">Creating the shipping provider</h3>
+    <ol>
+        <li>
+            Go to <b>Settings » Orders » Shipping » Shipping options » Tab: Shipping service provider</b>.
+        </li>
+        <li>
+            Click on <b>New</b>.<br />
+              → A new line will be added at the bottom of the overview.
+        </li>
+        <li>Enter the name.<br />
+              → Enter both front end and back end names, e.g. Picked up by customer.
+        </li>
+        <li>
+            Select <b>Selbstabholer (Picked up by customer)</b> from the <b>Shipping service provider</b> drop-down menu.
+        </li>
+        <li>
+          <b>Save</b> the settings.
+        </li>
+    </ol>
+
+<h3 id="add-shipping-profile">Creating the shipping profile</h3>
+    <ol>
+        <li>
+            Go to <b>Settings » Orders » Shipping » Shipping options » Tab: Shipping profiles</b>.
+        </li>
+        <li>
+            Click on <b>New</b>.
+        </li>
+        <li>
+            Select the shipping service provider that you have just created from the drop-down menu.
+        </li>
+        <li>Enter the name.<br />
+              → Enter both front end and back end names, e.g. Pickup.
+        </li>
+        <li>
+          Activate the client (store).
+        </li>
+        <li>
+          Activate the order referrer <b>Client (store)</b>.
+        </li>
+        <li>
+          <b>Save</b> the settings.<br />
+                → The shipping profile is created. The ID is shown in the overview.
+        </li>
+    </ol>
 
 <h1 id="open-plugin">Pocketing the profits</h1>
 <div class="api-docs-basics">
     <p>
-        After <a href="/dev-doc/basics#add-repository">adding</a> our new plugin to the plentymarkets inbox and <a href="/dev-doc/basics#provisioning">provisioning</a> the plugin in <b>Productive</b>, the payment method <b>Pay upon pickup</b> is displayed in the payment wall in the checkout. Our customers can now select this payment method and pay in cash when picking up an item.
+        After creating the plugin and setting up everything in the plentymarkets back end, we have to <a href="/dev-doc/basics#add-repository">add</a> our new plugin to the plentymarkets inbox. Then, we enter the shipping profile ID in the plugin config.
     </p>
-
+</div>
+    <ol>
+      <li>
+          Go to <b>Start » Plugins</b>.
+      </li>
+      <li>
+          In the list of plugins, click on <b>PayUponPickup</b>.<br />
+          → The plugin config file will open.
+      </li>
+      <li>
+          Enter the <b>shipping profile ID</b>.
+      </li>
+      <li>
+          <b>Save</b> the settings.
+      </li>
+    </ol>
+<div class="api-docs-basics">
+    <p>
+        And finally, we <a href="/dev-doc/basics#provisioning">provision</a> the plugin in <b>Productive</b>. The payment method <b>Pay upon pickup</b> is displayed in the checkout. Our customers can now select this payment method for the <b>Picked up by customer</b> shipping method and pay in cash when picking up an item.
+    </p>
+</div>
     <figure>
         <a data-toggle="modal" data-target="#modal1" href="#">
         <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/payuponpickup.png" />
