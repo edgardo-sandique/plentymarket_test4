@@ -3,32 +3,25 @@ namespace Showcase\Controllers;
 
 use Plenty\Plugin\Controller;
 use Plenty\Plugin\Http\Response;
+use Symfony\Component\HttpFoundation\Response as BaseResponse;
 use Plenty\Plugin\Templates\Twig;
 
 class ApiDocController extends Controller
 {
-	/**
-	 * @param Twig $twig
-	 * @return string
-	 */
-	public function showApiDoc(Twig $twig):string
-	{
-		return $twig->render('PlentyPluginShowcase::api.classes');
-	}
-
-	/**
-	 * @param Twig $twig
-	 * @param Response $response
-	 * @param string $module
-	 * @return string
-	 */
-	public function showApiModule(Twig $twig, Response $response, string $module):mixed
+	 /**
+     * @param Twig     $twig
+     * @param Response $response
+     * @param string   $module
+     *
+     * @return BaseResponse
+     */
+	public function showApiModule(Twig $twig, Response $response, string $module):BaseResponse
 	{
         try
         {
-            $content = $twig->render('PlentyPluginShowcase::api.Modules.' . $module . '.classes');
+            $content = $twig->render('PlentyPluginShowcase::api.' . $module);
 
-            return $content;
+            return $response->make($content);
         }
         catch (\Exception $e)
         {
