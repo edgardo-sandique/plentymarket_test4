@@ -832,6 +832,8 @@ footer {
   code {
     background: none;
     color: $white;
+    white-space: normal;
+    word-wrap: break-word;
   }
   &[data-type]:before {
     content: attr(data-type);
