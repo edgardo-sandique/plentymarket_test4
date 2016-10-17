@@ -2,19 +2,21 @@
 
 # Plugin for https://developers.plentymarkets.com
 
-This is the sample plugin for plentymarkets plugin development. Find all the information that you need to develop your own plugins on [plentymarkets developers](https://developers.plentymarkets.com).
+This is the sample plugin for plentymarkets plugin development. Find all the information that you need to develop your own plugins on [plentymarkets developers](https://developers.plentymarkets.com). The content of this plugin is updated regularly.
 
 ## Requirements
 
 This is a plugin for [plentymarkets 7](https://www.plentymarkets.com). No other plugins are required for running the plugin.
 
-## Install the plugin
+## Installing
 
 For detailed information about plugin provisioning refer to [plentymarkets developers](https://developers.plentymarkets.com/dev-doc/basics#plugin-provisioning).
 
-## Enjoy our plugin documentation
+## Plugin documentation
 
-Learn how to create your [first plentymarkets plugin](https://developers.plentymarkets.com/tutorials/helloworld)
+- Learn how to create your [first plentymarkets plugin](https://developers.plentymarkets.com/tutorials/helloworld)
+- Overview of plentymarkets [plugin interfaces](https://developers.plentymarkets.com/dev-doc/basics#guide-interface)
+- The plentymarkets [REST API](https://developers.plentymarkets.com/rest-doc/introduction)
 
 ## Join our community
 
