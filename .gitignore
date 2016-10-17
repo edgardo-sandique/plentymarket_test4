@@ -1,3 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
 *.iml
+resources/views/api/Modules/*/PROJECT_VERSION
+resources/views/api/Modules/*/review.md
+resources/views/api/Modules/*/renderer.index
+resources/views/api/Modules/*/SAMI_VERSION
