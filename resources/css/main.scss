@@ -1191,6 +1191,9 @@ hr.blue {
 
 .label {
   font-weight: 300;
+  display: inline;
+  white-space: initial;
+  text-align: left;
 }
 
 /* CODE STYLES ------------------------------------------------------------ */
