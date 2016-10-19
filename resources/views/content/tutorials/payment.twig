@@ -8,6 +8,9 @@
         In this tutorial, we will develop a basic plugin to integrate a payment method in our template plugin. We want to enable our customers to select the payment method <b>Pay upon pickup</b> in the checkout after choosing the shipping method <b>Picked up by customer</b>. The payment method <b>Pay upon pickup</b> allows the customers paying cash when picking up an item.
     </p>
 </div>
+<div class="alert alert-success" role="alert">
+    You can clone or fork the plentymarkets <a href="https://github.com/plentymarkets/plugin-payment-payuponpickup" target="_blank">Pay upon pickup</a> repository, if you want to have a look at the plugin beforehand.
+</div>
 <h2 id="install-template">Step 1: Installing the template</h2>
 <div class="api-docs-basics">
     <p>
@@ -156,7 +159,7 @@ PluginPayUponPickup/
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums">
-&lt;?php //strict
+&lt;?php
 
     namespace PayUponPickup\Providers;
 
@@ -238,7 +241,7 @@ PluginPayUponPickup/
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums">
-&lt;?php //strict
+&lt;?php
 
     namespace PayUponPickup\Helper;
 
@@ -321,7 +324,7 @@ PluginPayUponPickup/
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums">
-&lt;?php //strict
+&lt;?php
 
     namespace PayUponPickup\Methods;
 
@@ -506,13 +509,13 @@ PluginPayUponPickup/
         And finally, we <a href="/dev-doc/basics#provisioning">provision</a> the plugin in <b>Productive</b>. The payment method <b>Pay upon pickup</b> is displayed in the checkout. Our customers can now select this payment method for the <b>Picked up by customer</b> shipping method and pay in cash when picking up an item.
     </p>
 </div>
-    <figure>
-        <a data-toggle="modal" data-target="#modal1" href="#">
-        <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/payuponpickup.png" />
-        </a>
-    </figure>
-</div>
-
+{#
+<figure>
+    <a data-toggle="modal" data-target="#modal1" href="#">
+    <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/payuponpickup.png" />
+    </a>
+</figure>
+#}
 <!-- Modal -->
 <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog img-horizontal" role="document">

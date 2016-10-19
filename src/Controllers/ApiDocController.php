@@ -1,4 +1,4 @@
-<?php // strict
+<?php
 namespace Showcase\Controllers;
 
 use Plenty\Plugin\Controller;

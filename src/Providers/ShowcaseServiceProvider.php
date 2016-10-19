@@ -1,4 +1,4 @@
-<?php // strict
+<?php
 namespace Showcase\Providers;
 
 use Plenty\Plugin\ServiceProvider;
