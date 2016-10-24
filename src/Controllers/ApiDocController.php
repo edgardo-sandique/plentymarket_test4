@@ -15,18 +15,17 @@ class ApiDocController extends Controller
      *
      * @return BaseResponse|string
      */
-	public function showApiModule(Twig $twig, Response $response, \Plenty\Plugin\Templates\View $view, string $module)
+	public function showApiModule(Twig $twig, Response $response, string $module)
 	{
         try
         {
-            $content = $twig->render('PlentyPluginShowcase::api.Modules.' . $module . '.classes');
+            $content = $twig->render('PlentyPluginShowcase::api.interfaces_page', ['module' => $module]);
 
             return $response->make($content);
         }
         catch (\Exception $e)
         {
-            return $view->render('PlentyPluginShowcase::api.Modules.' . $module . '.classes');
-            //$response->make($e->getMessage(), 418);
+            $response->make($e->getMessage(), 404);
         }
 	}
 
