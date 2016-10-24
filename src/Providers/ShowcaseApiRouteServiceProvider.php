@@ -18,6 +18,7 @@ class ShowcaseApiRouteServiceProvider extends RouteServiceProvider
 	 */
 	public function map(Router $router)
 	{
-		$router->get('api-doc/{module}', 'Showcase\Controllers\ApiDocController@showApiModule');
+		$router->get('api-doc/test', 'Showcase\Controllers\ApiDocController@showIncludedMarkdown');
+	    $router->get('api-doc/{module}', 'Showcase\Controllers\ApiDocController@showApiModule');
 	}
 }

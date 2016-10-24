@@ -13,9 +13,9 @@ class ApiDocController extends Controller
      * @param Response $response
      * @param string   $module
      *
-     * @return BaseResponse
+     * @return BaseResponse|string
      */
-	public function showApiModule(Twig $twig, Response $response, string $module):BaseResponse
+	public function showApiModule(Twig $twig, Response $response, \Plenty\Plugin\Templates\View $view, string $module)
 	{
         try
         {
@@ -25,8 +25,14 @@ class ApiDocController extends Controller
         }
         catch (\Exception $e)
         {
-            return $response->make('', 404);
+            return $view->render('PlentyPluginShowcase::api.Modules.' . $module . '.classes');
+            //$response->make($e->getMessage(), 418);
         }
 	}
+
+	public function showIncludedMarkdown(Twig $twig)
+    {
+        return $twig->render('PlentyPluginShowcase::api.interfaces_page');
+    }
 
 }
