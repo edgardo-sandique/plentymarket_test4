@@ -94,7 +94,7 @@
 <h3 id="create-folders">Creating the folders</h3>
 <div class="api-docs-basics">
     <p>
-        All plugins need to be organised in a specific structure. We only need the following folders for our plugin.
+        All plugins need to be organised in a specific structure. We only need the following folders for our plugin. The <b>resources</b> folder can be organised in subfolders. Here, we save our template. The <b>src</b> folder can also be organised in subfolders and contains the plugin source code.
     </p>
 </div>
 <div class="code-container">
@@ -102,10 +102,11 @@
 HelloWorld/
     +-- resources/
     |   +-- views/
-    |       +-- // twig templates (can be organised in subdirectories)
+    |       +-- content/
     |
     +-- src/
-    |   +-- // plugin source code
+    |   +-- Providers/
+    |   +-- Controllers/
     |
     +-- plugin.json // plugin information
 </pre>
