@@ -41,8 +41,12 @@ PluginDirectory/
     |-- test/
     |   +-- // tests will be executed before build
     |
+    |-- ui/
+    |   +-- // files for back end views
+    |
     +-- config.json // <a href="#plugin-options">admin's plugin options</a>
     +-- plugin.json // <a href="#plugin-information">plugin information</a>
+    +-- ui.json // <a href="#ui-information">back end menu information</a>
     +-- README.md
 </pre>
 </div>
@@ -255,6 +259,140 @@ function getTitle(ConfigRepository $config):string
 {% endverbatim %}</pre>
 </div>
 
+<h2 id="ui-information">Back end menu information</h2>
+<div class="api-docs-basics">
+    <p>
+        All information about the back end menu entries is saved in a <code>ui.json</code> file. This file defines the entry points for the plugin. Views are then available at the respective menus. Find a list of possible <a href="guide-entrypoints">menu entry points</a> below.
+    </p>
+
+    <table class="table table-striped table-responsive table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>defaultEntryPoint</td>
+                <td>The default entry point of your plugin</td>
+            </tr>
+            <tr>
+                <td>namespace</td>
+                <td>The namespace of your plugin</td>
+            </tr>
+            <tr>
+                <td>menuEntries</td>
+                <td>The menu entries of your plugin</td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<div class="route-container">
+<code>/ui.json</code>
+</div>
+
+<div class="code-container grey-back">
+<pre class="prettyprint lang-js grey-back linenums">
+{
+    "defaultEntryPoint" : "index.html",
+    "namespace"         : "MyFirstView",
+    "menuEntries"       : [
+                            {
+                              "label": "Hello World",
+                              "menu": "start",
+                              "urlKey": "hello-world",
+                              "entryPoint": "index.html"
+                            }
+                          ]
+}
+</pre>
+</div>
+
+<h2 id="guide-entrypoints">Menu entry points</h2>
+
+<div class="api-docs-basics">
+    <p>
+        Back end views can be integrated in the plentymarkets main menu and in the settings menu. The following menus can be accessed by a plugin via entry points:
+    </p>
+    <ul>
+      <li>
+        start
+      </li>
+      <li>
+        start/account
+      </li>
+      <li>
+        item
+      </li>
+      <li>
+        item/lionbridge
+      </li>
+      <li>
+        listing
+      </li>
+      <li>
+        listing/main-batch-processing
+      </li>
+      <li>
+        stock
+      </li>
+      <li>
+        stock/purchase
+      </li>
+      <li>
+        stock/returns
+      </li>
+      <li>
+        crm
+      </li>
+      <li>
+        order
+      </li>
+      <li>
+        order/scheduler
+      </li>
+      <li>
+        data-exchange
+      </li>
+      <li>
+        data-exchange/export
+      </li>
+      <li>
+        data-exchange/import
+      </li>
+      <li>
+        cms
+      </li>
+      <li>
+        settings/cms
+      </li>
+      <li>
+        settings/crm
+      </li>
+      <li>
+        settings/items
+      </li>
+      <li>
+        settings/listings
+      </li>
+      <li>
+        settings/markets
+      </li>
+      <li>
+        settings/orders
+      </li>
+      <li>
+        settings/shop
+      </li>
+      <li>
+        settings/stock
+      </li>
+    </ul>
+</div>
 <h2 id="guide-interface">Plugin interfaces</h2>
 
 <div class="api-docs-basics">
