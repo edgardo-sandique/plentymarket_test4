@@ -88,12 +88,13 @@ MyFirstView/
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: Information about the back end menu entries is saved in the <code>ui.json</code> file.<br /><br />We want our view to be displayed in our <b>Start</b> menu. The <code>urlKey</code> sets the route for the view in our plentymarkets back end, e.g. <code>http://your-plentystore.co.uk/plenty/ui-backend/start/hello-world</code>.<br /><br />We also have to specify the <code>entryPoint</code>, i.e. the plugin file with the content of our view. A simple <code>html</code> file will do the job.
 </div>
-
+<div>
 <figure>
     <a data-toggle="modal" data-target="#modal1" href="#">
     <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/helloworld-backend-menu.png" />
     </a>
 </figure>
+</div>
 
 <h3 id="code-serviceprovider">Code for the ServiceProvider</h3>
 
@@ -137,13 +138,13 @@ MyFirstView/
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: A simple <code>html</code> file containing <b>Hello World!</b>.
 </div>
-
+<div>
 <figure>
     <a data-toggle="modal" data-target="#modal2" href="#">
     <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/helloworld-backend-view.png" />
     </a>
 </figure>
-
+</div>
 <h2 id="add-content">Bonus step: Adding more content</h2>
 <div class="api-docs-basics">
     <p>
@@ -175,7 +176,14 @@ MyFirstView/
     <p>
         After creating the plugin, we have to <a href="/dev-doc/basics#add-repository">add</a> our new plugin to the plentymarkets inbox. Then, we <a href="/dev-doc/basics#provisioning">provision</a> the plugin in <b>Productive</b>. Finally, after reloading the plentymarkets back end, go to the <b>Start</b> menu and click on <b>Hello World</b>. Your plugin view will open.
     </p>
+    <figure>
+        <a data-toggle="modal" data-target="#modal3" href="#">
+        <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/helloworld-backend-approval.png" />
+        </a>
+    </figure>
 </div>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -208,6 +216,26 @@ MyFirstView/
             <div class="modal-body">
                 <figure>
                     <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/helloworld-backend-view.png" />
+                </figure>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog img-horizontal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Nice work. Thumbs up!</h4>
+            </div>
+            <div class="modal-body">
+                <figure>
+                    <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/helloworld-backend-approval.png" />
                 </figure>
             </div>
             <div class="modal-footer">
