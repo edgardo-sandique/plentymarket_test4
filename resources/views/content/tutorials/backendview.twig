@@ -6,7 +6,7 @@
 <div class="api-docs-basics">
     <p>
         In this tutorial, we will develop a basic plugin to display a view in our plentymarkets 7 back end.
-        Only basic knowledge of creating and editing files in your IDE as well as using plentymarkets is necessary to develop this plugin.<br /><br />
+        Only basic knowledge of creating and editing files in your <a href="/tutorials/helloworld#install-atom">IDE</a> as well as using plentymarkets is necessary to develop this plugin.<br /><br />
         Follow the steps and learn how to create your first view that displays <b>Hello World!</b> in the plentymarkets back end.
     </p>
 </div>
@@ -138,17 +138,43 @@ MyFirstView/
     <b>Explanation</b>: A simple <code>html</code> file containing <b>Hello World!</b>.
 </div>
 
+<figure>
+    <a data-toggle="modal" data-target="#modal2" href="#">
+    <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/helloworld-backend-view.png" />
+    </a>
+</figure>
+
+<h2 id="add-content">Bonus step: Adding more content</h2>
+<div class="api-docs-basics">
+    <p>
+        Saying <b>Hello</b> to the world is nice, but let's take it a step further. We will create a <b>resources</b> folder and add a <code>gif</code> file that will be linked and shown in our view.
+    </p>
+    <ol>
+        <li>
+            Create a <b>resources</b> folder.
+        </li>
+        <li>
+            Create an <b>images</b> folder in the <b>resources</b> folder.
+        </li>
+        <li>
+            Save a file in the <b>images</b> folder, e.g. <code>YOUR-FAVOURITE.gif</code>.
+        </li>
+        <li>
+            Open the <code>index.html</code> file.
+        </li>
+        <li>
+            Enter the image that you want to display in your back end view into this file and save the file.<br />
+            &rarr; We simply enter <code>&lt;img src="../images/YOUR-FAVOURITE.gif"&gt;</code>.
+        </li>
+    </ol>
+</div>
+
 
 <h1 id="open-plugin">Getting a clear view</h1>
 <div class="api-docs-basics">
     <p>
         After creating the plugin, we have to <a href="/dev-doc/basics#add-repository">add</a> our new plugin to the plentymarkets inbox. Then, we <a href="/dev-doc/basics#provisioning">provision</a> the plugin in <b>Productive</b>. Finally, after reloading the plentymarkets back end, go to the <b>Start</b> menu and click on <b>Hello World</b>. Your plugin view will open.
     </p>
-    <figure>
-        <a data-toggle="modal" data-target="#modal2" href="#">
-        <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/helloworld-backend-view.png" />
-        </a>
-    </figure>
 </div>
 
 <!-- Modal -->
