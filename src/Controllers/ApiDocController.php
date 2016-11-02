@@ -25,7 +25,7 @@ class ApiDocController extends Controller
         }
         catch (\Exception $e)
         {
-            $response->make($e->getMessage(), 404);
+            return $response->make($e->getMessage(), 404);
         }
 	}
 
