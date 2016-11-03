@@ -569,4 +569,133 @@ module.exports = (function($) {
     </p>
 </div>
 
+    <h1 id="components-payment">Payment components</h1>
+
+    <div class="api-docs-basics">
+        <p>
+            Find an explanation of payment components below. These components are used in the <a href="https://github.com/plentymarkets/plugin-payment-paypal" target="_blank">PayPal plugin</a> developed by plentymarkets. This plugin can be used as a reference for other payment plugins. Payment components can be found in the <b>src</b> and <b>resources</b> folder.
+        </p>
+    </div>
+
+    <h2 id="design-views">Events</h2>
+
+    <div class="api-docs-basics">
+        <p>
+            The <strong>src/events</strong> folder contains the <code>RefundEventProcedure.php</code> file and other files that are used to integrate event procedures for the payment method in plentymarkets. For detailed information about event procedures, refer to <a href="https://www.plentymarkets.co.uk/manual/settings/orders/event-procedures/new-event-procedure/" target="_blank">New event procedure</a>. Under <b>Procedures</b>, the procedure type <b>Plugins</b> is available. All event procedures that are registered in a plugin, will be listed under the <b>Plugins</b> procedure type.
+        </p>
+
+        <figure>
+            <a data-toggle="modal" data-target="#modal1" href="#">
+                <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/backend-event-procedures.png" />
+            </a>
+        </figure>
+    </div>
+    <div class="route-container">
+        <code>PayPal/src/events/RefundEventProcedure.php</code>
+    </div>
+    <div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
+    namespace PayPal\Events;
+
+    use Plenty\Modules\Order\Models\Order;
+    use Plenty\Modules\EventAction\Events\EventActionTriggered;
+    use PayPal\Services\PaymentService;
+    use PayPal\Helper\PaymentHelper;
+
+    /**
+     * Class RefundEventAction
+     * @package PayPal\Events
+     */
+    class RefundEventAction
+    {
+        /**
+         * @param EventActionTriggered  $eventTriggered
+         */
+        public function run(EventActionTriggered $eventTriggered, PaymentService $paymentService, PaymentHelper $paymentHelper)
+        {
+            /** @var Order $order */
+            $order = $eventTriggered->getOrder();
+    ...
+</pre>
+    </div>
+    <div class="alert alert-info" role="alert">
+        <b>Explanation</b>: ##
+    </div>
+
+    <div class="api-docs-basics">
+        <p>
+            The event procedure must be registered in the ServiceProvider.
+        </p>
+    </div>
+    <div class="route-container">
+        <code>PayPal/src/providers/PayPalServiceProvider.php</code>
+    </div>
+    <div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
+    namespace PayPal\Providers;
+
+    use Plenty\Modules\EventAction\Services\Entries\ActionEntry;
+    use Plenty\Modules\EventAction\Services\EventActionService;
+
+    ...
+
+    use PayPal\Events\RefundEventAction;
+
+    ...
+
+    /**
+     * Class PayPalServiceProvider
+     * @package PayPal\Providers
+     */
+    class PayPalServiceProvider extends ServiceProvider
+    {
+
+          /**
+           * Register the route service provider and bind event procedures
+           */
+          public function register()
+          {
+              $this->getApplication()->register(PayPalRouteServiceProvider::class);
+              $this->getApplication()->bind(RefundEventAction::class);
+          }
+
+    ...
+
+                // Register PayPal Refund Event Action
+                $eventActionService->registerAction('plentyPayPal',
+                                                    ActionEntry::ACTION_GROUP_ORDER,
+                                                    [   'de' => 'Rückzahlung der PayPal-Zahlung',
+                                                        'en' => 'Refund the PayPal payment'],
+                                                    '\PayPal\Events\RefundEventAction@run');
+
+    ...
+</pre>
+    </div>
+
+    <div class="alert alert-info" role="alert">
+        <b>Explanation</b>: ##
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog img-horizontal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Add procedure: Plugins</h4>
+                </div>
+                <div class="modal-body">
+                    <figure>
+                        <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/backend-event-procedures.png" />
+                    </figure>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
