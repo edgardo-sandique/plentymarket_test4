@@ -640,11 +640,11 @@ module.exports = (function($) {
         </p>
     </div>
 
-    <h2 id="payment-events">Events</h2>
+    <h2 id="payment-event-procedures">Event procedures</h2>
 
     <div class="api-docs-basics">
         <p>
-            The <strong>src/events</strong> folder contains the <code>RefundEventProcedure.php</code> file and other files that are used to integrate event procedures for the payment method in plentymarkets. For detailed information about event procedures, refer to <a href="https://www.plentymarkets.co.uk/manual/settings/orders/event-procedures/new-event-procedure/" target="_blank">New event procedure</a>. Under <b>Procedures</b>, the procedure type <b>Plugins</b> is available. All event procedures that are registered in a plugin, will be listed under the <b>Plugins</b> procedure type.
+            The <strong>src/procedures</strong> folder contains the <code>RefundEventProcedure.php</code> file and other files that are used to integrate event procedures for the payment method in plentymarkets. For detailed information about event procedures, refer to <a href="https://www.plentymarkets.co.uk/manual/settings/orders/event-procedures/new-event-procedure/" target="_blank">New event procedure</a>. Under <b>Procedures</b>, the procedure type <b>Plugins</b> is available. All event procedures that are registered in a plugin, will be listed under the <b>Plugins</b> procedure type.
         </p>
 
         <figure>
@@ -739,6 +739,67 @@ module.exports = (function($) {
 
     <div class="alert alert-info" role="alert">
         <b>Explanation</b>: ##
+    </div>
+    <div class="api-docs-basics">
+        <p>
+            Event procedures can register events and procedures. The following entry points for event types and procedure groups of event procedures are available:
+        </p>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Entry point</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td><b>EVENT_TYPE_ORDER</b></td>
+                <td>##</td>
+            </tr>
+            <tr>
+                <td><b>EVENT_TYPE_REORDER</b></td>
+                <td>##</td>
+            </tr>
+            <tr>
+                <td><b>EVENT_TYPE_TICKET</b></td>
+                <td>##</td>
+            </tr>
+            <tr>
+                <td><b>PROCEDURE_GROUP_ITEM</b></td>
+                <td>##</td>
+            </tr>
+            <tr>
+                <td><b>PROCEDURE_GROUP_ORDER</b></td>
+                <td>##</td>
+            </tr>
+            <tr>
+                <td><b>PROCEDURE_GROUP_DOCUMENT</b></td>
+                <td>##</td>
+            </tr>
+            <tr>
+                <td><b>PROCEDURE_GROUP_CONTACT</b></td>
+                <td>##</td>
+            </tr>
+            <tr>
+                <td><b>PROCEDURE_GROUP_SHIPPING</b></td>
+                <td>##</td>
+            </tr>
+            <tr>
+                <td><b>PROCEDURE_GROUP_PAYMENT</b></td>
+                <td>##</td>
+            </tr>
+            <tr>
+                <td><b>PROCEDURE_GROUP_RETURN</b></td>
+                <td>##</td>
+            </tr>
+            <tr>
+                <td><b>PROCEDURE_GROUP_LISTING</b></td>
+                <td>##</td>
+            </tr>
+            </tbody>
+
+        </table>
     </div>
 
     <!-- Modal -->
