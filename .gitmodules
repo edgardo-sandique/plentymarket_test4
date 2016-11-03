@@ -1,0 +1,3 @@
+[submodule "resources/views/documentation"]
+	path = resources/views/documentation
+	url = https://Christoph-Harms@github.com/plentymarkets/docs-raw.git
