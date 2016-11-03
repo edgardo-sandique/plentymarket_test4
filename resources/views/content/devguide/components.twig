@@ -6,7 +6,7 @@
 
 <div class="api-docs-basics">
     <p>
-        On this page, you will find a short description for each plugin element that you can use to create your own plugins. We will differentiate between components that define the core structure of the plugin usually found in the <strong>src</strong> folder and components for the design found in the <strong>resources</strong> folder. The programming language PHP 7 is mainly used for creating the files in the <strong>src</strong> folder. Technologies used in context with the <strong>resources</strong> folder are:
+        On this page, you will find a short description for each plugin element that you can use to create your own plugins. We will differentiate between payment components used in our payment plugins, components that define the core structure of the plugin usually found in the <strong>src</strong> folder and components for the design found in the <strong>resources</strong> folder. The programming language PHP 7 is mainly used for creating the files in the <strong>src</strong> folder. Technologies used in context with the <strong>resources</strong> folder are:
     </p>
     <ul>
       <li>
@@ -48,7 +48,7 @@
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums">
-&lt;?php //strict
+&lt;?php
 
     namespace LayoutCore\Api\Resources;
 
@@ -113,7 +113,7 @@
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums">
-&lt;?php //strict
+&lt;?php
 
     namespace LayoutCore\Builder\Item;
 
@@ -166,7 +166,7 @@
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums">
-&lt;?php //strict
+&lt;?php
 
     namespace LayoutCore\Services;
 
@@ -205,7 +205,7 @@
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums">
-&lt;?php //strict
+&lt;?php
 
     namespace LayoutCore\Controllers;
 
@@ -279,6 +279,14 @@
 {% endraw %}
 </div>
 
+    <h2 id="layoutcore-guards">Guards</h2>
+
+    <div class="api-docs-basics">
+        <p>
+            The <strong>Guards</strong> folder contains guard classes. <code>AuthGuard.php</code>, for example, extends the <code>AbstractGuard</code> class and controls if the online store user is logged in. Guards are used for redirecting.
+        </p>
+    </div>
+
 <h2 id="layoutcore-helper">Helper</h2>
 
 <div class="api-docs-basics">
@@ -317,7 +325,7 @@
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums">
-&lt;?php //strict
+&lt;?php
 
     namespace LayoutCore\Providers;
 
@@ -384,7 +392,7 @@
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums">
-&lt;?php //strict
+&lt;?php
 
     namespace LayoutCore\Api\Resources;
 
@@ -553,6 +561,61 @@ module.exports = (function($) {
 </pre>
 </div>
 
+    <h2 id="design-lang">Lang</h2>
+
+    <div class="api-docs-basics">
+        <p>
+            The <b>lang</b> folder contains sub-folders for translations in different languages. Translated strings for the Callisto 4 design are saved in key-value pairs in the <code>Callisto.properties</code> file. Keys have prefixes that help you associating the keys with the respective templates:
+        </p>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>Prefix</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td><b>basket</b></td>
+                <td>Template texts for templates in the <b>resources/views/Basket</b> folder and sub-folders</td>
+            </tr>
+            <tr>
+                <td><b>acc</b></td>
+                <td>Template texts for templates in the <b>resources/views/MyAccount</b> and <b>resources/views/Customer</b> folders and sub-folders</td>
+            </tr>
+            <tr>
+                <td><b>itemCategory</b></td>
+                <td>Template texts for templates in the <b>resources/views/Category</b> folder and sub-folders</td>
+            </tr>
+            <tr>
+                <td><b>item</b></td>
+                <td>Template texts for templates in the <b>resources/views/Item</b> folder and sub-folders</td>
+            </tr>
+            <tr>
+                <td><b>variation</b></td>
+                <td>Template texts for templates in the <b>resources/views/Item</b> folder and sub-folders</td>
+            </tr>
+            <tr>
+                <td><b>general</b></td>
+                <td>Overall template texts used in multiple templates</td>
+            </tr>
+            <tr>
+                <td><b>address</b></td>
+                <td>Template texts for templates in the <b>resources/views/Customer</b> folder and sub-folders</td>
+            </tr>
+            <tr>
+                <td><b>order</b></td>
+                <td>Template texts for templates in the <b>resources/views/MyAccount</b> and <b>resources/views/Checkout</b> folders and sub-folders</td>
+            </tr>
+            </tbody>
+
+        </table>
+        <p>
+            In addition to the <b>resources/lang</b> folder, another <b>lang</b> folder can be found under <b>resources/js/lang</b> containing sub-folders with <code>.js</code> files in the respective languages. These files are built with the <code>build:lang</code> gulp task.
+        </p>
+    </div>
+
 <h2 id="design-scss">SCSS</h2>
 
 <div class="api-docs-basics">
@@ -577,7 +640,7 @@ module.exports = (function($) {
         </p>
     </div>
 
-    <h2 id="design-views">Events</h2>
+    <h2 id="payment-events">Events</h2>
 
     <div class="api-docs-basics">
         <p>
