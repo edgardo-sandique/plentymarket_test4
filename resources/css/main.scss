@@ -899,11 +899,7 @@ footer {
 pre {
   background-color: $mercury-grey;
   padding: 10px;
-  border-radius: 5px;
-  border: none;
-  word-break: keep-all;
-  word-wrap: normal;
-  white-space: normal;
+  border-radius: 0;
 
   &.language-json {
     overflow: auto;
@@ -1206,7 +1202,6 @@ code {
   font-family: "Menlo";
   font-style: normal;
   font-weight: 400;
-  word-break: keep-all;
   word-wrap: normal;
   white-space: pre;
   background-color: transparent;
