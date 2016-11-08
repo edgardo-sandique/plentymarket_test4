@@ -1,0 +1,21 @@
+{% extends 'PlentyPluginShowcase::HtmlStructure' %}
+
+
+{% block MainFrame -%}
+    <div class="row">
+        <div class="container">
+            <a href="#" id="top"></a>
+                <div class="col-lg-9 col-md-9">
+
+                {{- include_view('PlentyPluginShowcase::documentation.plentyInterface.' ~ module) }}
+                </div>
+
+            <div class="col-lg-3 col-md-3 hidden-sm hidden-xs fixed-right" id="sidebar-nav">
+                <p class="h4">Contents</p>
+                <ul class="nav nav-list"></ul>
+                <a href="#top">Back to top</a>
+            </div>
+        </div>
+    </div>
+
+{%- endblock %}
