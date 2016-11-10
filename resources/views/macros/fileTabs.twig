@@ -15,8 +15,8 @@
             <div id="{{ id | cssSelector }}_{{ loop.index }}" role="tabpanel" class="tab-pane{% if loop.first %} active{% endif %}">
                 {% set fileName = label | split('.') %}
                 {% set lang = fileName | last %}
-                {% if lang == "hh" %}
-                    {% set lang = "hack" %}
+                {% if lang == "php" %}
+                    {% set lang = "php" %}
                 {% endif %}
                 <pre class="prettyprint grey-back lang-{{ lang }}">{{ source( file, ignore_missing=true ) | e }}</pre>
             </div>

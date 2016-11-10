@@ -41,12 +41,12 @@ TopItems/
     |       |
     |       +-- PageDesign.twig // frame for the content
     +-- src/
-    |   +-- Controllers
-    |   |   +-- ContentController.hh
+    |   +-- Controllers/
+    |   |   +-- ContentController.php
     |   |
-    |   +-- Providers
-    |       +-- TopItemsServiceProvider.hh
-    |       +-- TopItemsRouteServiceProvider.hh
+    |   +-- Providers/
+    |       +-- TopItemsServiceProvider.php
+    |       +-- TopItemsRouteServiceProvider.php
     |
     +-- plugin.json // plugin information
 </pre>
@@ -66,12 +66,12 @@ TopItems/
 <div class="code-container">
 <pre class="prettyprint lang-json grey-back linenums">
 {
-    "name":"TopItems",
-    "description":"Plugin to render a list of top items",
-    "namespace":"TopItems",
-    "author":"Your name",
-    "type":"template",
-    "serviceProvider":"TopItems\\Providers\\TopItemsServiceProvider"
+    "name"              :"TopItems",
+    "description"       :"Plugin to render a list of top items",
+    "namespace"         :"TopItems",
+    "author"            :"Your name",
+    "type"              :"template",
+    "serviceProvider"   :"TopItems\\Providers\\TopItemsServiceProvider"
 }
 </pre>
 </div>
@@ -79,11 +79,11 @@ TopItems/
 <h3 id="code-serviceprovider">Code for the ServiceProvider</h3>
 
 <div class="route-container">
-  <code>TopItems/src/Providers/TopItemsServiceProvider.hh</code>
+  <code>TopItems/src/Providers/TopItemsServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
-&lt;?hh //strict
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
 
     namespace TopItems\Providers;
 
@@ -92,7 +92,7 @@ TopItems/
 
     class TopItemsServiceProvider extends ServiceProvider
     {
-        public function register():void
+        public function register()
         {
             $this->getApplication()->register(TopItemsRouteServiceProvider::class);
         }
@@ -103,11 +103,11 @@ TopItems/
 <h3 id="code-routeserviceprovider">Code for the RouteServiceProvider</h3>
 
 <div class="route-container">
-  <code>TopItems/src/Providers/TopItemsRouteServiceProvider.hh</code>
+  <code>TopItems/src/Providers/TopItemsRouteServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
-&lt;?hh //strict
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
 
     namespace TopItems\Providers;
 
@@ -117,7 +117,7 @@ TopItems/
 
     class TopItemsRouteServiceProvider extends RouteServiceProvider
     {
-        public function map(Router $router):void
+        public function map(Router $router)
         {
             $router->get('topitems', 'TopItems\Controllers\ContentController@showTopItems');
         }
@@ -128,11 +128,11 @@ TopItems/
 <h3 id="code-contentcontroller">Code for the ContentController</h3>
 
 <div class="route-container">
-  <code>TopItems/src/Controllers/ContentController.hh</code>
+  <code>TopItems/src/Controllers/ContentController.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
-&lt;?hh //strict
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
 
 namespace TopItems\Controllers;
 
@@ -173,7 +173,7 @@ namespace TopItems\Controllers;
             ];
 
             $resultItems = $itemRepository
-                ->search( $itemColumns, $itemFilter, $itemParams );
+                ->search($itemColumns, $itemFilter, $itemParams);
 
             $items = array();
             foreach ($resultItems as $item)
@@ -185,7 +185,7 @@ namespace TopItems\Controllers;
                 'currentItems' => $items
             );
 
-            return $twig->render('TopItems::content.TopItems', $templateData );
+            return $twig->render('TopItems::content.TopItems', $templateData);
         }
     }
 </pre>

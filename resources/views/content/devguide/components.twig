@@ -6,7 +6,7 @@
 
 <div class="api-docs-basics">
     <p>
-        On this page, you will find a short description for each plugin element that you can use to create your own plugins. We will differentiate between components that define the core structure of the plugin usually found in the <strong>src</strong> folder and components for the design found in the <strong>resources</strong> folder. The programming language Hack is mainly used for creating the files in the <strong>src</strong> folder. Technologies used in context with the <strong>resources</strong> folder are:
+        On this page, you will find a short description for each plugin element that you can use to create your own plugins. We will differentiate between components that define the core structure of the plugin usually found in the <strong>src</strong> folder and components for the design found in the <strong>resources</strong> folder. The programming language PHP 7 is mainly used for creating the files in the <strong>src</strong> folder. Technologies used in context with the <strong>resources</strong> folder are:
     </p>
     <ul>
       <li>
@@ -39,43 +39,62 @@
 
 <div class="api-docs-basics">
     <p>
-        The <strong>Api</strong> folder contains resources similar to controllers. The <code>ApiResource.hh</code> is a class that extends a controller and enables self-defined REST calls with the related Hack methods. A list of response codes and functions for event registration are saved in <code>ApiResponse.hh</code>. Specific REST calls, such as the <code>update ( string $shippingProfileId )</code> function in the example below, are defined in files in the <strong>Resources</strong> sub-folder.
+        The <strong>Api</strong> folder contains resources similar to controllers. The <code>ApiResource.php</code> is a class that extends a controller and enables self-defined REST calls with the related PHP methods. A list of response codes and functions for event registration are saved in <code>ApiResponse.php</code>. Specific REST calls, such as the <code>update ( string $shippingProfileId )</code> function in the example below, are defined in files in the <strong>Resources</strong> sub-folder.
     </p>
 </div>
 
 <div class="route-container">
-  <code>PluginLayoutCore/src/Api/Resources/ShippingResource.hh</code>
+  <code>PluginLayoutCore/src/Api/Resources/ShippingResource.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
-&lt;?hh //strict
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php //strict
 
     namespace LayoutCore\Api\Resources;
 
-    use Illuminate\Http\Response;
+    use Symfony\Component\HttpFoundation\Response as BaseResponse;
+    use Plenty\Plugin\Http\Response;
     use Plenty\Plugin\Http\Request;
     use LayoutCore\Api\ApiResource;
     use LayoutCore\Api\ApiResponse;
     use LayoutCore\Api\ResponseCode;
     use LayoutCore\Services\ShippingService;
 
+    /**
+     * Class ShippingResource
+     * @package LayoutCore\Api\Resources
+     */
     class ShippingResource extends ApiResource
     {
 
-        private ShippingService $shippingService;
+    	/**
+    	 * @var ShippingService
+    	 */
+    	private $shippingService;
 
-        public function __construct( Request $request, ApiResponse $response, ShippingService $shippingService )
-        {
-            parent::__construct( $request, $response );
-            $this->shippingService = $shippingService;
-        }
+        /**
+         * ShippingResource constructor.
+         * @param Request $request
+         * @param ApiResponse $response
+         * @param ShippingService $shippingService
+         */
+    	public function __construct(Request $request, ApiResponse $response, ShippingService $shippingService)
+    	{
+    		parent::__construct($request, $response);
+    		$this->shippingService = $shippingService;
+    	}
 
-        // put/patch
-        public function update( string $shippingProfileId ):Response
-        {
-            $this->shippingService->setShippingProfileId( (int) $shippingProfileId );
-            return $this->response->create( ResponseCode::OK );
-        }
+    	// Put/Patch
+        /**
+         * Set the shipping profile
+         * @param string $shippingProfileId
+         * @return BaseResponse
+         */
+    	public function update(string $shippingProfileId):BaseResponse
+    	{
+    		$this->shippingService->setShippingProfileId((int)$shippingProfileId);
+    		return $this->response->create(ResponseCode::OK);
+    	}
 
     }
 </pre>
@@ -85,16 +104,16 @@
 
 <div class="api-docs-basics">
     <p>
-        The builder class helps you work with interfaces. <code>ItemColumnBuilder.hh</code>, for example, builds an array of <a href="/api-doc/Item#datalayer_item">ItemDataLayer</a> columns that can be requested with the <code>search</code> method. The fields for this array are defined in the related files in the <strong>Fields</strong> folder.
+        The builder class helps you work with interfaces. <code>ItemColumnBuilder.php</code>, for example, builds an array of <a href="/api-doc/Item#datalayer_item">ItemDataLayer</a> columns that can be requested with the <code>search</code> method. The fields for this array are defined in the related files in the <strong>Fields</strong> folder.
     </p>
 </div>
 
 <div class="route-container">
-  <code>PluginLayoutCore/src/Builder/Item/ItemColumnBuilder.hh</code>
+  <code>PluginLayoutCore/src/Builder/Item/ItemColumnBuilder.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
-&lt;?hh //strict
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php //strict
 
     namespace LayoutCore\Builder\Item;
 
@@ -102,30 +121,35 @@
 
     ...
 
-
+    /**
+     * Build array of ItemDataLayer columns to request from ItemDataLayerRepository::search
+     */
     class ItemColumnBuilder
     {
-        private array<span><</span>string, array<span><</span>mixed>> $columnFields = array();
-        private array<span><</span>string, array<span><</span>ItemColumnsParams, string>> $columnParams = array();
+    	/**
+    	 * @var array>
+    	 */
+    	private $columnFields = [];
+    	/**
+    	 * @var array>
+    	 */
+    	private $columnParams = [];
 
-        public function defaults():ItemColumnBuilder
-        {
-            return $this
-                ->withItemBase(array(
-                    ItemBaseFields::ID,
-                    ItemBaseFields::RATING,
-                    ItemBaseFields::RATING_COUNT,
-                    ItemBaseFields::STORE_SPECIAL,
-                    ItemBaseFields::PRODUCER,
-                    ItemBaseFields::PRODUCING_COUNTRY_ID,
-                    ItemBaseFields::CONDITION,
-                    ItemBaseFields::AGE_RESTRICTION,
-                    ItemBaseFields::CUSTOMS_TARIFF_NUMBER
-                ))
-
-                ...
-
-        }
+    	public function defaults():ItemColumnBuilder
+    	{
+    		return $this
+    			->withItemBase([
+    				               ItemBaseFields::ID,
+    				               ItemBaseFields::RATING,
+    				               ItemBaseFields::RATING_COUNT,
+    				               ItemBaseFields::STORE_SPECIAL,
+    				               ItemBaseFields::PRODUCER,
+    				               ItemBaseFields::PRODUCING_COUNTRY_ID,
+    				               ItemBaseFields::CONDITION,
+    				               ItemBaseFields::AGE_RESTRICTION,
+    				               ItemBaseFields::CUSTOMS_TARIFF_NUMBER
+    			               ])
+      }
 
     ...
 </pre>
@@ -133,31 +157,29 @@
 
 <div class="api-docs-basics">
     <p>
-        This array can be included in services, such as <code>ItemService.hh</code>. Builders also help you validate your code through auto-completion.
+        This array can be included in services, such as <code>ItemService.php</code>. Builders also help you validate your code through auto-completion.
     </p>
 </div>
 
 <div class="route-container">
-  <code>PluginLayoutCore/src/Services/ItemService.hh</code>
+  <code>PluginLayoutCore/src/Services/ItemService.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
-&lt;?hh //strict
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php //strict
 
     namespace LayoutCore\Services;
 
     ...
 
-        public function getItems( array<span><</span>int> $itemIds ):RecordList
+        public function getItems(array $itemIds):RecordList
         {
             $columns = $this->columnBuilder
-
                 ->defaults()
                 ->build();
 
                 ...
 
-            );
         }
 </pre>
 </div>
@@ -174,16 +196,16 @@
 
 <div class="api-docs-basics">
     <p>
-        Controllers are the interface between the core and the design. The sub-folder <strong>Controllers</strong> contains the different controllers necessary to render Callisto 4. The file <code>LoginController.hh</code>, for example, contains the <code>showLogin</code> function for rendering the <code>login.twig</code> template.
+        Controllers are the interface between the core and the design. The sub-folder <strong>Controllers</strong> contains the different controllers necessary to render Callisto 4. The file <code>LoginController.php</code>, for example, contains the <code>showLogin</code> function for rendering the <code>login.twig</code> template.
     </p>
 </div>
 
 <div class="route-container">
-  <code>PluginLayoutCore/src/Controllers/LoginController.hh</code>
+  <code>PluginLayoutCore/src/Controllers/LoginController.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
-&lt;?hh //strict
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php //strict
 
     namespace LayoutCore\Controllers;
 
@@ -191,15 +213,15 @@
 
     class LoginController extends LayoutController
     {
-        public function showLogin(): string
-        {
-            return $this->renderTemplate(
-                "tpl.login",
-                array(
-                    "login" => ""
-                )
-            );
-        }
+    	public function showLogin(): string
+    	{
+    		return $this->renderTemplate(
+    			"tpl.login",
+    			[
+    				"login" => ""
+    			]
+    		);
+    	}
     }
 </pre>
 </div>
@@ -208,37 +230,37 @@
 
 <div class="api-docs-basics">
     <p>
-        The <strong>Extensions</strong> folder stores components that extend the functionality of Twig. <a href="http://twig.sensiolabs.org/doc/advanced_legacy.html" target="_blank">Extensions</a> can be operators, global variables, functions, etc. Twig also allows you to <a href="http://twig.sensiolabs.org/doc/advanced.html#filters" target="_blank">create your own filters</a>. <code>TwigLayoutCoreExtension.hh</code>, for example, uses filters stored in the <strong>Filters</strong> sub-folder. <code>NumberFormatFilter.hh</code> provides methods for formatting numbers and currencies that can be included in twig templates.
+        The <strong>Extensions</strong> folder stores components that extend the functionality of Twig. <a href="http://twig.sensiolabs.org/doc/advanced_legacy.html" target="_blank">Extensions</a> can be operators, global variables, functions, etc. Twig also allows you to <a href="http://twig.sensiolabs.org/doc/advanced.html#filters" target="_blank">create your own filters</a>. <code>TwigLayoutCoreExtension.php</code>, for example, uses filters stored in the <strong>Filters</strong> sub-folder. <code>NumberFormatFilter.php</code> provides methods for formatting numbers and currencies that can be included in twig templates.
     </p>
 </div>
 
 <div class="route-container">
-  <code>PluginLayoutCore/src/Extensions/Filters/NumberFormatFilter.hh</code>
+  <code>PluginLayoutCore/src/Extensions/Filters/NumberFormatFilter.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums">
 ...
 
-    public function formatMonetary( float $value, string $currencyISO ):string
+    public function formatCurrency(float $value, string $currencyISO):string
     {
-        $locale = 'de_DE';
-        $useCurrencySymbol = true;
+      $locale            = 'de_DE';
+      $useCurrencySymbol = true;
 
-        $formatter = numfmt_create( $locale, \NumberFormatter::CURRENCY );
-        if( !$useCurrencySymbol )
-        {
-            $formatter->setTextAttribute( \NumberFormatter::CURRENCY_CODE, $currencyISO );
-            $formatter->setSymbol( \NumberFormatter::CURRENCY_SYMBOL, $currencyISO );
-        }
+      $formatter = numfmt_create($locale, \NumberFormatter::CURRENCY);
+      if(!$useCurrencySymbol)
+      {
+        $formatter->setTextAttribute(\NumberFormatter::CURRENCY_CODE, $currencyISO);
+        $formatter->setSymbol(\NumberFormatter::CURRENCY_SYMBOL, $currencyISO);
+      }
 
-        if( $this->config->get('PluginLayoutCore.format.use_locale_currency_format') === "0" )
-        {
-            $decimal_separator = $this->config->get('PluginLayoutCore.format.separator_decimal');
-            $thousands_separator = $this->config->get('PluginLayoutCore.format.separator_thousands');
-            $formatter->setSymbol( \NumberFormatter::MONETARY_SEPARATOR_SYMBOL, $decimal_separator );
-            $formatter->setSymbol( \NumberFormatter::MONETARY_GROUPING_SEPARATOR_SYMBOL, $thousands_separator );
-        }
-        return $formatter->format( $value );
+      if($this->config->get('PluginLayoutCore.format.use_locale_currency_format') === "0")
+      {
+        $decimal_separator   = $this->config->get('PluginLayoutCore.format.separator_decimal');
+        $thousands_separator = $this->config->get('PluginLayoutCore.format.separator_thousands');
+        $formatter->setSymbol(\NumberFormatter::MONETARY_SEPARATOR_SYMBOL, $decimal_separator);
+        $formatter->setSymbol(\NumberFormatter::MONETARY_GROUPING_SEPARATOR_SYMBOL, $thousands_separator);
+      }
+      return $formatter->format($value);
     }
 </pre>
 </div>
@@ -252,7 +274,7 @@
 <div class="code-container">
 {% raw %}
 <pre class="prettyprint lang-twig grey-back">
-{{item.price | formatMonetary ("EUR")}}
+{{item.price | formatCurrency ("EUR")}}
 </pre>
 {% endraw %}
 </div>
@@ -261,7 +283,7 @@
 
 <div class="api-docs-basics">
     <p>
-        The <strong>Helper</strong> folder contains helper classes. <code>TemplateContainer.hh</code>, for example, is a class that controls the data exchange between the Callisto 4 plugin and the LayoutCore plugin.
+        The <strong>Helper</strong> folder contains helper classes. <code>TemplateContainer.php</code>, for example, is a class that controls the data exchange between the Callisto 4 plugin and the LayoutCore plugin.
     </p>
 </div>
 
@@ -287,15 +309,15 @@
     <p>
         Routes are used to point URLs to controllers or anonymous functions that should be executed when a user accesses a given page.
 
-        In line 20 of the example below, the function <code>showLogin</code> is executed when a user opens the <code>/login</code> page. This function is defined in <strong>LoginController.hh</strong>.
+        In line 20 of the example below, the function <code>showLogin</code> is executed when a user opens the <code>/login</code> page. This function is defined in <strong>LoginController.php</strong>.
     </p>
 </div>
 <div class="route-container">
-  <code>PluginLayoutCore/src/Providers/LayoutCoreRouteServiceProvider.hh</code>
+  <code>PluginLayoutCore/src/Providers/LayoutCoreRouteServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
-&lt;?hh //strict
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php //strict
 
     namespace LayoutCore\Providers;
 
@@ -310,7 +332,7 @@
     ...
 
     {
-        public function map(Router $router, ApiRouter $api):void
+        public function map(Router $router, ApiRouter $api)
         {
           ...
 
@@ -327,27 +349,24 @@
 
 <div class="api-docs-basics">
     <p>
-        Services contain the methods for processing data between the user and plentymarkets that can be used by controllers, REST and Twig templates. In the example below, <code>BasketService.hh</code> contains the <code>getBasket()</code> method, which is used in <code>BasketResource.hh</code>.
+        Services contain the methods for processing data between the user and plentymarkets that can be used by controllers, REST and Twig templates. In the example below, <code>BasketService.php</code> contains the <code>getBasket()</code> method, which is used in <code>BasketResource.php</code>.
     </p>
 </div>
 
 <div class="route-container">
-  <code>PluginLayoutCore/src/Services/BasketService.hh</code>
+  <code>PluginLayoutCore/src/Services/BasketService.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums">
 ...
 
-    public function getBasket():array<span><</span>string, mixed>
+    /**
+     * Return basket as array
+     * @return Basket
+     */
+    public function getBasket():Basket
     {
-        $basket = $this->basketRepository->load();
-        $basketItems = $this->basketItemRepository->all();
-        $basketItemData = $this->getBasketItemData( $basketItems );
-        return [
-            "basket" => $basket,
-            "basketItems" => $basketItems,
-            "items" => $basketItemData
-        ];
+      return $this->basketRepository->load();
     }
 
 ...
@@ -361,36 +380,54 @@
 </div>
 
 <div class="route-container">
-  <code>PluginLayoutCore/src/Api/Resources/BasketResource.hh</code>
+  <code>PluginLayoutCore/src/Api/Resources/BasketResource.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
-&lt;?hh //strict
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php //strict
 
     namespace LayoutCore\Api\Resources;
 
-    use Illuminate\Http\Response;
+    use Symfony\Component\HttpFoundation\Response as BaseResponse;
+    use Plenty\Plugin\Http\Response;
     use Plenty\Plugin\Http\Request;
     use LayoutCore\Api\ApiResource;
     use LayoutCore\Api\ApiResponse;
     use LayoutCore\Api\ResponseCode;
     use LayoutCore\Services\BasketService;
 
+    /**
+     * Class BasketResource
+     * @package LayoutCore\Api\Resources
+     */
     class BasketResource extends ApiResource
     {
-        private BasketService $basketService;
+    	/**
+    	 * @var BasketService
+    	 */
+    	private $basketService;
 
-        public function __construct( Request $request, ApiResponse $response, BasketService $basketService )
-        {
-            parent::__construct( $request, $response );
-            $this->basketService = $basketService;
-        }
+        /**
+         * BasketResource constructor.
+         * @param Request $request
+         * @param ApiResponse $response
+         * @param BasketService $basketService
+         */
+    	public function __construct(Request $request, ApiResponse $response, BasketService $basketService)
+    	{
+    		parent::__construct($request, $response);
+    		$this->basketService = $basketService;
+    	}
 
-        public function index():Response
-        {
-            $basket = $this->basketService->getBasket();
-            return $this->response->create($basket, ResponseCode::OK);
-        }
+        /**
+         * Get the basket
+         * @return BaseResponse
+         */
+    	public function index():BaseResponse
+    	{
+    		$basket = $this->basketService->getBasket();
+    		return $this->response->create($basket, ResponseCode::OK);
+    	}
     }
 </pre>
 </div>

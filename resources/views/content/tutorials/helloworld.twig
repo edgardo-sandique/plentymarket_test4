@@ -10,11 +10,13 @@
         In six simple steps, we will walk you through creating your first plugin that displays <b>Hello World!</b> in your browser when adding <code>/hello</code> to your domain.
     </p>
 </div>
+<div class="alert alert-success" role="alert">
+    You can clone or fork the plentymarkets <a href="https://github.com/plentymarkets/plugin-hello-world" target="_blank">Hello World</a> repository, if you want to have a look at the plugin beforehand.
+</div>
 <h2 id="setup-ide">Step 1: Setting up an IDE</h2>
 <div class="api-docs-basics">
     <p>
-        We recommend using an IDE which supports the Hack language and Twig syntax. To get started, install <b>Atom with Nuclide</b>.
-        Facebook provides this IDE for Hack development. It can be extended to support Twig syntax.
+        We recommend using an IDE which supports the PHP language and Twig syntax. To get started, install <b>Atom</b>. It can be extended to support Twig syntax.
     </p>
 </div>
 <h3 id="install-atom">Installing Atom</h3>
@@ -26,9 +28,6 @@
             the Atom IDE.
         </li>
         <li>
-            <a href="http://nuclide.io/docs/editor/setup" target="_blank">Install the Nuclide plugin</a><sup>*</sup> for Hack language support.
-        </li>
-        <li>
             <a href="https://atom.io/packages/php-twig" target="_blank">Install the Twig plugin</a><sup>*</sup> for Twig syntax highlighting.
         </li>
     </ol>
@@ -37,7 +36,7 @@
         To access this pane, open the <b>Atom » Preferences</b> menu and click on <b>Install</b>.
     </p>
 </div>
-<h2 id="setup-git">Step 2: Setting up Git </h2>
+<h2 id="setup-git">Step 2: Setting up Git</h2>
 <div class="api-docs-basics">
     <p>
         Sign up for a hosting provider for your plugin, e.g. <a href="https://github.com" target="_blank">GitHub</a>.
@@ -142,12 +141,12 @@ HelloWorld/
 <div class="code-container">
 <pre class="prettyprint lang-json grey-back linenums">
 {
-    "name":"HelloWorld",
-    "description":"My first plugin",
-    "namespace":"HelloWorld",
-    "author":"Your name",
-    "type":"template",
-    "serviceProvider":null
+    "name"              :"HelloWorld",
+    "description"       :"My first plugin",
+    "namespace"         :"HelloWorld",
+    "author"            :"Your name",
+    "type"              :"template",
+    "serviceProvider"   :null
 }
 </pre>
 </div>
@@ -159,7 +158,7 @@ HelloWorld/
         </li>
         <li>
             Create a new file in the <b>Providers</b> folder.<br />
-            &rarr; Name the file, e.g. <code>HelloWorldServiceProvider.hh</code>.
+            &rarr; Name the file, e.g. <code>HelloWorldServiceProvider.php</code>.
         </li>
         <li>
             Insert the code sample below into the file and save it.
@@ -167,11 +166,11 @@ HelloWorld/
     </ol>
 </div>
 <div class="route-container">
-  <code>HelloWorld/src/Providers/HelloWorldServiceProvider.hh</code>
+  <code>HelloWorld/src/Providers/HelloWorldServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
-&lt;?hh //strict
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
 
     namespace HelloWorld\Providers;
 
@@ -185,7 +184,7 @@ HelloWorld/
          * Register the service provider.
          */
 
-        public function register():void
+        public function register()
         {
 
         }
@@ -201,7 +200,7 @@ HelloWorld/
     <ol>
         <li>
             Create a new file in the <b>Providers</b> folder.<br />
-            &rarr; Name the file, e.g. <code>HelloWorldRouteServiceProvider.hh</code>.
+            &rarr; Name the file, e.g. <code>HelloWorldRouteServiceProvider.php</code>.
         </li>
         <li>
             Insert the code sample below into the file and save it.
@@ -209,11 +208,11 @@ HelloWorld/
     </ol>
 </div>
 <div class="route-container">
-  <code>HelloWorld/src/Providers/HelloWorldRouteServiceProvider.hh</code>
+  <code>HelloWorld/src/Providers/HelloWorldRouteServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
-&lt;?hh //strict
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
 
     namespace HelloWorld\Providers;
 
@@ -223,7 +222,7 @@ HelloWorld/
 
     class HelloWorldRouteServiceProvider extends RouteServiceProvider
     {
-        public function map(Router $router):void
+        public function map(Router $router)
         {
 
         }
@@ -234,17 +233,17 @@ HelloWorld/
 <div class="api-docs-basics">
     <p>
         Now we have to register the <b>RouteServiceProvider</b> in the <b>ServiceProvider</b>.
-        To do so, add a line in the code of <code>HelloWorldServiceProvider.hh</code>.
+        To do so, add a line in the code of <code>HelloWorldServiceProvider.php</code>.
     </p>
 </div>
 <div class="route-container">
-  <code>HelloWorld/src/Providers/HelloWorldServiceProvider.hh</code>
+  <code>HelloWorld/src/Providers/HelloWorldServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums">
 ...
 
-        public function register():void
+        public function register()
         {
             $this->getApplication()->register(HelloWorldRouteServiceProvider::class);
         }
@@ -258,7 +257,7 @@ HelloWorld/
         </li>
         <li>
             Create a new file in the <b>Controllers</b> folder.<br />
-            &rarr; Name the file, e.g. <code>ContentController.hh</code>.
+            &rarr; Name the file, e.g. <code>ContentController.php</code>.
         </li>
         <li>
             Insert the code sample below into the file and save it.
@@ -266,11 +265,11 @@ HelloWorld/
     </ol>
 </div>
 <div class="route-container">
-  <code>HelloWorld/src/Controllers/ContentController.hh</code>
+  <code>HelloWorld/src/Controllers/ContentController.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
-&lt;?hh //strict
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
 
     namespace HelloWorld\Controllers;
 
@@ -288,7 +287,7 @@ HelloWorld/
 </pre>
 </div>
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: In this code example, we define the <code>sayHello</code> function that renders a twig template. The <code>render</code> method specifies the template location: <code>'PLUGINNAME::TEMPLATE'</code>. Since templates are always saved in the <b>resources/views</b> folder in your plugin, we only have to specify part of the template path.
+    <b>Explanation</b>: In this code example, we define the <code>sayHello</code> function that renders a twig template. The <code>render</code> method specifies the template location: <code>'PLUGINNAME::TEMPLATE'</code>. Since templates are always saved in the <b>resources/views</b> folder in your plugin, we only have to specify part of the template path. Note that <code>PLUGINNAME</code> is the name of the plugin folder. The name of the plugin folder and the plugin namespace may differ.
 </div>
 <h3 id="map-contentcontroller">Mapping the ContentController</h3>
 <div class="api-docs-basics">
@@ -297,13 +296,13 @@ HelloWorld/
     </p>
 </div>
 <div class="route-container">
-  <code>HelloWorld/src/Providers/HelloWorldRouteServiceProvider.hh</code>
+  <code>HelloWorld/src/Providers/HelloWorldRouteServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums">
 ...
 
-        public function map(Router $router):void
+        public function map(Router $router)
         {
             $router->get('hello','HelloWorld\Controllers\ContentController@sayHello');
         }
@@ -335,10 +334,10 @@ HelloWorld/
   </p>
 </div>
 <div class="route-container">
-  <code>HelloWorld/src/Controller/ContentController.hh</code>
+  <code>HelloWorld/src/Controller/ContentController.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-hack grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums">
 ...
 
         public function sayHello(Twig $twig):string

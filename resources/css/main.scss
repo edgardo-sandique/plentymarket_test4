@@ -62,7 +62,7 @@ $text-grey: $stormdust-grey;
 .icon-download:before {content: "\e93c";}
 
 .icon-placeholder_show_list,
-.icon-download,{
+.icon-download{
   font-size: 48px;}
 
 /* todo: remove this if add a new plentyicon */
@@ -897,9 +897,13 @@ footer {
 }
 
 pre {
-  background-color: $white;
+  background-color: $mercury-grey;
   padding: 10px;
-  border-radius: 0;
+  border-radius: 5px;
+  border: none;
+  word-break: keep-all;
+  word-wrap: normal;
+  white-space: normal;
 
   &.language-json {
     overflow: auto;
@@ -1202,6 +1206,7 @@ code {
   font-family: "Menlo";
   font-style: normal;
   font-weight: 400;
+  word-break: keep-all;
   word-wrap: normal;
   white-space: pre;
   background-color: transparent;

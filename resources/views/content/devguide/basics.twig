@@ -133,7 +133,7 @@ PluginDirectory/
 <div class="api-docs-basics">
     <p>
         You can define multiple options that will be displayed in the <b>Start » Plugins » Tab: Plugins</b> menu to be configured by admin users.
-        The value of each option can be accessed in your hack code by using the <code>ConfigRepository</code> or from
+        The value of each option can be accessed in your PHP code by using the <code>ConfigRepository</code> or from
         Twig templates by using the <code>config()</code> macro.
     </p>
 
@@ -229,10 +229,10 @@ PluginDirectory/
 ]</pre>
 </div>
 
-<h4>Accessing plugin options from <code>HackClass.hh</code></h4>
+<h4>Accessing plugin options from <code>PhpClass.php</code></h4>
     <div class="code-container">
-        <pre class="prettyprint lang-hack grey-back linenums">
-// access configuration from hack
+        <pre class="prettyprint lang-php grey-back linenums">
+// access configuration from PHP
 function getTitle(ConfigRepository $config):string
 {
     if( $config->get('MyPlugin.show_title') == "1" )
@@ -419,7 +419,7 @@ function getTitle(ConfigRepository $config):string
 <li>Enter the login details for the Git repository.</li>
 <li>Click on <strong>Test connection</strong>.<br />
 &rarr; Connectivity to the Git repository is checked and established.<br />
-&rarr; The drop-down menu <strong>Branch</strong> can be selected.</strong></li>
+&rarr; The drop-down menu <strong>Branch</strong> can be selected.</li>
 <li>Select the branch of the repository that you want to clone and edit.</li>
 <li><strong>Save</strong> your settings.<br />
 → The plugin repository is cloned to the plentymarkets inbox.<br />
@@ -460,16 +460,29 @@ function getTitle(ConfigRepository $config):string
 <h1 id="ide-support">Recommended IDEs</h1>
     <div class="api-docs-basics">
         <p>
-            We recommend using an IDE which supports the Hack language and Twig syntax.
-            For this purpose, we suggest using one of the following IDEs. For improved language support and easier development,
-            it is recommended that you <a href="https://docs.hhvm.com/hhvm/installation/introduction" target="_blank">install HHVM</a>
-            (including a Hack compiler) locally.
+            We recommend using an IDE which supports the PHP language and Twig syntax.
+            For this purpose, we suggest using one of the following IDEs.
         </p>
     </div>
-
-<h2 id="atom-nuclide">Atom with Nuclide</h2>
+<h2 id="phpstorm">PhpStorm</h2>
+    <div class="api-docs-basics">
+        <p>PhpStorm is a comprehensive IDE which supports all PHP language features. PhpStorm also includes a wide range of leading edge front-end technologies, such as CSS, Sass, Javascript, as well as Twig syntax highlighting.</p>
+    </div>
+    <h3>Installation</h3>
+    <div class="api-docs-basics">
+        <ol>
+            <li>
+                <a href="https://www.jetbrains.com/phpstorm/download/" target="_blank">Download and install</a>
+                PhpStorm
+            </li>
+            <li>
+                <a href="https://plugins.jetbrains.com/plugin/7303?pr=phpStorm" target="_blank">Install Twig Plugin</a> for Twig syntax highlighting
+            </li>
+        </ol>
+    </div>
+<h2 id="atom">Atom</h2>
 <div class="api-docs-basics">
-    <p>Facebook provides this IDE for Hack development. It can be extended to also support Twig syntax.</p>
+    <p>Atom is a customisable editor working across operating systems. It can be extended to also support Twig syntax.</p>
 </div>
 <h3>Installation</h3>
 <div class="api-docs-basics">
@@ -478,9 +491,6 @@ function getTitle(ConfigRepository $config):string
             <a href="https://github.com/atom/atom/releases/latest" target="_blank">Download</a>
             and <a href="https://atom.io/docs/latest/getting-started-installing-atom" target="_blank">install</a>
             Atom IDE
-        </li>
-        <li>
-            <a href="http://nuclide.io/docs/editor/setup" target="_blank">Install Nuclide Plugin</a><sup>*</sup> for Hack language support
         </li>
         <li>
             <a href="https://atom.io/packages/php-twig" target="_blank">Install Twig Plugin</a><sup>*</sup> for Twig syntax highlighting
@@ -493,7 +503,7 @@ function getTitle(ConfigRepository $config):string
 <h2 id="sublime-text">Sublime Text</h2>
 
 <div class="api-docs-basics">
-    <p>As an alternative to the Atom IDE, we also recommend Sublime Text with the respective plugins for syntax highlighting.</p>
+    <p>As an alternative to the PhpStorm and Atom IDEs, we also recommend Sublime Text with the respective plugins for syntax highlighting.</p>
 </div>
 
 <h3>Installation</h3>
@@ -501,7 +511,6 @@ function getTitle(ConfigRepository $config):string
     <ol>
         <li><a href="https://www.sublimetext.com/2" target="_blank">Install Sublime Text</a></li>
         <li>Install Sublime Text's <a href="https://packagecontrol.io/installation" target="_blank">Package-Control</a></li>
-        <li>Install <a href="https://packagecontrol.io/packages/Hacklang%20Typechecker%20and%20Autocompletion" target="_blank">Hack Plugin</a></li>
         <li>Install <a href="https://packagecontrol.io/packages/PHP-Twig" target="_blank">Twig Plugin</a></li>
     </ol>
 </div>
