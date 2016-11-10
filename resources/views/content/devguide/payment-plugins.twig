@@ -1,0 +1,617 @@
+{% extends 'PlentyPluginShowcase::templates.ExamplePage' %}
+
+{% block Content %}
+
+<h1 id="payment-introduction">Introducing payment plugins</h1>
+<div class="api-docs-basics">
+    <p>
+        On this page, you will find an overview of relevant information about payment plugins. In the first chapter, we will explain the workflow and interaction of payment plugins with the plentymarkets <a href="https://github.com/plentymarkets/callisto-4" target="_blank">Callisto 4</a> and <a href="https://github.com/plentymarkets/layout-core-4" target="_blank">LayoutCore</a> plugins. In the second chapter, you will find a short description for each plugin feature that you can use to create your own payment plugins.
+    </p>
+</div>
+
+<h3 id="payment-further-reading">Further reading</h3>
+
+<div class="api-docs-basics">
+    <ul>
+        <li>
+            For detailed information about the general plugin structure, refer to <a href="/dev-doc/basics#plugin-structure">Plugin structure</a>.
+        </li>
+        <li>
+            Learn how to create a basic payment plugin in our <a href="/tutorials/payment">Payment plugin</a> tutorial.
+        </li>
+        <li>
+            For detailed information about the <b>Payment</b> plugin interface, refer to <a href="/api-doc/Payment">Interfaces » Payment</a>.
+        </li>
+        <li>
+            For detailed information about the <b>Payment</b> REST routes, refer to <a href="/rest-doc/payment">REST » Payment</a>.
+        </li>
+        <li>
+            Get the complete code of the PayPal plugin developed by plentymarkets:
+        </li>
+    </ul>
+</div>
+
+<div class="connect">
+    <div class="btn btn-primary btn-block" title="Clone or download this plentymarkets plugin on Github.">
+        <a href="https://github.com/plentymarkets/plugin-payment-paypal" role="button"><img class="img-responsive pull-left" src="{{ plugin_path('PlentyPluginShowcase') }}/images/Github-Mark-Light-64px.png"  style="width: 40px;"/><span>Download on GitHub</span></a>
+    </div>
+</div>
+
+<h1 id="payment-plugin-workflow">Payment plugin workflow</h1>
+<div class="api-docs-basics">
+    <p>
+        The flowchart below describes the general workflow of payment plugins and the interaction of payment and template plugins.
+    </p>
+    <figure>
+        <a data-toggle="modal" data-target="#modal2" href="#">
+            <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/payment-plugin-flowchart.png" />
+        </a>
+    </figure>
+</div>
+
+<h2 id="payment-prepare-payment">Preparing the payment</h2>
+<div class="api-docs-basics">
+    <p>
+        Active payment plugins will be displayed in the checkout of the template plugin. When the customer clicks on the <b>Buy now</b> button, the <code>preparePayment</code> event is triggered. Depending on the <b>PaymentType</b> the following results are possible:
+    </p>
+            <ol>
+                <li>
+                    <code>errorCode</code>: The payment will not be prepared. An error message will be displayed on the <b>Checkout</b> page.
+                </li>
+                <li>
+                    <code>continue</code>: The payment will be processed by the <b>LayoutCore</b> plugin. Payment plugins that do not require specific code for displaying own content in the template or redirecting to a payment provider can use this type.
+                </li>
+                <li>
+                    <code>externalContentUrl</code> and <code>htmlContent</code>: Payment plugins with specific code for displaying own content in the template can use these types to show either HTML content or external content by defining an external content URL. A popup window will be displayed on the <b>Checkout</b> page. The customer must click <b>Confirm</b> to continue the payment process.
+                </li>
+                <li>
+                    <code>redirectUrl</code>: The customer will be forwarded to the payment provider. After entering the required data on the payment provider page, the customer will be directed back and the payment plugin continues the payment process with the entered payment data.
+                </li>
+            </ol>
+    </div>
+
+<h2 id="payment-create-order">Creating the order</h2>
+<div class="api-docs-basics">
+    <p>The order will be created. This can be done in two different ways:</p>
+    <ul>
+        <li>
+            <b>LayoutCore:</b> An order will be created by the <b>LayoutCore</b> plugin and the <code>executePayment</code> event is triggered in the <b>LayoutCore</b> plugin. If no order is created, an error message will be displayed on the <b>Checkout</b> page.
+        </li>
+        <li>
+            <b>Payment plugin:</b> An order will be created by the payment plugin and the <code>executePayment</code> event is triggered in the payment plugin plugin. If no order is created, an error message will be displayed on the <b>Checkout</b> page. If no order is created, an error message will be displayed on the <b>Checkout</b> page.
+        </li>
+    </ul>
+</div>
+
+<h2 id="payment-execute-payment">Executing the payment</h2>
+<div class="api-docs-basics">
+    <p>The <code>executePayment</code> event is triggered. If the payment is executed, the customer will be forwarded to the <b>Confirmation</b> page displaying an overview of the order. If no payment is executed, the customer will also be forwarded to the <b>Confirmation</b> page, but an <b>Order not paid</b> note will be displayed.
+    </p>
+</div>
+
+
+<h1 id="payment-features">Payment plugin features</h1>
+<div class="api-docs-basics">
+    <p>
+        Find detailed information about payment plugin features below. The <a href="https://github.com/plentymarkets/plugin-payment-paypal" target="_blank">PayPal plugin</a> developed by plentymarkets is used as a reference for explaining payment plugin features. The <b>PayPal</b> plugin can be the starting point for developing other payment plugins.
+    </p>
+</div>
+
+<h2 id="payment-method-registration">Registering a payment method</h2>
+<div class="api-docs-basics">
+    <p>
+        In order to make a payment method available for a plentymarkets system, the payment method must be registered by the plugin. This is done in the ServiceProvider that is saved in the <b>src/providers</b> folder. The ServiceProvider itself is specified in the <code>plugin.json</code> file. In the ServiceProvider a payment method is registered with the <code>boot()</code> function. Multiple payment methods can be registered that way. A payment method is registered with a unique key consisting of the <b>PluginKey</b> and the <b>PaymentKey</b>. Registering a payment method is always based on one or multiple events. When the event is triggered, the payment method is loaded.
+    </p>
+</div>
+
+<div class="route-container">
+    <code>PayPal/src/providers/PayPalServiceProvider.php</code>
+</div>
+
+<div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums">
+...
+
+/**
+ * Boot additional PayPal services
+ *
+ * @param Dispatcher               $eventDispatcher
+ * @param PaymentHelper            $paymentHelper
+ * @param PaymentService           $paymentService
+ * @param BasketRepositoryContract $basket
+ * @param PaymentMethodContainer   $payContainer
+ * @param EventProceduresService   $eventProceduresService
+ */
+  public function boot( Dispatcher $eventDispatcher, PaymentHelper $paymentHelper, PaymentService $paymentService,
+                          BasketRepositoryContract $basket, PaymentMethodContainer $payContainer, EventProceduresService $eventProceduresService)
+  {
+        // Register the PayPal Express payment method in the payment method container
+        $payContainer->register('plentyPayPal::PAYPALEXPRESS', PayPalExpressPaymentMethod::class,
+                                [ AfterBasketChanged::class, AfterBasketItemAdd::class, AfterBasketCreate::class ]);
+        // Register the PayPal payment method in the payment method container
+        $payContainer->register('plentyPayPal::PAYPAL', PayPalPaymentMethod::class,
+                                [ AfterBasketChanged::class, AfterBasketItemAdd::class, AfterBasketCreate::class ]);
+
+...
+</pre>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: In line 20, the PayPal payment method is registered. The unique key of this payment method is <code>plentyPayPal::PAYPAL</code>. The next element in this line of code is <code>PayPalPaymentMethod::class</code> which gets the information of the payment method from the <code>PayPalPaymentMethod.php</code> file in the <b>src/methods</b> folder. An array of events is also part of the <code>register</code> method. The payment method is loaded, when an event is triggered.
+</div>
+
+<h2 id="payment-method-values">Defining the payment method</h2>
+
+<div class="api-docs-basics">
+    <p>
+        Every payment method that was registered as described above can provide different values for the template. These values can either be generated by functions or read from the configuration of the plugin. This information is saved in the <code>PayPalPaymentMethod.php</code> file in the <b>src/methods</b> folder. The following functions are currently available:
+    </p>
+    <ul>
+        <li>
+            <code>isActive():bool</code>
+        </li>
+        <li>
+            <code>geName():string</code>
+        </li>
+        <li>
+            <code>getFee():float</code>
+        </li>
+        <li>
+            <code>getIcon():string</code>
+        </li>
+        <li>
+            <code>getDescription():string</code>
+        </li>
+    </ul>
+</div>
+
+<div class="route-container">
+    <code>PayPal/src/methods/PayPalPaymentMethod.php</code>
+</div>
+
+<div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
+
+namespace PayPal\Methods;
+
+use Plenty\Modules\Account\Contact\Contracts\ContactRepositoryContract;
+use Plenty\Modules\Basket\Contracts\BasketRepositoryContract;
+use Plenty\Modules\Payment\Method\Contracts\PaymentMethodService;
+use Plenty\Plugin\ConfigRepository;
+
+/**
+ * Class PayPalPaymentMethod
+ * @package PayPal\Methods
+ */
+class PayPalPaymentMethod extends PaymentMethodService
+{
+
+    ...
+
+    /**
+     * Check whether the plugin is active
+     *
+     * @return bool
+     */
+    public function isActive()
+    {
+        return true;
+    }
+
+    /**
+     * Get the name of the plugin
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        $name = $this->configRepo->get('PayPal.name');
+        if(!strlen($name))
+        {
+            $name = 'PayPal';
+        }
+        return $name;
+    }
+
+    /**
+     * Get additional costs for PayPal. Additional costs can be entered in the config.json.
+     *
+     * @return float
+     */
+    public function getFee()
+    {
+        $fee = $this->configRepo->get('PayPal.fee');
+        if(strlen($fee))
+        {
+            $fee = str_replace(',', '.', $fee);
+        }
+        else
+        {
+            $fee = 0;
+        }
+        return (float)$fee;
+    }
+
+    /**
+     * Get the path of the icon
+     *
+     * @return string
+     */
+    public function getIcon()
+    {
+        $icon = 'layout/plugins/production/paypal/images/logos/de-pp-logo.png';
+        return $icon;
+    }
+
+    /**
+     * Get the description of the payment method. The description can be entered in the config.json.
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        $desc = $this->configRepo->get('PayPal.description');
+        return $desc;
+    }
+}
+</pre>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: As you can see in the code example, all 5 functions are used in the <code>PayPalPaymentMethod.php</code> file. In line 81, the description information saved in the <code>config.json</code> file is retrieved and made available for the template.
+</div>
+
+<h2 id="payment-events">Specifying events</h2>
+
+<div class="api-docs-basics">
+    <p>
+        In order to respond to different events, a listener for the respective events must be registered. The listener is registered in the <code>boot()</code> function of the ServiceProvider. Every event to be responded to must be registered here, too.
+    </p>
+
+</div>
+
+<div class="route-container">
+    <code>PayPal/src/providers/PayPalServiceProvider.php</code>
+</div>
+
+<div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums">
+...
+
+        // Listen for the event that gets the payment method content
+        $eventDispatcher->listen(GetPaymentMethodContent::class,
+                           function(GetPaymentMethodContent $event) use( $paymentHelper, $basket, $paymentService)
+                           {
+                                if($event->getMop() == $paymentHelper->getPayPalMopId())
+                                {
+                                      $basket = $basket->load();
+                                      $event->setValue($paymentService->getPaymentContent($basket));
+                                      $event->setType( $paymentService->getReturnType());
+                                }
+                           });
+
+        // Listen for the event that executes the payment
+        $eventDispatcher->listen(ExecutePayment::class,
+                          function(ExecutePayment $event) use ( $paymentHelper, $paymentService)
+                          {
+                                if($event->getMop() == $paymentHelper->getPayPalMopId())
+                                {
+                                      // Execute the payment
+                                      $payPalPayment = $paymentService->executePayment();
+                                      // Check whether the PayPal payment has been executed successfully
+                                      if($paymentService->getReturnType() != 'errorCode')
+                                      {
+                                            // Create a payment in plentymarkets with the PayPal payment data
+                                            $plentyPayment = $paymentHelper->createPlentyPaymentFromJson($payPalPayment);
+                                            if($plentyPayment instanceof Payment)
+                                            {
+                                                  // Assign the payment to an order in plentymarkets
+                                                  $paymentHelper->assignPlentyPaymentToPlentyOrder($plentyPayment, $event->getOrderId());
+                                                  $event->setType('success');
+                                                  $event->setValue('The payment has been executed successfully!');
+                                            }
+                                      }
+                                      else
+                                      {
+                                          $event->setType('error');
+                                          $event->setValue('The PayPal payment could not be executed!');
+                                      }
+                                }
+                          });
+
+...
+</pre>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: In the PayPal plugin, two events are specified in the <code>PayPalServiceProvider.php</code> file. ##
+</div>
+
+<h2 id="payment-addresses">Retrieving addresses from the payment provider</h2>
+
+<div class="api-docs-basics">
+    <p>
+        Provided that the payment method requires the addresses from the payment provider, a new <b>Contact</b> must be created in the online store as soon as the addresses are available. To do so, the <a href="/api-doc/Account#contactrepositorycontract_contact_account">ContactRepositoryContract</a> must be used in the <code>ContactService.php</code>.
+    </p>
+</div>
+
+<div class="route-container">
+    <code>PayPal/src/services/ContactService.php</code>
+</div>
+
+<div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
+
+namespace PayPal\Services;
+
+use Plenty\Modules\Account\Contact\Contracts\ContactRepositoryContract;
+use Plenty\Modules\Account\Contact\Models\Contact;
+
+/**
+ * Class ContactService
+ * @package PayPal\Services
+ */
+class ContactService
+{
+    /**
+     * @var ContactRepositoryContract
+     */
+    private $contactRepository;
+    /**
+     * ContactService constructor.
+     * @param ContactRepositoryContract $contactRepository
+     */
+    public function __construct(ContactRepositoryContract $contactRepository)
+    {
+        $this->contactRepository = $contactRepository;
+    }
+
+    /**
+     * Get a contact by ID
+     *
+     * @param int $contactId
+     * @return Contact
+     */
+    public function getContactById(int $contactId):Contact
+    {
+        return $this->contactRepository->findContactById($contactId);
+    }
+
+    /**
+     * Create a contact
+     *
+     * @param array $contact
+     * @return Contact
+     */
+    public function createContact(array $contact):Contact
+    {
+        return $this->contactRepository->createContact($contact);
+    }
+}
+</pre>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: ##
+</div>
+
+<div class="api-docs-basics">
+    <p>
+        A <b>Contact</b> must be structured according to the <a href="/api-doc/Account#contact_contact_account">Contact</a> model. Any number of addresses can be saved in the <b>Contact</b>. Addresses are divided into two types - delivery addresses and invoice addresses. Both types must be structured according to the <a href="/api-doc/Account#address_address_account">Address</a> model.
+    </p>
+</div>
+
+<h2 id="payment-event-procedures">Using event procedures</h2>
+
+<div class="api-docs-basics">
+    <p>
+        The <strong>src/procedures</strong> folder contains the <code>RefundEventProcedure.php</code> file and other files that are used to integrate event procedures for the payment method in plentymarkets. For detailed information about event procedures, refer to <a href="https://www.plentymarkets.co.uk/manual/settings/orders/event-procedures/new-event-procedure/" target="_blank">New event procedure</a>. Under <b>Procedures</b>, the procedure type <b>Plugins</b> is available. All event procedures that are registered in a plugin, will be listed under the <b>Plugins</b> procedure type.
+    </p>
+
+    <figure>
+        <a data-toggle="modal" data-target="#modal1" href="#">
+            <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/backend-event-procedures.png" />
+        </a>
+    </figure>
+</div>
+
+<div class="route-container">
+    <code>PayPal/src/events/RefundEventProcedure.php</code>
+</div>
+
+<div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
+
+namespace PayPal\Events;
+
+use Plenty\Modules\Order\Models\Order;
+use Plenty\Modules\EventAction\Events\EventActionTriggered;
+use PayPal\Services\PaymentService;
+use PayPal\Helper\PaymentHelper;
+
+/**
+ * Class RefundEventAction
+ * @package PayPal\Events
+ */
+class RefundEventAction
+{
+    /**
+     * @param EventActionTriggered  $eventTriggered
+     */
+    public function run(EventActionTriggered $eventTriggered, PaymentService $paymentService, PaymentHelper $paymentHelper)
+    {
+        /** @var Order $order */
+        $order = $eventTriggered->getOrder();
+...
+</pre>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: ##
+</div>
+
+<div class="api-docs-basics">
+    <p>
+        The event procedure must be registered in the ServiceProvider.
+    </p>
+</div>
+
+<div class="route-container">
+    <code>PayPal/src/providers/PayPalServiceProvider.php</code>
+</div>
+
+<div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
+
+namespace PayPal\Providers;
+
+use Plenty\Modules\EventAction\Services\Entries\ActionEntry;
+use Plenty\Modules\EventAction\Services\EventActionService;
+
+...
+
+use PayPal\Events\RefundEventAction;
+
+...
+
+/**
+ * Class PayPalServiceProvider
+ * @package PayPal\Providers
+ */
+class PayPalServiceProvider extends ServiceProvider
+{
+
+      /**
+       * Register the route service provider and bind event procedures
+       */
+      public function register()
+      {
+          $this->getApplication()->register(PayPalRouteServiceProvider::class);
+          $this->getApplication()->bind(RefundEventAction::class);
+      }
+
+...
+
+            // Register PayPal Refund Event Action
+            $eventActionService->registerAction('plentyPayPal',
+                                                ActionEntry::ACTION_GROUP_ORDER,
+                                                [   'de' => 'Rückzahlung der PayPal-Zahlung',
+                                                    'en' => 'Refund the PayPal payment'],
+                                                '\PayPal\Events\RefundEventAction@run');
+
+...
+</pre>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: ##
+</div>
+
+<div class="api-docs-basics">
+    <p>
+        Event procedures can register events and procedures. The following entry points for event types and procedure groups of event procedures are available:
+    </p>
+    <table class="table table-striped table-responsive table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Entry point</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td><b>EVENT_TYPE_ORDER</b></td>
+            <td>##</td>
+        </tr>
+        <tr>
+            <td><b>EVENT_TYPE_REORDER</b></td>
+            <td>##</td>
+        </tr>
+        <tr>
+            <td><b>EVENT_TYPE_TICKET</b></td>
+            <td>##</td>
+        </tr>
+        <tr>
+            <td><b>PROCEDURE_GROUP_ITEM</b></td>
+            <td>##</td>
+        </tr>
+        <tr>
+            <td><b>PROCEDURE_GROUP_ORDER</b></td>
+            <td>##</td>
+        </tr>
+        <tr>
+            <td><b>PROCEDURE_GROUP_DOCUMENT</b></td>
+            <td>##</td>
+        </tr>
+        <tr>
+            <td><b>PROCEDURE_GROUP_CONTACT</b></td>
+            <td>##</td>
+        </tr>
+        <tr>
+            <td><b>PROCEDURE_GROUP_SHIPPING</b></td>
+            <td>##</td>
+        </tr>
+        <tr>
+            <td><b>PROCEDURE_GROUP_PAYMENT</b></td>
+            <td>##</td>
+        </tr>
+        <tr>
+            <td><b>PROCEDURE_GROUP_RETURN</b></td>
+            <td>##</td>
+        </tr>
+        <tr>
+            <td><b>PROCEDURE_GROUP_LISTING</b></td>
+            <td>##</td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog img-horizontal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add procedure: Plugins</h4>
+            </div>
+            <div class="modal-body">
+                <figure>
+                    <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/backend-event-procedures.png" />
+                </figure>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog img-horizontal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Payment plugin flowchart</h4>
+            </div>
+            <div class="modal-body">
+                <figure>
+                    <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/payment-plugin-flowchart.png" />
+                </figure>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
