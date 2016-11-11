@@ -627,168 +627,62 @@ function getTitle(ConfigRepository $config):string
 
 </div>
 
-<h1 id="ide-setup-template">Setting up an IDE for template plugins</h1>
+    <h1 id="ide-support">Recommended IDEs</h1>
     <div class="api-docs-basics">
         <p>
-            We recommend using <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PhpStorm</a> for developing Callisto 4. PhpStorm is a comprehensive IDE which supports all PHP language features. PhpStorm also includes a wide range of leading edge front-end technologies, such as CSS, Sass, Javascript, as well as Twig syntax highlighting. PhpStorm supports <a href="http://eslint.org/" target="_blank">ESLint</a>, a linting utility plugin for JavaScript.
+            We recommend using an IDE which supports the PHP language and Twig syntax.
+            For this purpose, we suggest using one of the following IDEs.
         </p>
     </div>
-    <h2 id="install-nodejs">Installing Node.js</h2>
+    <h2 id="phpstorm">PhpStorm</h2>
     <div class="api-docs-basics">
-        <p>For JavaScript packages, such as <a href="http://gulpjs.com/" target="_blank">Gulp</a>, we recommend installing <a href="https://nodejs.org/en/about/" target="_blank">Node.js</a> with its package manager <a href="https://www.npmjs.com/" target="_blank">npm</a>.</p>
-    <ol>
-    <li>
-        Download and install <a href="https://nodejs.org/en/download/" target="_blank">Node.js</a>.<br />&rarr; We recommend using Node.js v6.9.1 LTS.
-    </li>
-        <li>
-            To use Node.js properly, a command line tool is required. PhpStorm comes with a built-in terminal, but you can use any other command line tool.
-        </li>
-    </ol>
+        <p>PhpStorm is a comprehensive IDE which supports all PHP language features. PhpStorm also includes a wide range of leading edge front-end technologies, such as CSS, Sass, Javascript, as well as Twig syntax highlighting.</p>
     </div>
-<h2 id="install-phpstorm">Installing PhpStorm</h2>
+    <h3>Installation</h3>
     <div class="api-docs-basics">
-        <p>Next, install PhpStorm and the Twig language plugin.</p>
         <ol>
             <li>
-                Download and install <a href="https://www.jetbrains.com/phpstorm/download/" target="_blank">PhpStorm</a>.<br />&rarr; We recommend using PhpStorm v2016.2.2.
+                <a href="https://www.jetbrains.com/phpstorm/download/" target="_blank">Download and install</a>
+                PhpStorm
             </li>
             <li>
-                Open PhpStorm.<br />&rarr; The <b>Welcome to PhpStorm</b> window will open.
-            </li>
-            <li>
-                Click on <b>Configure » Plugins</b>.<br />&rarr; The <b>Plugins</b> window will open.
-            </li>
-            <li>
-                Click on <b>Install JetBrains plugin...</b>.<br />&rarr; The <b>Browse JetBrains Plugins</b> will open.
-            </li>
-            <li>
-                Install the <b>Twig Support</b> plugin.
+                <a href="https://plugins.jetbrains.com/plugin/7303?pr=phpStorm" target="_blank">Install Twig Plugin</a> for Twig syntax highlighting
             </li>
         </ol>
     </div>
-
-    <h2 id="config-phpstorm-callisto">Configuring PhpStorm for Callisto 4</h2>
-
+    <h2 id="atom">Atom</h2>
     <div class="api-docs-basics">
-        <p>Clone or download the <a href="https://github.com/plentymarkets/callisto-4" target="_blank">Callisto 4</a> and <a href="https://github.com/plentymarkets/layout-core-4" target="_blank">LayoutCore</a> plugins, e.g. with <a href="https://desktop.github.com/" target="_blank">GitHub Desktop</a> or <a href="https://www.sourcetreeapp.com/" target="_blank">SourceTree</a>.</p>
+        <p>Atom is a customisable editor working across operating systems. It can be extended to also support Twig syntax.</p>
+    </div>
+    <h3>Installation</h3>
+    <div class="api-docs-basics">
         <ol>
             <li>
-                Open PhpStorm.<br />&rarr; The <b>Welcome to PhpStorm</b> window will open.
+                <a href="https://github.com/atom/atom/releases/latest" target="_blank">Download</a>
+                and <a href="https://atom.io/docs/latest/getting-started-installing-atom" target="_blank">install</a>
+                Atom IDE
             </li>
             <li>
-                Click on <b>Open</b>.<br />&rarr; The <b>Open File or Project</b> window will open.
-            </li>
-            <li>
-                Select your <b>Callisto 4</b> folder and click <b>OK</b>.
-            </li>
-            <li>
-                Open the terminal and go to the Callisto project folder.<br />&rarr; When using the built-in terminal of PhpStorm, you are already in the right project folder.
-            </li>
-            <li>
-                Run <code>npm install</code> in the terminal.<br />&rarr; All dependencies that are defined in the <code>package.json</code> file are installed.
-            </li>
-            <li>
-                Click on <b>PhpStorm » Preferences...</b> in the menu bar.
-            </li>
-            <li>
-                Go to <b>Languages & Frameworks » JavaScript » Code Quality Tools » ESLint</b>.
-            </li>
-            <li>
-                <b>Enable</b> ESLint for the Callisto project.
+                <a href="https://atom.io/packages/php-twig" target="_blank">Install Twig Plugin</a><sup>*</sup> for Twig syntax highlighting
             </li>
         </ol>
+        <p>
+            *) All required Atom packages can be found using the embedded package control pane of the Atom IDE. This pane can be found in Atom: <i>Settings</i> > <i>Install</i>.
+        </p>
     </div>
-<h2 id="gulp-callisto">Gulp tasks for Callisto 4</h2>
+    <h2 id="sublime-text">Sublime Text</h2>
 
-<div class="api-docs-basics">
-    <p>Gulp is a streaming build system that helps you automating your JavaScript tasks. The following Gulp tasks are available in the Callisto 4 project.</p>
-    <table class="table table-striped table-responsive table-bordered table-hover">
-        <thead>
-        <tr>
-            <th>Task</th>
-            <th>Description</th>
-        </tr>
-        </thead>
+    <div class="api-docs-basics">
+        <p>As an alternative to the PhpStorm and Atom IDEs, we also recommend Sublime Text with the respective plugins for syntax highlighting.</p>
+    </div>
 
-        <tbody>
-        <tr>
-            <td><b>watch:js</b></td>
-            <td>includes the <b>build:vendor</b> task. This task monitors all <code>.js</code> files in the <b>resources/js/src/app</b> folder and builds <code>.js</code> files in the <b>resources/js/dist</b> folder in case of changes.</td>
-        </tr>
-        <tr>
-            <td><b>watch:sass</b></td>
-            <td>monitors all <code>.scss</code> files in the <b>resources/scss</b> folder and builds <code>.css</code> files in the <b>resources/css</b> folder in case of changes.</td>
-        </tr>
-        <tr>
-            <td><b>build</b></td>
-            <td>includes the <b>build:bundle</b> and <b>build:sass-min</b> tasks</td>
-        </tr>
-        <tr>
-            <td><b>build:bundle</b></td>
-            <td>includes the <b>build:app</b>, <b>build:vendor</b> and <b>build:lang</b> tasks. This task builds the <code>.js</code> and <code>.min.js</code> files in the <b>resources/js/dist</b> folder.</td>
-        </tr>
-        <tr>
-            <td><b>build:app</b></td>
-            <td>includes the <b>build:lint</b> task. This task builds <code>-app.js</code> files in the <b>resources/js/dist</b> folder.</td>
-        </tr>
-        <tr>
-            <td><b>build:lang</b></td>
-            <td>builds the <code>.js</code> files in the <b>resources/js/lang</b> folder</td>
-        </tr>
-        <tr>
-            <td><b>build:vendor</b></td>
-            <td>builds <b>-vendor.js</b> files in the <b>resources/js/dist</b> folder</td>
-        </tr>
-        <tr>
-            <td><b>build:lint</b></td>
-            <td>executes ESLint and lints <code>.js</code> files in the <b>resources/js/src</b> folder</td>
-        </tr>
-        <tr>
-            <td><b>build:sass-min</b></td>
-            <td>includes the <b>build:sass</b> task. This task builds <b>.min.css</b> files in the <b>resources/css</b> folder.</td>
-        </tr>
-        <tr>
-            <td><b>build:sass</b></td>
-            <td>builds <code>.css</code> files in the <b>resources/css</b> folder</td>
-        </tr>
-        </tbody>
-
-    </table>
-</div>
-    <h1 id="ide-support">Other IDEs</h1>
-<h2 id="atom">Atom</h2>
-<div class="api-docs-basics">
-    <p>Atom is a customisable editor working across operating systems. It can be extended to also support Twig syntax.</p>
-</div>
-<h3>Installation</h3>
-<div class="api-docs-basics">
-    <ol>
-        <li>
-            <a href="https://github.com/atom/atom/releases/latest" target="_blank">Download</a>
-            and <a href="https://atom.io/docs/latest/getting-started-installing-atom" target="_blank">install</a>
-            Atom IDE
-        </li>
-        <li>
-            <a href="https://atom.io/packages/php-twig" target="_blank">Install Twig Plugin</a><sup>*</sup> for Twig syntax highlighting
-        </li>
-    </ol>
-    <p>
-        *) All required Atom packages can be found using the embedded package control pane of the Atom IDE. This pane can be found in Atom: <i>Settings</i> > <i>Install</i>.
-    </p>
-</div>
-<h2 id="sublime-text">Sublime Text</h2>
-
-<div class="api-docs-basics">
-    <p>As an alternative to the PhpStorm and Atom IDEs, we also recommend Sublime Text with the respective plugins for syntax highlighting.</p>
-</div>
-
-<h3>Installation</h3>
-<div class="api-docs-basics">
-    <ol>
-        <li><a href="https://www.sublimetext.com/2" target="_blank">Install Sublime Text</a></li>
-        <li>Install Sublime Text's <a href="https://packagecontrol.io/installation" target="_blank">Package-Control</a></li>
-        <li>Install <a href="https://packagecontrol.io/packages/PHP-Twig" target="_blank">Twig Plugin</a></li>
-    </ol>
-</div>
+    <h3>Installation</h3>
+    <div class="api-docs-basics">
+        <ol>
+            <li><a href="https://www.sublimetext.com/2" target="_blank">Install Sublime Text</a></li>
+            <li>Install Sublime Text's <a href="https://packagecontrol.io/installation" target="_blank">Package-Control</a></li>
+            <li>Install <a href="https://packagecontrol.io/packages/PHP-Twig" target="_blank">Twig Plugin</a></li>
+        </ol>
+    </div>
 
 {% endblock %}
