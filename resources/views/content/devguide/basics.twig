@@ -53,7 +53,7 @@ PluginDirectory/
 
 <div class="api-docs-basics">
     <p>
-        For detailed information about the different plugin features, refer to the <a href="te,plate-plugins#template-introduction">Template plugin guide</a> or <a href="payment-plugins#payment-introduction">Payment plugin guide</a>.
+        For detailed information about the different plugin features, refer to the <a href="template-plugins#template-introduction">Template plugin guide</a> or <a href="payment-plugins#payment-introduction">Payment plugin guide</a>.
     </p>
 </div>
 
@@ -429,10 +429,10 @@ function getTitle(ConfigRepository $config):string
       </tr>
       <tr>
       <td>
-        <a href="{{ url() }}/api-doc/Authorization">Authorization</a>
+        <a href="{{ url() }}/api-doc/Authentication">Authentication</a>
       </td>
       <td>
-        Interface for user access control and role access control.
+        Interface for user authentication.
       </td>
       </tr>
       <tr>
@@ -561,6 +561,14 @@ function getTitle(ConfigRepository $config):string
             </td>
             <td>
                 Contains contracts and models related to the plentymarkets ticket system.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Miscellaneous">Miscellaneous</a>
+            </td>
+            <td>
+                Contains interfaces that cannot be organised in the listed interfaces.
             </td>
         </tr>
     </tbody>
