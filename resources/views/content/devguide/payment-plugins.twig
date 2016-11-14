@@ -279,46 +279,46 @@ class PayPalPaymentMethod extends PaymentMethodService
 <pre class="prettyprint lang-php grey-back linenums">
 ...
 
-        // Listen for the event that gets the payment method content
-        $eventDispatcher->listen(GetPaymentMethodContent::class,
-                           function(GetPaymentMethodContent $event) use( $paymentHelper, $basket, $paymentService)
-                           {
-                                if($event->getMop() == $paymentHelper->getPayPalMopId())
-                                {
-                                      $basket = $basket->load();
-                                      $event->setValue($paymentService->getPaymentContent($basket));
-                                      $event->setType( $paymentService->getReturnType());
-                                }
-                           });
+// Listen for the event that gets the payment method content
+$eventDispatcher->listen(GetPaymentMethodContent::class,
+                   function(GetPaymentMethodContent $event) use( $paymentHelper, $basket, $paymentService)
+                   {
+                        if($event->getMop() == $paymentHelper->getPayPalMopId())
+                        {
+                              $basket = $basket->load();
+                              $event->setValue($paymentService->getPaymentContent($basket));
+                              $event->setType( $paymentService->getReturnType());
+                        }
+                   });
 
-        // Listen for the event that executes the payment
-        $eventDispatcher->listen(ExecutePayment::class,
-                          function(ExecutePayment $event) use ( $paymentHelper, $paymentService)
-                          {
-                                if($event->getMop() == $paymentHelper->getPayPalMopId())
-                                {
-                                      // Execute the payment
-                                      $payPalPayment = $paymentService->executePayment();
-                                      // Check whether the PayPal payment has been executed successfully
-                                      if($paymentService->getReturnType() != 'errorCode')
-                                      {
-                                            // Create a payment in plentymarkets with the PayPal payment data
-                                            $plentyPayment = $paymentHelper->createPlentyPaymentFromJson($payPalPayment);
-                                            if($plentyPayment instanceof Payment)
-                                            {
-                                                  // Assign the payment to an order in plentymarkets
-                                                  $paymentHelper->assignPlentyPaymentToPlentyOrder($plentyPayment, $event->getOrderId());
-                                                  $event->setType('success');
-                                                  $event->setValue('The payment has been executed successfully!');
-                                            }
-                                      }
-                                      else
-                                      {
-                                          $event->setType('error');
-                                          $event->setValue('The PayPal payment could not be executed!');
-                                      }
-                                }
-                          });
+// Listen for the event that executes the payment
+$eventDispatcher->listen(ExecutePayment::class,
+                  function(ExecutePayment $event) use ( $paymentHelper, $paymentService)
+                  {
+                        if($event->getMop() == $paymentHelper->getPayPalMopId())
+                        {
+                              // Execute the payment
+                              $payPalPayment = $paymentService->executePayment();
+                              // Check whether the PayPal payment has been executed successfully
+                              if($paymentService->getReturnType() != 'errorCode')
+                              {
+                                    // Create a payment in plentymarkets with the PayPal payment data
+                                    $plentyPayment = $paymentHelper->createPlentyPaymentFromJson($payPalPayment);
+                                    if($plentyPayment instanceof Payment)
+                                    {
+                                          // Assign the payment to an order in plentymarkets
+                                          $paymentHelper->assignPlentyPaymentToPlentyOrder($plentyPayment, $event->getOrderId());
+                                          $event->setType('success');
+                                          $event->setValue('The payment has been executed successfully!');
+                                    }
+                              }
+                              else
+                              {
+                                  $event->setType('error');
+                                  $event->setValue('The PayPal payment could not be executed!');
+                              }
+                        }
+                  });
 
 ...
 </pre>
@@ -342,10 +342,13 @@ class PayPalPaymentMethod extends PaymentMethodService
 
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums">
-&lt;?php // strict
+&lt;?php
+
 namespace PayPal\Providers;
+
 use Plenty\Plugin\RouteServiceProvider;
 use Plenty\Plugin\Routing\Router;
+
 /**
  * Class PayPalRouteServiceProvider
  * @package PayPal\Providers
@@ -404,40 +407,40 @@ class PayPalRouteServiceProvider extends RouteServiceProvider
 <pre class="prettyprint lang-php grey-back linenums">
 ...
 
-    /**
-     * Get the PayPal payment content
-     *
-     * @param Basket $basket
-     * @return string
-     */
-    public function getPaymentContent(Basket $basket, $mode = 'paypal'):string
+/**
+ * Get the PayPal payment content
+ *
+ * @param Basket $basket
+ * @return string
+ */
+public function getPaymentContent(Basket $basket, $mode = 'paypal'):string
+{
+
+...
+
+    // Get the content of the PayPal container
+    $paymentContent = '';
+    $links = $resultJson->links;
+    if(is_array($links))
     {
-
-    ...
-
-        // Get the content of the PayPal container
-        $paymentContent = '';
-        $links = $resultJson->links;
-        if(is_array($links))
+        foreach($links as $key => $value)
         {
-            foreach($links as $key => $value)
+            // Get the redirect URLs for the content
+            if($value->method == 'REDIRECT')
             {
-                // Get the redirect URLs for the content
-                if($value->method == 'REDIRECT')
-                {
-                    $paymentContent = $value->href;
-                    $this->returnType = 'redirectUrl';
-                }
+                $paymentContent = $value->href;
+                $this->returnType = 'redirectUrl';
             }
         }
-        // Check whether the content is set. Else, return an error code.
-        if(!strlen($paymentContent))
-        {
-            $this->returnType = 'errorCode';
-            return 'An unknown error occurred, please try again.';
-        }
-        return $paymentContent;
     }
+    // Check whether the content is set. Else, return an error code.
+    if(!strlen($paymentContent))
+    {
+        $this->returnType = 'errorCode';
+        return 'An unknown error occurred, please try again.';
+    }
+    return $paymentContent;
+}
 
 ...
 </pre>
@@ -463,40 +466,40 @@ class PayPalRouteServiceProvider extends RouteServiceProvider
 <pre class="prettyprint lang-php grey-back linenums">
 ...
 
+/**
+ * Create a payment in plentymarkets from the JSON data
+ *
+ * @param string $json
+ * @return Payment
+ */
+public function createPlentyPaymentFromJson(string $json)
+{
+    $payPalPayment = json_decode($json);
+    $paymentData = array();
+    // Set the payment data
+    $paymentData['mopId']           = (int)$this->getPayPalMopId();
+    $paymentData['transactionType'] = 2;
+    $paymentData['status']          = $this->mapStatus($payPalPayment->status);
+    $paymentData['currency']        = $payPalPayment->currency;
+    $paymentData['amount']          = $payPalPayment->amount;
+    $paymentData['receivedAt']       = $payPalPayment->entryDate;
+    $payment = $this->paymentRepository->createPayment($paymentData);
     /**
-     * Create a payment in plentymarkets from the JSON data
-     *
-     * @param string $json
-     * @return Payment
+     * Add payment property with type booking text
      */
-    public function createPlentyPaymentFromJson(string $json)
+    $this->addPaymentProperty($payment->id, array('typeId'=>3, 'value'=>'PayPalPayID: '.(string)$payPalPayment->bookingText));
+    /**
+     * Add payment property with type origin
+     */
+    $originConstants        = $this->paymentRepository->getOriginConstants();
+    $paymentPropertyValue      = '';
+    if(!is_null($originConstants) && is_array($originConstants))
     {
-        $payPalPayment = json_decode($json);
-        $paymentData = array();
-        // Set the payment data
-        $paymentData['mopId']           = (int)$this->getPayPalMopId();
-        $paymentData['transactionType'] = 2;
-        $paymentData['status']          = $this->mapStatus($payPalPayment->status);
-        $paymentData['currency']        = $payPalPayment->currency;
-        $paymentData['amount']          = $payPalPayment->amount;
-        $paymentData['receivedAt']       = $payPalPayment->entryDate;
-        $payment = $this->paymentRepository->createPayment($paymentData);
-        /**
-         * Add payment property with type booking text
-         */
-        $this->addPaymentProperty($payment->id, array('typeId'=>3, 'value'=>'PayPalPayID: '.(string)$payPalPayment->bookingText));
-        /**
-         * Add payment property with type origin
-         */
-        $originConstants        = $this->paymentRepository->getOriginConstants();
-        $paymentPropertyValue      = '';
-        if(!is_null($originConstants) && is_array($originConstants))
-        {
-            $paymentPropertyValue = (string)$originConstants['plugin'];
-        }
-        $this->addPaymentProperty($payment->id, array('typeId'=>23, 'value'=>$paymentPropertyValue));
-        return $payment;
+        $paymentPropertyValue = (string)$originConstants['plugin'];
     }
+    $this->addPaymentProperty($payment->id, array('typeId'=>23, 'value'=>$paymentPropertyValue));
+    return $payment;
+}
 
 ...
 </pre>
@@ -522,23 +525,23 @@ class PayPalRouteServiceProvider extends RouteServiceProvider
 <pre class="prettyprint lang-php grey-back linenums">
 ...
 
-    /**
-     * Assign the payment to an order in plentymarkets
-     *
-     * @param Payment $payment
-     * @param int $orderId
-     */
-    public function assignPlentyPaymentToPlentyOrder(Payment $payment, int $orderId)
+/**
+ * Assign the payment to an order in plentymarkets
+ *
+ * @param Payment $payment
+ * @param int $orderId
+ */
+public function assignPlentyPaymentToPlentyOrder(Payment $payment, int $orderId)
+{
+    // Get the order by the given order ID
+    $order = $this->orderRepo->findOrderById($orderId);
+    // Check whether the order truly exists in plentymarkets
+    if(!is_null($order) && $order instanceof Order)
     {
-        // Get the order by the given order ID
-        $order = $this->orderRepo->findOrderById($orderId);
-        // Check whether the order truly exists in plentymarkets
-        if(!is_null($order) && $order instanceof Order)
-        {
-            // Assign the given payment to the given order
-            $this->paymentOrderRelationRepo->createOrderRelation($payment, $order);
-        }
+        // Assign the given payment to the given order
+        $this->paymentOrderRelationRepo->createOrderRelation($payment, $order);
     }
+}
 
 ...
 </pre>
@@ -684,6 +687,7 @@ public function mapStatus(string $status)
     }
     return (int)$this->statusMap[$status];
 }
+
 ...
 </pre>
 </div>

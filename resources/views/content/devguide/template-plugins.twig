@@ -2,7 +2,7 @@
 
 {% block Content %}
 
-<h1 id="payment-introduction">Introducing template plugins</h1>
+<h1 id="template-introduction">Introducing template plugins</h1>
 <div class="api-docs-basics">
     <p>
         On this page, you will find an overview of relevant information about template plugins. In the first chapter, we will help you set up an IDE with all bits and bobs required to develop template plugins. In the second chapter, you will find a short description for each plugin feature that you can use to create your own template plugins. We will differentiate between features that define the core structure of the plugin usually found in the <strong>src</strong> folder and features for the design found in the <strong>resources</strong> folder. The programming language PHP 7 is mainly used for creating the files in the <strong>src</strong> folder. Technologies used in context with the <strong>resources</strong> folder are:
@@ -26,7 +26,7 @@
     </ul>
 </div>
 
-<h3 id="payment-further-reading">Further reading</h3>
+<h3 id="template-further-reading">Further reading</h3>
 
 <div class="api-docs-basics">
     <ul>
@@ -212,53 +212,53 @@
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace LayoutCore\Api\Resources;
+namespace LayoutCore\Api\Resources;
 
-    use Symfony\Component\HttpFoundation\Response as BaseResponse;
-    use Plenty\Plugin\Http\Response;
-    use Plenty\Plugin\Http\Request;
-    use LayoutCore\Api\ApiResource;
-    use LayoutCore\Api\ApiResponse;
-    use LayoutCore\Api\ResponseCode;
-    use LayoutCore\Services\ShippingService;
+use Symfony\Component\HttpFoundation\Response as BaseResponse;
+use Plenty\Plugin\Http\Response;
+use Plenty\Plugin\Http\Request;
+use LayoutCore\Api\ApiResource;
+use LayoutCore\Api\ApiResponse;
+use LayoutCore\Api\ResponseCode;
+use LayoutCore\Services\ShippingService;
+
+/**
+ * Class ShippingResource
+ * @package LayoutCore\Api\Resources
+ */
+class ShippingResource extends ApiResource
+{
 
     /**
-     * Class ShippingResource
-     * @package LayoutCore\Api\Resources
+     * @var ShippingService
      */
-    class ShippingResource extends ApiResource
+    private $shippingService;
+
+    /**
+     * ShippingResource constructor.
+     * @param Request $request
+     * @param ApiResponse $response
+     * @param ShippingService $shippingService
+     */
+    public function __construct(Request $request, ApiResponse $response, ShippingService $shippingService)
     {
-
-    	/**
-    	 * @var ShippingService
-    	 */
-    	private $shippingService;
-
-        /**
-         * ShippingResource constructor.
-         * @param Request $request
-         * @param ApiResponse $response
-         * @param ShippingService $shippingService
-         */
-    	public function __construct(Request $request, ApiResponse $response, ShippingService $shippingService)
-    	{
-    		parent::__construct($request, $response);
-    		$this->shippingService = $shippingService;
-    	}
-
-    	// Put/Patch
-        /**
-         * Set the shipping profile
-         * @param string $shippingProfileId
-         * @return BaseResponse
-         */
-    	public function update(string $shippingProfileId):BaseResponse
-    	{
-    		$this->shippingService->setShippingProfileId((int)$shippingProfileId);
-    		return $this->response->create(ResponseCode::OK);
-    	}
-
+        parent::__construct($request, $response);
+        $this->shippingService = $shippingService;
     }
+
+    // Put/Patch
+    /**
+     * Set the shipping profile
+     * @param string $shippingProfileId
+     * @return BaseResponse
+     */
+    public function update(string $shippingProfileId):BaseResponse
+    {
+        $this->shippingService->setShippingProfileId((int)$shippingProfileId);
+        return $this->response->create(ResponseCode::OK);
+    }
+
+}
 </pre>
     </div>
 
@@ -277,43 +277,43 @@
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace LayoutCore\Builder\Item;
+namespace LayoutCore\Builder\Item;
 
-    use LayoutCore\Builder\Item\Fields\ItemBaseFields;
+use LayoutCore\Builder\Item\Fields\ItemBaseFields;
 
-    ...
+...
 
+/**
+ * Build array of ItemDataLayer columns to request from ItemDataLayerRepository::search
+ */
+class ItemColumnBuilder
+{
     /**
-     * Build array of ItemDataLayer columns to request from ItemDataLayerRepository::search
+     * @var array>
      */
-    class ItemColumnBuilder
+    private $columnFields = [];
+    /**
+     * @var array>
+     */
+    private $columnParams = [];
+
+    public function defaults():ItemColumnBuilder
     {
-    	/**
-    	 * @var array>
-    	 */
-    	private $columnFields = [];
-    	/**
-    	 * @var array>
-    	 */
-    	private $columnParams = [];
+        return $this
+            ->withItemBase([
+                               ItemBaseFields::ID,
+                               ItemBaseFields::RATING,
+                               ItemBaseFields::RATING_COUNT,
+                               ItemBaseFields::STORE_SPECIAL,
+                               ItemBaseFields::PRODUCER,
+                               ItemBaseFields::PRODUCING_COUNTRY_ID,
+                               ItemBaseFields::CONDITION,
+                               ItemBaseFields::AGE_RESTRICTION,
+                               ItemBaseFields::CUSTOMS_TARIFF_NUMBER
+                           ])
+}
 
-    	public function defaults():ItemColumnBuilder
-    	{
-    		return $this
-    			->withItemBase([
-    				               ItemBaseFields::ID,
-    				               ItemBaseFields::RATING,
-    				               ItemBaseFields::RATING_COUNT,
-    				               ItemBaseFields::STORE_SPECIAL,
-    				               ItemBaseFields::PRODUCER,
-    				               ItemBaseFields::PRODUCING_COUNTRY_ID,
-    				               ItemBaseFields::CONDITION,
-    				               ItemBaseFields::AGE_RESTRICTION,
-    				               ItemBaseFields::CUSTOMS_TARIFF_NUMBER
-    			               ])
-      }
-
-    ...
+...
 </pre>
     </div>
 
@@ -330,19 +330,19 @@
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace LayoutCore\Services;
+namespace LayoutCore\Services;
 
-    ...
+...
 
-        public function getItems(array $itemIds):RecordList
-        {
-            $columns = $this->columnBuilder
-                ->defaults()
-                ->build();
+    public function getItems(array $itemIds):RecordList
+    {
+        $columns = $this->columnBuilder
+            ->defaults()
+            ->build();
 
-                ...
+            ...
 
-        }
+    }
 </pre>
     </div>
 
@@ -369,22 +369,22 @@
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace LayoutCore\Controllers;
+namespace LayoutCore\Controllers;
 
-    use LayoutCore\Helper\TemplateContainer;
+use LayoutCore\Helper\TemplateContainer;
 
-    class LoginController extends LayoutController
+class LoginController extends LayoutController
+{
+    public function showLogin(): string
     {
-    	public function showLogin(): string
-    	{
-    		return $this->renderTemplate(
-    			"tpl.login",
-    			[
-    				"login" => ""
-    			]
-    		);
-    	}
+        return $this->renderTemplate(
+            "tpl.login",
+            [
+                "login" => ""
+            ]
+        );
     }
+}
 </pre>
     </div>
 
@@ -403,27 +403,27 @@
 <pre class="prettyprint lang-php grey-back linenums">
 ...
 
-    public function formatCurrency(float $value, string $currencyISO):string
-    {
-      $locale            = 'de_DE';
-      $useCurrencySymbol = true;
+public function formatCurrency(float $value, string $currencyISO):string
+{
+    $locale            = 'de_DE';
+    $useCurrencySymbol = true;
 
-      $formatter = numfmt_create($locale, \NumberFormatter::CURRENCY);
-      if(!$useCurrencySymbol)
-      {
+    $formatter = numfmt_create($locale, \NumberFormatter::CURRENCY);
+    if(!$useCurrencySymbol)
+    {
         $formatter->setTextAttribute(\NumberFormatter::CURRENCY_CODE, $currencyISO);
         $formatter->setSymbol(\NumberFormatter::CURRENCY_SYMBOL, $currencyISO);
-      }
+    }
 
-      if($this->config->get('PluginLayoutCore.format.use_locale_currency_format') === "0")
-      {
+    if($this->config->get('PluginLayoutCore.format.use_locale_currency_format') === "0")
+    {
         $decimal_separator   = $this->config->get('PluginLayoutCore.format.separator_decimal');
         $thousands_separator = $this->config->get('PluginLayoutCore.format.separator_thousands');
         $formatter->setSymbol(\NumberFormatter::MONETARY_SEPARATOR_SYMBOL, $decimal_separator);
         $formatter->setSymbol(\NumberFormatter::MONETARY_GROUPING_SEPARATOR_SYMBOL, $thousands_separator);
-      }
-      return $formatter->format($value);
     }
+    return $formatter->format($value);
+}
 </pre>
     </div>
 
@@ -489,29 +489,29 @@
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace LayoutCore\Providers;
+namespace LayoutCore\Providers;
 
 
-    use Plenty\Plugin\RouteServiceProvider;
-    use Plenty\Plugin\Routing\Router;
-    use Plenty\Plugin\Routing\ApiRouter;
-    use Plenty\Plugin\Templates\Twig;
+use Plenty\Plugin\RouteServiceProvider;
+use Plenty\Plugin\Routing\Router;
+use Plenty\Plugin\Routing\ApiRouter;
+use Plenty\Plugin\Templates\Twig;
 
-    class LayoutCoreRouteServiceProvider extends RouteServiceProvider
+class LayoutCoreRouteServiceProvider extends RouteServiceProvider
 
-    ...
+...
 
+{
+    public function map(Router $router, ApiRouter $api)
     {
-        public function map(Router $router, ApiRouter $api)
-        {
-          ...
+      ...
 
-          $router->get('login', 'LayoutCore\Controllers\LoginController@showLogin');
+      $router->get('login', 'LayoutCore\Controllers\LoginController@showLogin');
 
-          ...
+      ...
 
-        }
     }
+}
 </pre>
     </div>
 
@@ -530,14 +530,14 @@
 <pre class="prettyprint lang-php grey-back linenums">
 ...
 
-    /**
-     * Return basket as array
-     * @return Basket
-     */
-    public function getBasket():Basket
-    {
-      return $this->basketRepository->load();
-    }
+/**
+ * Return basket as array
+ * @return Basket
+ */
+public function getBasket():Basket
+{
+    return $this->basketRepository->load();
+}
 
 ...
 </pre>
@@ -556,49 +556,49 @@
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace LayoutCore\Api\Resources;
+namespace LayoutCore\Api\Resources;
 
-    use Symfony\Component\HttpFoundation\Response as BaseResponse;
-    use Plenty\Plugin\Http\Response;
-    use Plenty\Plugin\Http\Request;
-    use LayoutCore\Api\ApiResource;
-    use LayoutCore\Api\ApiResponse;
-    use LayoutCore\Api\ResponseCode;
-    use LayoutCore\Services\BasketService;
+use Symfony\Component\HttpFoundation\Response as BaseResponse;
+use Plenty\Plugin\Http\Response;
+use Plenty\Plugin\Http\Request;
+use LayoutCore\Api\ApiResource;
+use LayoutCore\Api\ApiResponse;
+use LayoutCore\Api\ResponseCode;
+use LayoutCore\Services\BasketService;
+
+/**
+ * Class BasketResource
+ * @package LayoutCore\Api\Resources
+ */
+class BasketResource extends ApiResource
+{
+    /**
+     * @var BasketService
+     */
+    private $basketService;
 
     /**
-     * Class BasketResource
-     * @package LayoutCore\Api\Resources
+     * BasketResource constructor.
+     * @param Request $request
+     * @param ApiResponse $response
+     * @param BasketService $basketService
      */
-    class BasketResource extends ApiResource
+    public function __construct(Request $request, ApiResponse $response, BasketService $basketService)
     {
-    	/**
-    	 * @var BasketService
-    	 */
-    	private $basketService;
-
-        /**
-         * BasketResource constructor.
-         * @param Request $request
-         * @param ApiResponse $response
-         * @param BasketService $basketService
-         */
-    	public function __construct(Request $request, ApiResponse $response, BasketService $basketService)
-    	{
-    		parent::__construct($request, $response);
-    		$this->basketService = $basketService;
-    	}
-
-        /**
-         * Get the basket
-         * @return BaseResponse
-         */
-    	public function index():BaseResponse
-    	{
-    		$basket = $this->basketService->getBasket();
-    		return $this->response->create($basket, ResponseCode::OK);
-    	}
+        parent::__construct($request, $response);
+        $this->basketService = $basketService;
     }
+
+    /**
+     * Get the basket
+     * @return BaseResponse
+     */
+    public function index():BaseResponse
+    {
+        $basket = $this->basketService->getBasket();
+        return $this->response->create($basket, ResponseCode::OK);
+    }
+}
 </pre>
     </div>
 
@@ -614,7 +614,7 @@
 
     <div class="api-docs-basics">
         <p>
-            The <strong>css</strong> folder contains the CSS files based on <a href="http://v4-alpha.getbootstrap.com/components/card/" target="_blank">Bootstrap 4</a>.
+            The <strong>css</strong> folder contains the CSS files based on <a href="http://v4-alpha.getbootstrap.com/getting-started/introduction/" target="_blank">Bootstrap 4</a>.
         </p>
     </div>
 

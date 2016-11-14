@@ -86,18 +86,18 @@ TopItems/
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace TopItems\Providers;
+namespace TopItems\Providers;
 
 
-    use Plenty\Plugin\ServiceProvider;
+use Plenty\Plugin\ServiceProvider;
 
-    class TopItemsServiceProvider extends ServiceProvider
+class TopItemsServiceProvider extends ServiceProvider
+{
+    public function register()
     {
-        public function register()
-        {
-            $this->getApplication()->register(TopItemsRouteServiceProvider::class);
-        }
+        $this->getApplication()->register(TopItemsRouteServiceProvider::class);
     }
+}
 </pre>
 </div>
 
@@ -110,19 +110,19 @@ TopItems/
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace TopItems\Providers;
+namespace TopItems\Providers;
 
 
-    use Plenty\Plugin\RouteServiceProvider;
-    use Plenty\Plugin\Routing\Router;
+use Plenty\Plugin\RouteServiceProvider;
+use Plenty\Plugin\Routing\Router;
 
-    class TopItemsRouteServiceProvider extends RouteServiceProvider
+class TopItemsRouteServiceProvider extends RouteServiceProvider
+{
+    public function map(Router $router)
     {
-        public function map(Router $router)
-        {
-            $router->get('topitems', 'TopItems\Controllers\ContentController@showTopItems');
-        }
+        $router->get('topitems', 'TopItems\Controllers\ContentController@showTopItems');
     }
+}
 </pre>
 </div>
 
@@ -138,57 +138,57 @@ TopItems/
 namespace TopItems\Controllers;
 
 
-    use Plenty\Plugin\Controller;
-    use Plenty\Plugin\Templates\Twig;
-    use Plenty\Modules\Item\DataLayer\Contracts\ItemDataLayerRepositoryContract;
+use Plenty\Plugin\Controller;
+use Plenty\Plugin\Templates\Twig;
+use Plenty\Modules\Item\DataLayer\Contracts\ItemDataLayerRepositoryContract;
 
-    class ContentController extends Controller
+class ContentController extends Controller
+{
+    public function showTopItems(Twig $twig, ItemDataLayerRepositoryContract $itemRepository):string
     {
-        public function showTopItems(Twig $twig, ItemDataLayerRepositoryContract $itemRepository):string
+        $itemColumns = [
+            'itemDescription' => [
+                'name1',
+                'description'
+            ],
+            'variationBase' => [
+                'id'
+            ],
+            'variationRetailPrice' => [
+                'price'
+            ],
+            'variationImageList' => [
+                'path',
+                'cleanImageName'
+            ]
+        ];
+
+        $itemFilter = [
+            'itemBase.isStoreSpecial' => [
+                'shopAction' => [3]
+            ]
+        ];
+
+        $itemParams = [
+            'language' => 'en'
+        ];
+
+        $resultItems = $itemRepository
+            ->search($itemColumns, $itemFilter, $itemParams);
+
+        $items = array();
+        foreach ($resultItems as $item)
         {
-            $itemColumns = [
-                'itemDescription' => [
-                    'name1',
-                    'description'
-                ],
-                'variationBase' => [
-                    'id'
-                ],
-                'variationRetailPrice' => [
-                    'price'
-                ],
-                'variationImageList' => [
-                    'path',
-                    'cleanImageName'
-                ]
-            ];
-
-            $itemFilter = [
-                'itemBase.isStoreSpecial' => [
-                    'shopAction' => [3]
-                ]
-            ];
-
-            $itemParams = [
-                'language' => 'en'
-            ];
-
-            $resultItems = $itemRepository
-                ->search($itemColumns, $itemFilter, $itemParams);
-
-            $items = array();
-            foreach ($resultItems as $item)
-            {
-                $items[] = $item;
-            }
-            $templateData = array(
-                'resultCount' => $resultItems->count(),
-                'currentItems' => $items
-            );
-
-            return $twig->render('TopItems::content.TopItems', $templateData);
+            $items[] = $item;
         }
+        $templateData = array(
+            'resultCount' => $resultItems->count(),
+            'currentItems' => $items
+        );
+
+        return $twig->render('TopItems::content.TopItems', $templateData);
     }
+}
 </pre>
 </div>
 

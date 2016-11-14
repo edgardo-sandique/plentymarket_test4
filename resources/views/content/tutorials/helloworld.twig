@@ -177,23 +177,23 @@ HelloWorld/
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace HelloWorld\Providers;
+namespace HelloWorld\Providers;
 
 
-    use Plenty\Plugin\ServiceProvider;
+use Plenty\Plugin\ServiceProvider;
 
-    class HelloWorldServiceProvider extends ServiceProvider
+class HelloWorldServiceProvider extends ServiceProvider
+{
+
+    /**
+     * Register the service provider.
+     */
+
+    public function register()
     {
 
-        /**
-         * Register the service provider.
-         */
-
-        public function register()
-        {
-
-        }
     }
+}
 </pre>
 </div>
 <div class="alert alert-info" role="alert">
@@ -219,19 +219,19 @@ HelloWorld/
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace HelloWorld\Providers;
+namespace HelloWorld\Providers;
 
 
-    use Plenty\Plugin\RouteServiceProvider;
-    use Plenty\Plugin\Routing\Router;
+use Plenty\Plugin\RouteServiceProvider;
+use Plenty\Plugin\Routing\Router;
 
-    class HelloWorldRouteServiceProvider extends RouteServiceProvider
+class HelloWorldRouteServiceProvider extends RouteServiceProvider
+{
+    public function map(Router $router)
     {
-        public function map(Router $router)
-        {
 
-        }
     }
+}
 </pre>
 </div>
 <h3 id="register-routeserviceprovider">Registering the RouteServiceProvider</h3>
@@ -276,19 +276,19 @@ HelloWorld/
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace HelloWorld\Controllers;
+namespace HelloWorld\Controllers;
 
 
-    use Plenty\Plugin\Controller;
-    use Plenty\Plugin\Templates\Twig;
+use Plenty\Plugin\Controller;
+use Plenty\Plugin\Templates\Twig;
 
-    class ContentController extends Controller
+class ContentController extends Controller
+{
+    public function sayHello(Twig $twig):string
     {
-        public function sayHello(Twig $twig):string
-        {
-            return $twig->render('HelloWorld::TEMPLATE');
-        }
+        return $twig->render('HelloWorld::TEMPLATE');
     }
+}
 </pre>
 </div>
 <div class="alert alert-info" role="alert">
@@ -307,10 +307,10 @@ HelloWorld/
 <pre class="prettyprint lang-php grey-back linenums">
 ...
 
-        public function map(Router $router)
-        {
-            $router->get('hello','HelloWorld\Controllers\ContentController@sayHello');
-        }
+    public function map(Router $router)
+    {
+        $router->get('hello','HelloWorld\Controllers\ContentController@sayHello');
+    }
 </pre>
 </div>
 <div class="alert alert-info" role="alert">
@@ -345,10 +345,10 @@ HelloWorld/
 <pre class="prettyprint lang-php grey-back linenums">
 ...
 
-        public function sayHello(Twig $twig):string
-        {
-            return $twig->render('HelloWorld::content.hello');
-        }
+    public function sayHello(Twig $twig):string
+    {
+        return $twig->render('HelloWorld::content.hello');
+    }
 </pre>
 </div>
 <h3 id="update-pluginjson">Updating the plugin.json</h3>

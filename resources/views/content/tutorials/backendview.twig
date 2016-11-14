@@ -51,14 +51,14 @@ MyFirstView/
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-json grey-back linenums">
-  {
+{
     "name": "MyFirstView",
     "description": "My first back end view",
     "namespace": "MyFirstView",
     "author": "Your name",
     "type": "backend",
     "serviceProvider": "MyFirstView\\Providers\\MyFirstViewServiceProvider"
-  }
+}
 </pre>
 </div>
 <div class="alert alert-info" role="alert">
@@ -72,23 +72,23 @@ MyFirstView/
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-json grey-back linenums">
-  {
+{
     "defaultEntryPoint": "index.html",
     "namespace": "MyFirstView",
     "menuEntries": [
-      {
+        {
         "label": "Hello World",
         "menu": "start",
         "urlKey": "hello-world",
         "entryPoint": "index.html"
-      }
-    ]
-  }
+        }
+]
+}
 </pre>
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: Information about the back end menu entries is saved in the <code>ui.json</code> file.<br /><br />We want our view to be displayed in our <b>Start</b> menu. A list of available entry points can be found <a href="/devguide/basics#guide-entrypoints">here</a>. The <code>urlKey</code> sets the route for the view in our plentymarkets back end, e.g. <code>http://your-plentystore.co.uk/plenty/ui-backend/start/hello-world</code>.<br /><br />We also have to specify the <code>entryPoint</code>, i.e. the plugin file with the content of our view. A simple <code>html</code> file will do the job.
+    <b>Explanation</b>: Information about the back end menu entries is saved in the <code>ui.json</code> file.<br /><br />We want our view to be displayed in our <b>Start</b> menu. A list of available entry points can be found <a href="/dev-doc/basics#guide-entrypoints">here</a>. The <code>urlKey</code> sets the route for the view in our plentymarkets back end, e.g. <code>http://your-plentystore.co.uk/plenty/ui-backend/start/hello-world</code>.<br /><br />We also have to specify the <code>entryPoint</code>, i.e. the plugin file with the content of our view. A simple <code>html</code> file will do the job.
 </div>
 <div>
 <figure>
@@ -107,18 +107,17 @@ MyFirstView/
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace MyFirstView\Providers;
+namespace MyFirstView\Providers;
 
+use Plenty\Plugin\ServiceProvider;
 
-    use Plenty\Plugin\ServiceProvider;
-
-    class MyFirstViewServiceProvider extends ServiceProvider
+class MyFirstViewServiceProvider extends ServiceProvider
+{
+    public function register()
     {
-        public function register()
-        {
 
-        }
     }
+}
 </pre>
 </div>
 

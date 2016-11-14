@@ -164,72 +164,72 @@ PluginPayUponPickup/
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace PayUponPickup\Providers;
+namespace PayUponPickup\Providers;
 
-    use Plenty\Plugin\ServiceProvider;
-    use Plenty\Plugin\Events\Dispatcher;
-    use Plenty\Modules\Payment\Events\Checkout\ExecutePayment;
-    use Plenty\Modules\Payment\Events\Checkout\GetPaymentMethodContent;
-    use Plenty\Modules\Basket\Events\Basket\AfterBasketCreate;
-    use Plenty\Modules\Basket\Events\Basket\AfterBasketChanged;
-    use Plenty\Modules\Basket\Events\BasketItem\AfterBasketItemAdd;
-    use Plenty\Modules\Payment\Method\Contracts\PaymentMethodContainer;
-    use PayUponPickup\Helper\PayUponPickupHelper;
-    use PayUponPickup\Methods\PayUponPickupPaymentMethod;
+use Plenty\Plugin\ServiceProvider;
+use Plenty\Plugin\Events\Dispatcher;
+use Plenty\Modules\Payment\Events\Checkout\ExecutePayment;
+use Plenty\Modules\Payment\Events\Checkout\GetPaymentMethodContent;
+use Plenty\Modules\Basket\Events\Basket\AfterBasketCreate;
+use Plenty\Modules\Basket\Events\Basket\AfterBasketChanged;
+use Plenty\Modules\Basket\Events\BasketItem\AfterBasketItemAdd;
+use Plenty\Modules\Payment\Method\Contracts\PaymentMethodContainer;
+use PayUponPickup\Helper\PayUponPickupHelper;
+use PayUponPickup\Methods\PayUponPickupPaymentMethod;
+
+/**
+ * Class PayUponPickupServiceProvider
+ * @package PayUponPickup\Providers
+ */
+class PayUponPickupServiceProvider extends ServiceProvider
+{
+    public function register()
+    {
+
+    }
 
     /**
-     * Class PayUponPickupServiceProvider
-     * @package PayUponPickup\Providers
+     * Boot additional services for the payment method
+     *
+     * @param PayUponPickupHelper $paymentHelper
+     * @param PaymentMethodContainer $payContainer
+     * @param Dispatcher $eventDispatcher
      */
-    class PayUponPickupServiceProvider extends ServiceProvider
+    public function boot( PayUponPickupHelper $paymentHelper,
+                          PaymentMethodContainer $payContainer,
+                          Dispatcher $eventDispatcher)
     {
-        public function register()
-        {
+        // Create the ID of the payment method if it doesn't exist yet
+        $paymentHelper->createMopIfNotExists();
 
-        }
+        // Register the Pay upon pickup payment method in the payment method container
+        $payContainer->register('plenty_payuponpickup::PAYUPONPICKUP', PayUponPickupPaymentMethod::class,
+                              [ AfterBasketChanged::class, AfterBasketItemAdd::class, AfterBasketCreate::class ]
+        );
 
-        /**
-         * Boot additional services for the payment method
-         *
-         * @param PayUponPickupHelper $paymentHelper
-         * @param PaymentMethodContainer $payContainer
-         * @param Dispatcher $eventDispatcher
-         */
-        public function boot( PayUponPickupHelper $paymentHelper,
-                              PaymentMethodContainer $payContainer,
-                              Dispatcher $eventDispatcher)
-        {
-            // Create the ID of the payment method if it doesn't exist yet
-            $paymentHelper->createMopIfNotExists();
-
-            // Register the Pay upon pickup payment method in the payment method container
-            $payContainer->register('plenty_payuponpickup::PAYUPONPICKUP', PayUponPickupPaymentMethod::class,
-                                  [ AfterBasketChanged::class, AfterBasketItemAdd::class, AfterBasketCreate::class ]
-            );
-
-            // Listen for the event that gets the payment method content
-            $eventDispatcher->listen(GetPaymentMethodContent::class,
-                    function(GetPaymentMethodContent $event) use( $paymentHelper)
+        // Listen for the event that gets the payment method content
+        $eventDispatcher->listen(GetPaymentMethodContent::class,
+                function(GetPaymentMethodContent $event) use( $paymentHelper)
+                {
+                    if($event->getMop() == $paymentHelper->getPaymentMethod())
                     {
-                        if($event->getMop() == $paymentHelper->getPaymentMethod())
-                        {
-                           $event->setValue('');
-                           $event->setType('continue');
-                        }
-                    });
+                       $event->setValue('');
+                       $event->setType('continue');
+                    }
+                });
 
-            // Listen for the event that executes the payment
-            $eventDispatcher->listen(ExecutePayment::class,
-               function(ExecutePayment $event) use( $paymentHelper)
+        // Listen for the event that executes the payment
+        $eventDispatcher->listen(ExecutePayment::class,
+           function(ExecutePayment $event) use( $paymentHelper)
+           {
+               if($event->getMop() == $paymentHelper->getPaymentMethod())
                {
-                   if($event->getMop() == $paymentHelper->getPaymentMethod())
-                   {
-                       $event->setValue('<span><</span>h1>Pay upon pickup<span><</span>h1>');
-                       $event->setType('htmlContent');
-                   }
-               });
-       }
-    }
+                   $event->setValue('<span><</span>h1>Pay upon pickup<span><</span>h1>');
+                   $event->setType('htmlContent');
+               }
+           });
+   }
+}
 </pre>
 </div>
 
@@ -246,73 +246,73 @@ PluginPayUponPickup/
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace PayUponPickup\Helper;
+namespace PayUponPickup\Helper;
 
-    use Plenty\Modules\Payment\Method\Contracts\PaymentMethodRepositoryContract;
-    use Plenty\Modules\Payment\Method\Models\PaymentMethod;
+use Plenty\Modules\Payment\Method\Contracts\PaymentMethodRepositoryContract;
+use Plenty\Modules\Payment\Method\Models\PaymentMethod;
+
+/**
+ * Class PayUponPickupHelper
+ *
+ * @package PayUponPickup\Helper
+ */
+class PayUponPickupHelper
+{
+    /**
+     * @var PaymentMethodRepositoryContract $paymentMethodRepository
+     */
+    private $paymentMethodRepository;
 
     /**
-     * Class PayUponPickupHelper
+     * PayUponPickupHelper constructor.
      *
-     * @package PayUponPickup\Helper
+     * @param PaymentMethodRepositoryContract $paymentMethodRepository
      */
-    class PayUponPickupHelper
+    public function __construct(PaymentMethodRepositoryContract $paymentMethodRepository)
     {
-        /**
-         * @var PaymentMethodRepositoryContract $paymentMethodRepository
-         */
-        private $paymentMethodRepository;
+        $this->paymentMethodRepository = $paymentMethodRepository;
+    }
 
-        /**
-         * PayUponPickupHelper constructor.
-         *
-         * @param PaymentMethodRepositoryContract $paymentMethodRepository
-         */
-        public function __construct(PaymentMethodRepositoryContract $paymentMethodRepository)
+    /**
+     * Create the ID of the payment method if it doesn't exist yet
+     */
+    public function createMopIfNotExists()
+    {
+        // Check whether the ID of the Pay upon pickup payment method has been created
+        if($this->getPaymentMethod() == 'no_paymentmethod_found')
         {
-            $this->paymentMethodRepository = $paymentMethodRepository;
-        }
+            $paymentMethodData = array( 'pluginKey' => 'plenty_payuponpickup',
+                                        'paymentKey' => 'PAYUPONPICKUP',
+                                        'name' => 'Pay upon pickup');
 
-        /**
-         * Create the ID of the payment method if it doesn't exist yet
-         */
-        public function createMopIfNotExists()
-        {
-            // Check whether the ID of the Pay upon pickup payment method has been created
-            if($this->getPaymentMethod() == 'no_paymentmethod_found')
-            {
-                $paymentMethodData = array( 'pluginKey' => 'plenty_payuponpickup',
-                                            'paymentKey' => 'PAYUPONPICKUP',
-                                            'name' => 'Pay upon pickup');
-
-                $this->paymentMethodRepository->createPaymentMethod($paymentMethodData);
-            }
-        }
-
-        /**
-         * Load the ID of the payment method for the given plugin key
-         * Return the ID for the payment method
-         *
-         * @return string|int
-         */
-        public function getPaymentMethod()
-        {
-            $paymentMethods = $this->paymentMethodRepository->allForPlugin('plenty_payuponpickup');
-
-            if( !is_null($paymentMethods) )
-            {
-                foreach($paymentMethods as $paymentMethod)
-                {
-                    if($paymentMethod->paymentKey == 'PAYUPONPICKUP')
-                    {
-                        return $paymentMethod->id;
-                    }
-                }
-            }
-
-            return 'no_paymentmethod_found';
+            $this->paymentMethodRepository->createPaymentMethod($paymentMethodData);
         }
     }
+
+    /**
+     * Load the ID of the payment method for the given plugin key
+     * Return the ID for the payment method
+     *
+     * @return string|int
+     */
+    public function getPaymentMethod()
+    {
+        $paymentMethods = $this->paymentMethodRepository->allForPlugin('plenty_payuponpickup');
+
+        if( !is_null($paymentMethods) )
+        {
+            foreach($paymentMethods as $paymentMethod)
+            {
+                if($paymentMethod->paymentKey == 'PAYUPONPICKUP')
+                {
+                    return $paymentMethod->id;
+                }
+            }
+        }
+
+        return 'no_paymentmethod_found';
+    }
+}
 </pre>
 </div>
 
@@ -329,103 +329,103 @@ PluginPayUponPickup/
 <pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
-    namespace PayUponPickup\Methods;
+namespace PayUponPickup\Methods;
 
-    use Plenty\Plugin\ConfigRepository;
-    use Plenty\Modules\Payment\Method\Contracts\PaymentMethodService;
-    use Plenty\Modules\Basket\Contracts\BasketRepositoryContract;
-    use Plenty\Modules\Basket\Models\Basket;
+use Plenty\Plugin\ConfigRepository;
+use Plenty\Modules\Payment\Method\Contracts\PaymentMethodService;
+use Plenty\Modules\Basket\Contracts\BasketRepositoryContract;
+use Plenty\Modules\Basket\Models\Basket;
+
+/**
+ * Class PayUponPickupPaymentMethod
+ * @package PayUponPickup\Methods
+ */
+class PayUponPickupPaymentMethod extends PaymentMethodService
+{
+    /**
+     * Check the configuration if the payment method is active
+     * Return true if the payment method is active, else return false
+     *
+     * @param ConfigRepository $configRepository
+     * @param BasketRepositoryContract $basketRepositoryContract
+     * @return bool
+     */
+    public function isActive( ConfigRepository $configRepository,
+                              BasketRepositoryContract $basketRepositoryContract):bool
+    {
+        /** @var bool $active */
+        $active = true;
+
+        /** @var Basket $basket */
+        $basket = $basketRepositoryContract->load();
+
+        /**
+         * Check the shipping profile ID. The ID can be entered in the config.json.
+         */
+        if( $configRepository->get('PayUponPickup.shippingProfileId') != $basket->shippingProfileId)
+        {
+            $active = false;
+        }
+
+        return $active;
+    }
 
     /**
-     * Class PayUponPickupPaymentMethod
-     * @package PayUponPickup\Methods
+     * Get the name of the payment method. The name can be entered in the config.json.
+     *
+     * @param ConfigRepository $configRepository
+     * @return string
      */
-    class PayUponPickupPaymentMethod extends PaymentMethodService
+    public function getName( ConfigRepository $configRepository ):string
     {
-        /**
-         * Check the configuration if the payment method is active
-         * Return true if the payment method is active, else return false
-         *
-         * @param ConfigRepository $configRepository
-         * @param BasketRepositoryContract $basketRepositoryContract
-         * @return bool
-         */
-        public function isActive( ConfigRepository $configRepository,
-                                  BasketRepositoryContract $basketRepositoryContract):bool
+        $name = $configRepository->get('PayUponPickup.name');
+
+        if(!strlen($name))
         {
-            /** @var bool $active */
-            $active = true;
-
-            /** @var Basket $basket */
-            $basket = $basketRepositoryContract->load();
-
-            /**
-             * Check the shipping profile ID. The ID can be entered in the config.json.
-             */
-            if( $configRepository->get('PayUponPickup.shippingProfileId') != $basket->shippingProfileId)
-            {
-                $active = false;
-            }
-
-            return $active;
+            $name = 'Pay upon pickup';
         }
 
-        /**
-         * Get the name of the payment method. The name can be entered in the config.json.
-         *
-         * @param ConfigRepository $configRepository
-         * @return string
-         */
-        public function getName( ConfigRepository $configRepository ):string
+        return $name;
+
+    }
+
+    /**
+     * Get the path of the icon. The URL can be entered in the config.json.
+     *
+     * @param ConfigRepository $configRepository
+     * @return string
+     */
+    public function getIcon( ConfigRepository $configRepository ):string
+    {
+        if($configRepository->get('PayUponPickup.logo') == 1)
         {
-            $name = $configRepository->get('PayUponPickup.name');
-
-            if(!strlen($name))
-            {
-                $name = 'Pay upon pickup';
-            }
-
-            return $name;
-
+            return $configRepository->get('PayUponPickup.logo.url');
         }
+        return '';
+    }
 
-        /**
-         * Get the path of the icon. The URL can be entered in the config.json.
-         *
-         * @param ConfigRepository $configRepository
-         * @return string
-         */
-        public function getIcon( ConfigRepository $configRepository ):string
+    /**
+     * Get the description of the payment method. The description can be entered in the config.json.
+     *
+     * @param ConfigRepository $configRepository
+     * @return string
+     */
+    public function getDescription( ConfigRepository $configRepository ):string
+    {
+        if($configRepository->get('PayUponPickup.infoPage.type') == 1)
         {
-            if($configRepository->get('PayUponPickup.logo') == 1)
-            {
-                return $configRepository->get('PayUponPickup.logo.url');
-            }
-            return '';
+            return $configRepository->get('PayUponPickup.infoPage.intern');
         }
-
-        /**
-         * Get the description of the payment method. The description can be entered in the config.json.
-         *
-         * @param ConfigRepository $configRepository
-         * @return string
-         */
-        public function getDescription( ConfigRepository $configRepository ):string
+        elseif ($configRepository->get('PayUponPickup.infoPage.type') == 2)
         {
-            if($configRepository->get('PayUponPickup.infoPage.type') == 1)
-            {
-                return $configRepository->get('PayUponPickup.infoPage.intern');
-            }
-            elseif ($configRepository->get('PayUponPickup.infoPage.type') == 2)
-            {
-                return $configRepository->get('PayUponPickup.infoPage.extern');
-            }
-            else
-            {
-              return '';
-            }
+            return $configRepository->get('PayUponPickup.infoPage.extern');
+        }
+        else
+        {
+          return '';
         }
     }
+}
 </pre>
 </div>
 
