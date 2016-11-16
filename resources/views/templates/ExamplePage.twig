@@ -31,6 +31,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ace.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/ext-static_highlight.js"></script>
 
+    <!-- Autoload Github Files for the example pages -->
+    <script src="{{ plugin_path('PlentyPluginShowcase') }}/js/githubFiles.js"></script>
+
     <script>
         var highlight = ace.require("ace/ext/static_highlight");
         var dom = ace.require("ace/lib/dom");
@@ -82,5 +85,26 @@
         } (jQuery));
     </script>
 
+    <script>
+        $(document).ready(function(){
+            var codeContainer = $(this).find('.code-container > pre');
+
+            for (i = 0; i < codeContainer.length; i++)
+            {
+                var container = codeContainer[i];
+                var repo = $(container).data('code-repo');
+                var file = $(container).data('code-file');
+                var startline = $(container).data('code-startline');
+                var endline = $(container).data('code-endline');
+
+                if(repo != undefined && file != undefined)
+                {
+                    $.getGithubFileByFilePath("plentymarkets", repo, file, function(contents) {
+                        $(container).text(contents);
+                    }, startline, endline);
+                }
+            }
+        });
+    </script>
 
 {% endblock %}
