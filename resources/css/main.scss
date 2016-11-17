@@ -970,6 +970,16 @@ pre {
   padding: 10px;
   border-radius: 0;
 
+  &.code-example {
+    margin-bottom: 0;
+    overflow: hidden;
+    -webkit-transition: height 0.5s ease-in;
+    -moz-transition: height 0.5s ease-in;
+    -ms-transition: height 0.5s ease-in;
+    -o-transition: height 0.5s ease-in;
+    transition: height 0.5s ease-in;
+  }
+
   &.language-json {
     overflow: auto;
   }
@@ -1232,6 +1242,14 @@ hr.blue {
     &:active {
       background: #00b4f0;
       color: white;
+    }
+
+    &.toggle-code-example {
+      font-size: 1.5rem;
+      width: 72px;
+      border-radius: 0;
+      border-bottom-right-radius: 0.25rem;
+      border-bottom-left-radius: 0.25rem;
     }
   }
 }
