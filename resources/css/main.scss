@@ -972,7 +972,8 @@ pre {
 
   &.code-example {
     margin-bottom: 0;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     -webkit-transition: height 0.5s ease-in;
     -moz-transition: height 0.5s ease-in;
     -ms-transition: height 0.5s ease-in;

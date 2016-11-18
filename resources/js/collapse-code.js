@@ -1,5 +1,5 @@
 (function($){
-    $(document).ready(function(){
+    $(window).load(function(){
         $(".toggle-code-example").each(function(idx, el){
             var button = $(this);
             var pre = button.parent().find("pre");
@@ -27,8 +27,8 @@
                     pre.css('height', minHeight);
                     pre.css('overflow', "hidden");
                     $('html, body').animate({
-                        scrollTop: buttonOffset - 500 // scroll to code example title
-                    }, 500);
+                        scrollTop: buttonOffset - 480 // scroll to code example title
+                    }, 480);
                 }
                 else {
                     button.html("Collapse");
