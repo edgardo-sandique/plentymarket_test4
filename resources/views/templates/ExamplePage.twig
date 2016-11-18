@@ -87,24 +87,24 @@
     </script>
 
     <script>
-        $(document).ready(function(){
-            var codeContainer = $(this).find('.code-container > pre');
+        $(document).ready(function()
+        {
+            $('.code-container > pre').each(function (i, container){
 
-            for (i = 0; i < codeContainer.length; i++)
-            {
-                var container = codeContainer[i];
+                var $container = $(container);
                 var repo = $(container).data('code-repo');
                 var file = $(container).data('code-file');
                 var startline = $(container).data('code-startline');
                 var endline = $(container).data('code-endline');
 
-                if(repo != undefined && file != undefined)
+                if(!!repo &&repo != undefined && !!file && file != undefined)
                 {
                     $.getGithubFileByFilePath("plentymarkets", repo, file, function(contents) {
-                        $(container).text(contents);
+                        $container.text(contents);
                     }, startline, endline);
                 }
-            }
+
+            });
         });
     </script>
 
