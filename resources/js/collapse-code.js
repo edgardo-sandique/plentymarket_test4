@@ -3,7 +3,7 @@
         $(".toggle-code-example").each(function(idx, el){
             var button = $(this);
             var pre = button.parent().find("pre");
-            var height = pre.height() + 24; // top and bottom padding is 8 px each and top and bottom border is 1 px each
+            var height = pre.height() + 28; // top and bottom padding is 8 px each and top and bottom border is 1 px each plus 10 px for bottom scroll bar
             var minHeight = 300;
             var buttonOffset = 0;
 
