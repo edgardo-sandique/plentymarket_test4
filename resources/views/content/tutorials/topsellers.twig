@@ -32,6 +32,8 @@
         In the first tutorial, you learned how to set up the folder structure with a minimum of required files to create a working plugin. Our new plugin has a similar structure, but it also has additional content in the <b>resources</b> folder. Create the following basis for your plugin.
     </p>
 </div>
+
+<!-- Folder structure -->
 <div class="code-container">
 <pre class="prettyprint lang-plain grey-back">
 TopItems/
@@ -52,6 +54,8 @@ TopItems/
     +-- plugin.json // plugin information
 </pre>
 </div>
+<!-- Folder structure end -->
+
 <h2 id="fill-source-files">Step 2: Filling the source files</h2>
 <div class="api-docs-basics">
     <p>
@@ -61,6 +65,7 @@ TopItems/
 
 <h3 id="code-pluginjson">Code for the plugin.json</h3>
 
+<!-- Code example -->
 <div class="route-container">
 <code>TopItems/plugin.json</code>
 </div>
@@ -76,9 +81,11 @@ TopItems/
 }
 </pre>
 </div>
+<!-- Code example end -->
 
 <h3 id="code-serviceprovider">Code for the ServiceProvider</h3>
 
+<!-- Code example -->
 <div class="route-container">
   <code>TopItems/src/Providers/TopItemsServiceProvider.php</code>
 </div>
@@ -100,9 +107,11 @@ class TopItemsServiceProvider extends ServiceProvider
 }
 </pre>
 </div>
+<!-- Code example end -->
 
 <h3 id="code-routeserviceprovider">Code for the RouteServiceProvider</h3>
 
+<!-- Code example -->
 <div class="route-container">
   <code>TopItems/src/Providers/TopItemsRouteServiceProvider.php</code>
 </div>
@@ -125,9 +134,11 @@ class TopItemsRouteServiceProvider extends RouteServiceProvider
 }
 </pre>
 </div>
+<!-- Code example end -->
 
 <h3 id="code-contentcontroller">Code for the ContentController</h3>
 
+<!-- Code example -->
 <div class="route-container">
   <code>TopItems/src/Controllers/ContentController.php</code>
 </div>
@@ -201,7 +212,7 @@ class ContentController extends Controller
     We use <code>$itemParams</code> to specify that our item texts are saved in English. Make sure to enter the item's name and description in the respective language in the plentymarkets back end. If the text fields are empty, no text will be displayed in the top item card.<br /><br />
     In the next section of the code, we use the <code>search</code> method from our repository. The search is carried out and it returns a list of items. The items in the list are counted and rendered in the linked template file.
 </div>
-
+<!-- Code example end -->
 
 <h2 id="code-pagedesign">Step 3: Creating the page design</h2>
 <div class="api-docs-basics">
@@ -210,6 +221,7 @@ class ContentController extends Controller
     </p>
 </div>
 
+<!-- Code example -->
 <div class="route-container">
   <code>TopItems/resources/views/PageDesign.twig</code>
 </div>
@@ -241,6 +253,7 @@ class ContentController extends Controller
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: The code is a simple HTML structure. We link the <b>Bootstrap 4</b> stylesheet. Bootstrap 4 is also used for our Callisto 4 design. If you plan on creating new template plugins based on Callisto 4, the <a href="http://v4-alpha.getbootstrap.com/" target="_blank">Bootstrap 4 documentation</a> is an important source to get started.<br /><br />In the <code><span><</span>body></code>, we use a <code><span><</span>div></code> and the twig <code><span>{</span>% block %}</code> tag, which allows us to insert content from another file. This way, you can use the <code>PageDesign.twig</code> for other content files, too.
 </div>
+<!-- Code example end -->
 
 <h2 id="code-topitems">Step 4: Creating the output file</h2>
 <div class="api-docs-basics">
@@ -249,6 +262,7 @@ class ContentController extends Controller
     </p>
 </div>
 
+<!-- Code example -->
 <div class="route-container">
   <code>TopItems/resources/views/content/TopItems.twig</code>
 </div>
@@ -293,6 +307,7 @@ class ContentController extends Controller
     Inside the container, we use a list representing our card deck. An <code>if-else</code> statement defines the output for a search with and without results. If the search was successful, then list items are generated in the form of cards. These list items represent our top items.<br /><br />
     A card contains a <code>card-block</code> with the item name and the variation ID. The <code><span>{</span>% set %}</code> tag selects the first image from the image list. Next we use another <code>card-block</code> to display the item description. The price will be displayed in the <code>card-footer</code>.<br /><br />If there are no results, the message <b>No items found!</b> will be displayed.
 </div>
+<!-- Code example end -->
 
 <h1 id="open-plugin">Playing your cards right</h1>
 <div class="api-docs-basics">

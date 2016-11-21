@@ -8,6 +8,7 @@
         In this tutorial, you learn how to set up webhooks to your Github repositories allowing you to automatically update your plugins in your plentymarkets inbox and provision the plugins in Stage or Productive.
     </p>
 </div>
+
 <h2 id="generate-token">Step 1: Generating a personal access token</h2>
 <div class="api-docs-basics">
     <p>
@@ -34,6 +35,7 @@
         </li>
     </ol>
 </div>
+
 <h2 id="add-plugin">Step 2: Adding a plugin</h2>
 <div class="api-docs-basics">
     <ol>
@@ -51,6 +53,7 @@
         <li><b>Save</b> the settings.<br /> → The plugin repository is copied to the plentymarkets inbox.</li>
     </ol>
 </div>
+
 <h2 id="setup-webhook">Step 3: Setting up a webhook</h2>
 <div class="api-docs-basics">
     <p>
@@ -69,9 +72,11 @@
         <li>Click on <b>Add webhook</b>.<br /> → The webhook will be displayed under <b>Webhooks</b>.</li>
     </ol>
 </div>
+
 <div class="alert alert-info" role="alert">
     <b>Provisioning in Productive:</b> In order to provision the plugin in Productive directly, simply add <code>?mode=production</code> at the end of the payload URL, e.g. <code>https://www.your-plentystore.co.uk/rest/plugins/hook?mode=production</code>.
 </div>
+
 <h2 id="provision-plugin">Step 4: Provisioning the plugin</h2>
 <div class="api-docs-basics">
     <p>
@@ -95,6 +100,7 @@
         </li>
     </ol>
 </div>
+
 <h2 id="check-webhook">Step 5: Checking the webhook</h2>
 <div class="api-docs-basics">
   <p>

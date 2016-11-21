@@ -10,11 +10,14 @@
         In six simple steps, we will walk you through creating your first plugin that displays <b>Hello World!</b> in your browser when adding <code>/hello</code> to your domain.
     </p>
 </div>
-    <div class="connect">
-        <div class="btn btn-primary btn-block" title="Clone or download this plentymarkets plugin on Github.">
-            <a href="https://github.com/plentymarkets/plugin-hello-world" target="_blank" role="button"><img class="img-responsive pull-left" src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-logo.png"  style="width: 40px;"/><span>Download on GitHub</span></a>
-        </div>
+
+<!-- GitHub button -->
+<div class="connect">
+    <div class="btn btn-primary btn-block" title="Clone or download this plentymarkets plugin on GitHub.">
+        <a href="https://github.com/plentymarkets/plugin-hello-world" target="_blank" role="button"><img class="img-responsive pull-left" src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-logo.png"  style="width: 40px;"/><span>Download on GitHub</span></a>
     </div>
+</div>
+<!-- GitHub button end -->
 
 <h2 id="setup-ide">Step 1: Setting up an IDE</h2>
 <div class="api-docs-basics">
@@ -39,6 +42,7 @@
         To access this pane, open the <b>Atom » Preferences</b> menu and click on <b>Install</b>.
     </p>
 </div>
+
 <h2 id="setup-git">Step 2: Setting up Git</h2>
 <div class="api-docs-basics">
     <p>
@@ -65,6 +69,7 @@
         </li>
     </ol>
 </div>
+
 <h3 id="install-githubdesktop">Installing GitHub Desktop</h3>
 <div class="api-docs-basics">
     <p>
@@ -86,6 +91,7 @@
         </li>
     </ol>
 </div>
+
 <h2 id="create-components">Step 3: Creating the plugin components</h2>
 <div class="api-docs-basics">
     <p>The components of your plugin are the foundation for the communication between the plugin and plentymarkets.
@@ -94,12 +100,15 @@
         And a <b>ContentController</b> renders and displays your content in your template.
     </p>
 </div>
+
 <h3 id="create-folders">Creating the folders</h3>
 <div class="api-docs-basics">
     <p>
         All plugins need to be organised in a specific structure. We only need the following folders for our plugin. The <b>resources</b> folder can be organised in sub-folders. Here, we save our template. The <b>src</b> folder can also be organised in sub-folders and contains the plugin source code.
     </p>
 </div>
+
+<!-- Folder structure -->
 <div class="code-container">
 <pre class="prettyprint lang-plain grey-back">
 HelloWorld/
@@ -115,6 +124,8 @@ HelloWorld/
     +-- plugin.json // plugin information
 </pre>
 </div>
+<!-- Folder structure end -->
+
 <h3 id="create-pluginjson">Creating the plugin.json</h3>
 <div class="api-docs-basics">
     <p>
@@ -140,6 +151,8 @@ HelloWorld/
         </li>
     </ol>
 </div>
+
+<!-- Code example -->
 <div class="route-container">
 <code>HelloWorld/plugin.json</code>
 </div>
@@ -155,6 +168,8 @@ HelloWorld/
 }
 </pre>
 </div>
+<!-- Code example end -->
+
 <h3 id="create-serviceprovider">Creating the ServiceProvider</h3>
 <div class="api-docs-basics">
     <ol>
@@ -170,6 +185,8 @@ HelloWorld/
         </li>
     </ol>
 </div>
+
+<!-- Code example -->
 <div class="route-container">
   <code>HelloWorld/src/Providers/HelloWorldServiceProvider.php</code>
 </div>
@@ -200,6 +217,8 @@ class HelloWorldServiceProvider extends ServiceProvider
     <b>Explanation</b>: We recommend that you use the name of the plugin folder as the namespace root.
     This service provider is the central location to register services in the plugin.
 </div>
+<!-- Code example end -->
+
 <h3 id="create-routeserviceprovider">Creating the RouteServiceProvider</h3>
 <div class="api-docs-basics">
     <ol>
@@ -212,6 +231,8 @@ class HelloWorldServiceProvider extends ServiceProvider
         </li>
     </ol>
 </div>
+
+<!-- Code example -->
 <div class="route-container">
   <code>HelloWorld/src/Providers/HelloWorldRouteServiceProvider.php</code>
 </div>
@@ -234,6 +255,8 @@ class HelloWorldRouteServiceProvider extends RouteServiceProvider
 }
 </pre>
 </div>
+<!-- Code example end -->
+
 <h3 id="register-routeserviceprovider">Registering the RouteServiceProvider</h3>
 <div class="api-docs-basics">
     <p>
@@ -241,6 +264,8 @@ class HelloWorldRouteServiceProvider extends RouteServiceProvider
         To do so, add a line in the code of <code>HelloWorldServiceProvider.php</code>.
     </p>
 </div>
+
+<!-- Code example -->
 <div class="route-container">
   <code>HelloWorld/src/Providers/HelloWorldServiceProvider.php</code>
 </div>
@@ -254,6 +279,8 @@ class HelloWorldRouteServiceProvider extends RouteServiceProvider
         }
 </pre>
 </div>
+<!-- Code example end -->
+
 <h3 id="create-contentcontroller">Creating the ContentController</h3>
 <div class="api-docs-basics">
     <ol>
@@ -269,6 +296,8 @@ class HelloWorldRouteServiceProvider extends RouteServiceProvider
         </li>
     </ol>
 </div>
+
+<!-- Code example -->
 <div class="route-container">
   <code>HelloWorld/src/Controllers/ContentController.php</code>
 </div>
@@ -294,12 +323,16 @@ class ContentController extends Controller
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: In this code example, we define the <code>sayHello</code> function that renders a twig template. The <code>render</code> method specifies the template location: <code>'PLUGINNAME::TEMPLATE'</code>. Since templates are always saved in the <b>resources/views</b> folder in your plugin, we only have to specify part of the template path. Note that <code>PLUGINNAME</code> is the name of the plugin folder. The name of the plugin folder and the plugin namespace may differ.
 </div>
+<!-- Code example end -->
+
 <h3 id="map-contentcontroller">Mapping the ContentController</h3>
 <div class="api-docs-basics">
     <p>
         Now we have to map the route for the <b>ContentController</b> in the <b>RouteServiceProvider</b>. To do so, add a line in the code.
     </p>
 </div>
+
+<!-- Code example -->
 <div class="route-container">
   <code>HelloWorld/src/Providers/HelloWorldRouteServiceProvider.php</code>
 </div>
@@ -316,6 +349,8 @@ class ContentController extends Controller
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: We use the <code>get</code> method to pass two parameters. The first parameter <code>'hello'</code> defines the route. The second parameter consists of the Fully-Qualified Class Name and the <code>@</code> controller method that is called when the route is called.
 </div>
+<!-- Code example end -->
+
 <h3 id="create-template">Creating the twig template</h3>
 <div class="api-docs-basics">
     <ol>
@@ -332,12 +367,15 @@ class ContentController extends Controller
         </li>
     </ol>
 </div>
+
 <h3 id="specify-template">Specifying the template path</h3>
 <div class="api-docs-basics">
   <p>
       Here, we have to specify the template path in the <b>ContentController</b>. Simply replace <code>TEMPLATE</code> with the correct path.
   </p>
 </div>
+
+<!-- Code example -->
 <div class="route-container">
   <code>HelloWorld/src/Controller/ContentController.php</code>
 </div>
@@ -351,6 +389,8 @@ class ContentController extends Controller
     }
 </pre>
 </div>
+<!-- Code example end -->
+
 <h3 id="update-pluginjson">Updating the plugin.json</h3>
 <div class="api-docs-basics">
     <ol>
@@ -363,6 +403,7 @@ class ContentController extends Controller
         </li>
     </ol>
 </div>
+
 <h2 id="update-repository">Step 4: Updating the repository</h2>
 <div class="api-docs-basics">
     <p>
@@ -389,6 +430,7 @@ class ContentController extends Controller
         </li>
     </ol>
 </div>
+
 <h2 id="update-plugin">Step 5: Cloning the plugin</h2>
 <div class="api-docs-basics">
     <p>
@@ -420,6 +462,7 @@ class ContentController extends Controller
         </li>
     </ol>
 </div>
+
 <h2 id="provision-plugin">Step 6: Provisioning the plugin</h2>
 <div class="api-docs-basics">
     <p>
@@ -444,6 +487,7 @@ class ContentController extends Controller
         </li>
     </ol>
 </div>
+
 <h1 id="open-plugin">Reaping the rewards</h1>
 <div class="api-docs-basics">
     <p>
@@ -458,6 +502,7 @@ class ContentController extends Controller
 <div class="alert alert-info" role="alert">
     <b>Info</b>: Once you have changed the files in your local <code>HelloWorld</code> folder, the changes must be pushed to GitHub. You also have to update the plugin in your plentymarkets inbox by pulling the changes from GitHub. Finally, you have to provision the plugin again to display the changes in your browser.
 </div>
+
 <!-- Modal -->
 <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog img-horizontal" role="document">
