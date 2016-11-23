@@ -33,6 +33,7 @@
 
     <!-- Autoload Github Files for the example pages -->
     <script src="{{ plugin_path('PlentyPluginShowcase') }}/js/githubFiles.js"></script>
+    <script src="{{ plugin_path('PlentyPluginShowcase') }}/js/collapse-code.js"></script>
 
     <script>
         var highlight = ace.require("ace/ext/static_highlight");
@@ -86,24 +87,24 @@
     </script>
 
     <script>
-        $(document).ready(function(){
-            var codeContainer = $(this).find('.code-container > pre');
+        $(document).ready(function()
+        {
+            $('.code-container > pre').each(function (i, container){
 
-            for (i = 0; i < codeContainer.length; i++)
-            {
-                var container = codeContainer[i];
+                var $container = $(container);
                 var repo = $(container).data('code-repo');
                 var file = $(container).data('code-file');
                 var startline = $(container).data('code-startline');
                 var endline = $(container).data('code-endline');
 
-                if(repo != undefined && file != undefined)
+                if(!!repo &&repo != undefined && !!file && file != undefined)
                 {
                     $.getGithubFileByFilePath("plentymarkets", repo, file, function(contents) {
-                        $(container).text(contents);
+                        $container.text(contents);
                     }, startline, endline);
                 }
-            }
+
+            });
         });
     </script>
 

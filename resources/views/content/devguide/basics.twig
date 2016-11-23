@@ -41,15 +41,19 @@ PluginDirectory/
     |-- test/
     |   +-- // tests will be executed before build
     |
+    |-- ui/
+    |   +-- // files for back end views
+    |
     +-- config.json // <a href="#plugin-options">admin's plugin options</a>
     +-- plugin.json // <a href="#plugin-information">plugin information</a>
+    +-- ui.json // <a href="#ui-information">back end menu information</a>
     +-- README.md
 </pre>
 </div>
 
 <div class="api-docs-basics">
     <p>
-        For detailed information about the different plugin components, refer to the <a href="components#components-introduction">Components</a> page.
+        For detailed information about the different plugin features, refer to the <a href="template-plugins#template-introduction">Template plugin guide</a> or <a href="payment-plugins#payment-introduction">Payment plugin guide</a>.
     </p>
 </div>
 
@@ -255,6 +259,140 @@ function getTitle(ConfigRepository $config):string
 {% endverbatim %}</pre>
 </div>
 
+<h2 id="ui-information">Back end menu information</h2>
+<div class="api-docs-basics">
+    <p>
+        All information about the back end menu entries is saved in a <code>ui.json</code> file. This file defines the entry points for the plugin. Views are then available at the respective menus. Find a list of possible <a href="#guide-entrypoints">menu entry points</a> below.
+    </p>
+
+    <table class="table table-striped table-responsive table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>defaultEntryPoint</td>
+                <td>The default entry point of your plugin</td>
+            </tr>
+            <tr>
+                <td>namespace</td>
+                <td>The namespace of your plugin</td>
+            </tr>
+            <tr>
+                <td>menuEntries</td>
+                <td>The menu entries of your plugin</td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<div class="route-container">
+<code>/ui.json</code>
+</div>
+
+<div class="code-container grey-back">
+<pre class="prettyprint lang-js grey-back linenums">
+{
+    "defaultEntryPoint" : "index.html",
+    "namespace"         : "MyFirstView",
+    "menuEntries"       : [
+                            {
+                              "label": "Hello World",
+                              "menu": "start",
+                              "urlKey": "hello-world",
+                              "entryPoint": "index.html"
+                            }
+                          ]
+}
+</pre>
+</div>
+
+<h2 id="guide-entrypoints">Menu entry points</h2>
+
+<div class="api-docs-basics">
+    <p>
+        Back end views can be integrated in the plentymarkets main menu and in the settings menu. The following menus can be accessed by a plugin via entry points:
+    </p>
+    <ul>
+      <li>
+        start
+      </li>
+      <li>
+        start/account
+      </li>
+      <li>
+        item
+      </li>
+      <li>
+        item/lionbridge
+      </li>
+      <li>
+        listing
+      </li>
+      <li>
+        listing/main-batch-processing
+      </li>
+      <li>
+        stock
+      </li>
+      <li>
+        stock/purchase
+      </li>
+      <li>
+        stock/returns
+      </li>
+      <li>
+        crm
+      </li>
+      <li>
+        order
+      </li>
+      <li>
+        order/scheduler
+      </li>
+      <li>
+        data-exchange
+      </li>
+      <li>
+        data-exchange/export
+      </li>
+      <li>
+        data-exchange/import
+      </li>
+      <li>
+        cms
+      </li>
+      <li>
+        settings/cms
+      </li>
+      <li>
+        settings/crm
+      </li>
+      <li>
+        settings/items
+      </li>
+      <li>
+        settings/listings
+      </li>
+      <li>
+        settings/markets
+      </li>
+      <li>
+        settings/orders
+      </li>
+      <li>
+        settings/shop
+      </li>
+      <li>
+        settings/stock
+      </li>
+    </ul>
+</div>
 <h2 id="guide-interface">Plugin interfaces</h2>
 
 <div class="api-docs-basics">
@@ -291,10 +429,10 @@ function getTitle(ConfigRepository $config):string
       </tr>
       <tr>
       <td>
-        <a href="{{ url() }}/api-doc/Authorization">Authorization</a>
+        <a href="{{ url() }}/api-doc/Authentication">Authentication</a>
       </td>
       <td>
-        Interface for user access control and role access control.
+        Interface for user authentication.
       </td>
       </tr>
       <tr>
@@ -313,6 +451,14 @@ function getTitle(ConfigRepository $config):string
         Interface with sub-modules and models for categories.
       </td>
       </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Cron">Cron</a>
+            </td>
+            <td>
+                Interface for accessing cron jobs.
+            </td>
+        </tr>
       <tr>
       <td>
         <a href="{{ url() }}/api-doc/DataExchange">DataExchange</a>
@@ -353,6 +499,14 @@ function getTitle(ConfigRepository $config):string
         Contains sub-modules for attributes, availability, item and variation data, manufacturers, shipping and units.
       </td>
       </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/ItemSet">ItemSet</a>
+            </td>
+            <td>
+                Interface for item sets. Contains methods to get and create item sets and item set components.
+            </td>
+        </tr>
       <tr>
       <td>
       <a href="{{ url() }}/api-doc/Market">Market</a>
@@ -369,12 +523,20 @@ function getTitle(ConfigRepository $config):string
         Contains contracts and models for orders and order items as well as the sub-modules <strong>Currency</strong>, <strong>Payment</strong> and <strong>Shipping</strong>. This interface is the counterpart to the plentymarkets order module.
       </td>
       </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Payment">Payment</a>
+            </td>
+            <td>
+                Contains the sub-modules for payment methods, the payment history, as well as contracts and models for payments and payment properties.
+            </td>
+        </tr>
       <tr>
       <td>
-      <a href="{{ url() }}/api-doc/Stock">Stock</a>
+      <a href="{{ url() }}/api-doc/StockManagement">StockManagement</a>
       </td>
       <td>
-        Contains contracts and models for stock and storage data.
+        Contains contracts and models for stock management and storage data.
       </td>
       </tr>
       <tr>
@@ -393,6 +555,22 @@ function getTitle(ConfigRepository $config):string
         Contains contracts and models for the design and design configuration.
       </td>
       </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Ticket">Ticket</a>
+            </td>
+            <td>
+                Contains contracts and models related to the plentymarkets ticket system.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Miscellaneous">Miscellaneous</a>
+            </td>
+            <td>
+                Contains interfaces that cannot be organised in the listed interfaces.
+            </td>
+        </tr>
     </tbody>
     </table>
 </div>
@@ -457,14 +635,14 @@ function getTitle(ConfigRepository $config):string
 
 </div>
 
-<h1 id="ide-support">Recommended IDEs</h1>
+    <h1 id="ide-support">Recommended IDEs</h1>
     <div class="api-docs-basics">
         <p>
             We recommend using an IDE which supports the PHP language and Twig syntax.
             For this purpose, we suggest using one of the following IDEs.
         </p>
     </div>
-<h2 id="phpstorm">PhpStorm</h2>
+    <h2 id="phpstorm">PhpStorm</h2>
     <div class="api-docs-basics">
         <p>PhpStorm is a comprehensive IDE which supports all PHP language features. PhpStorm also includes a wide range of leading edge front-end technologies, such as CSS, Sass, Javascript, as well as Twig syntax highlighting.</p>
     </div>
@@ -480,39 +658,39 @@ function getTitle(ConfigRepository $config):string
             </li>
         </ol>
     </div>
-<h2 id="atom">Atom</h2>
-<div class="api-docs-basics">
-    <p>Atom is a customisable editor working across operating systems. It can be extended to also support Twig syntax.</p>
-</div>
-<h3>Installation</h3>
-<div class="api-docs-basics">
-    <ol>
-        <li>
-            <a href="https://github.com/atom/atom/releases/latest" target="_blank">Download</a>
-            and <a href="https://atom.io/docs/latest/getting-started-installing-atom" target="_blank">install</a>
-            Atom IDE
-        </li>
-        <li>
-            <a href="https://atom.io/packages/php-twig" target="_blank">Install Twig Plugin</a><sup>*</sup> for Twig syntax highlighting
-        </li>
-    </ol>
-    <p>
-        *) All required Atom packages can be found using the embedded package control pane of the Atom IDE. This pane can be found in Atom: <i>Settings</i> > <i>Install</i>.
-    </p>
-</div>
-<h2 id="sublime-text">Sublime Text</h2>
+    <h2 id="atom">Atom</h2>
+    <div class="api-docs-basics">
+        <p>Atom is a customisable editor working across operating systems. It can be extended to also support Twig syntax.</p>
+    </div>
+    <h3>Installation</h3>
+    <div class="api-docs-basics">
+        <ol>
+            <li>
+                <a href="https://github.com/atom/atom/releases/latest" target="_blank">Download</a>
+                and <a href="https://atom.io/docs/latest/getting-started-installing-atom" target="_blank">install</a>
+                Atom IDE
+            </li>
+            <li>
+                <a href="https://atom.io/packages/php-twig" target="_blank">Install Twig Plugin</a><sup>*</sup> for Twig syntax highlighting
+            </li>
+        </ol>
+        <p>
+            *) All required Atom packages can be found using the embedded package control pane of the Atom IDE. This pane can be found in Atom: <i>Settings</i> > <i>Install</i>.
+        </p>
+    </div>
+    <h2 id="sublime-text">Sublime Text</h2>
 
-<div class="api-docs-basics">
-    <p>As an alternative to the PhpStorm and Atom IDEs, we also recommend Sublime Text with the respective plugins for syntax highlighting.</p>
-</div>
+    <div class="api-docs-basics">
+        <p>As an alternative to the PhpStorm and Atom IDEs, we also recommend Sublime Text with the respective plugins for syntax highlighting.</p>
+    </div>
 
-<h3>Installation</h3>
-<div class="api-docs-basics">
-    <ol>
-        <li><a href="https://www.sublimetext.com/2" target="_blank">Install Sublime Text</a></li>
-        <li>Install Sublime Text's <a href="https://packagecontrol.io/installation" target="_blank">Package-Control</a></li>
-        <li>Install <a href="https://packagecontrol.io/packages/PHP-Twig" target="_blank">Twig Plugin</a></li>
-    </ol>
-</div>
+    <h3>Installation</h3>
+    <div class="api-docs-basics">
+        <ol>
+            <li><a href="https://www.sublimetext.com/2" target="_blank">Install Sublime Text</a></li>
+            <li>Install Sublime Text's <a href="https://packagecontrol.io/installation" target="_blank">Package-Control</a></li>
+            <li>Install <a href="https://packagecontrol.io/packages/PHP-Twig" target="_blank">Twig Plugin</a></li>
+        </ol>
+    </div>
 
 {% endblock %}
