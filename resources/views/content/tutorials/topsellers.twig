@@ -70,7 +70,7 @@ TopItems/
 <code>TopItems/plugin.json</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-json grey-back linenums">
+<pre class="prettyprint lang-json grey-back linenums code-example">
 {
     "name"              :"TopItems",
     "description"       :"Plugin to render a list of top items",
@@ -80,6 +80,7 @@ TopItems/
     "serviceProvider"   :"TopItems\\Providers\\TopItemsServiceProvider"
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <!-- Code example end -->
 
@@ -90,7 +91,7 @@ TopItems/
   <code>TopItems/src/Providers/TopItemsServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
 namespace TopItems\Providers;
@@ -106,6 +107,7 @@ class TopItemsServiceProvider extends ServiceProvider
     }
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <!-- Code example end -->
 
@@ -116,7 +118,7 @@ class TopItemsServiceProvider extends ServiceProvider
   <code>TopItems/src/Providers/TopItemsRouteServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
 namespace TopItems\Providers;
@@ -133,6 +135,7 @@ class TopItemsRouteServiceProvider extends RouteServiceProvider
     }
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <!-- Code example end -->
 
@@ -143,7 +146,7 @@ class TopItemsRouteServiceProvider extends RouteServiceProvider
   <code>TopItems/src/Controllers/ContentController.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
 namespace TopItems\Controllers;
@@ -201,6 +204,7 @@ class ContentController extends Controller
     }
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <div class="alert alert-info" role="alert">
@@ -227,7 +231,7 @@ class ContentController extends Controller
 </div>
 <div class="code-container">
 {% raw %}
-<pre class="prettyprint lang-twig grey-back linenums">
+<pre class="prettyprint lang-twig grey-back linenums code-example">
 <span><</span>!DOCTYPE html>
 <span><</span>html lang="en">
     <span><</span>head>
@@ -249,6 +253,7 @@ class ContentController extends Controller
 <span><</span>/html>
 </pre>
 {% endraw %}
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: The code is a simple HTML structure. We link the <b>Bootstrap 4</b> stylesheet. Bootstrap 4 is also used for our Callisto 4 design. If you plan on creating new template plugins based on Callisto 4, the <a href="http://v4-alpha.getbootstrap.com/" target="_blank">Bootstrap 4 documentation</a> is an important source to get started.<br /><br />In the <code><span><</span>body></code>, we use a <code><span><</span>div></code> and the twig <code><span>{</span>% block %}</code> tag, which allows us to insert content from another file. This way, you can use the <code>PageDesign.twig</code> for other content files, too.
@@ -268,7 +273,7 @@ class ContentController extends Controller
 </div>
 <div class="code-container">
 {% raw %}
-<pre class="prettyprint lang-twig grey-back linenums">
+<pre class="prettyprint lang-twig grey-back linenums code-example">
 {% extends "TopItems::PageDesign" %}
 
 {% block PageBody %}
@@ -301,6 +306,7 @@ class ContentController extends Controller
 {% endblock %}
 </pre>
 {% endraw %}
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: We want to insert the content of this twig file into the page design. To do so, we use the twig <code><span>{</span>% extends %}</code> tag. Within this tag, the <code><span>{</span>% block %}</code> tag defines our content with a header and a <code><span><</span>div></code> container wrapping our card deck.<br /><br />

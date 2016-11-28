@@ -157,7 +157,7 @@ HelloWorld/
 <code>HelloWorld/plugin.json</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-json grey-back linenums">
+<pre class="prettyprint lang-json grey-back linenums code-example">
 {
     "name"              :"HelloWorld",
     "description"       :"My first plugin",
@@ -167,6 +167,7 @@ HelloWorld/
     "serviceProvider"   :null
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <!-- Code example end -->
 
@@ -191,7 +192,7 @@ HelloWorld/
   <code>HelloWorld/src/Providers/HelloWorldServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
 namespace HelloWorld\Providers;
@@ -212,6 +213,7 @@ class HelloWorldServiceProvider extends ServiceProvider
     }
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: We recommend that you use the name of the plugin folder as the namespace root.
@@ -237,7 +239,7 @@ class HelloWorldServiceProvider extends ServiceProvider
   <code>HelloWorld/src/Providers/HelloWorldRouteServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
 namespace HelloWorld\Providers;
@@ -254,6 +256,7 @@ class HelloWorldRouteServiceProvider extends RouteServiceProvider
     }
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <!-- Code example end -->
 
@@ -270,7 +273,7 @@ class HelloWorldRouteServiceProvider extends RouteServiceProvider
   <code>HelloWorld/src/Providers/HelloWorldServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 ...
 
         public function register()
@@ -278,6 +281,7 @@ class HelloWorldRouteServiceProvider extends RouteServiceProvider
             $this->getApplication()->register(HelloWorldRouteServiceProvider::class);
         }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <!-- Code example end -->
 
@@ -302,7 +306,7 @@ class HelloWorldRouteServiceProvider extends RouteServiceProvider
   <code>HelloWorld/src/Controllers/ContentController.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
 namespace HelloWorld\Controllers;
@@ -319,6 +323,7 @@ class ContentController extends Controller
     }
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: In this code example, we define the <code>sayHello</code> function that renders a twig template. The <code>render</code> method specifies the template location: <code>'PLUGINNAME::TEMPLATE'</code>. Since templates are always saved in the <b>resources/views</b> folder in your plugin, we only have to specify part of the template path. Note that <code>PLUGINNAME</code> is the name of the plugin folder. The name of the plugin folder and the plugin namespace may differ.
@@ -337,7 +342,7 @@ class ContentController extends Controller
   <code>HelloWorld/src/Providers/HelloWorldRouteServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 ...
 
     public function map(Router $router)
@@ -345,6 +350,7 @@ class ContentController extends Controller
         $router->get('hello','HelloWorld\Controllers\ContentController@sayHello');
     }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: We use the <code>get</code> method to pass two parameters. The first parameter <code>'hello'</code> defines the route. The second parameter consists of the Fully-Qualified Class Name and the <code>@</code> controller method that is called when the route is called.
@@ -380,7 +386,7 @@ class ContentController extends Controller
   <code>HelloWorld/src/Controller/ContentController.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 ...
 
     public function sayHello(Twig $twig):string
@@ -388,6 +394,7 @@ class ContentController extends Controller
         return $twig->render('HelloWorld::content.hello');
     }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <!-- Code example end -->
 

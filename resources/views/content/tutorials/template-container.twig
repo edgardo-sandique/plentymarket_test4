@@ -1,0 +1,220 @@
+{% extends 'PlentyPluginShowcase::templates.ExamplePage' %}
+
+{% block Content %}
+
+<h1 id="introduction">Template containers</h1>
+<div class="api-docs-basics">
+    <p>
+        This tutorial will introduce you to template containers. We will develop a small plugin that provides the data to display a placeholder image and text in a container of the template plugin. You will also learn about the plugin containers in Callisto 4 and all options to integrate your own content in the template.
+    </p>
+</div>
+
+<!-- GitHub button -->
+<div class="connect">
+    <div class="btn btn-primary btn-block" title="Clone or download this plentymarkets plugin on GitHub.">
+        <a href="https://github.com/plentymarkets/plugin-tutorial-backend-view" target="_blank" role="button"><img class="img-responsive pull-left" src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-logo.png"  style="width: 40px;"/><span>Download on GitHub</span></a>
+    </div>
+</div>
+<!-- GitHub button end -->
+
+<h2 id="create-plugin-files">Step 1: Creating the plugin files</h2>
+<div class="api-docs-basics">
+    <p>
+        Our plugin is of the <b>template</b> type and integrates with the Callisto 4 template, i.e. our plugin consists of <a href="/dev-doc/template-plugins#features-core">core features</a> saved in the <b>src</b> folder and <a href="/dev-doc/template-plugins#features-design">design features</a> saved in the <b>resources</b> folder. Our plugin also requires <a href="/dev-doc/basics#plugin-information">plugin.json</a> file and a <a href="/dev-doc/basics#plugin-options">config.json</a> file.
+    </p>
+</div>
+
+<!-- Folder structure -->
+<div class="code-container">
+<pre class="prettyprint lang-plain grey-back">
+Placeholder/
+    +-- resources/
+    |   +-- images/
+    |   |       +-- placeholder.png // placeholder image file
+    |   |
+    |   +-- views/
+    |       +-- content/
+    |           +-- Placeholder.twig // template for the placeholder image and text
+    +-- src/
+    |   +-- Containers/
+    |   |   +--PlaceholderContainer.php
+    |   |
+    |   +-- Providers/
+    |       +-- PlaceholderServiceProvider.php
+    |
+    +-- config.json // admin's plugin options
+    +-- plugin.json // plugin information
+</pre>
+</div>
+<!-- Folder structure end -->
+
+<h2 id="fill-source-files">Step 2: Filling the source files</h2>
+<div class="api-docs-basics">
+    <p>
+        <!-- TODO -->
+    </p>
+</div>
+
+<h3 id="code-pluginjson">Code for the plugin.json</h3>
+
+<!-- Code example -->
+<div class="route-container">
+    <code>Placeholder/plugin.json</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-json grey-back linenums code-example">
+{
+    "name"                  :"Placeholder",
+    "description"           :"Template container placeholder plugin",
+    "namespace"             :"Placeholder",
+    "author"                :"Your name",
+    "keywords"              : ["container", "placeholder", "template"],
+    "type"                  :"template",
+    "require"               : [],
+    "serviceProvider"       :"Placeholder\\Providers\\PlaceholderServiceProvider",
+    "dataProviders"         :
+    [
+        {
+            "key"           :"Placeholder\\Containers\\PlaceholderContainer",
+            "name"          :"Placeholder",
+            "description"   :"Display a placeholder image and text"
+        }
+    ]
+}
+</pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: <!-- TODO -->
+</div>
+<!-- Code example end -->
+
+<h3 id="code-configjson">Code for the config.json</h3>
+
+<!-- Code example -->
+<div class="route-container">
+    <code>Placeholder/config.json</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-json grey-back linenums code-example">
+[
+    {
+        "tab"                         : "Placeholder settings",
+        "key"                         : "placeholder.text",
+        "label"                       : "Placeholder text",
+        "type"                        : "text",
+        "default"                     : "This is a placeholder"
+    }
+]
+</pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: <!-- TODO -->
+</div>
+<!-- Code example end -->
+
+<h3 id="code-serviceprovider">Code for the ServiceProvider</h3>
+
+<!-- Code example -->
+<div class="route-container">
+    <code>Placeholder/src/Providers/PlaceholderServiceProvider.php</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums code-example">
+&lt;?php
+
+namespace Placeholder\Providers;
+
+use Plenty\Plugin\ServiceProvider;
+
+class PlaceholderServiceProvider extends ServiceProvider
+{
+
+	/**
+	 * Register the service provider.
+	 */
+	public function register()
+	{
+
+	}
+}
+</pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: The ServiceProvider of this plugin is very simple. It contains no fancy logic and is only required for plugin provisioning.
+</div>
+<!-- Code example end -->
+
+<h3 id="code-helper">Code for the PlaceholderContainer</h3>
+
+<!-- Code example -->
+<div class="route-container">
+    <code>Placeholder/src/PlaceholderContainer.php</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums code-example">
+&lt;?php
+
+namespace Placeholder\Containers;
+
+use Plenty\Plugin\Templates\Twig;
+
+class PlaceholderContainer
+{
+    public function call(Twig $twig):string
+    {
+        return $twig->render('Placeholder::content.placeholder');
+    }
+}
+</pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: <!-- TODO -->
+</div>
+<!-- Code example end -->
+
+<h3 id="code-helper">Code for the Placeholder.twig</h3>
+
+<!-- Code example -->
+<div class="route-container">
+    <code>Placeholder/resources/views/content/Placeholder.twig</code>
+</div>
+<div class="code-container">
+{% raw %}
+<pre class="prettyprint lang-php grey-back linenums code-example">
+&lt;{% set placeholderText = config("Placeholder.placeholder.text") %}
+
+    &lt;img src="{{ plugin_path("Placeholder") }}/images/placeholder.png">
+&lt;h5>{{ placeholderText }}&lt;/h5>
+</pre>
+{% endraw %}
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: <!-- TODO -->
+</div>
+<!-- Code example end -->
+
+<h2 id="add-content">Step 3: Displaying the content in the template</h2>
+<div class="api-docs-basics">
+    <p>
+       <!-- TODO -->
+    </p>
+</div>
+
+
+<h1 id="template-containers">Containers in the Callisto 4 template</h1>
+<div class="api-docs-basics">
+    <p>
+        <!-- TODO -->
+    </p>
+</div>
+
+{% endblock %}
