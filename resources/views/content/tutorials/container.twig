@@ -5,7 +5,7 @@
 <h1 id="introduction">Template containers</h1>
 <div class="api-docs-basics">
     <p>
-        This tutorial will introduce you to template containers. We will develop a small plugin that provides the data to display a placeholder image and text in a container of the template plugin. You will also learn about the plugin containers in Callisto 4 and all options to integrate your own content in the template.
+        This tutorial will introduce you to template containers. We will develop a small plugin that provides the data for displaying a placeholder image and text in a container of the template plugin. You will also learn about the plugin containers in Callisto 4 and all options to integrate your own content in the template.
     </p>
 </div>
 
@@ -149,7 +149,7 @@ class PlaceholderServiceProvider extends ServiceProvider
 </div>
 <!-- Code example end -->
 
-<h3 id="code-helper">Code for the PlaceholderContainer</h3>
+<h3 id="code-placeholdercontainer">Code for the PlaceholderContainer</h3>
 
 <!-- Code example -->
 <div class="route-container">
@@ -179,7 +179,7 @@ class PlaceholderContainer
 </div>
 <!-- Code example end -->
 
-<h3 id="code-helper">Code for the Placeholder.twig</h3>
+<h3 id="code-template">Code for the Placeholder.twig</h3>
 
 <!-- Code example -->
 <div class="route-container">
@@ -188,9 +188,9 @@ class PlaceholderContainer
 <div class="code-container">
 {% raw %}
 <pre class="prettyprint lang-php grey-back linenums code-example">
-&lt;{% set placeholderText = config("Placeholder.placeholder.text") %}
+{% set placeholderText = config("Placeholder.placeholder.text") %}
 
-    &lt;img src="{{ plugin_path("Placeholder") }}/images/placeholder.png">
+&lt;img src="{{ plugin_path("Placeholder") }}/images/placeholder.png">
 &lt;h5>{{ placeholderText }}&lt;/h5>
 </pre>
 {% endraw %}
