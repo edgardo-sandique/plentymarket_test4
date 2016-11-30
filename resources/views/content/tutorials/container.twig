@@ -12,15 +12,22 @@
 <!-- GitHub button -->
 <div class="connect">
     <div class="btn btn-primary btn-block" title="Clone or download this plentymarkets plugin on GitHub.">
-        <a href="https://github.com/plentymarkets/plugin-tutorial-backend-view" target="_blank" role="button"><img class="img-responsive pull-left" src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-logo.png"  style="width: 40px;"/><span>Download on GitHub</span></a>
+        <a href="https://github.com/plentymarkets/plugin-tutorial-template-container" target="_blank" role="button"><img class="img-responsive pull-left" src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-logo.png"  style="width: 40px;"/><span>Download on GitHub</span></a>
     </div>
 </div>
 <!-- GitHub button end -->
 
-<h2 id="create-plugin-files">Step 1: Creating the plugin files</h2>
+<h2 id="install-template">Step 1: Installing the template</h2>
 <div class="api-docs-basics">
     <p>
-        Our plugin is of the <b>template</b> type and integrates with the Callisto 4 template, i.e. our plugin consists of <a href="/dev-doc/template-plugins#features-core">core features</a> saved in the <b>src</b> folder and <a href="/dev-doc/template-plugins#features-design">design features</a> saved in the <b>resources</b> folder. Our plugin also requires <a href="/dev-doc/basics#plugin-information">plugin.json</a> file and a <a href="/dev-doc/basics#plugin-options">config.json</a> file.
+        If you haven't already <a href="/tutorials/design">set up a template</a> in your plentymarkets system, do it before you start developing the template container plugin. In this way, you have your test environment ready and can directly check your coding output.
+    </p>
+</div>
+
+<h2 id="create-plugin-files">Step 2: Creating the plugin files</h2>
+<div class="api-docs-basics">
+    <p>
+        Our plugin is of the <b>template</b> type and integrates with the Callisto 4 template, i.e. our plugin consists of <a href="/dev-doc/template-plugins#features-core">core features</a> saved in the <b>src</b> folder and <a href="/dev-doc/template-plugins#features-design">design features</a> saved in the <b>resources</b> folder. Our plugin also requires a <a href="/dev-doc/basics#plugin-information">plugin.json</a> file and a <a href="/dev-doc/basics#plugin-options">config.json</a> file.
     </p>
 </div>
 
@@ -30,7 +37,7 @@
 Placeholder/
     +-- resources/
     |   +-- images/
-    |   |       +-- placeholder.png // placeholder image file
+    |   |   +-- placeholder.png // placeholder image file
     |   |
     |   +-- views/
     |       +-- content/
@@ -48,10 +55,10 @@ Placeholder/
 </div>
 <!-- Folder structure end -->
 
-<h2 id="fill-source-files">Step 2: Filling the source files</h2>
+<h2 id="fill-source-files">Step 3: Filling the source files</h2>
 <div class="api-docs-basics">
     <p>
-        <!-- TODO -->
+        Our plugin consists of 6 files in total. Two JSON files, the <a href="#code-pluginjson">plugin.json</a> and the <a href="#code-configjson">config.json</a>, two PHP files, a <a href="#code-serviceprovider">ServiceProvider</a> and a <a href="#code-placeholdercontainer">Container</a> with the source code of the plugin, as well as a <a href="code-template">Twig template</a> and an image file. Create these files and copy the code examples.
     </p>
 </div>
 
@@ -85,7 +92,7 @@ Placeholder/
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: <!-- TODO -->
+    <b>Explanation</b>: This <code>plugin.json</code> is similar to other files, but it has an additional key-value pair: <code>dataProviders</code> is required for linking the content provided by this plugin to the template plugin. <code>key</code> specifies the container. <code>name</code> and <code>description</code> are texts for the plentymarkets back end.
 </div>
 <!-- Code example end -->
 
@@ -111,7 +118,7 @@ Placeholder/
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: <!-- TODO -->
+    <b>Explanation</b>: This <code>config.json</code> is kept very simple and enables you to define the text that is displayed below the placeholder image.
 </div>
 <!-- Code example end -->
 
@@ -175,7 +182,7 @@ class PlaceholderContainer
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: <!-- TODO -->
+    <b>Explanation</b>: The <code>PlaceholderContainer</code> is specified in the <a href="#code-pluginjson">plugin.json</a> file. It is a completely new source file, a content container which uses the <code>call()</code> method for rendering the Twig template of our plugin.<!-- The <code>call()</code> method can have other parameters. These parameters are optional. --> We will create the <code>Placeholder.twig</code> file in the next step.
 </div>
 <!-- Code example end -->
 
@@ -198,11 +205,33 @@ class PlaceholderContainer
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: <!-- TODO -->
+    <b>Explanation</b>: A Twig function sets the variable <code>placeholderText</code>. The variable is equal to the value of <code>placeholder.text</code> key in the <code>config.json</code> file. The placeholder text can be entered in the plentymarkets back end.<br />In line 3, we specify the placeholder image by entering the path of the image. <code><span>{</span>{ plugin_path("Placeholder") }}</code> is equal to the <b>resources</b> folder in our plugin, i.e. the complete image path is <b>Placeholder/resources/images/placeholder.png</b>.<br />In line 4, we use the <code>placeholderText</code> variable that we set in line 1 to display the placeholder text below the placeholder image in the content container.
 </div>
 <!-- Code example end -->
 
-<h2 id="add-content">Step 3: Displaying the content in the template</h2>
+<h2 id="placeholder-text">Step 4: Entering the placeholder text</h2>
+<div class="api-docs-basics">
+    <p>
+        After creating the plugin, we have to <a href="/dev-doc/basics#add-repository">add</a> our new plugin to the plentymarkets inbox. Then, we enter the placeholder text in the plugin config.
+    </p>
+    <ol>
+        <li>
+            Go to <b>Start » Plugins</b>.
+        </li>
+        <li>
+            In the list of plugins, click on <b>Placeholder</b>.<br />
+            → The plugin config file will open.
+        </li>
+        <li>
+            Enter the <b>Placeholder text</b>.
+        </li>
+        <li>
+            <b>Save</b> the settings.
+        </li>
+    </ol>
+</div>
+
+<h2 id="add-content">Step 5: Displaying the content in the template</h2>
 <div class="api-docs-basics">
     <p>
        <!-- TODO -->
