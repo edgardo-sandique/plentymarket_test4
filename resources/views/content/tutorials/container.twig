@@ -118,7 +118,7 @@ Placeholder/
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: This <code>config.json</code> is kept very simple and enables you to define the text that is displayed below the placeholder image.
+    <b>Explanation</b>: This <code>config.json</code> is kept very simple and enables you to define the text that is displayed below or next to the placeholder image.
 </div>
 <!-- Code example end -->
 
@@ -205,7 +205,7 @@ class PlaceholderContainer
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: A Twig function sets the variable <code>placeholderText</code>. The variable is equal to the value of <code>placeholder.text</code> key in the <code>config.json</code> file. The placeholder text can be entered in the plentymarkets back end.<br />In line 3, we specify the placeholder image by entering the path of the image. <code><span>{</span>{ plugin_path("Placeholder") }}</code> is equal to the <b>resources</b> folder in our plugin, i.e. the complete image path is <b>Placeholder/resources/images/placeholder.png</b>.<br />In line 4, we use the <code>placeholderText</code> variable that we set in line 1 to display the placeholder text below the placeholder image in the content container.
+    <b>Explanation</b>: A Twig function sets the variable <code>placeholderText</code>. The variable is equal to the value of <code>placeholder.text</code> key in the <code>config.json</code> file. The placeholder text can be entered in the plentymarkets back end.<br /><br />In line 3, we specify the placeholder image by entering the path of the image. <code><span>{</span>{ plugin_path("Placeholder") }}</code> is equal to the <b>resources</b> folder in our plugin, i.e. the complete image path is <b>Placeholder/resources/images/placeholder.png</b>.<br /><br />In line 4, we use the <code>placeholderText</code> variable that we set in line 1 to display the placeholder text below or next to the placeholder image in the content container.
 </div>
 <!-- Code example end -->
 
@@ -231,19 +231,417 @@ class PlaceholderContainer
     </ol>
 </div>
 
-<h2 id="add-content">Step 5: Displaying the content in the template</h2>
+<h1 id="add-content">Looking at the big picture</h1>
 <div class="api-docs-basics">
     <p>
-       <!-- TODO -->
+       Now you simply have to link the content from our <b>Placeholder</b> plugin to one or multiple containers of the <b>Callisto 4</b> template plugin. This can be done in the plentymarkets back end.
+    </p>
+    <ol>
+        <li>
+            Go to <b>Start » Plugins</b>.
+        </li>
+        <li>
+            In the list of plugins, click on <b>Placeholder</b>.<br />
+            → The plugin config file will open.
+        </li>
+        <li>
+            Click on the <b>Containers</b> tab.
+        </li>
+        <li>
+            Activate a container in the <b>Callisto 4</b> area, e.g. the <b>Certified</b> container on the homepage.
+        </li>
+        <li>
+            <b>Save</b> the settings.
+        </li>
+    </ol>
+    <p>
+        After <a href="/dev-doc/basics#provisioning">provisioning</a> the plugins in <b>Productive</b> the content of our <b>Placeholder</b> plugin is displayed in the footer of our online store.
     </p>
 </div>
 
+<!-- Image -->
+<figure>
+    <a data-toggle="modal" data-target="#modal1" href="#">
+        <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/footer-template-container.png" />
+    </a>
+</figure>
+<!-- Image end -->
 
 <h1 id="template-containers">Containers in the Callisto 4 template</h1>
 <div class="api-docs-basics">
     <p>
-        <!-- TODO -->
+        Approx. 40 containers are available on the different pages and views of the Callisto 4 template plugin allowing you to display additional content. The content provided by other plugins can be integrated in the following areas of the online store:
     </p>
+    <ul>
+        <li>
+            Homepage
+        </li>
+        <li>
+            Header and footer of the page
+        </li>
+        <li>
+            Single item view
+        </li>
+        <li>
+            Shopping cart and shopping cart preview
+        </li>
+        <li>
+            Checkout
+        </li>
+        <li>
+            Order confirmation page
+        </li>
+    </ul>
+</div>
+
+<h2 id="container-table">List of containers</h2>
+<div class="api-docs-basics">
+    <p>
+        Find a detailed list of all containers in the table below:
+    </p>
+    <table class="table table-striped table-responsive table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Container key</th>
+            <th>Container name</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="3" style="text-align: center"><b>Homepage</b></td>
+        </tr>
+        <tr>
+            <td>Startpage.PaymentMethods</td>
+            <td>Payment method container</td>
+            <td>Add a logo of the payment method to the payment methods on the homepage</td>
+        </tr>
+        <tr>
+            <td>Startpage.Shipping</td>
+            <td>Shipping method container</td>
+            <td>Add a logo of the shipping method to the shipping methods on the homepage</td>
+        </tr>
+        <tr>
+            <td>Startpage.Certified</td>
+            <td>Certified container</td>
+            <td>Add a <b>Certified by</b> logo to the container on the homepage</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: center"><b>Header of the page</b></td>
+        </tr>
+        <tr>
+            <td>Header.SocialMedia</td>
+            <td>Social media container</td>
+            <td>Add content to the social media container in the header</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: center"><b>Footer of the page</b></td>
+        </tr>
+        <tr>
+            <td>Footer.RowOne</td>
+            <td>Row 1 container</td>
+            <td>Add content to the first row of the footer</td>
+        </tr>
+        <tr>
+            <td>Footer.RowTwo</td>
+            <td>Row 2 container</td>
+            <td>Add content to the second row of the footer</td>
+        </tr>
+        <tr>
+            <td>Footer.RowThree</td>
+            <td>Row 3 container</td>
+            <td>Add content to the third row of the footer</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: center"><b>Single item view</b></td>
+        </tr>
+        <tr>
+            <td>SingleItem.BeforePrice</td>
+            <td>Before price</td>
+            <td>Add content before the item price in the single item view</td>
+        </tr>
+        <tr>
+            <td>SingleItem.AfterPrice</td>
+            <td>After price</td>
+            <td>Add content after the item price in the single item view</td>
+        </tr>
+        <tr>
+            <td>SingleItem.BeforeAddToBasket</td>
+            <td>Before <b>Add to shopping cart</b> button</td>
+            <td>Add content before the <b>Add to shopping cart</b> button in the single item view</td>
+        </tr>
+        <tr>
+            <td>SingleItem.AfterAddToBasket</td>
+            <td>After <b>Add to shopping cart</b> button</td>
+            <td>Add content after the <b>Add to shopping cart</b> button in the single item view</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: center"><b>Shopping cart</b></td>
+        </tr>
+        <tr>
+            <td>BasketTotals.BeforeItemSum</td>
+            <td>Before <b>Value of items</b></td>
+            <td>Add content before the value of items in the Total column of the shopping cart</td>
+        </tr>
+        <tr>
+            <td>BasketTotals.AfterItemSum</td>
+            <td>After <b>Value of items</b></td>
+            <td>Add content after the value of items in the Total column of the shopping cart</td>
+        </tr>
+        <tr>
+            <td>BasketTotals.BeforeShippingCosts</td>
+            <td>Before <b>Shipping</b></td>
+            <td>Add content before the shipping costs in the Total column of the shopping cart</td>
+        </tr>
+        <tr>
+            <td>BasketTotals.AfterShippingCosts</td>
+            <td>After <b>Shipping</b></td>
+            <td>Add content after the shipping costs in the Total column of the shopping cart</td>
+        </tr>
+        <tr>
+            <td>BasketTotals.BeforeVat</td>
+            <td>Before <b>VAT</b></td>
+            <td>Add content before the VAT in the Total column of the shopping cart</td>
+        </tr>
+        <tr>
+            <td>BasketTotals.AfterVat</td>
+            <td>After <b>VAT</b></td>
+            <td>Add content after the VAT in the Total column of the shopping cart</td>
+        </tr>
+        <tr>
+            <td>BasketTotals.BeforeTotalSum</td>
+            <td>Before <b>Total</b></td>
+            <td>Add content before the total sum in the Total column of the shopping cart</td>
+        </tr>
+        <tr>
+            <td>BasketTotals.AfterTotalSum</td>
+            <td>After <b>Total</b></td>
+            <td>Add content before the total sum in the Total column of the shopping cart</td>
+        </tr>
+        <tr>
+            <td>Basket.BeforeCheckoutButton</td>
+            <td>Before <b>Order now</b> button</td>
+            <td>Add content before the <b>Order now</b> button in the shopping cart</td>
+        </tr>
+        <tr>
+            <td>Basket.AfterCheckoutButton</td>
+            <td>After <b>Order now</b> button</td>
+            <td>Add content after the <b>Order now</b> button in the shopping cart</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: center"><b>Shopping cart preview</b></td>
+        </tr>
+        <tr>
+            <td>BasketPreview.BeforeCheckoutButton</td>
+            <td>Before <b>Checkout</b> button</td>
+            <td>Add content before the <b>Checkout</b> button in the shopping cart preview</td>
+        </tr>
+        <tr>
+            <td>BasketPreview.AfterCheckoutButton</td>
+            <td>After <b>Checkout</b> button</td>
+            <td>Add content after the <b>Checkout</b> button in the shopping cart preview</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: center"><b>Checkout</b></td>
+        </tr>
+        <tr>
+            <td>Checkout</td>
+            <td>Override checkout</td>
+            <td>Override the complete checkout page</td>
+        </tr>
+        <tr>
+            <td>Checkout.AddressLists</td>
+            <td>Override address controls</td>
+            <td>Override the invoice and delivery address controls in the checkout</td>
+        </tr>
+        <tr>
+            <td>Checkout.BillingAddress</td>
+            <td>Override invoice address control</td>
+            <td>Override the invoice address control in the checkout</td>
+        </tr>
+        <tr>
+            <td>Checkout.BeforeBillingAddress</td>
+            <td>Before invoice address</td>
+            <td>Add content before the invoice address control in the checkout</td>
+        </tr>
+        <tr>
+            <td>Checkout.AfterBillingAddress</td>
+            <td>After invoice address</td>
+            <td>Add content after the invoice address control in the checkout</td>
+        </tr>
+        <tr>
+            <td>Checkout.ShippingAddress</td>
+            <td>Override shipping address control</td>
+            <td>Override the shipping address control in the checkout</td>
+        </tr>
+        <tr>
+            <td>Checkout.BeforeShippingAddress</td>
+            <td>Before shipping address</td>
+            <td>Add content before the shipping address control in the checkout</td>
+        </tr>
+        <tr>
+            <td>Checkout.AfterShippingAddress</td>
+            <td>After shipping address</td>
+            <td>Add content after the shipping address control in the checkout</td>
+        </tr>
+        <tr>
+            <td>Checkout.ShippingProfileList</td>
+            <td>Override shipping method</td>
+            <td>Override the list of shipping methods in the checkout</td>
+        </tr>
+        <tr>
+            <td>Checkout.BeforeShippingProfileList</td>
+            <td>Before shipping method</td>
+            <td>Add content before the list of shipping methods in the checkout</td>
+        </tr>
+        <tr>
+            <td>Checkout.AfterShippingProfileList</td>
+            <td>After shipping method</td>
+            <td>Add content after the list of shipping methods in the checkout</td>
+        </tr>
+        <tr>
+            <td>Checkout.PaymentList</td>
+            <td>Override payment method</td>
+            <td>Override the list of payment methods in the checkout</td>
+        </tr>
+        <tr>
+            <td>Checkout.BeforePaymentList</td>
+            <td>Before payment method</td>
+            <td>Add content before the list of payment methods in the checkout</td>
+        </tr>
+        <tr>
+            <td>Checkout.AfterPaymentList</td>
+            <td>After payment method</td>
+            <td>Add content after the list of payment methods in the checkout</td>
+        </tr>
+        <tr>
+            <td>Checkout.OptIns</td>
+            <td>Opt-ins</td>
+            <td>Add content to opt-in checkboxes in the checkout</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align: center"><b>Order confirmation page</b></td>
+        </tr>
+        <tr>
+            <td>OrderConfirmation.AdditionalPaymentInformation</td>
+            <td>Additional payment information</td>
+            <td>Add additional payment information on the order confirmation page</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<h2 id="container-usage">Using containers in the template</h2>
+<div class="api-docs-basics">
+    <p>
+        Following the tutorial above, we have learned about the plugin providing the data for our template. Now, you will learn how to use containers in template plugins.
+    </p>
+</div>
+<h3 id="container-entrypoint">Container entry point</h3>
+<div class="api-docs-basics">
+    <p>
+        The entry point of a container is defined in the <code>plugin.json</code> file of a plugin.
+    </p>
+</div>
+
+<!-- Code example -->
+<div class="route-container">
+<code>PluginCallisto/plugin.json</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-json grey-back linenums code-example">
+"containers"        :
+    [
+        {
+            "key"           : "Startpage.Certified",
+            "name"          : "Startpage: Certified container",
+            "description"   : "Add an icon to the certified by container in the startpage"
+            "multiple"      : false
+        }
+    ]
+</pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: The <code>containers</code> key stores an array of values that consist of a <code>key</code>, a <code>name</code> and a <code>description</code> representing our containers. The content provided by our data provider, the <b>Placeholder</b> plugin, is linked to the container in this template plugin.<br /><br /><code>key</code> specifies the container. <code>name</code> and <code>description</code> are texts for the plentymarkets back end.<br /><br /><code>multiple</code> is an optional property that defines whether multiple data providers can provide content for this container. Set it to <code>false</code> if you want to display the content of the first data provider only.
+</div>
+<!-- Code example end -->
+
+<h3 id="container-macro">Container macro</h3>
+<div class="api-docs-basics">
+    <p>The content to be displayed in a container is processed by the <code>show()</code> function in a macro. This macro is stored in the <code>LayoutContainer.twig</code> file.
+    </p>
+</div>
+
+<!-- Code example -->
+<div class="route-container">
+    <code>PluginCallisto/resources/views/PageDesign/Macros/LayoutContainer.twig</code>
+</div>
+<div class="code-container">
+{% raw %}
+<pre class="prettyprint lang-twig grey-back linenums code-example">
+{% macro show( containerName ) %}
+    {% for content in container(containerName) %}
+        {{ content.result|raw }}
+    {% endfor %}
+{% endmacro %}
+</pre>
+{% endraw %}
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+<!-- Code example end -->
+
+<h3 id="container-template">Container in the template</h3>
+<div class="api-docs-basics">
+    <p>
+        Our <b>Certified by</b> container is integrated into the template of <b>Callisto 4</b> using the following code.
+    </p>
+</div>
+
+<!-- Code example -->
+<div class="route-container">
+    <code>PluginCallisto/resources/views/PageDesign/Partials/Footer.twig</code>
+</div>
+<div class="code-container">
+{% raw %}
+<pre class="prettyprint lang-twig grey-back linenums code-example">
+{% set certifiedContent = LayoutContainer.show("PluginCallisto::Startpage.Certified") %}
+{% if certifiedContent|trim is not empty %}
+    &lt;div class="services-certificate m-b-1">
+        &lt;strong class="services-title">{{ trans("PluginCallisto::Template.generalCertifiedBy") }}&lt;/strong>
+        {{ certifiedContent }}
+    &lt;/div>
+{% endif %}
+</pre>
+{% endraw %}
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: A Twig function sets the variable <code>certifiedContent</code>. The variable is equal to the content of the <code>Startpage.Certified</code> container defined in the <code>plugin.json</code> file.<br /><br />The title of the container is displayed using the <code><span>{</span>{ trans("PluginCallisto::Template.generalCertifiedBy") }}</code> variable. The text for this variable is stored in the <code>Template.properties</code> file.<br /><br />The <code><span>{</span>{ certifiedContent }}</code> variable is used to display the content provided by our <b>Placeholder</b> plugin below the title.
+</div>
+<!-- Code example end -->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog img-horizontal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Placeholder in the <b>Certified by</b> container in the footer</h4>
+            </div>
+            <div class="modal-body">
+                <figure>
+                    <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/footer-template-container.png" />
+                </figure>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
