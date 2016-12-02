@@ -245,15 +245,28 @@ class PlaceholderContainer
             → The plugin config file will open.
         </li>
         <li>
-            Click on the <b>Containers</b> tab.
+            Click on the <b>Content</b> tab.<br />
+            → A list of all plugins that provide data will be displayed.
         </li>
         <li>
-            Activate a container in the <b>Callisto 4</b> area, e.g. the <b>Certified</b> container on the homepage.
+            Activate a container in the <b>Placeholder (Placeholder)</b> area, e.g. the <b>Certified</b> container on the homepage.
         </li>
         <li>
             <b>Save</b> the settings.
         </li>
     </ol>
+</div>
+
+<!-- Image -->
+<figure>
+    <a data-toggle="modal" data-target="#modal2" href="#">
+        <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/template-container-backend.png" />
+    </a>
+</figure>
+<!-- Image end -->
+
+<br /> <!-- required for spacing -->
+<div class="api-docs-basics">
     <p>
         After <a href="/dev-doc/basics#provisioning">provisioning</a> the plugins in <b>Productive</b> the content of our <b>Placeholder</b> plugin is displayed in the footer of our online store.
     </p>
@@ -622,8 +635,6 @@ class PlaceholderContainer
 </div>
 <!-- Code example end -->
 
-
-
 <!-- Modal -->
 <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog img-horizontal" role="document">
@@ -635,6 +646,26 @@ class PlaceholderContainer
             <div class="modal-body">
                 <figure>
                     <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/footer-template-container.png" />
+                </figure>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog img-horizontal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">The <b>Content</b> tab in the plentymarkets back end</h4>
+            </div>
+            <div class="modal-body">
+                <figure>
+                    <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/template-container-backend.png" />
                 </figure>
             </div>
             <div class="modal-footer">
