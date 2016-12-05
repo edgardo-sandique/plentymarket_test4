@@ -40,7 +40,7 @@
             <a href="/tutorials/design">Installing a template</a>
         </li>
         <li>
-            <a href="/dev-doc/basics#guide-interface">Plugin interfaces</a>
+            <a href="/dev-doc/basics#introduction-interface">Plugin interface</a>
         </li>
         <li>
             <a href="/rest-doc/introduction">REST API</a>
@@ -128,6 +128,47 @@
         </li>
     </ol>
 </div>
+
+<h2 id="ide-plugin-interface">Integrating the plugin interface into PhpStorm</h2>
+
+<div class="api-docs-basics">
+    <p>
+        Learn how to integrate the plentymarkets plugin interface into your IDE to support auto-completion.
+    </p>
+    <ol>
+        <li>
+            Clone or download the <a href="https://github.com/plentymarkets/plugin-interface" target="_blank">plentymarkets plugin interface</a>.
+        </li>
+        <li>
+            Select the <b>stable7</b> branch of the repository if you have a stable plentymarkets 7 system.<br />&rarr; If you work with a beta system, select the <b>beta7</b> branch.
+        </li>
+        <li>
+            Open PhpStorm.<br />&rarr; The <b>Welcome to PhpStorm</b> window will open.
+        </li>
+        <li>
+            Open the <b>Callisto 4</b> project.
+        </li>
+        <li>
+            In the project tree area on the left, click on <b>External Libraries</b>.<br />&rarr; A new window will open.
+        </li>
+        <li>
+            Under <b>Development environment</b>, select the <b>PHP language level</b> <b>7</b>.
+        </li>
+        <li>
+            Click on <b>Add</b> in the <b>Include path</b> area.
+        </li>
+        <li>
+            Select the <b>plentymarkets plugin interface</b> folder.
+        </li>
+        <li>
+            Click on <b>OK</b>.<br />&rarr; The plugin interface will be added as an external library.
+        </li>
+        <li>
+            Click on <b>Apply</b> and then on <b>OK</b>.<br />&rarr; The plugin interface is now a new source under <b>External Libraries » PHP</b>.
+        </li>
+    </ol>
+</div>
+
 <h2 id="gulp-callisto">Gulp tasks for Callisto 4</h2>
 
 <div class="api-docs-basics">
@@ -185,9 +226,6 @@
 
     </table>
 </div>
-
-
-
 
     <h1 id="features-core">Core features</h1>
 

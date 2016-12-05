@@ -2,6 +2,201 @@
 
 {% block Content %}
 
+<h1 id="introduction-interface">Introducing the plentymarkets plugin interface</h1>
+
+<div class="api-docs-basics">
+    <p>
+        The plentymarkets plugin interface is a collection of interfaces representing the modules and sub-modules available in plentymarkets. The plugin interface defines the core services for plentymarkets plugins and contains all necessary methods <!-- properties, events etc. --> for your plugin to communicate with plentymarkets. For each module of plentymarkets, individual interfaces are available. The documentation for these interfaces can be accessed via the <b>Interface</b> drop-down menu in the navigation bar. Learn how to <a href="/dev-doc/template-plugins#ide-plugin-interface">integrate the plentymarkets plugin interface</a> into your IDE to support auto-completion.
+    </p>
+</div>
+
+<div class="connect">
+    <div class="btn btn-primary btn-block" title="Clone or download the plentymarkets plugin interface on GitHub.">
+        <a href="https://github.com/plentymarkets/plugin-interface" target="_blank" role="button"><img class="img-responsive pull-left" src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-logo.png"  style="width: 40px;"/><span>Download on GitHub</span></a>
+    </div>
+</div>
+    
+<h2 id="guide-interface">Overview of interfaces</h2>
+<div class="api-docs-basics">
+    <p>
+        Find an overview of all available interfaces below:
+    </p>
+    <table class="table table-striped table-responsive table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>
+                Interface
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Account">Account</a>
+            </td>
+            <td>
+                Contains sub-modules for <strong>Addresses</strong> and <strong>Contacts</strong>. This interface is the counterpart to the plentymarkets CRM module.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Accounting">Accounting</a>
+            </td>
+            <td>
+                Contains a sub-module for <strong>VAT</strong> and classes for determining the VAT.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Authentication">Authentication</a>
+            </td>
+            <td>
+                Interface for user authentication.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Basket">Basket</a>
+            </td>
+            <td>
+                Contains sub-modules for determining the basket and the items within the basket.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Category">Category</a>
+            </td>
+            <td>
+                Interface with sub-modules and models for categories.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Cron">Cron</a>
+            </td>
+            <td>
+                Interface for accessing cron jobs.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/DataExchange">DataExchange</a>
+            </td>
+            <td>
+                Interface for exchanging data. Contains models for export and filters.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Document">Document</a>
+            </td>
+            <td>
+                Contains the document model.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Frontend">Frontend</a>
+            </td>
+            <td>
+                Interface with services for the online store.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Helper">Helper</a>
+            </td>
+            <td>
+                Interface with contracts, models and services for helpers.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Item">Item</a>
+            </td>
+            <td>
+                Contains sub-modules for attributes, availability, item and variation data, manufacturers, shipping and units.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/ItemSet">ItemSet</a>
+            </td>
+            <td>
+                Interface for item sets. Contains methods to get and create item sets and item set components.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Market">Market</a>
+            </td>
+            <td>
+                Contains the sub-module <strong>Ebay</strong> for fitments and fitment items.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Order">Order</a>
+            </td>
+            <td>
+                Contains contracts and models for orders and order items as well as the sub-modules <strong>Currency</strong>, <strong>Payment</strong> and <strong>Shipping</strong>. This interface is the counterpart to the plentymarkets order module.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Payment">Payment</a>
+            </td>
+            <td>
+                Contains the sub-modules for payment methods, the payment history, as well as contracts and models for payments and payment properties.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/StockManagement">StockManagement</a>
+            </td>
+            <td>
+                Contains contracts and models for stock management and storage data.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/System">System</a>
+            </td>
+            <td>
+                Contains the <strong>Webstore</strong> model.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Template">Template</a>
+            </td>
+            <td>
+                Contains contracts and models for the design and design configuration.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Ticket">Ticket</a>
+            </td>
+            <td>
+                Contains contracts and models related to the plentymarkets ticket system.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Miscellaneous">Miscellaneous</a>
+            </td>
+            <td>
+                Contains interfaces that cannot be organised in the listed interfaces.
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 <h1 id="plugin-structure">Plugin structure</h1>
 <div class="api-docs-basics">
     <p>
@@ -393,187 +588,7 @@ function getTitle(ConfigRepository $config):string
       </li>
     </ul>
 </div>
-<h2 id="guide-interface">Plugin interfaces</h2>
 
-<div class="api-docs-basics">
-    <p>
-        Interfaces define the core services for plentymarkets plugins. Interfaces contain all necessary methods <!-- properties, events etc. --> for your plugin to communicate with plentymarkets. For each module of plentymarkets, individual interfaces are available:
-    </p>
-    <table class="table table-striped table-responsive table-bordered table-hover">
-      <thead>
-        <tr>
-        <th>
-          Interface
-        </th>
-        <th>
-          Description
-        </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <a href="{{ url() }}/api-doc/Account">Account</a>
-          </td>
-          <td>
-            Contains sub-modules for <strong>Addresses</strong> and <strong>Contacts</strong>. This interface is the counterpart to the plentymarkets CRM module.
-          </td>
-        </tr>
-      <tr>
-        <td>
-          <a href="{{ url() }}/api-doc/Accounting">Accounting</a>
-        </td>
-        <td>
-          Contains a sub-module for <strong>VAT</strong> and classes for determining the VAT.
-        </td>
-      </tr>
-      <tr>
-      <td>
-        <a href="{{ url() }}/api-doc/Authentication">Authentication</a>
-      </td>
-      <td>
-        Interface for user authentication.
-      </td>
-      </tr>
-      <tr>
-      <td>
-        <a href="{{ url() }}/api-doc/Basket">Basket</a>
-      </td>
-      <td>
-        Contains sub-modules for determining the basket and the items within the basket.
-      </td>
-      </tr>
-      <tr>
-      <td>
-        <a href="{{ url() }}/api-doc/Category">Category</a>
-      </td>
-      <td>
-        Interface with sub-modules and models for categories.
-      </td>
-      </tr>
-        <tr>
-            <td>
-                <a href="{{ url() }}/api-doc/Cron">Cron</a>
-            </td>
-            <td>
-                Interface for accessing cron jobs.
-            </td>
-        </tr>
-      <tr>
-      <td>
-        <a href="{{ url() }}/api-doc/DataExchange">DataExchange</a>
-      </td>
-      <td>
-        Interface for exchanging data. Contains models for export and filters.
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/Document">Document</a>
-      </td>
-      <td>
-        Contains the document model.
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/Frontend">Frontend</a>
-      </td>
-      <td>
-        Interface with services for the online store.
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/Helper">Helper</a>
-      </td>
-      <td>
-        Interface with contracts, models and services for helpers.
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/Item">Item</a>
-      </td>
-      <td>
-        Contains sub-modules for attributes, availability, item and variation data, manufacturers, shipping and units.
-      </td>
-      </tr>
-        <tr>
-            <td>
-                <a href="{{ url() }}/api-doc/ItemSet">ItemSet</a>
-            </td>
-            <td>
-                Interface for item sets. Contains methods to get and create item sets and item set components.
-            </td>
-        </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/Market">Market</a>
-      </td>
-      <td>
-        Contains the sub-module <strong>Ebay</strong> for fitments and fitment items.
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/Order">Order</a>
-      </td>
-      <td>
-        Contains contracts and models for orders and order items as well as the sub-modules <strong>Currency</strong>, <strong>Payment</strong> and <strong>Shipping</strong>. This interface is the counterpart to the plentymarkets order module.
-      </td>
-      </tr>
-        <tr>
-            <td>
-                <a href="{{ url() }}/api-doc/Payment">Payment</a>
-            </td>
-            <td>
-                Contains the sub-modules for payment methods, the payment history, as well as contracts and models for payments and payment properties.
-            </td>
-        </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/StockManagement">StockManagement</a>
-      </td>
-      <td>
-        Contains contracts and models for stock management and storage data.
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/System">System</a>
-      </td>
-      <td>
-        Contains the <strong>Webstore</strong> model.
-      </td>
-      </tr>
-      <tr>
-      <td>
-      <a href="{{ url() }}/api-doc/Template">Template</a>
-      </td>
-      <td>
-        Contains contracts and models for the design and design configuration.
-      </td>
-      </tr>
-        <tr>
-            <td>
-                <a href="{{ url() }}/api-doc/Ticket">Ticket</a>
-            </td>
-            <td>
-                Contains contracts and models related to the plentymarkets ticket system.
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="{{ url() }}/api-doc/Miscellaneous">Miscellaneous</a>
-            </td>
-            <td>
-                Contains interfaces that cannot be organised in the listed interfaces.
-            </td>
-        </tr>
-    </tbody>
-    </table>
-</div>
 
 <h1 id="plugin-provisioning">Plugin provisioning</h1>
 
