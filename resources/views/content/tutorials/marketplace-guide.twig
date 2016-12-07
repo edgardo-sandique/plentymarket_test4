@@ -1,0 +1,99 @@
+{% extends 'PlentyPluginShowcase::templates.ExamplePage' %}
+
+{% block Content %}
+
+<h1 id="marketplace-introduction">Offering plugins on plentyMarketplace</h1>
+<div class="api-docs-basics">
+    <p>
+        This guide will give you an overview of all the requirements a plugin must fulfil to be offered on <a href="marketplace.plentymarkets.com" target="_blank">plentyMarketplace</a>. Furthermore, you will find step-by-step instructions about the process of uploading plugins to plentyMarketplace.
+    </p>
+</div>
+<h2 id="marketplace-requirements">Plugin requirements</h2>
+<div class="api-docs-basics">
+    <p>
+        A plugin must fulfil certain requirements in order to be offered on plentyMarketplace. The plugin must have a valid <code>plugin.json</code> file. It also must contain a <b>meta</b> folder that includes all necessary files.
+    </p>
+</div>
+
+<h3 id="marketplace-pluginjson">plugin.json</h3>
+<div class="api-docs-basics">
+    <p>
+        The <code>plugin.json</code> file is the essential part for plugin provisioning. It must contain certain information, such as the plugin name, the version etc. Find an example of a valid <code>plugin.json</code> below.
+    </p>
+</div>
+
+<div class="route-container">
+    <code>Plugin/plugin.json</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-json grey-back linenums">
+{
+    "name"              : "PluginCeres",
+    "version"           : "1.0.0",
+    "price"             : "0",
+    "description"       : "The official plentymarkets template plugin for plentymarkets online stores",
+    "author"            : "Your name",
+    "license"           : "The license",
+    "keywords"          : ["plentymarkets", "plugins", "template"],
+    "type"              : "template",
+    "namespace"         : "Ceres",
+    "serviceProvider"   : "Ceres\\Providers\\TemplateServiceProvider",
+    "dataProviders"     : [],
+    "containers"        : [],
+    "javaScriptFiles"   : [],
+    "require"           : [],
+    "runOnBuild"        : []
+}
+</pre>
+</div>
+<div class="api-docs-basics">
+    <table class="table table-striped table-responsive table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>version</td>
+            <td>The version of your plugin. We recommend to use <a href="http://semver.org/" target="_blank">semantic versioning</a>.</td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>The name of your plugin</td>
+        </tr>
+        <tr>
+            <td>description</td>
+            <td>The description of your plugin</td>
+        </tr>
+        <tr>
+            <td>author</td>
+            <td>The author of the plugin</td>
+        </tr>
+        <tr>
+            <td>keywords</td>
+            <td>An array of keywords describing your plugin</td>
+        </tr>
+        <tr>
+            <td>type</td>
+            <td>The type of your plugin. Use "<i>export</i>" for plugins defining new export formats or "<i>template</i>" for frontend plugins.</td>
+        </tr>
+        <tr>
+            <td>require</td>
+            <td>An array of dependencies of other plugins including required version, e.g. <i>PlentyPluginShowcase-1.0.0</i></td>
+        </tr>
+        <tr>
+            <td>namespace</td>
+            <td>The root namespace of your plugin</td>
+        </tr>
+        <tr>
+            <td>serviceProvider</td>
+            <td>The service provider to hook-up</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
