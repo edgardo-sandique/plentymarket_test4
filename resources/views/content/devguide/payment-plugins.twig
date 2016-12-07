@@ -5,7 +5,7 @@
 <h1 id="payment-introduction">Introducing payment plugins</h1>
 <div class="api-docs-basics">
     <p>
-        On this page, you will find an overview of relevant information about payment plugins. In the first chapter, we will explain the workflow and interaction of payment plugins with the plentymarkets <a href="https://github.com/plentymarkets/callisto-4" target="_blank">Callisto 4</a> and <a href="https://github.com/plentymarkets/layout-core-4" target="_blank">LayoutCore</a> plugins. In the second chapter, you will find a short description for each plugin feature that you can use to create your own payment plugins.
+        On this page, you will find an overview of relevant information about payment plugins. In the first chapter, we will explain the workflow and interaction of payment plugins with the plentymarkets <a href="https://github.com/plentymarkets/plugin-ceres" target="_blank">Ceres</a> and <a href="https://github.com/plentymarkets/plugin-io" target="_blank">IO</a> plugins. In the second chapter, you will find a short description for each plugin feature that you can use to create your own payment plugins.
     </p>
 </div>
 
@@ -69,7 +69,7 @@
         </tr>
         <tr>
             <td><b>continue</b></td>
-            <td>The payment will be processed by the <b>LayoutCore</b> plugin. Payment plugins that do not require specific code for displaying own content in the template or redirecting to a payment provider can use this type.</td>
+            <td>The payment will be processed by the <b>IO</b> plugin. Payment plugins that do not require specific code for displaying own content in the template or redirecting to a payment provider can use this type.</td>
         </tr>
         <tr>
             <td><b>externalContentUrl</b>; <br /><b>htmlContent</b></td>
@@ -89,7 +89,7 @@
     <p>The order will be created. This can be done in two different ways:</p>
     <ul>
         <li>
-            <b>LayoutCore:</b> An order will be created by the <b>LayoutCore</b> plugin and the <code>executePayment</code> event is triggered in the <b>LayoutCore</b> plugin. If no order is created, an error message will be displayed on the <b>Checkout</b> page.
+            <b>IO:</b> An order will be created by the <b>IO</b> plugin and the <code>executePayment</code> event is triggered in the <b>IO</b> plugin. If no order is created, an error message will be displayed on the <b>Checkout</b> page.
         </li>
         <li>
             <b>Payment plugin:</b> An order will be created by the payment plugin and the <code>executePayment</code> event is triggered in the payment plugin plugin. If no order is created, an error message will be displayed on the <b>Checkout</b> page.
@@ -783,21 +783,21 @@ class PayPalExpressButtonDataProvider
 </div>
 
 <div class="route-container">
-    <code>PluginCallisto/resources/views/Basket/Components/BasketPreview.twig</code>
+    <code>PluginCeres/resources/views/Basket/Components/BasketPreview.twig</code>
 </div>
 
 <div class="code-container">
 {% raw %}
 <pre class="prettyprint lang-twig grey-back linenums code-example">
 &lt;div class="col-xs-12 col-sm-6">
-{{ LayoutContainer.show("PluginCallisto::BasketPreview.BeforeCheckoutButton") }}
-    &lt;a v-resource-if:user="isLoggedIn" href="/checkout" class="btn btn-primary btn-block checkOutBtn" title="{{ trans("PluginCallisto::Callisto.basketToCheckout") }}">
-    {{ trans("PluginCallisto::Callisto.basketToCheckout") }} &lt;i class="fa fa-arrow-right" aria-hidden="true">&lt;/i>
+{{ LayoutContainer.show("PluginCeres::BasketPreview.BeforeCheckoutButton") }}
+    &lt;a v-resource-if:user="isLoggedIn" href="/checkout" class="btn btn-primary btn-block checkOutBtn" title="{{ trans("PluginCeres::Ceres.basketToCheckout") }}">
+    {{ trans("PluginCeres::Ceres.basketToCheckout") }} &lt;i class="fa fa-arrow-right" aria-hidden="true">&lt;/i>
     &lt;/a>
-    &lt;a v-resource-if:user="!isLoggedIn" href="/login" class="btn btn-primary btn-block checkOutBtn" title="{{ trans("PluginCallisto::Callisto.basketToCheckout") }}">
-    {{ trans("PluginCallisto::Callisto.basketToCheckout") }} &lt;i class="fa fa-arrow-right" aria-hidden="true">&lt;/i>
+    &lt;a v-resource-if:user="!isLoggedIn" href="/login" class="btn btn-primary btn-block checkOutBtn" title="{{ trans("PluginCeres::Ceres.basketToCheckout") }}">
+    {{ trans("PluginCeres::Ceres.basketToCheckout") }} &lt;i class="fa fa-arrow-right" aria-hidden="true">&lt;/i>
     &lt;/a>
-    {{ LayoutContainer.show("PluginCallisto::BasketPreview.AfterCheckoutButton") }}
+    {{ LayoutContainer.show("PluginCeres::BasketPreview.AfterCheckoutButton") }}
 &lt;/div>
 </pre>
 {% endraw %}
@@ -810,7 +810,7 @@ class PayPalExpressButtonDataProvider
 
 <div class="api-docs-basics">
     <p>
-        In the Callisto 4 template, the PayPal Express button will be displayed below the normal <b>Go to checkout</b> button.
+        In the Ceres template, the PayPal Express button will be displayed below the normal <b>Go to checkout</b> button.
     </p>
     <figure>
         <a data-toggle="modal" data-target="#modal4" href="#">

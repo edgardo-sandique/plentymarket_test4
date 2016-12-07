@@ -46,21 +46,21 @@
             <a href="/rest-doc/introduction">REST API</a>
         </li>
         <li>
-            Get the complete code of the Callisto 4 plugin developed by plentymarkets:
+            Get the complete code of the Ceres plugin developed by plentymarkets:
         </li>
     </ul>
 </div>
 
 <div class="connect">
     <div class="btn btn-primary btn-block" title="Clone or download this plentymarkets plugin on Github.">
-        <a href="https://github.com/plentymarkets/callisto-4" target="_blank" role="button"><img class="img-responsive pull-left" src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-logo.png"  style="width: 40px;"/><span>Download on GitHub</span></a>
+        <a href="https://github.com/plentymarkets/plugin-ceres" target="_blank" role="button"><img class="img-responsive pull-left" src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-logo.png"  style="width: 40px;"/><span>Download on GitHub</span></a>
     </div>
 </div>
 
 <h1 id="ide-setup-template">Setting up an IDE for template plugins</h1>
 <div class="api-docs-basics">
     <p>
-        We recommend using <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PhpStorm</a> for developing Callisto 4. PhpStorm is a comprehensive IDE which supports all PHP language features. PhpStorm also includes a wide range of leading edge front-end technologies, such as CSS, Sass, Javascript, as well as Twig syntax highlighting. PhpStorm supports <a href="http://eslint.org/" target="_blank">ESLint</a>, a linting utility plugin for JavaScript.
+        We recommend using <a href="https://www.jetbrains.com/phpstorm/" target="_blank">PhpStorm</a> for developing Ceres. PhpStorm is a comprehensive IDE which supports all PHP language features. PhpStorm also includes a wide range of leading edge front-end technologies, such as CSS, Sass, Javascript, as well as Twig syntax highlighting. PhpStorm supports <a href="http://eslint.org/" target="_blank">ESLint</a>, a linting utility plugin for JavaScript.
     </p>
 </div>
 <h2 id="install-nodejs">Installing Node.js</h2>
@@ -97,10 +97,10 @@
     </ol>
 </div>
 
-<h2 id="config-phpstorm-callisto">Configuring PhpStorm for Callisto 4</h2>
+<h2 id="config-phpstorm-ceres">Configuring PhpStorm for Ceres</h2>
 
 <div class="api-docs-basics">
-    <p>Clone or download the <a href="https://github.com/plentymarkets/callisto-4" target="_blank">Callisto 4</a> and <a href="https://github.com/plentymarkets/layout-core-4" target="_blank">LayoutCore</a> plugins, e.g. with <a href="https://desktop.github.com/" target="_blank">GitHub Desktop</a> or <a href="https://www.sourcetreeapp.com/" target="_blank">SourceTree</a>.</p>
+    <p>Clone or download the <a href="https://github.com/plentymarkets/plugin-ceres" target="_blank">Ceres</a> and <a href="https://github.com/plentymarkets/plugin-io" target="_blank">IO</a> plugins, e.g. with <a href="https://desktop.github.com/" target="_blank">GitHub Desktop</a> or <a href="https://www.sourcetreeapp.com/" target="_blank">SourceTree</a>.</p>
     <ol>
         <li>
             Open PhpStorm.<br />&rarr; The <b>Welcome to PhpStorm</b> window will open.
@@ -109,10 +109,10 @@
             Click on <b>Open</b>.<br />&rarr; The <b>Open File or Project</b> window will open.
         </li>
         <li>
-            Select your <b>Callisto 4</b> folder and click <b>OK</b>.
+            Select your <b>Ceres</b> folder and click <b>OK</b>.
         </li>
         <li>
-            Open the terminal and go to the Callisto project folder.<br />&rarr; When using the built-in terminal of PhpStorm, you are already in the right project folder.
+            Open the terminal and go to the Ceres project folder.<br />&rarr; When using the built-in terminal of PhpStorm, you are already in the right project folder.
         </li>
         <li>
             Run <code>npm install</code> in the terminal.<br />&rarr; All dependencies that are defined in the <code>package.json</code> file are installed.
@@ -124,7 +124,7 @@
             Go to <b>Languages & Frameworks » JavaScript » Code Quality Tools » ESLint</b>.
         </li>
         <li>
-            <b>Enable</b> ESLint for the Callisto project.
+            <b>Enable</b> ESLint for the Ceres project.
         </li>
     </ol>
 </div>
@@ -146,7 +146,7 @@
             Open PhpStorm.<br />&rarr; The <b>Welcome to PhpStorm</b> window will open.
         </li>
         <li>
-            Open the <b>Callisto 4</b> project.
+            Open the <b>Ceres</b> project.
         </li>
         <li>
             In the project tree area on the left, click on <b>External Libraries</b>.<br />&rarr; A new window will open.
@@ -169,10 +169,10 @@
     </ol>
 </div>
 
-<h2 id="gulp-callisto">Gulp tasks for Callisto 4</h2>
+<h2 id="gulp-ceres">Gulp tasks for Ceres</h2>
 
 <div class="api-docs-basics">
-    <p>Gulp is a streaming build system that helps you automating your JavaScript tasks. The following Gulp tasks are available in the Callisto 4 project.</p>
+    <p>Gulp is a streaming build system that helps you automating your JavaScript tasks. The following Gulp tasks are available in the Ceres project.</p>
     <table class="table table-striped table-responsive table-bordered table-hover">
         <thead>
         <tr>
@@ -231,11 +231,11 @@
 
 <div class="api-docs-basics">
     <p>
-        Let's discuss the core structure of a plugin based on the <strong>src</strong> folder of the plentymarkets LayoutCore plugin and the sub-folders and files contained in this folder.
+        Let's discuss the core structure of a plugin based on the <strong>src</strong> folder of the plentymarkets IO plugin and the sub-folders and files contained in this folder.
     </p>
 </div>
 
-<h2 id="layoutcore-api">API</h2>
+<h2 id="io-api">API</h2>
 
 <div class="api-docs-basics">
     <p>
@@ -244,25 +244,25 @@
 </div>
 
 <div class="route-container">
-    <code>PluginLayoutCore/src/Api/Resources/ShippingResource.php</code>
+    <code>PluginIO/src/Api/Resources/ShippingResource.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
-namespace LayoutCore\Api\Resources;
+namespace IO\Api\Resources;
 
 use Symfony\Component\HttpFoundation\Response as BaseResponse;
 use Plenty\Plugin\Http\Response;
 use Plenty\Plugin\Http\Request;
-use LayoutCore\Api\ApiResource;
-use LayoutCore\Api\ApiResponse;
-use LayoutCore\Api\ResponseCode;
-use LayoutCore\Services\ShippingService;
+use IO\Api\ApiResource;
+use IO\Api\ApiResponse;
+use IO\Api\ResponseCode;
+use IO\Services\ShippingService;
 
 /**
  * Class ShippingResource
- * @package LayoutCore\Api\Resources
+ * @package IO\Api\Resources
  */
 class ShippingResource extends ApiResource
 {
@@ -301,7 +301,7 @@ class ShippingResource extends ApiResource
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
-<h2 id="layoutcore-builder">Builder</h2>
+<h2 id="io-builder">Builder</h2>
 
 <div class="api-docs-basics">
     <p>
@@ -310,15 +310,15 @@ class ShippingResource extends ApiResource
 </div>
 
 <div class="route-container">
-    <code>PluginLayoutCore/src/Builder/Item/ItemColumnBuilder.php</code>
+    <code>PluginIO/src/Builder/Item/ItemColumnBuilder.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
-namespace LayoutCore\Builder\Item;
+namespace IO\Builder\Item;
 
-use LayoutCore\Builder\Item\Fields\ItemBaseFields;
+use IO\Builder\Item\Fields\ItemBaseFields;
 
 ...
 
@@ -364,13 +364,13 @@ class ItemColumnBuilder
 </div>
 
 <div class="route-container">
-    <code>PluginLayoutCore/src/Services/ItemService.php</code>
+    <code>PluginIO/src/Services/ItemService.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
-namespace LayoutCore\Services;
+namespace IO\Services;
 
 ...
 
@@ -387,7 +387,7 @@ namespace LayoutCore\Services;
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
-<h2 id="layoutcore-constants">Constants</h2>
+<h2 id="io-constants">Constants</h2>
 
 <div class="api-docs-basics">
     <p>
@@ -395,24 +395,24 @@ namespace LayoutCore\Services;
     </p>
 </div>
 
-<h2 id="layoutcore-controllers">Controllers</h2>
+<h2 id="io-controllers">Controllers</h2>
 
 <div class="api-docs-basics">
     <p>
-        Controllers are the interface between the core and the design. The sub-folder <strong>Controllers</strong> contains the different controllers necessary to render Callisto 4. The file <code>LoginController.php</code>, for example, contains the <code>showLogin</code> function for rendering the <code>login.twig</code> template.
+        Controllers are the interface between the core and the design. The sub-folder <strong>Controllers</strong> contains the different controllers necessary to render Ceres. The file <code>LoginController.php</code>, for example, contains the <code>showLogin</code> function for rendering the <code>login.twig</code> template.
     </p>
 </div>
 
 <div class="route-container">
-    <code>PluginLayoutCore/src/Controllers/LoginController.php</code>
+    <code>PluginIO/src/Controllers/LoginController.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
-namespace LayoutCore\Controllers;
+namespace IO\Controllers;
 
-use LayoutCore\Helper\TemplateContainer;
+use IO\Helper\TemplateContainer;
 
 class LoginController extends LayoutController
 {
@@ -430,16 +430,16 @@ class LoginController extends LayoutController
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
-<h2 id="layoutcore-extensions">Extensions</h2>
+<h2 id="io-extensions">Extensions</h2>
 
 <div class="api-docs-basics">
     <p>
-        The <strong>Extensions</strong> folder stores components that extend the functionality of Twig. <a href="http://twig.sensiolabs.org/doc/advanced_legacy.html" target="_blank">Extensions</a> can be operators, global variables, functions, etc. Twig also allows you to <a href="http://twig.sensiolabs.org/doc/advanced.html#filters" target="_blank">create your own filters</a>. <code>TwigLayoutCoreExtension.php</code>, for example, uses filters stored in the <strong>Filters</strong> sub-folder. <code>NumberFormatFilter.php</code> provides methods for formatting numbers and currencies that can be included in twig templates.
+        The <strong>Extensions</strong> folder stores components that extend the functionality of Twig. <a href="http://twig.sensiolabs.org/doc/advanced_legacy.html" target="_blank">Extensions</a> can be operators, global variables, functions, etc. Twig also allows you to <a href="http://twig.sensiolabs.org/doc/advanced.html#filters" target="_blank">create your own filters</a>. <code>TwigIOExtension.php</code>, for example, uses filters stored in the <strong>Filters</strong> sub-folder. <code>NumberFormatFilter.php</code> provides methods for formatting numbers and currencies that can be included in twig templates.
     </p>
 </div>
 
 <div class="route-container">
-    <code>PluginLayoutCore/src/Extensions/Filters/NumberFormatFilter.php</code>
+    <code>PluginIO/src/Extensions/Filters/NumberFormatFilter.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
@@ -457,10 +457,10 @@ public function formatCurrency(float $value, string $currencyISO):string
         $formatter->setSymbol(\NumberFormatter::CURRENCY_SYMBOL, $currencyISO);
     }
 
-    if($this->config->get('PluginLayoutCore.format.use_locale_currency_format') === "0")
+    if($this->config->get('PluginIO.format.use_locale_currency_format') === "0")
     {
-        $decimal_separator   = $this->config->get('PluginLayoutCore.format.separator_decimal');
-        $thousands_separator = $this->config->get('PluginLayoutCore.format.separator_thousands');
+        $decimal_separator   = $this->config->get('PluginIO.format.separator_decimal');
+        $thousands_separator = $this->config->get('PluginIO.format.separator_thousands');
         $formatter->setSymbol(\NumberFormatter::MONETARY_SEPARATOR_SYMBOL, $decimal_separator);
         $formatter->setSymbol(\NumberFormatter::MONETARY_GROUPING_SEPARATOR_SYMBOL, $thousands_separator);
     }
@@ -478,13 +478,13 @@ public function formatCurrency(float $value, string $currencyISO):string
 
 <div class="code-container">
 {% raw %}
-<pre class="prettyprint lang-twig grey-back">
+<pre class="prettyprint lang-twig grey-back code-example">
 {{item.price | formatCurrency ("EUR")}}
 </pre>
 {% endraw %}
 </div>
 
-<h2 id="layoutcore-guards">Guards</h2>
+<h2 id="io-guards">Guards</h2>
 
 <div class="api-docs-basics">
     <p>
@@ -492,15 +492,15 @@ public function formatCurrency(float $value, string $currencyISO):string
     </p>
 </div>
 
-<h2 id="layoutcore-helper">Helper</h2>
+<h2 id="io-helper">Helper</h2>
 
 <div class="api-docs-basics">
     <p>
-        The <strong>Helper</strong> folder contains helper classes. <code>TemplateContainer.php</code>, for example, is a class that controls the data exchange between the Callisto 4 plugin and the LayoutCore plugin.
+        The <strong>Helper</strong> folder contains helper classes. <code>TemplateContainer.php</code>, for example, is a class that controls the data exchange between the Ceres plugin and the IO plugin.
     </p>
 </div>
 
-<h2 id="layoutcore-providers">Providers</h2>
+<h2 id="io-providers">Providers</h2>
 
 <div class="api-docs-basics">
     <p>
@@ -508,15 +508,15 @@ public function formatCurrency(float $value, string $currencyISO):string
     </p>
 </div>
 
-<h3 id="layoutcore-serviceprovider">Service Providers</h3>
+<h3 id="io-serviceprovider">Service Providers</h3>
 
 <div class="api-docs-basics">
     <p>
-        Figuratively speaking, the service provider is the starting point of the plugin. Every plugin must have a service provider, which is needed to register the route service provider. All service providers extend the <code>Plenty\Plugin\ServiceProvider</code> class. In the case of Callisto 4, the service provider is also used to boot the design and add various extensions.
+        Figuratively speaking, the service provider is the starting point of the plugin. Every plugin must have a service provider, which is needed to register the route service provider. All service providers extend the <code>Plenty\Plugin\ServiceProvider</code> class. In the case of Ceres, the service provider is also used to boot the design and add various extensions.
     </p>
 </div>
 
-<h3 id="layoutcore-routeserviceprovider">Route Service Providers</h3>
+<h3 id="io-routeserviceprovider">Route Service Providers</h3>
 
 <div class="api-docs-basics">
     <p>
@@ -526,13 +526,13 @@ public function formatCurrency(float $value, string $currencyISO):string
     </p>
 </div>
 <div class="route-container">
-    <code>PluginLayoutCore/src/Providers/LayoutCoreRouteServiceProvider.php</code>
+    <code>PluginIO/src/Providers/IORouteServiceProvider.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
-namespace LayoutCore\Providers;
+namespace IO\Providers;
 
 
 use Plenty\Plugin\RouteServiceProvider;
@@ -540,7 +540,7 @@ use Plenty\Plugin\Routing\Router;
 use Plenty\Plugin\Routing\ApiRouter;
 use Plenty\Plugin\Templates\Twig;
 
-class LayoutCoreRouteServiceProvider extends RouteServiceProvider
+class IORouteServiceProvider extends RouteServiceProvider
 
 ...
 
@@ -549,7 +549,7 @@ class LayoutCoreRouteServiceProvider extends RouteServiceProvider
     {
       ...
 
-      $router->get('login', 'LayoutCore\Controllers\LoginController@showLogin');
+      $router->get('login', 'IO\Controllers\LoginController@showLogin');
 
       ...
 
@@ -559,7 +559,7 @@ class LayoutCoreRouteServiceProvider extends RouteServiceProvider
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
-<h2 id="layoutcore-services">Services</h2>
+<h2 id="io-services">Services</h2>
 
 <div class="api-docs-basics">
     <p>
@@ -568,7 +568,7 @@ class LayoutCoreRouteServiceProvider extends RouteServiceProvider
 </div>
 
 <div class="route-container">
-    <code>PluginLayoutCore/src/Services/BasketService.php</code>
+    <code>PluginIO/src/Services/BasketService.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
@@ -595,25 +595,25 @@ public function getBasket():Basket
 </div>
 
 <div class="route-container">
-    <code>PluginLayoutCore/src/Api/Resources/BasketResource.php</code>
+    <code>PluginIO/src/Api/Resources/BasketResource.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
-namespace LayoutCore\Api\Resources;
+namespace IO\Api\Resources;
 
 use Symfony\Component\HttpFoundation\Response as BaseResponse;
 use Plenty\Plugin\Http\Response;
 use Plenty\Plugin\Http\Request;
-use LayoutCore\Api\ApiResource;
-use LayoutCore\Api\ApiResponse;
-use LayoutCore\Api\ResponseCode;
-use LayoutCore\Services\BasketService;
+use IO\Api\ApiResource;
+use IO\Api\ApiResponse;
+use IO\Api\ResponseCode;
+use IO\Services\BasketService;
 
 /**
  * Class BasketResource
- * @package LayoutCore\Api\Resources
+ * @package IO\Api\Resources
  */
 class BasketResource extends ApiResource
 {
@@ -652,7 +652,7 @@ class BasketResource extends ApiResource
 
 <div class="api-docs-basics">
     <p>
-        We will explain the design structure of a plugin based on the <strong>resources</strong> folder of the plentymarkets Callisto 4 plugin and its sub-folders.
+        We will explain the design structure of a plugin based on the <strong>resources</strong> folder of the plentymarkets Ceres plugin and its sub-folders.
     </p>
 </div>
 
@@ -684,15 +684,15 @@ class BasketResource extends ApiResource
 
 <div class="api-docs-basics">
     <p>
-        This is the folder for JavaScript files. The <strong>js</strong> folder contains the <strong>dist</strong> and <strong>src</strong> sub-folders. The source files are organised in the <strong>src</strong> folder. These source files are required for building <code>plugin-callisto-app.js</code> - the main JavaScript file, which is included in <code>PageDesign.twig</code>.
+        This is the folder for JavaScript files. The <strong>js</strong> folder contains the <strong>dist</strong> and <strong>src</strong> sub-folders. The source files are organised in the <strong>src</strong> folder. These source files are required for building <code>plugin-ceres-app.js</code> - the main JavaScript file, which is included in <code>PageDesign.twig</code>.
     </p>
 </div>
 <div class="route-container">
-    <code>PluginCallisto/resources/views/PageDesign.twig</code>
+    <code>PluginCeres/resources/views/PageDesign.twig</code>
 </div>
 <div class="code-container">
     {% raw %}
-        <pre class="prettyprint lang-twig grey-back"><span><</span>script src="{{ plugin_path('PluginCallisto') }}/js/dist/plugin-callisto-app.js"><span><</span>/script></pre>
+        <pre class="prettyprint lang-twig grey-back code-example"><span><</span>script src="{{ plugin_path('PluginCeres') }}/js/dist/plugin-ceres-app.js"><span><</span>/script></pre>
     {% endraw %}
 </div>
 
@@ -701,8 +701,9 @@ class BasketResource extends ApiResource
         The sub-folders <strong>app</strong> and <strong>libraries</strong> are located in <strong>src</strong>. All Vue.js components are saved in <strong>app/components</strong>. Related Twig templates can be found in the <strong>resources/views/templates</strong> folder. <a href="https://vuejs.org/guide/custom-directive.html" target="_blank">Custom Vue.js directives</a>, e.g. the <code>Logout.js</code>, can be found in the <strong>app/directives</strong> folders.
     </p>
 </div>
+
 <div class="route-container">
-    <code>PluginCallisto/resources/js/src/app/directives/Logout.js</code>
+    <code>PluginCeres/resources/js/src/app/directives/Logout.js</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-js grey-back linenums code-example">
@@ -738,7 +739,7 @@ var NotificationService = require('services/NotificationService');
 </div>
 
 <div class="route-container">
-    <code>PluginCallisto/resources/js/src/app/services/ApiService.js</code>
+    <code>PluginCeres/resources/js/src/app/services/ApiService.js</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-js grey-back linenums code-example">
@@ -775,7 +776,7 @@ module.exports = (function($) {
 
 <div class="api-docs-basics">
     <p>
-        The <b>lang</b> folder contains sub-folders for translations in different languages. Translated strings for the Callisto 4 design are saved in key-value pairs in the <code>Callisto.properties</code> file. Keys have prefixes that help you associating the keys with the respective templates:
+        The <b>lang</b> folder contains sub-folders for translations in different languages. Translated strings for the Ceres design are saved in key-value pairs in the <code>Template.properties</code> file. Keys have prefixes that help you associating the keys with the respective templates:
     </p>
     <table class="table table-striped table-responsive table-bordered table-hover">
         <thead>
@@ -830,7 +831,7 @@ module.exports = (function($) {
 
 <div class="api-docs-basics">
     <p>
-        In this folder, the <code>PluginCallisto.scss</code> file imports all the other SCSS files stored in sub-folders. A grunt task generates the <code>plugin-callisto.css</code> file that can be found in the <strong>resources/css</strong> folder.
+        In this folder, the <code>PluginCeres.scss</code> file imports all the other SCSS files stored in sub-folders. A grunt task generates the <code>plugin-ceres.css</code> file that can be found in the <strong>resources/css</strong> folder.
     </p>
 </div>
 
