@@ -96,4 +96,62 @@
     </table>
 </div>
 
+<h3 id="marketplace-metadata">Meta data</h3>
+<div class="api-docs-basics">
+    <p>
+        The <b>meta</b> folder contains files that are needed to display your plugin as an item in plentyMarketplace. Preview images, icons for the plugin and the author, as well as the plugin documentation is saved in the <b>meta</b> folder.
+    </p>
+</div>
+
+<div class="api-docs-basics">
+    <table class="table table-striped table-responsive table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>File</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>version</td>
+            <td>The version of your plugin. We recommend to use <a href="http://semver.org/" target="_blank">semantic versioning</a>.</td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>The name of your plugin</td>
+        </tr>
+        <tr>
+            <td>description</td>
+            <td>The description of your plugin</td>
+        </tr>
+        <tr>
+            <td>author</td>
+            <td>The author of the plugin</td>
+        </tr>
+        <tr>
+            <td>keywords</td>
+            <td>An array of keywords describing your plugin</td>
+        </tr>
+        <tr>
+            <td>type</td>
+            <td>The type of your plugin. Use "<i>export</i>" for plugins defining new export formats or "<i>template</i>" for frontend plugins.</td>
+        </tr>
+        <tr>
+            <td>require</td>
+            <td>An array of dependencies of other plugins including required version, e.g. <i>PlentyPluginShowcase-1.0.0</i></td>
+        </tr>
+        <tr>
+            <td>namespace</td>
+            <td>The root namespace of your plugin</td>
+        </tr>
+        <tr>
+            <td>serviceProvider</td>
+            <td>The service provider to hook-up</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
 {% endblock %}
