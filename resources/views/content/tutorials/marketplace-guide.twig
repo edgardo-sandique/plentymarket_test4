@@ -11,7 +11,7 @@
 <h2 id="marketplace-requirements">Plugin requirements</h2>
 <div class="api-docs-basics">
     <p>
-        A plugin must fulfil certain requirements in order to be offered on plentyMarketplace. The plugin must have a valid <code>plugin.json</code> file. It also must contain a <b>meta</b> folder that includes all necessary files.
+        A plugin must fulfil certain requirements in order to be offered on plentyMarketplace. The plugin must have a valid <code>plugin.json</code> file. It also must have a <code>CHANGELOG.md</code> file with all the changes made to the plugin. Furthermore, the plugin must contain a <b>meta</b> folder that includes multiple required files.
     </p>
 </div>
 
@@ -28,20 +28,26 @@
 <div class="code-container">
 <pre class="prettyprint lang-json grey-back linenums">
 {
-    "name"              : "PluginCeres",
-    "version"           : "1.0.0",
-    "price"             : "0",
-    "description"       : "The official plentymarkets template plugin for plentymarkets online stores",
-    "author"            : "Your name",
-    "license"           : "The license",
-    "keywords"          : ["plentymarkets", "plugins", "template"],
+    "name"              : "PluginXY",
+    "namespace"         : "XY",
     "type"              : "template",
-    "namespace"         : "Ceres",
-    "serviceProvider"   : "Ceres\\Providers\\TemplateServiceProvider",
-    "dataProviders"     : [],
+    "version"           : "1.0.0",
+    "license"           : "The license for the plugin",
+    "pluginIcon"        : "The plugin icon",
+    "price"             : "0",
+    "description"       : "the description for your plugin",
+    "shortDescription"  : "The short description for your plugin",
+    "keywords"          : ["plugins", "template"],
+    "author"            : "Your name",
+    "authorIcon"        : "The author icon",
+    "email"             : "Your email address",
+    "phone"             : "Your phone number",
+    "serviceProvider"   : "XY\\Providers\\TemplateServiceProvider",
     "containers"        : [],
+    "dataProviders"     : [],
     "javaScriptFiles"   : [],
     "require"           : [],
+    "dependencies"      : [],
     "runOnBuild"        : []
 }
 </pre>
@@ -57,49 +63,164 @@
 
         <tbody>
         <tr>
-            <td>version</td>
-            <td>The version of your plugin. We recommend to use <a href="http://semver.org/" target="_blank">semantic versioning</a>.</td>
-        </tr>
-        <tr>
             <td>name</td>
-            <td>The name of your plugin</td>
-        </tr>
-        <tr>
-            <td>description</td>
-            <td>The description of your plugin</td>
-        </tr>
-        <tr>
-            <td>author</td>
-            <td>The author of the plugin</td>
-        </tr>
-        <tr>
-            <td>keywords</td>
-            <td>An array of keywords describing your plugin</td>
-        </tr>
-        <tr>
-            <td>type</td>
-            <td>The type of your plugin. Use "<i>export</i>" for plugins defining new export formats or "<i>template</i>" for frontend plugins.</td>
-        </tr>
-        <tr>
-            <td>require</td>
-            <td>An array of dependencies of other plugins including required version, e.g. <i>PlentyPluginShowcase-1.0.0</i></td>
+            <td>The name of your plugin. The plugin name must not yet exist in plentyMarketplace. <span class="label label-danger">required</span></td>
         </tr>
         <tr>
             <td>namespace</td>
-            <td>The root namespace of your plugin</td>
+            <td>The root namespace of your plugin <span class="label label-danger">required</span></td>
+        </tr>
+        <tr>
+            <td>type</td>
+            <td>The type of your plugin. The following plugin types are available: <span class="label label-danger">required</span>
+                <ul>
+                    <li>
+                        <b>template</b>: type for frontend plugins
+                    </li>
+                    <li>
+                        <b>export</b>: type for new export formats
+                    </li>
+                    <li>
+                        <b>payment</b>: type for payment plugins
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>version</td>
+            <td>The version of your plugin. <a href="http://semver.org/" target="_blank">Semantic versioning</a> is used for plentymarkets plugins. <span class="label label-danger">required</span></td>
+        </tr>
+        <tr>
+            <td>license</td>
+            <td>The license type for your plugin <span class="label label-danger">required</span></td>
+        </tr>
+        <tr>
+            <td>pluginIcon</td>
+            <td>The file name with file format of the plugin icon <span class="label label-default">optional</span></td>
+        </tr>
+        <tr>
+            <td>price</td>
+            <td>The price of your plugin. The value must be of the <code>float</code> type. <span class="label label-danger">required</span></td>
+        </tr>
+        <tr>
+            <td>description</td>
+            <td>The description text for your plugin <span class="label label-danger">required</span></td>
+        </tr>
+        <tr>
+            <td>shortDescription</td>
+            <td>The short description for your plugin <span class="label label-default">optional</span></td>
+        </tr>
+        <tr>
+            <td>keywords</td>
+            <td>An array of keywords describing your plugin <span class="label label-default">optional</span></td>
+        </tr>
+        <tr>
+            <td>author</td>
+            <td>The author of the plugin <span class="label label-danger">required</span></td>
+        </tr>
+        <tr>
+            <td>authorIcon</td>
+            <td>The file name with file format of the author icon <span class="label label-default">optional</span></td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td>The email address of the author for support issues <span class="label label-default">optional</span></td>
+        </tr>
+        <tr>
+            <td>phone</td>
+            <td>The phone number of the author for support issues <span class="label label-default">optional</span></td>
         </tr>
         <tr>
             <td>serviceProvider</td>
-            <td>The service provider to hook-up</td>
+            <td>The service provider to hook-up <span class="label label-default">optional</span></td>
+        </tr>
+        <tr>
+            <td>containers</td>
+            <td>An array of <a href="/tutorials/container#container-entrypoint">containers</a> <span class="label label-default">optional</span></td>
+        </tr>
+        <tr>
+            <td>dataProviders</td>
+            <td>An array of <a href="/tutorials/container#code-pluginjson">data providers</a> <span class="label label-default">optional</span></td>
+        </tr>
+        <tr>
+            <td>javaScriptFiles</td>
+            <td>An array of JavaScript files. The file name and file format must be specified. <span class="label label-default">optional</span></td>
+        </tr>
+        <tr>
+            <td>require</td>
+            <td>An array of dependencies of other plugins including required version, e.g. <i>PluginIO-1.0.0</i> <span class="label label-default">optional</span></td>
+        </tr>
+        <tr>
+            <td>dependencies</td>
+            <td>An array of dependencies of external SDKs. The external source must be published on <a href="https://packagist.org/" targed="_blank">Packagist</a>. <span class="label label-default">optional</span></td>
+        </tr>
+        <tr>
+            <td>runOnBuild</td>
+            <td>An array of classes to be executed once when the plugin is provisioned <span class="label label-default">optional</span></td>
         </tr>
         </tbody>
     </table>
 </div>
 
-<h3 id="marketplace-metadata">Meta data</h3>
+<h3 id="marketplace-changelog">CHANGELOG.md</h3>
 <div class="api-docs-basics">
     <p>
-        The <b>meta</b> folder contains files that are needed to display your plugin as an item in plentyMarketplace. Preview images, icons for the plugin and the author, as well as the plugin documentation is saved in the <b>meta</b> folder.
+        The <b>CHANGELOG.md</b> file contains necessary information about changes made to the plugin. The file is saved in the <b>root</b> folder of the plugin. Use the following example for your changelog:
+    </p>
+</div>
+
+<div class="route-container">
+    <code>PluginXY/CHANGELOG.md</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-plain grey-back linenums">
+# Release Notes for PluginXY // Include the plugin name in headline 1
+
+## v1.0.1 (2016-12-24) // List version releases (MAJOR.MINOR.PATCH) with
+                       // the release date (YYYY-MM-DD) in reverse-chronological
+                       // order (newest on top) in headline 2
+
+### Added // List added features and functions in an unordered list
+- Added new feature 1
+- Added new feature 2
+
+### Changed // List all changes made to existing functionality in an unordered list
+- Replaced icon 1 with icon 2
+
+### Fixed // List all bug fixes and fixed issues in an unordered list
+- Fixed bug 1
+
+### Removed // List all removed features and functions in this release in an unordered list
+- Removed redundant function 1
+
+## v1.0.0 (2016-11-08) // Add one sub-section for each version with the release date in headline 2
+
+### Added // List added features and functions in an unordered list
+- Added function 1
+</pre>
+</div>
+
+<div>
+    <figure>
+        <a data-toggle="modal" data-target="#modal1" href="#">
+        <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/tutorials/marketplace-changelog.png" />
+        </a>
+    </figure>
+</div>
+
+<h3 id="marketplace-plugin-guide">PLUGIN-GUIDE-EN.md</h3>
+<div class="api-docs-basics">
+    <p>
+        The user's guide for the plugin is saved in the <b>meta</b> folder. The user's guide must be written in English and saved in MD file format, e.g. <code>PLUGIN-GUIDE-EN.md</code>. User's guides in other languages are optional. Change the language code in the file name accordingly. The following guidelines must be taken into consideration when writing the guide.
+    </p>
+</div>
+
+<!-- TODO add style guide example -->
+
+<h3 id="marketplace-metadata">Other meta data</h3>
+<div class="api-docs-basics">
+    <p>
+        The <b>meta</b> folder also contains other files that are needed to display your plugin as an item in plentyMarketplace, such as preview images as well as icons for the plugin and the author.
     </p>
 </div>
 
@@ -114,43 +235,63 @@
 
         <tbody>
         <tr>
-            <td>version</td>
-            <td>The version of your plugin. We recommend to use <a href="http://semver.org/" target="_blank">semantic versioning</a>.</td>
+            <td>Author icon</td>
+            <td>The author icon. Valid file formats are PNG and JPEG. The author icon must be specified in the <code>plugin.json</code>. The icon can have the following image sizes:
+                <ul>
+                    <li>
+                        <b>icon_author_xs</b>: 32x32 px
+                    </li>
+                    <li>
+                        <b>icon_author_sm</b>: 256x256 px
+                    </li>
+                    <li>
+                        <b>icon_author_md</b>: 512x512 px
+                    </li>
+                </ul>
+            </td>
         </tr>
         <tr>
-            <td>name</td>
-            <td>The name of your plugin</td>
+            <td>Plugin icon</td>
+            <td>The plugin icon. Valid file formats are PNG and JPEG. The plugin icon must be specified in the <code>plugin.json</code>. The icon can have the following image sizes:
+                <ul>
+                    <li>
+                        <b>icon_plugin_xs</b>: 32x32 px
+                    </li>
+                    <li>
+                        <b>icon_plugin_sm</b>: 256x256 px
+                    </li>
+                    <li>
+                        <b>icon_plugin_md</b>: 512x512 px
+                    </li>
+                </ul>
+            </td>
         </tr>
         <tr>
-            <td>description</td>
-            <td>The description of your plugin</td>
-        </tr>
-        <tr>
-            <td>author</td>
-            <td>The author of the plugin</td>
-        </tr>
-        <tr>
-            <td>keywords</td>
-            <td>An array of keywords describing your plugin</td>
-        </tr>
-        <tr>
-            <td>type</td>
-            <td>The type of your plugin. Use "<i>export</i>" for plugins defining new export formats or "<i>template</i>" for frontend plugins.</td>
-        </tr>
-        <tr>
-            <td>require</td>
-            <td>An array of dependencies of other plugins including required version, e.g. <i>PlentyPluginShowcase-1.0.0</i></td>
-        </tr>
-        <tr>
-            <td>namespace</td>
-            <td>The root namespace of your plugin</td>
-        </tr>
-        <tr>
-            <td>serviceProvider</td>
-            <td>The service provider to hook-up</td>
+            <td>Preview images</td>
+            <td>The preview images of the plugin to be displayed in plentyMarketplace. Valid file formats are PNG and JPEG. The maximum file size for preview images is 1 MB. Upload up to 7 preview images, e.g. <code>preview_0.jpeg</code>, <code>preview_1.jpeg</code> etc.</td>
         </tr>
         </tbody>
     </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog img-horizontal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Example of a changelog</h4>
+            </div>
+            <div class="modal-body">
+                <figure>
+                    <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/tutorials/marketplace-changelog.png" />
+                </figure>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 
