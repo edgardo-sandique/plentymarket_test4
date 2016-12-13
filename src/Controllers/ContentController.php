@@ -49,4 +49,14 @@ class ContentController extends Controller
     {
         return $twig->render('PlentyPluginShowcase::content.devguide.' . $pageName);
     }
+
+    /**
+     * @param Twig $twig
+     * @param string $pageName
+     * @return string
+     */
+    public function showMarketplacePage(Twig $twig, string $pageName):string
+    {
+        return $twig->render('PlentyPluginShowcase::content.marketplace.' . $pageName);
+    }
 }
