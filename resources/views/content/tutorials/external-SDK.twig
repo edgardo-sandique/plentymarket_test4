@@ -1,0 +1,272 @@
+{% extends 'PlentyPluginShowcase::templates.ExamplePage' %}
+
+{% block Content %}
+
+<h1 id="introduction">Integrating external SDKs</h1>
+<div class="api-docs-basics">
+    <p>
+        In this tutorial, you will learn how to integrate an external SDK into your plugin. By integrating an external SDK and adding a dependency between your plugin and a repository on Packagist, you can access the functionality of the external SDK.
+    </p>
+</div>
+<div class="alert alert-info" role="alert">
+    <b>Note</b>: External SDKs will not be executed in plentymarkets directly. We separated the code of an external SDK from the plentymarkets plugin code for security reasons. The code of the external SDK is executed on another server that is not connected to the plentymarkets servers.
+</div>
+
+<h2 id="clone-repository">Step 1: Cloning the HelloWorld plugin</h2>
+<div class="api-docs-basics">
+    <p>
+        In this tutorial, we will extend the functionality of the <a href="/tutorials/helloworld#introduction">HelloWorld</a> plugin by integrating <a href="http://docs.guzzlephp.org/en/latest/" target="_blank">Guzzle</a>, a PHP HTTP client. We then use the external SDK to send an HTTP request to an API, e.g. the <a href="https://packagist.org/apidoc" target="_blank">Packagist API</a>, to retrieve certain information.
+    </p>
+</div>
+
+<!-- GitHub button -->
+<div class="connect">
+    <div class="btn btn-primary btn-block" title="Clone or download this plentymarkets plugin on Github.">
+        <a href="https://github.com/plentymarkets/plugin-hello-world" target="_blank" role="button"><img class="img-responsive pull-left" src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-logo.png"  style="width: 40px;"/><span>Download on GitHub</span></a>
+    </div>
+</div>
+<!-- GitHub button end -->
+
+<h3 id="plugin-structure-before">The HelloWorld plugin structure</h3>
+<div class="api-docs-basics">
+    <p>
+        Below, you find an overview of the existing structure of our <b>HelloWorld</b> plugin.
+    </p>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-plain grey-back">
+HelloWorld/
+    +-- resources/
+    |   +-- views/
+    |       +-- content/
+    |           +-- hello.twig
+    |
+    +-- src/
+    |   +-- Providers/
+    |   |   +-- HelloWorldServiceProvider.php
+    |   |   +-- HelloWorldRouteServiceProvider.php
+    |   |
+    |   +-- Controllers/
+    |       +-- ContentController.php
+    |
+    +-- plugin.json // plugin information
+    +-- // additional files (Readme, license etc.)
+</pre>
+</div>
+
+<h2 id="setup-ide">Step 2: Extending the plugin structure</h2>
+<div class="api-docs-basics">
+    <p>
+        In order to integrate the external SDK, we have to make changes to the following existing files. We also have to add a new folder with a new file:
+    </p>
+    <ol>
+        <li>
+            Update the <code>plugin.json</code>
+        </li>
+        <li>
+            Create the <b>resources/lib</b> folder and add the <code>guzzle_connector.php</code> file
+        </li>
+        <li>
+            Extend the <code>ContentController.php</code>
+        </li>
+        <li>
+            Extend the <code>hello.twig</code>
+        </li>
+    </ol>
+</div>
+
+
+<h3 id="update-pluginjson">Updating the plugin.json</h3>
+<div class="api-docs-basics">
+    <p>
+        First, we have to specify the dependencies of our plugin to the Guzzle SDK by updating the <code>plugin.json</code> file.
+    </p>
+</div>
+
+<!-- Code example -->
+<div class="route-container">
+<code>HelloWorld/plugin.json</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-json grey-back linenums">
+{
+    "name":"HelloWorld",
+    "description":"My first plugin",
+    "namespace":"HelloWorld",
+    "author":"Your name",
+    "type":"template",
+    "serviceProvider":"HelloWorld\\Providers\\HelloWorldServiceProvider"
+    "dependencies" : {
+        "guzzlehttp/guzzle": "6.2.*"
+    }
+}
+</pre>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: We add a new attribute <code>dependencies</code>. The value for this attibute consists of the repository name on Packagist, here <a href="https://packagist.org/packages/guzzlehttp/guzzle" target="_blank"><code>guzzlehttp/guzzle</code></a> and the required version, e.g. version <code>6.2.*</code>. The asterisk means, that any version starting with 6.2, e.g. 6.2.0, 6.2.1 or 6.2.2, is fine.
+</div>
+<!-- Code example end -->
+
+<h3 id="create-library-file">Creating the guzzle_connector.php</h3>
+<div class="api-docs-basics">
+    <p>
+        ##
+    </p>
+</div>
+
+<!-- Code example -->
+<div class="route-container">
+  <code>HelloWorld/resources/lib/guzzle_connector.php</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
+
+$client = new \GuzzleHttp\Client();
+$res = $client->request(
+    'GET',
+    'https://packagist.org/search.json',
+    [
+        'query' => ['q' => SdkRestApi::getParam('packagist_query')]
+    ]
+);
+
+/** @return array */
+return json_decode($res->getBody(), true);
+</pre>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: ## http://docs.guzzlephp.org/en/latest/
+</div>
+<!-- Code example end -->
+
+<h3 id="extend-contentcontroller">Extending the ContentController</h3>
+<div class="api-docs-basics">
+    <p>
+        ##
+    </p>
+</div>
+
+<!-- Code example -->
+<div class="route-container">
+  <code>HelloWorld/src/Controllers/ContentController.php</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums">
+&lt;?php
+
+namespace HelloWorld\Controllers;
+
+use Plenty\Plugin\Controller;
+use Plenty\Plugin\Templates\Twig;
+use Plenty\Modules\Plugin\Libs\Contracts\LibraryCallContract;
+use Plenty\Plugin\Http\Request;
+
+/**
+ * Class ContentController
+ * @package HelloWorld\Controllers
+ */
+class ContentController extends Controller
+{
+	/**
+	 * @param Twig $twig
+	 * @param LibraryCallContract $libCall
+	 * @param Request $request
+	 * @return string
+	 */
+	public function sayHello(
+		Twig $twig,
+		LibraryCallContract $libCall,
+		Request $request
+	)
+	{
+
+		$packagistResult =
+			$libCall->call(
+				'HelloWorld::guzzle_connector',
+				['packagist_query' => $request->get('search')]
+			);
+		return $twig->render('HelloWorld::content.hello', $packagistResult);
+	}
+}
+
+</pre>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: ##
+</div>
+<!-- Code example end -->
+
+<h3 id="extend-template">Extending the twig template</h3>
+<div class="api-docs-basics">
+    <p>
+        ##
+    </p>
+</div>
+
+<!-- Code example -->
+<div class="route-container">
+  <code>HelloWorld/resources/views/content/hello.twig</code>
+</div>
+<div class="code-container">
+{% raw %}
+<pre class="prettyprint lang-twig grey-back linenums">
+&lt;h1>Hello World!&lt;/h1>
+
+&lt;p>{{ packagistResult.total }} Results&lt;/p>
+&lt;ul>
+    {% for packagistItem in packagistResult.results %}
+        &lt;li>{{ packagistItem.name }} : {{ packagistItem.repository }}&lt;/li>
+    {% else %}
+        &lt;li>No entries&lt;/li>
+    {% endfor %}
+&lt;/ul>
+</pre>
+{% endraw %}
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: ##
+</div>
+<!-- Code example end -->
+    
+<h1 id="open-plugin">Result</h1>
+<div class="api-docs-basics">
+    <p>
+        ##
+    </p>
+    <figure>
+        <a data-toggle="modal" data-target="#modal1" href="#">
+        <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/helloworld.png" />
+        </a>
+    </figure>
+</div>
+
+<div class="alert alert-info" role="alert">
+    <b>Info</b>: Once you have changed the files in your local <code>HelloWorld</code> folder, the changes must be pushed to GitHub. You also have to update the plugin in your plentymarkets inbox by pulling the changes from GitHub. Finally, you have to provision the plugin again to display the changes in your browser.
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog img-horizontal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">My first plugin</h4>
+            </div>
+            <div class="modal-body">
+                <figure>
+                    <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/helloworld.png" />
+                </figure>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
