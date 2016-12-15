@@ -107,7 +107,7 @@ HelloWorld/
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: We add a new attribute <code>dependencies</code>. The value for this attibute consists of the repository name on Packagist, here <a href="https://packagist.org/packages/guzzlehttp/guzzle" target="_blank"><code>guzzlehttp/guzzle</code></a> and the required version, e.g. version <code>6.2.*</code>. The asterisk means, that any version starting with 6.2, e.g. 6.2.0, 6.2.1 or 6.2.2, is fine.
+    <b>Explanation</b>: We add the new attribute <code>dependencies</code>. The value for this attribute consists of the repository name on Packagist, here <a href="https://packagist.org/packages/guzzlehttp/guzzle" target="_blank"><code>guzzlehttp/guzzle</code></a> and the required version, e.g. version <code>6.2.*</code>. The asterisk means that any version starting with 6.2, e.g. 6.2.0, 6.2.1 or 6.2.2, is fine.
 </div>
 <!-- Code example end -->
 
@@ -141,14 +141,14 @@ return json_decode($res->getBody(), true);
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: The first 2 lines of code are taken from the Guzzle example. In the request function, we state the HTTP method, the URL and additional information in an array.<br />In line 8, we use the <a href="http://docs.guzzlephp.org/en/latest/request-options.html#query" target="_blank">request option</a> <code>query</code> to add a query string to the request.<br />Info zur SdkRestApi<br />In the <code>getParam</code> function of our query, we use the <code>packagist_query</code> variable. This variable will be described in the code explanation of our <a href="#extend-contentcontroller">ContentController</a>.<br />In line 13, we return the requested data in decoded form.
+    <b>Explanation</b>: The first 2 lines of code are taken from the Guzzle example. In the request function, we state the HTTP method, the URL and additional information in an array.<br />In line 8, we use the <a href="http://docs.guzzlephp.org/en/latest/request-options.html#query" target="_blank">request option</a> <code>query</code> to add a query string to the request.<!--br />TODO: Add link or info for SdkRestApi--><br />In the <code>getParam</code> function of our query, we use the <code>packagist_query</code> variable. This variable will be described in the code explanation of our <a href="#extend-contentcontroller">ContentController</a>.<br />In line 13, we return the requested data in decoded form.
 </div>
 <!-- Code example end -->
 
 <h3 id="extend-contentcontroller">Extending the ContentController</h3>
 <div class="api-docs-basics">
     <p>
-        ##
+        We need to enable HTTP requests in the ContentController and use the <a href="/api-doc/Plugin">LibraryCallContract</a> to add the <code>call()</code> method. With the help of this function, we can modify our URL allowing HTTP requests.
     </p>
 </div>
 
@@ -239,7 +239,7 @@ class ContentController extends Controller
 <h1 id="open-plugin">Result</h1>
 <div class="api-docs-basics">
     <p>
-        ##
+        www.your-plentystore.com/hello?search=plentymarkets
     </p>
     <figure>
         <a data-toggle="modal" data-target="#modal1" href="#">

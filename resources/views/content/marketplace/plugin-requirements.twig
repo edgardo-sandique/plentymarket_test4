@@ -2,21 +2,14 @@
 
 {% block Content %}
 
-<h1 id="marketplace-introduction">Offering plugins on plentyMarketplace</h1>
+<h1 id="marketplace-requirements">Plugin requirements</h1>
 <div class="api-docs-basics">
     <p>
-        This guide will give you an overview of all the requirements a plugin must fulfil to be offered on <!--a href="https://marketplace.plentymarkets.com" target="_blank">plentyMarketplace</a-->plentyMarketplace.
+        A plugin must fulfil certain requirements in order to be offered on <!--a href="https://marketplace.plentymarkets.com" target="_blank">plentyMarketplace</a-->plentyMarketplace. The plugin must have a valid <code>plugin.json</code> file. It also must have a <code>CHANGELOG.md</code> file with all the changes made to the plugin. Furthermore, the plugin must contain a <b>meta</b> folder that includes sub-folders with multiple required files.
     </p>
 </div>
 
-<h2 id="marketplace-requirements">Plugin requirements</h2>
-<div class="api-docs-basics">
-    <p>
-        A plugin must fulfil certain requirements in order to be offered on plentyMarketplace. The plugin must have a valid <code>plugin.json</code> file. It also must have a <code>CHANGELOG.md</code> file with all the changes made to the plugin. Furthermore, the plugin must contain a <b>meta</b> folder that includes sub-folders with multiple required files.
-    </p>
-</div>
-
-<h3 id="marketplace-pluginjson">Plugin data</h3>
+<h2 id="marketplace-pluginjson">Plugin data</h2>
 <div class="api-docs-basics">
     <p>
         The <code>plugin.json</code> file is the essential part for plugin provisioning. It must contain certain information, such as the plugin name, the version etc. Find an example of a valid <code>plugin.json</code> below.
@@ -163,7 +156,7 @@
     </table>
 </div>
 
-<h3 id="marketplace-changelog">Change log</h3>
+<h2 id="marketplace-changelog">Change log</h2>
 <div class="api-docs-basics">
     <p>
         The <code>CHANGELOG.md</code> file contains necessary information about changes made to the plugin. The file is saved in the <b>root</b> folder of the plugin. The change log must be written in English. Use the following example for your <a href="https://github.com/plentymarkets/plenty-plugin-showcase/blob/master/resources/examples/CHANGELOG.md" target="_blank">change log</a>:
@@ -209,7 +202,7 @@
     </figure>
 </div>
 
-<h3 id="marketplace-user-guide">User guide</h3>
+<h2 id="marketplace-user-guide">User guide</h2>
 <div class="api-docs-basics">
     <p>
         The user guide for the plugin is saved in the sub-folder <b>documents</b> in the <b>meta</b> folder. The user guide must be available in German and English and saved in MD file format, e.g. <code>user_guide_de.md</code> and <code>user_guide_en.md</code>. User guides in other languages are optional. Change the language code in the file name accordingly. The following guidelines must be taken into consideration when writing the <a href="https://github.com/plentymarkets/plenty-plugin-showcase/blob/master/resources/examples/user_guide_en.md" target="_blank">guide</a>.
@@ -364,7 +357,7 @@ In this section, you can add information about your license.
     </figure>
 </div>
 
-<h3 id="marketplace-metadata">Other meta data</h3>
+<h2 id="marketplace-metadata">Other meta data</h2>
 <div class="api-docs-basics">
     <p>
         The <b>meta</b> folder also contains the <b>images</b> folder with files that are needed to display your plugin as an item in plentyMarketplace, such as preview images, the author icon and the plugin icon.
