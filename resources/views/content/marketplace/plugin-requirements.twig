@@ -5,7 +5,7 @@
 <h1 id="marketplace-introduction">Offering plugins on plentyMarketplace</h1>
 <div class="api-docs-basics">
     <p>
-        This guide will give you an overview of all the requirements a plugin must fulfil to be offered on <a href="https://marketplace.plentymarkets.com" target="_blank">plentyMarketplace</a>. Furthermore, you will find step-by-step instructions about the process of uploading plugins to plentyMarketplace.
+        This guide will give you an overview of all the requirements a plugin must fulfil to be offered on <!--a href="https://marketplace.plentymarkets.com" target="_blank">plentyMarketplace</a-->plentyMarketplace.
     </p>
 </div>
 
@@ -65,7 +65,7 @@
         <tbody>
             <tr>
                 <td>name</td>
-                <td>The name of your plugin. The plugin name must not yet exist in plentyMarketplace. <span class="label label-danger">required</span></td>
+                <td>The name of your plugin. The plugin name must not yet exist in plentyMarketplace. The name must not contain spaces, numbers or special characters and must be written in <code>UpperCamelCase</code>. <span class="label label-danger">required</span></td>
             </tr>
             <tr>
                 <td>namespace</td>
@@ -89,7 +89,7 @@
             </tr>
             <tr>
                 <td>version</td>
-                <td>The version of your plugin. <a href="http://semver.org/" target="_blank">Semantic versioning</a> is used for plentymarkets plugins. <span class="label label-danger">required</span></td>
+                <td>The version of your plugin. <a href="http://semver.org/" target="_blank">Semantic versioning</a> is used for plentymarkets plugins. The <code>MAJOR.MINOR.PATCH</code>format must be used. <span class="label label-danger">required</span></td>
             </tr>
             <tr>
                 <td>license</td>
@@ -153,11 +153,11 @@
             </tr>
             <tr>
                 <td>dependencies</td>
-                <td>An array of dependencies of external SDKs. The external source must be published on <a href="https://packagist.org/" targed="_blank">Packagist</a>. <span class="label label-default">optional</span></td>
+                <td>An array of dependencies of <!-- TODO: Add link to tutorial --> external SDKs. The external source must be published on <a href="https://packagist.org/" targed="_blank">Packagist</a>. <span class="label label-default">optional</span></td>
             </tr>
             <tr>
                 <td>runOnBuild</td>
-                <td>An array of classes to be executed once when the plugin is provisioned <span class="label label-default">optional</span></td>
+                <td>An array of classes to be <!-- TODO: Add link to tutorial --> executed once when the plugin is provisioned <span class="label label-default">optional</span></td>
             </tr>
         </tbody>
     </table>
@@ -166,7 +166,7 @@
 <h3 id="marketplace-changelog">Change log</h3>
 <div class="api-docs-basics">
     <p>
-        The <code>CHANGELOG.md</code> file contains necessary information about changes made to the plugin. The file is saved in the <b>root</b> folder of the plugin. Use the following example for your changelog:
+        The <code>CHANGELOG.md</code> file contains necessary information about changes made to the plugin. The file is saved in the <b>root</b> folder of the plugin. The change log must be written in English. Use the following example for your <a href="https://github.com/plentymarkets/plenty-plugin-showcase/blob/master/resources/examples/CHANGELOG.md">change log</a>:
     </p>
 </div>
 
@@ -212,7 +212,7 @@
 <h3 id="marketplace-user-guide">User guide</h3>
 <div class="api-docs-basics">
     <p>
-        The user guide for the plugin is saved in the sub-folder <b>documents</b> in the <b>meta</b> folder. The user guide must be available in English and saved in MD file format, e.g. <code>user_guide_en.md</code>. User guides in other languages are optional. Change the language code in the file name accordingly. The following guidelines must be taken into consideration when writing the guide.
+        The user guide for the plugin is saved in the sub-folder <b>documents</b> in the <b>meta</b> folder. The user guide must be available in German and English and saved in MD file format, e.g. <code>user_guide_de.md</code> and <code>user_guide_en.md</code>. User guides in other languages are optional. Change the language code in the file name accordingly. The following guidelines must be taken into consideration when writing the <a href="https://github.com/plentymarkets/plenty-plugin-showcase/blob/master/resources/examples/user_guide_en.md">guide</a>.
     </p>
 </div>
 
@@ -383,7 +383,7 @@ In this section, you can add information about your license.
         <tbody>
             <tr>
                 <td>Author icon</td>
-                <td>The author icon. Valid file formats are PNG and JPEG. The author icon must be specified in the <code>plugin.json</code>. The icon can have the following image sizes:
+                <td>The author icon. Valid file formats are PNG and JPEG. The author icon must be specified in the <code>plugin.json</code>. One author icon is required for plentyMarketplace. The icon can have the following image sizes: <span class="label label-danger">required</span>
                     <ul>
                         <li>
                             <b>icon_author_xs</b>: 32x32 px
@@ -399,7 +399,7 @@ In this section, you can add information about your license.
             </tr>
             <tr>
                 <td>Plugin icon</td>
-                <td>The plugin icon. Valid file formats are PNG and JPEG. The plugin icon must be specified in the <code>plugin.json</code>. The icon can have the following image sizes:
+                <td>The plugin icon. Valid file formats are PNG and JPEG. The plugin icon must be specified in the <code>plugin.json</code>. One plugin icon is required for plentyMarketplace. The icon can have the following image sizes: <span class="label label-danger">required</span>
                     <ul>
                         <li>
                             <b>icon_plugin_xs</b>: 32x32 px
@@ -415,7 +415,7 @@ In this section, you can add information about your license.
             </tr>
             <tr>
                 <td>Preview images</td>
-                <td>The preview images of the plugin to be displayed in plentyMarketplace. Valid file formats are PNG and JPEG. The maximum file size for preview images is 1 MB. Upload up to 7 preview images, e.g. <code>preview_0.jpeg</code>, <code>preview_1.jpeg</code> etc.</td>
+                <td>The preview images of the plugin to be displayed in plentyMarketplace. Valid file formats are PNG and JPEG. The maximum file size for preview images is 1 MB. One image is required for plentyMarketplace. Upload up to 7 preview images, e.g. <code>preview_0.jpeg</code>, <code>preview_1.jpeg</code> etc. <span class="label label-danger">required</span></td>
             </tr>
         </tbody>
     </table>
