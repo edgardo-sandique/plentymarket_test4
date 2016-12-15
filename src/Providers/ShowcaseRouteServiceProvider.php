@@ -24,5 +24,6 @@ class ShowcaseRouteServiceProvider extends RouteServiceProvider
 		$router->get('', 'Showcase\Controllers\ContentController@showLandingPage');
 		$router->get('tutorials/{tutorialsPage}', 'Showcase\Controllers\ContentController@showTutorials');
 		$router->get('dev-doc/{devGuidePage}', 'Showcase\Controllers\ContentController@showDevGuidePage');
+		$router->get('marketplace/{marketplacePage}', 'Showcase\Controllers\ContentController@showMarketplacePage');
 	}
 }
