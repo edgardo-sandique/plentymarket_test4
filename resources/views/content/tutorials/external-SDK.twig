@@ -114,7 +114,7 @@ HelloWorld/
 <h3 id="create-library-file">Creating the guzzle_connector.php</h3>
 <div class="api-docs-basics">
     <p>
-        ##
+        We take the code example from <a href="http://docs.guzzlephp.org/en/latest/" target="_blank">Guzzle</a> and make some adaptions so that the code fits our needs. Remember that we want to send an HTTP request to the <a href="https://packagist.org/apidoc" target="_blank">Packagist API</a>. Let's <a href="https://packagist.org/apidoc#search-packages-by-name" target="_blank">search packages by name</a>.
     </p>
 </div>
 
@@ -141,7 +141,7 @@ return json_decode($res->getBody(), true);
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: ## http://docs.guzzlephp.org/en/latest/
+    <b>Explanation</b>: The first 2 lines of code are taken from the Guzzle example. In the request function, we state the HTTP method, the URL and additional information in an array.<br />In line 8, we use the <a href="http://docs.guzzlephp.org/en/latest/request-options.html#query" target="_blank">request option</a> <code>query</code> to add a query string to the request.<br />Info zur SdkRestApi<br />In the <code>getParam</code> function of our query, we use the <code>packagist_query</code> variable. This variable will be described in the code explanation of our <a href="#extend-contentcontroller">ContentController</a>.<br />In line 13, we return the requested data in decoded form.
 </div>
 <!-- Code example end -->
 
