@@ -203,10 +203,62 @@ class ContentController extends Controller
 </div>
 <!-- Code example end -->
 
+<h3 id="make-request"></h3>
+<div class="api-docs-basics">
+    <p>We mentioned above that we want to search Packagist packages by name. So when sending the HTTP request to get all packages with the name <b>plentymarkets</b>, e.g. with <a href="https://www.getpostman.com/" target="_blank">Postman</a>, we receive the following response consisting of the results array and the total number of packages:</p>
+</div>
+
+<!-- Code example -->
+<div class="route-container" data-type="get">
+<code>https://packagist.org/search.json?q=plentymarkets</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-js grey-back linenums">
+{
+    "results": [
+    {
+        "name": "plentymarkets/plugin-hack-api",
+        "description": "API for plentymarkets plugin development with Hack",
+        "url": "https://packagist.org/packages/plentymarkets/plugin-hack-api",
+        "repository": "https://github.com/plentymarkets/plugin-hack-api",
+        "downloads": 13,
+        "favers": 1
+    },
+    {
+        "name": "composer/installers",
+        "description": "A multi-framework Composer library installer",
+        "url": "https://packagist.org/packages/composer/installers",
+        "repository": "https://github.com/composer/installers",
+        "downloads": 4931419,
+        "favers": 641
+    },
+    {
+        "name": "alexcold/yii2-plentyconnector",
+        "description": "PlentyMarkets SOAP API connector",
+        "url": "https://packagist.org/packages/alexcold/yii2-plentyconnector",
+        "repository": "https://github.com/alexcold/yii2-plentyconnector",
+        "downloads": 10,
+        "favers": 0
+    },
+    {
+        "name": "plentymarkets/plugin-hello-world",
+        "description": "Creates an empty frontend plugin for plentymarkets plugin development",
+        "url": "https://packagist.org/packages/plentymarkets/plugin-hello-world",
+        "repository": "https://github.com/plentymarkets/plugin-hello-world",
+        "downloads": 12,
+        "favers": 0
+    }
+    ],
+    "total": 4
+}
+</pre>
+</div>
+<!-- Code example end -->
+
 <h3 id="extend-template">Extending the twig template</h3>
 <div class="api-docs-basics">
     <p>
-        ##
+        In our TWIG template we don't need all the information of the JSON response. We only want to display the total number of packages, the package name and the package repository. If no packages were found, we want to display the text <b>No entries</b>.
     </p>
 </div>
 
