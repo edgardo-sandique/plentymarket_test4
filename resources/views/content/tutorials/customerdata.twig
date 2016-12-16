@@ -13,24 +13,26 @@
 
 <h2 id="retrieve-basic information">Step 1: Retrieving basic information</h2>
 <div class="api-docs-basics">
-
 <p>Before you create a contact and the corresponding account, it might be useful to retrieve some general information: the contact class and the contact type.</p>
 <p>As long as you do not create further contact classes and types in your plentymarkets system, these are REST calls you only need to retrieve once.</p>
+</div>
 
 <h3 id="retrieve-contact-class">Retrieving the contact class</h3>
-<p>It is most likely that the IDs and names of the contact classes that you use in the external tool deviate from the IDs and names of those in plentymarkets. Therefore, retrieve the contact class data with the GET call <code>/rest/accounts/contacts/classes</code>. This will list the names and IDs of all contact classes that are saved in your plentymarkets system. </p>
+<div class="api-docs-basics">
+<p>It is most likely that the IDs and names of the contact classes that you use in the external tool deviate from the IDs and names of those in plentymarkets. Therefore, retrieve the contact class data with the GET call <code>/rest/accounts/contacts/classes</code>. This will list the names and IDs of all contact classes that are saved in your plentymarkets system.
+</p>
+</div>
 
 <h3 id="retrieve-contact-type">Retrieving the contact type</h3>
-
-<p>Now you retrieve all contact types that are saved in plentymarkets. To do so, use the GET call <code>/rest/accounts/contacts/types</code>. Note that there are six contact types available by default that cannot be deleted. All other contact types that you have created will be subsequently given an ID and added to the end of the list of the default contact types. </p>
-
+<div class="api-docs-basics">
+<p>Now you retrieve all contact types that are saved in plentymarkets. To do so, use the GET call <code>/rest/accounts/contacts/types</code>. Note that there are six contact types available by default that cannot be deleted. All other contact types that you have created will be subsequently given an ID and added to the end of the list of the default contact types.
+</p>
 </div>
+
 
 <h2 id="create-contact">Step 2: Creating a new contact</h2>
 <div class="api-docs-basics">
-
-<p>
-    After you have retrieved the data described in Step 1, you can create a new contact. To do so, use the following REST call. A contact is nothing else than a person. Of course, it is possible to assign multiple contacts to an account.
+<p>After you have retrieved the data described in Step 1, you can create a new contact. To do so, use the following REST call. A contact is nothing else than a person. Of course, it is possible to assign multiple contacts to an account.
 </p>
 
 <div class="route-container" data-type="post" data-middleware="oauth">
@@ -42,9 +44,7 @@
 
 <h2 id="create-account">Step 3: Creating a new account</h2>
 <div class="api-docs-basics">
-
-<p>
-    Use the following REST call to create a new account. An account contains company-related data such as the company name and the tax number ID. As already mentioned above, an account can have multiple contacts.
+<p>Use the following REST call to create a new account. An account contains company-related data such as the company name and the tax number ID. As already mentioned above, an account can have multiple contacts.
 </p>
 
 <div class="route-container" data-type="post" data-middleware="oauth">
@@ -53,19 +53,15 @@
 </div>
 
 
-
 <h2 id="update-address-of-contact">Step 4: Updating an address of the contact </h2>
 <div class="api-docs-basics">
-    <p>
-        Once your customer informs you that his or her address data has changed, e.g. that he or she wants to have the ordered items shipped to another delivery address, use the following REST call to update the address. The ID of the contact and the ID of the address must be specified here.
-    </p>
+<p>Once your customer informs you that his or her address data has changed, e.g. that he or she wants to have the ordered items shipped to another delivery address, use the following REST call to update the address. The ID of the contact and the ID of the address must be specified here.
+</p>
 
-
-
-    <div class="alert alert-info" role="alert">
-        <b>Note</b>:<br /> If you don't know the address ID, use the GET call <code>/rest/accounts/contacts/{contactId}/addresses</code> before. Besides the address ID, this call will also output the type ID of the address, i.e. the billing address or delivery address, for example.</p>
-        You can also use a filter directly when sending the call to only display the delivery address of the contact (in this case, this would be address type ID 2).
-        </div>
+<div class="alert alert-info" role="alert">
+<b>Note</b>:<br /> If you don't know the address ID, use the GET call <code>/rest/accounts/contacts/{contactId}/addresses</code> before. Besides the address ID, this call will also output the type ID of the address, i.e. the billing address or delivery address, for example.
+You can also use a filter directly when sending the call to only display the delivery address of the contact (in this case, this would be address type ID 2).
+</div>
 
 
 
@@ -79,9 +75,8 @@
 
 <h2 id="list-all-contacts">Step 5: Listing all contacts</h2>
 <div class="api-docs-basics">
-    <p>
-        Use the following REST call to list all contacts that are saved in your plentymarkets system.
-    </p>
+<p>Use the following REST call to list all contacts that are saved in your plentymarkets system.
+</p>
 
     <div class="route-container" data-type="get" data-middleware="oauth">
     <code>/rest/accounts/contacts</code>
@@ -95,9 +90,6 @@
 
 
 <h3 id="code-example">Code example</h3>
-
-
-
 
 <div class="code-container">
 <pre class="prettyprint lang-json grey-back linenums">
@@ -148,15 +140,10 @@
 </div>
 
 
-
-
-
-
 <h2 id="list-all-accounts">Step 6: Listing all accounts</h2>
 <div class="api-docs-basics">
-    <p>
-        Use the following REST call to list all accounts that are saved in your plentymarkets system.
-    </p>
+<p>Use the following REST call to list all accounts that are saved in your plentymarkets system.
+</p>
 
 
 <div class="route-container" data-type="get" data-middleware="oauth">
@@ -171,44 +158,16 @@
 
 
 
-
-
-
-
-
-
 <h2 id="list-all-contacts-of-account">Step 7: Listing all contacts of an account</h2>
 <div class="api-docs-basics">
-    <p>
-        Use the following REST call to list all contacts of an account. The ID of the account must be specified here.
-    </p>
+<p>Use the following REST call to list all contacts of an account. The ID of the account must be specified here.
+</p>
 
 
     <div class="route-container" data-type="get" data-middleware="oauth">
         <code>/rest/accounts/{accountId}/contacts</code>
         </div>
 </div>
-
-
-
-
-<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog img-horizontal" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Title of modal window</h4>
-            </div>
-            <div class="modal-body">
-                <figure>
-                    <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/xxx-name-des-bildes-xxx.png" />
-                </figure>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-        </div>
 
 
 
