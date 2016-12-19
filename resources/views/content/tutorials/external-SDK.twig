@@ -91,7 +91,7 @@ HelloWorld/
 <code>HelloWorld/plugin.json</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-js grey-back linenums">
+<pre class="prettyprint lang-js grey-back linenums code-example">
 {
     "name":"HelloWorld",
     "description":"My first plugin",
@@ -104,6 +104,7 @@ HelloWorld/
     }
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <div class="alert alert-info" role="alert">
@@ -126,7 +127,7 @@ HelloWorld/
   <code>HelloWorld/resources/lib/guzzle_connector.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
 $client = new \GuzzleHttp\Client();
@@ -141,6 +142,7 @@ $res = $client->request(
 /** @return array */
 return json_decode($res->getBody(), true);
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <div class="alert alert-info" role="alert">
@@ -160,7 +162,7 @@ return json_decode($res->getBody(), true);
   <code>HelloWorld/src/Controllers/ContentController.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
 namespace HelloWorld\Controllers;
@@ -198,6 +200,7 @@ class ContentController extends Controller
 	}
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <div class="alert alert-info" role="alert">
@@ -215,7 +218,7 @@ class ContentController extends Controller
 <code>https://packagist.org/search.json?q=plentymarkets</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-js grey-back linenums">
+<pre class="prettyprint lang-js grey-back linenums code-example">
 {
     "results": [
     {
@@ -254,6 +257,7 @@ class ContentController extends Controller
     "total": 4
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <!-- Code example end -->
 
@@ -270,7 +274,7 @@ class ContentController extends Controller
 </div>
 <div class="code-container">
 {% raw %}
-<pre class="prettyprint lang-twig grey-back linenums">
+<pre class="prettyprint lang-twig grey-back linenums code-example">
 &lt;h1>Hello World!&lt;/h1>
 
 &lt;p>{{ packagistResult.total }} Results&lt;/p>
@@ -283,6 +287,7 @@ class ContentController extends Controller
 &lt;/ul>
 </pre>
 {% endraw %}
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <div class="alert alert-info" role="alert">
