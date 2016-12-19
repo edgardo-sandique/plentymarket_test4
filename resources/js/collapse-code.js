@@ -1,9 +1,9 @@
 (function($){
-    $(document).ready(function(){
+    $(window).load(function(){
         $(".toggle-code-example").each(function(idx, el){
             var button = $(this);
             var pre = button.parent().find("pre");
-            var height = pre.height() + 18; // top and bottom padding is 8 px each and top and bottom border is 1 px each
+            var height = pre.height() + 28; // top and bottom padding is 8 px each and top and bottom border is 1 px each plus 10 px for bottom scroll bar
             var minHeight = 300;
             var buttonOffset = 0;
 
@@ -27,8 +27,8 @@
                     pre.css('height', minHeight);
                     pre.css('overflow', "hidden");
                     $('html, body').animate({
-                        scrollTop: buttonOffset - 500 // scroll to code example title
-                    }, 500);
+                        scrollTop: buttonOffset - 480 // scroll to code example title
+                    }, 480);
                 }
                 else {
                     button.html("Collapse");

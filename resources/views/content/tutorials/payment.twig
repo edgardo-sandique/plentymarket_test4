@@ -8,16 +8,19 @@
         In this tutorial, we will develop a basic plugin to integrate a payment method in our template plugin. We want to enable our customers to select the payment method <b>Pay upon pickup</b> in the checkout after choosing the shipping method <b>Picked up by customer</b>. The payment method <b>Pay upon pickup</b> allows the customers paying cash when picking up an item.
     </p>
 </div>
-    <div class="connect">
-        <div class="btn btn-primary btn-block" title="Clone or download this plentymarkets plugin on Github.">
-            <a href="https://github.com/plentymarkets/plugin-payment-payuponpickup" target="_blank" role="button"><img class="img-responsive pull-left" src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-logo.png"  style="width: 40px;"/><span>Download on GitHub</span></a>
-        </div>
+
+<!-- GitHub button -->
+<div class="connect">
+    <div class="btn btn-primary btn-block" title="Clone or download this plentymarkets plugin on GitHub.">
+        <a href="https://github.com/plentymarkets/plugin-payment-payuponpickup" target="_blank" role="button"><img class="img-responsive pull-left" src="{{ plugin_path('PlentyPluginShowcase') }}/images/github-logo.png"  style="width: 40px;"/><span>Download on GitHub</span></a>
     </div>
+</div>
+<!-- GitHub button end -->
 
 <h2 id="install-template">Step 1: Installing the template</h2>
 <div class="api-docs-basics">
     <p>
-        If you haven't already <a href="/tutorials/design">set up a template</a> in your plentymarkets system, do it before you start developping the payment plugin. In this way, you have your test environment ready and can directly check your coding output.
+        If you haven't already <a href="/tutorials/design">set up a template</a> in your plentymarkets system, do it before you start developing the payment plugin. In this way, you have your test environment ready and can directly check your coding output.
     </p>
 </div>
 
@@ -27,6 +30,8 @@
         Our plugin is of the <b>payment</b> type and integrates with the Ceres template, i.e. our plugin consists of <a href="/dev-doc/template-plugins#features-core">core features</a> saved in the <b>src</b> folder, as well as the <a href="/dev-doc/basics#plugin-information">plugin.json</a> and the <a href="/dev-doc/basics#plugin-options">config.json</a>. This basic plugin does not require any <a href="/dev-doc/template-plugins#features-design">design features</a>. In more complex payment plugins, images and javascript files are saved in the <b>resources</b> folder.
     </p>
 </div>
+
+<!-- Folder structure -->
 <div class="code-container">
 <pre class="prettyprint lang-plain grey-back">
 PluginPayUponPickup/
@@ -44,6 +49,8 @@ PluginPayUponPickup/
     +-- plugin.json // plugin information
 </pre>
 </div>
+<!-- Folder structure end -->
+    
 <h2 id="fill-source-files">Step 3: Filling the source files</h2>
 <div class="api-docs-basics">
     <p>
@@ -53,11 +60,12 @@ PluginPayUponPickup/
 
 <h3 id="code-pluginjson">Code for the plugin.json</h3>
 
+<!-- Code example -->
 <div class="route-container">
-<code>PayUponPickup/plugin.json</code>
+    <code>PayUponPickup/plugin.json</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-js grey-back linenums">
+<pre class="prettyprint lang-js grey-back linenums code-example">
 {
     "name"              : "PayUponPickup",
     "description"       : "Pay upon pickup payment method",
@@ -69,19 +77,22 @@ PluginPayUponPickup/
     "serviceProvider"   : "PayUponPickup\\Providers\\PayUponPickupServiceProvider"
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: The plugin is of the <code>payment</code> type. A list of keywords describing the plugin is entered under <code>keywords</code>.
 </div>
+<!-- Code example end -->
 
 <h3 id="code-configjson">Code for the config.json</h3>
 
+<!-- Code example -->
 <div class="route-container">
-<code>PayUponPickup/config.json</code>
+    <code>PayUponPickup/config.json</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-js grey-back linenums">
+<pre class="prettyprint lang-js grey-back linenums code-example">
 [
     {
         "tab"     : "Settings",
@@ -143,25 +154,30 @@ PluginPayUponPickup/
     }
 ]
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: In total, we have 7 different settings options available for configuring our plugin. These options will be displayed in the <b>Config</b> tab of the plugin in the plentymarkets back end.<br /><br />The <code>tab</code> property organises all our options in the <b>Settings</b> tab. Under <code>label</code>, we enter the name of each option.<br /><br />In this <code>config.json</code> we use 3 different <code>types</code>: text, dropdown and category_select. The <code>text</code> type displays a normal input field. The <code>dropdown</code> type creates a drop-down list with the values stated under <code>possibleValues</code>. The <code>category_select</code> type creates a category picker allowing you to select a category. The content of this category will then be displayed in the payment wall in the checkout.
 </div>
+<!-- Code example end -->
 
+<!-- Image -->
 <figure>
     <a data-toggle="modal" data-target="#modal2" href="#">
     <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/tutorials/payuponpickupconfig.png" />
     </a>
 </figure>
+<!-- Image end -->
 
 <h3 id="code-serviceprovider">Code for the ServiceProvider</h3>
 
+<!-- Code example -->
 <div class="route-container">
   <code>PayUponPickup/src/Providers/PayUponPickupServiceProvider.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
 namespace PayUponPickup\Providers;
@@ -231,19 +247,22 @@ class PayUponPickupServiceProvider extends ServiceProvider
    }
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: In the first part of our ServiceProvider, we <code>use</code> all necessary things for our plugin, such as events for payments and the shopping cart, the payment container, the helper and the payment method.<br /><br />In the second part of the code, we have a list of functions, e.g. the <code>boot</code> function. This function boots additional services for the payment method. The function contains the logic for creating the ID of the payment method, registering the payment method and listening for events.
 </div>
+<!-- Code example end -->
 
 <h3 id="code-helper">Code for the Helper</h3>
 
+<!-- Code example -->
 <div class="route-container">
   <code>PayUponPickup/src/Helper/PayUponPickupHelper.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
 namespace PayUponPickup\Helper;
@@ -314,19 +333,22 @@ class PayUponPickupHelper
     }
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: Helpers contain general functions. These functions can then be used at different locations in the code, e.g. in the ServiceProvider or a controller.<br /><br />The <code>constructor</code> is loaded only once - when initialising the <code>class</code>. All required default values are loaded and executed with <code>__construct</code>. In our example, this function is used to load the ID of the payment method based on an array.<br /><br />The <code><span>$</span>paymentMethodData</code> array includes the plugin key, the payment key and the name of the payment method. This information is used to generate a unique ID. When using a payment plugin for the first time, the ID of the payment method is created and saved in the plentymarkets data base.
 </div>
+<!-- Code example end -->
 
 <h3 id="code-paymentmethod">Code for the PaymentMethod</h3>
 
+<!-- Code example -->
 <div class="route-container">
   <code>PayUponPickup/src/Methods/PayUponPickupPaymentMethod.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 &lt;?php
 
 namespace PayUponPickup\Methods;
@@ -427,11 +449,13 @@ class PayUponPickupPaymentMethod extends PaymentMethodService
     }
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: In this file, we find the logic to connect the settings options saved in the <code>config.json</code>. The <code>isActive</code> function checks whether the payment method is active. It also checks the shipping profile ID making our payment method only available for the shipping profile that is set in the <a href="/tutorials/payment#open-plugin">plugin config</a>.<br /><br />The other 3 functions are then used to get the information from the <code>config.json</code> and return the information in the checkout.
 </div>
+<!-- Code example end -->
 
 <h2 id="shipping-profile">Step 4: Setting up a shipping profile</h2>
 <div class="api-docs-basics">
@@ -512,11 +536,15 @@ class PayUponPickupPaymentMethod extends PaymentMethodService
         And finally, we <a href="/dev-doc/basics#provisioning">provision</a> the plugin in <b>Productive</b>. The payment method <b>Pay upon pickup</b> is displayed in the checkout. Our customers can now select this payment method for the <b>Picked up by customer</b> shipping method and pay in cash when picking up an item.
     </p>
 </div>
+
+<!-- Image -->
 <figure>
     <a data-toggle="modal" data-target="#modal1" href="#">
     <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/tutorials/payuponpickup.png" />
     </a>
 </figure>
+<!-- Image end -->
+
 <!-- Modal -->
 <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog img-horizontal" role="document">
@@ -537,6 +565,7 @@ class PayUponPickupPaymentMethod extends PaymentMethodService
     </div>
 </div>
 
+<!-- Modal -->
 <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog img-horizontal" role="document">
         <div class="modal-content">

@@ -373,8 +373,9 @@ PluginDirectory/
 <div class="route-container">
     <code>/plugin.json</code>
 </div>
-<div class="code-container">
-<pre class="prettyprint lang-js grey-back linenums">
+
+<div class="code-container grey-back">
+<pre class="prettyprint lang-js grey-back linenums code-example">
 {
     "name"              : "MyPlugin",
     "namespace"         : "PluginNamespace",
@@ -399,6 +400,7 @@ PluginDirectory/
     "runOnBuild"        : []
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <h2 id="plugin-options">Admin options</h2>
@@ -453,7 +455,7 @@ PluginDirectory/
 <code>/config.json</code>
 </div>
 <div class="code-container">
-    <pre class="prettyprint lang-js grey-back linenums">
+<pre class="prettyprint lang-js grey-back linenums code-example">
 [
     {
         "tab"       : "Categories",
@@ -498,33 +500,40 @@ PluginDirectory/
        "type"      : "checkbox",
        "default"   : true
    }
-]</pre>
+]
+</pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <h4>Accessing plugin options from <code>PhpClass.php</code></h4>
-    <div class="code-container">
-        <pre class="prettyprint lang-php grey-back linenums">
+<div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums code-example">
 // access configuration from PHP
 function getTitle(ConfigRepository $config):string
-{
-    if( $config->get('MyPlugin.show_title') == "1" )
     {
-        return $config->get('MyPlugin.title_text');
+        if( $config->get('MyPlugin.show_title') == "1" )
+            {
+                return $config->get('MyPlugin.title_text');
+                    }
+                        else
+                    {
+                return "";
+            }
     }
-    else
-    {
-        return "";
-    }
-}</pre>
-    </div>
+</pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
 
 <h4>Accessing plugin options from <code>Template.twig</code></h4>
 <div class="code-container">
-<pre class="prettyprint lang-twig grey-back linenums">
-{% verbatim %}{% if config('MyPlugin.show_title') == "1" %}
+<pre class="prettyprint lang-twig grey-back linenums code-example">
+{% verbatim %}
+{% if config('MyPlugin.show_title') == "1" %}
     &lt;h1&gt;{{ config('MyPlugin.title_text') }}&lt;/h1&gt;
 {% endif %}
-{% endverbatim %}</pre>
+{% endverbatim %}
+</pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <h2 id="ui-information">Back end menu information</h2>
@@ -564,7 +573,7 @@ function getTitle(ConfigRepository $config):string
 </div>
 
 <div class="code-container grey-back">
-<pre class="prettyprint lang-js grey-back linenums">
+<pre class="prettyprint lang-js grey-back linenums code-example">
 {
     "defaultEntryPoint" : "index.html",
     "namespace"         : "MyFirstView",
@@ -578,6 +587,7 @@ function getTitle(ConfigRepository $config):string
                           ]
 }
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <h2 id="guide-entrypoints">Menu entry points</h2>
