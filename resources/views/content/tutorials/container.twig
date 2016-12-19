@@ -325,17 +325,17 @@ class PlaceholderContainer
             <td colspan="3" style="text-align: center"><b>Homepage</b></td>
         </tr>
         <tr>
-            <td>Startpage.PaymentMethods</td>
+            <td>Homepage.PaymentMethods</td>
             <td>Payment method container</td>
             <td>Add a logo of the payment method to the payment methods on the homepage</td>
         </tr>
         <tr>
-            <td>Startpage.Shipping</td>
+            <td>Homepage.Shipping</td>
             <td>Shipping method container</td>
             <td>Add a logo of the shipping method to the shipping methods on the homepage</td>
         </tr>
         <tr>
-            <td>Startpage.Certified</td>
+            <td>Homepage.Certified</td>
             <td>Certified container</td>
             <td>Add a <b>Certified by</b> logo to the container on the homepage</td>
         </tr>
@@ -631,7 +631,7 @@ class PlaceholderContainer
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: A Twig function sets the variable <code>certifiedContent</code>. The variable is equal to the content of the <code>Startpage.Certified</code> container defined in the <code>plugin.json</code> file.<br /><br />The title of the container is displayed using the <code><span>{</span>{ trans("PluginCeres::Template.generalCertifiedBy") }}</code> variable. The text for this variable is stored in the <code>Template.properties</code> file.<br /><br />The <code><span>{</span>{ certifiedContent }}</code> variable is used to display the content provided by our <b>Placeholder</b> plugin below the title.
+    <b>Explanation</b>: A Twig function sets the variable <code>certifiedContent</code>. The variable is equal to the content of the <code>Homepage.Certified</code> container defined in the <code>plugin.json</code> file.<br /><br />The title of the container is displayed using the <code><span>{</span>{ trans("PluginCeres::Template.generalCertifiedBy") }}</code> variable. The text for this variable is stored in the <code>Template.properties</code> file.<br /><br />The <code><span>{</span>{ certifiedContent }}</code> variable is used to display the content provided by our <b>Placeholder</b> plugin below the title.
 </div>
 <!-- Code example end -->
 
