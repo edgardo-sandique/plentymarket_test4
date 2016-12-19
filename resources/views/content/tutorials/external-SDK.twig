@@ -144,14 +144,14 @@ return json_decode($res->getBody(), true);
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: The first 2 lines of code are taken from the Guzzle example. In the request function, we state the HTTP method, the URL and additional information in an array.<br />In line 8, we use the <a href="http://docs.guzzlephp.org/en/latest/request-options.html#query" target="_blank">request option</a> <code>query</code> to add a query string to the request.<!--br />TODO: Add link or info for SdkRestApi--><br />In the <code>getParam</code> function of our query, we use the <code>packagist_query</code> variable. This variable will be described in the code explanation of our <a href="#extend-contentcontroller">ContentController</a>.<br />In line 13, we return the requested JSON data in decoded form.
+    <b>Explanation</b>: The first 2 lines of code are taken from the Guzzle example. In the request function, we state the HTTP method, the URL and additional information in an array. In line 8, we use the <a href="http://docs.guzzlephp.org/en/latest/request-options.html#query" target="_blank">request option</a> <code>query</code> to add a query string to the request.<br /><br /><code>SdkRestApi</code> is a helper class that enables the communication between plentymarkets plugins and external SDKs. This class provides information about the requests sent by the plugin.<br /><br />In the <code>getParam</code> function of our query, we use <code>packagist_query</code>. This variable will be described in the code explanation of our <a href="#extend-contentcontroller">ContentController</a>.<br />In line 13, we return the requested JSON data in decoded form.
 </div>
 <!-- Code example end -->
 
 <h3 id="extend-contentcontroller">Extending the ContentController</h3>
 <div class="api-docs-basics">
     <p>
-        In order to execute the previously created PHP file, we need to enable HTTP requests in the ContentController and use the <a href="/api-doc/Plugin">LibraryCallContract</a> to add the <code>call()</code> method. With the help of this function, we can modify our URL allowing HTTP requests.
+        In order to execute the previously created PHP file, we need to enable HTTP requests in the ContentController, add functionality to address the PHP response and process the returned data.
     </p>
 </div>
 
@@ -201,7 +201,7 @@ class ContentController extends Controller
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: ##
+    <b>Explanation</b>: We add two new dependencies: <code>Request</code> allows us to obtain an instance of the current HTTP request and <a href="/api-doc/Plugin">LibraryCallContract</a> is used for addressing our PHP file and processing the response.<br /><br />In the lines 29 to 35, we add the functionality, to search for packages on Packagist and render the result in our template. In order to search for our own search terms, we create the <code>$packagistResult</code> variable.<br /><br />The <code>call()</code> method requires the <code>$libCall</code> parameter and an array of request parameters. In <code>$libCall</code>, we state that our connector is located in the <b>HelloWorld</b> plugin: <code>HelloWorld::guzzle_connector</code>.<br /><br />In the array of request parameters, we take up <code>packagist_query</code> and assign the <code>$request</code> parameter to it. This param allows us, to request any search term by adding <code>search</code> to our URL.<br />The <code>$packagistResult</code> is then passed to the <code>render</code> function and available in our template.<br /><br />Note that, we cannot directly return classes because the plentymarkets plugin interface is not familiar with these classes. We can only return simple data types or objects with an API that returns the objects as a JSON string.
 </div>
 <!-- Code example end -->
 
@@ -286,7 +286,7 @@ class ContentController extends Controller
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: <code>packagistResult</code> is defined in the ContentController and contains the information of our HTTP response.<br />We use the variable <code><span>{</span>{ packagistResult.total }<span>}</span></code> to render the total number of results.<br />In the <code><span>{</span>% for %}</code> loop, we loop over each item in the results array and list each package in the browser with <b>name</b> and <b>repository</b> by using the variables <code><span>{</span>{ packagistResult.name }<span>}</span></code> and <code><span>{</span>{ packagistResult.repository }<span>}</span></code>.<br />The <code><span>{</span>% else %}</code> clause will render <b>No entries</b> if no iteration took place because the sequence was empty.
+    <b>Explanation</b>: <code>packagistResult</code> is defined in the ContentController and contains the information of our HTTP response.<br />We use the variable <code><span>{</span>{ packagistResult.total }<span>}</span></code> to render the total number of results.<br /><br />In the <code><span>{</span>% for %}</code> loop, we loop over each item in the results array and list each package in the browser with <b>name</b> and <b>repository</b> by using the variables <code><span>{</span>{ packagistResult.name }<span>}</span></code> and <code><span>{</span>{ packagistResult.repository }<span>}</span></code>.<br />The <code><span>{</span>% else %}</code> clause will render <b>No entries</b> if no iteration took place because the sequence was empty.
 </div>
 <!-- Code example end -->
     
