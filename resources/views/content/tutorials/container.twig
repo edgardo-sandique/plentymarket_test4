@@ -5,7 +5,7 @@
 <h1 id="introduction">Template containers</h1>
 <div class="api-docs-basics">
     <p>
-        This tutorial will introduce you to template containers. We will develop a small plugin that provides the data for displaying a placeholder image and text in a container of the template plugin. You will also learn about the plugin containers in Callisto 4 and all options to integrate your own content in the template.
+        This tutorial will introduce you to template containers. We will develop a small plugin that provides the data for displaying a placeholder image and text in a container of the template plugin. You will also learn about the plugin containers in Ceres and all options to integrate your own content in the template.
     </p>
 </div>
 
@@ -27,7 +27,7 @@
 <h2 id="create-plugin-files">Step 2: Creating the plugin files</h2>
 <div class="api-docs-basics">
     <p>
-        Our plugin is of the <b>template</b> type and integrates with the Callisto 4 template, i.e. our plugin consists of <a href="/dev-doc/template-plugins#features-core">core features</a> saved in the <b>src</b> folder and <a href="/dev-doc/template-plugins#features-design">design features</a> saved in the <b>resources</b> folder. Our plugin also requires a <a href="/dev-doc/basics#plugin-information">plugin.json</a> file and a <a href="/dev-doc/basics#plugin-options">config.json</a> file.
+        Our plugin is of the <b>template</b> type and integrates with the Ceres template, i.e. our plugin consists of <a href="/dev-doc/template-plugins#features-core">core features</a> saved in the <b>src</b> folder and <a href="/dev-doc/template-plugins#features-design">design features</a> saved in the <b>resources</b> folder. Our plugin also requires a <a href="/dev-doc/basics#plugin-information">plugin.json</a> file and a <a href="/dev-doc/basics#plugin-options">config.json</a> file.
     </p>
 </div>
 
@@ -234,7 +234,7 @@ class PlaceholderContainer
 <h1 id="add-content">Looking at the big picture</h1>
 <div class="api-docs-basics">
     <p>
-       Now you simply have to link the content from our <b>Placeholder</b> plugin to one or multiple containers of the <b>Callisto 4</b> template plugin. This can be done in the plentymarkets back end.
+       Now you simply have to link the content from our <b>Placeholder</b> plugin to one or multiple containers of the <b>Ceres</b> template plugin. This can be done in the plentymarkets back end.
     </p>
     <ol>
         <li>
@@ -280,10 +280,10 @@ class PlaceholderContainer
 </figure>
 <!-- Image end -->
 
-<h1 id="template-containers">Containers in the Callisto 4 template</h1>
+<h1 id="template-containers">Containers in the Ceres template</h1>
 <div class="api-docs-basics">
     <p>
-        Approx. 40 containers are available on the different pages and views of the Callisto 4 template plugin allowing you to display additional content. The content provided by other plugins can be integrated in the following areas of the online store:
+        Approx. 40 containers are available on the different pages and views of the Ceres template plugin allowing you to display additional content. The content provided by other plugins can be integrated in the following areas of the online store:
     </p>
     <ul>
         <li>
@@ -559,16 +559,16 @@ class PlaceholderContainer
 
 <!-- Code example -->
 <div class="route-container">
-<code>PluginCallisto/plugin.json</code>
+<code>PluginCeres/plugin.json</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-js grey-back linenums code-example">
 "containers"        :
     [
         {
-            "key"           : "Startpage.Certified",
-            "name"          : "Startpage: Certified container",
-            "description"   : "Add an icon to the certified by container in the startpage"
+            "key"           : "Homepage.Certified",
+            "name"          : "Homepage: Certified container",
+            "description"   : "Add an icon to the certified by container on the homepage"
             "multiple"      : false
         }
     ]
@@ -588,7 +588,7 @@ class PlaceholderContainer
 
 <!-- Code example -->
 <div class="route-container">
-    <code>PluginCallisto/resources/views/PageDesign/Macros/LayoutContainer.twig</code>
+    <code>PluginCeres/resources/views/PageDesign/Macros/LayoutContainer.twig</code>
 </div>
 <div class="code-container">
 {% raw %}
@@ -607,21 +607,21 @@ class PlaceholderContainer
 <h3 id="container-template">Container in the template</h3>
 <div class="api-docs-basics">
     <p>
-        Our <b>Certified by</b> container is integrated into the template of <b>Callisto 4</b> using the following code.
+        Our <b>Certified by</b> container is integrated into the template of <b>Ceres</b> using the following code.
     </p>
 </div>
 
 <!-- Code example -->
 <div class="route-container">
-    <code>PluginCallisto/resources/views/PageDesign/Partials/Footer.twig</code>
+    <code>PluginCeres/resources/views/PageDesign/Partials/Footer.twig</code>
 </div>
 <div class="code-container">
 {% raw %}
 <pre class="prettyprint lang-twig grey-back linenums code-example">
-{% set certifiedContent = LayoutContainer.show("PluginCallisto::Startpage.Certified") %}
+{% set certifiedContent = LayoutContainer.show("PluginCeres::Homepage.Certified") %}
 {% if certifiedContent|trim is not empty %}
     &lt;div class="services-certificate m-b-1">
-        &lt;strong class="services-title">{{ trans("PluginCallisto::Template.generalCertifiedBy") }}&lt;/strong>
+        &lt;strong class="services-title">{{ trans("PluginCeres::Template.generalCertifiedBy") }}&lt;/strong>
         {{ certifiedContent }}
     &lt;/div>
 {% endif %}
@@ -631,7 +631,7 @@ class PlaceholderContainer
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: A Twig function sets the variable <code>certifiedContent</code>. The variable is equal to the content of the <code>Startpage.Certified</code> container defined in the <code>plugin.json</code> file.<br /><br />The title of the container is displayed using the <code><span>{</span>{ trans("PluginCallisto::Template.generalCertifiedBy") }}</code> variable. The text for this variable is stored in the <code>Template.properties</code> file.<br /><br />The <code><span>{</span>{ certifiedContent }}</code> variable is used to display the content provided by our <b>Placeholder</b> plugin below the title.
+    <b>Explanation</b>: A Twig function sets the variable <code>certifiedContent</code>. The variable is equal to the content of the <code>Startpage.Certified</code> container defined in the <code>plugin.json</code> file.<br /><br />The title of the container is displayed using the <code><span>{</span>{ trans("PluginCeres::Template.generalCertifiedBy") }}</code> variable. The text for this variable is stored in the <code>Template.properties</code> file.<br /><br />The <code><span>{</span>{ certifiedContent }}</code> variable is used to display the content provided by our <b>Placeholder</b> plugin below the title.
 </div>
 <!-- Code example end -->
 
