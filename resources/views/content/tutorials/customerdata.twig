@@ -167,9 +167,26 @@ You can also use a filter directly when sending the call to only display the del
 
     <div class="route-container" data-type="get" data-middleware="oauth">
         <code>/rest/accounts/{accountId}/contacts</code>
-        </div>
+ </div>
 </div>
 
+<h2 id="list-contact-options-of-contact">Step 8: Listing contact options of a contact</h2>
+<div class="api-docs-basics">
+<p>A contact option is composed of the contact ID, the type ID, the sub-type ID and the actual value. There are some types and sub-types available by default that cannot be deleted. Each type and sub-type is assigned an ID. You can also add new types and sub-types. They will be subsequently given an ID and added to the end of the list of the default types and sub-types.</p>
+<p>Let's illustrate this with two examples: type ID 2 is the "email address", sub-type ID 4 is "private". Thus, the actual value is the combination of both types ("email address", "private"), e.g. John@account.com. Another example: type ID 1 is the "telephone number", sub-type ID 1 is "work". Thus, the corresponding value is the business phone number of the contact, e.g. 123-456-7890. Of course, a contact may have various contact options as long as the type ID and the sub-type ID are unique. That means that the same combination of IDs cannot be used twice. Thus, a contact may have one private email address, one business email address, one private phone number, one business phone number and so on.
+</p>
+<p>Use the following REST call to list the contact options of a contact. The ID of the contact must be specified here.
+</p>
 
+
+<div class="route-container" data-type="get" data-middleware="oauth">
+    <code>/rest/accounts/contacts/{contactId}/options</code>
+    </div>
+
+
+     <div class="alert alert-info" role="alert">
+     <b>Note</b>:<br /> If you know the ID of the contact option, you can also use the GET call <code>/rest/accounts/contacts/options/{optionId}</code> and enter the ID of the contact option  instead of the contact ID. This call will output the same information as the <code>/rest/accounts/contacts/{contactId}/options</code> call.
+     </div>
+</div>
 
 {% endblock %}
