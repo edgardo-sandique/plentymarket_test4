@@ -37,7 +37,7 @@
 <h2 id="create-plugin-files">Step 1: Creating the plugin files</h2>
 <div class="api-docs-basics">
     <p>
-        We need a total of 12 different files. As in the other tutorials, the plugin requires a <code>plugin.json</code> containing the general plugin information. The source code of our plugin is stored in 8 individual files. Furthermore, we need a template file to display the plugin in the browser, a CSS file that contains the styling, and a script file for dynamically updating the To Do list without reloading the entire browser window every time. Create the folder structure and the required files. Pay attention to the scheme given below.
+        We need a total of 12 different files for this plugin. Comparable to the plugins we created in the other tutorials, this plugin requires a <code>plugin.json</code> containing the general plugin information. The source code of our plugin is stored in 8 individual files. Furthermore, we need a template file to display the plugin in the browser, a CSS file that contains the styling, and a script file for dynamically updating the To Do list without reloading the entire browser window every time. Create the folder structure and the required files. Pay attention to the scheme given below.
     </p>
 </div>
 
@@ -153,7 +153,7 @@ class ToDo extends Model
      */
     public function getTableName(): string
     {
-	    return 'ToDoList::ToDo';
+        return 'ToDoList::ToDo';
     }
     }
 </pre>
@@ -161,8 +161,8 @@ class ToDo extends Model
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: Our model extends the class <code>Plenty\Modules\Plugin\DataBase\Contracts\Model</code>. All attributes of the model must be <code>public</code> properties.<br /><br />The data type of our properties must be added either as class annotations or as property annotations (lines 18 to 20 are redundant in the code example because the data type of this property was already added in the class annotation of our model). The following data types are allowed:<code>int</code>, <code>string</code>, <code>float</code>, <code>double</code>, <code>boolean</code> and <code>array</code>.<br /><br />Models require a primary key attribute. The default attribute is <code>id:int</code>. You can change the name and type of the primary key attribute by overriding the protected attributes <code>$primaryKeyFieldName</code> and <code>$primaryKeyFieldType</code>. Otherwise, the <code>id:int</code> attribute must be added to your model.<br /><br />
-	Primary key attributes are automatically assigned the <code>autoincrement</code> option. You can override the protected attribute <code>autoIncrementPrimaryKey</code> and change its value to <code>false</code> to avoid auto-incrementing of your primary key field.<br /><br />The model must return the plugin name and the model name separated by two colons: <code>return 'ToDoList::ToDo'</code>.
+    <b>Explanation</b>: Our model extends the class <code>Plenty\Modules\Plugin\DataBase\Contracts\Model</code>. All attributes of the model must be <code>public</code> properties.<br /><br />The data type of our properties must be added either as class annotations or as property annotations (lines 18 to 20 are redundant in the code example because the data type of this property was already added in the class annotation of our model). The following data types are allowed:<code>int</code>, <code>string</code>, <code>float</code>, <code>double</code>, <code>boolean</code> and <code>array</code>.<br /><br />Models require a primary key attribute. The default attribute is <code>id:int</code>. You can change the name and type of the primary key attribute by overwriting the protected attributes <code>$primaryKeyFieldName</code> and <code>$primaryKeyFieldType</code>. Otherwise, the <code>id:int</code> attribute must be added to your model.<br /><br />
+	The <code>autoincrement</code> option will be assigned automatically to primary key attributes. You can overwrite the protected attribute <code>autoIncrementPrimaryKey</code> and change its value to <code>false</code> to avoid auto-incrementing of your primary key field.<br /><br />The model must return the plugin name and the model name separated by two colons: <code>return 'ToDoList::ToDo'</code>.
 </div>
 <!-- Code example end -->
 
@@ -204,7 +204,7 @@ class CreateToDoTable
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: In line 5, we specify we use the model that we created previously. We also have to use the <code>Plenty\Modules\Plugin\DataBase\Contracts\Migrate</code> class. This class allows us to create and delete data tables.We use the <code>Migrate</code> class in the <code>run()</code> method and create a new data table with the name <b>ToDo</b>. Learn how to specify the migration in the <code>plugin.json</code> file in the next chapter.
+    <b>Explanation</b>: In line 5, we use the previously created model. We also have to use the <code>Plenty\Modules\Plugin\DataBase\Contracts\Migrate</code> class. This class allows us to create and delete data tables. We use the <code>Migrate</code> class in the <code>run()</code> method and create a new data table with the name <b>ToDo</b>. Learn how to specify the migration in the <code>plugin.json</code> file in the next chapter.
 </div>
 <!-- Code example end -->
 
@@ -237,7 +237,7 @@ class CreateToDoTable
 <h3 id="code-contract">Code for the Contract</h3>
 <div class="api-docs-basics">
     <p>
-        A contract is a PHP interface in the Laravel framework. The ToDoRepositoryContract is the interface for our repository.
+        A contract is a PHP interface in the Laravel framework. The ToDoRepositoryContract will be the interface for our repository.
     </p>
 </div>
 
@@ -296,14 +296,14 @@ interface ToDoRepositoryContract
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: In this contract, we specify the functions to be used in our plugin. We implement the four basic functions of data storage: create, read, update and delete entries in our data base.
+    <b>Explanation</b>: In this contract, we specify the functions to be used in our plugin. We implement the four basic functions of data storage: create, read, update and delete.
 </div>
 <!-- Code example end -->
 
 <h3 id="code-validator">Code for the Validator</h3>
 <div class="api-docs-basics">
     <p>
-		The next file on our list is the validator class. This validator is used in the ToDoRepository.
+		The next file on our list is the validator. The validator class will be used in the ToDoRepository.
     </p>
 </div>
 
@@ -492,7 +492,7 @@ class ToDoRepository implements ToDoRepositoryContract
 </div>
 
 <div class="alert alert-info" role="alert">
-	<b>Explanation</b>: In the first part of the code, we use <code>getCurrentContactId()</code> function of the <code>Plenty\Modules\Frontend\Services\AccountService</code> class to get the ID of the currently logged in customer. With this ID, tasks can be related to a specific customer. If a customer is not logged in, but adds a new task to the list, the <code>userId = 0</code> will be saved in the data base.<br /><br />In line 44, we implement the <code>createTask()</code> function. Here, we also use the previously created validator. A new entry will be created in the data base when this function is executed.<br /><br />Next, we implement the <code>getToDoList()</code> function. This function will return an array of tasks of a specific customer.<br /><br />The <code>updateTask()</code> function in line 96 is used to update the status of a task and mark it as done.<br /><br />Finally, the <code>deleteTask()</code> function allows us to delete a specific task from the data base.
+	<b>Explanation</b>: In the first part of the code, we use <code>getCurrentContactId()</code> function of the <code>Plenty\Modules\Frontend\Services\AccountService</code> class to get the ID of the currently logged in customer. With this ID, tasks can be related to a specific customer. If a customer is not logged in, but adds a new task to the list, the <code>userId = 0</code> will be assigned and saved in the data base.<br /><br />In line 44, we implement the <code>createTask()</code> function. Here, we also use the previously created validator. A new entry will be created in the data base when this function is executed.<br /><br />Next, we implement the <code>getToDoList()</code> function. This function will return an array of tasks of a specific customer.<br /><br />The <code>updateTask()</code> function in line 96 is used to update the status of a task and mark it as done.<br /><br />Finally, the <code>deleteTask()</code> function allows us to delete a specific task from the data base.
 </div>
 <!-- Code example end -->
 
@@ -532,7 +532,7 @@ class ToDoServiceProvider extends ServiceProvider
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: In the <code>register()</code> function, we register the RouteServiceProvider and we use the <code>bind()</code> function to bind the <code>ToDoRepositoryContract</code> class to the <code>ToDoRepository</code> class. This way, when using the <code>ToDoRepositoryContract</code> class via dependency injection, the functions defined in the repository will be implemented.
+    <b>Explanation</b>: In the <code>register()</code> function, we register the RouteServiceProvider. Furthermore we use the <code>bind()</code> function to bind the <code>ToDoRepositoryContract</code> class to the <code>ToDoRepository</code> class. This way, when using the <code>ToDoRepositoryContract</code> class via dependency injection, the functions defined in the repository will be implemented.
 </div>
 <!-- Code example end -->
 
@@ -651,14 +651,14 @@ class ContentController extends Controller
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: In the ContentController, we simply use the <code>ToDoRepositoryContract</code> and the specified functions.<br /><br />In the <code>showToDo</code> function, we access the contract to get an array of tasks and render this array in our template. The template will be described in step 3.<br /><br />The other functions are used to create a new task, update an existing task or delete a task. Saving the ContentController, we have created the plugin source code and can now fill the resource files.
+    <b>Explanation</b>: In the ContentController, we use the <code>ToDoRepositoryContract</code> and its specified functions.<br /><br />The <code>showToDo</code> function is used to access the contract, get an array of tasks and render this array in our template. The template will be described in step 3.<br /><br />The other functions are used to create a new task, update an existing task or delete a task. Saving the ContentController, we have created the plugin source code and can now fill the resource files.
 </div>
 <!-- Code example end -->
 
 <h2 id="fill-resource-files">Step 3: Filling the resource files</h2>
 <div class="api-docs-basics">
     <p>
-        For our plugin, we already created 3 files in the <b>resources</b> folder of our plugin:
+        For our To Do list plugin, we already created 3 files in the <b>resources</b> folder:
     </p>
 	<ul>
 		<li>
@@ -735,7 +735,7 @@ class ContentController extends Controller
 </div>
 
 <div class="alert alert-info" role="alert">
-	<b>Explanation</b>: In the <code>head</code> of our template, we define meta information, add a title, link our CSS file and additional fonts that we use in our CSS. We also integrate <a href="https://jquery.com/" target="_blank">jQuery</a> in the <code>script</code> tag.<br /><br />The <code>body</code> of our template contains the markup for our To Do list. A container with the <code>list</code> class wraps the header, the actual list as well as the input field and the submit button.<br /><br />
+	<b>Explanation</b>: In the <code>head</code> of our template, we define meta information, add a title, link our CSS file and additional fonts that we use in our CSS. We also integrate <a href="https://jquery.com/" target="_blank">jQuery</a> in the <code>script</code> tag.<br /><br />The <code>body</code> of our template contains the markup for our To Do list. A container with the <code>list</code> class wraps the header, the actual list, as well as the input field and the submit button.<br /><br />
 	In the <code>ul</code>, we use the <a href="http://twig.sensiolabs.org/doc/2.x/tags/if.html" target="_blank">if</a> statement to check if our request is not <code>null</code>. Inside the <code>if</code> statement, we have a <a href="http://twig.sensiolabs.org/doc/2.x/tags/if.html" target="_blank">for</a> loop for displaying all tasks of our array as individual list items. Each <code>li</code> displays the <code>taskDescription</code> of one data base entry and has a <b>Delete from list</b> button or a <b>Mark as done</b> button attached depending on the <code>isDone</code> status of the task.<br /><br />Below the submit button, we specify the <code>todo.js</code> file in a <code>script</code> tag.
 </div>
 <!-- Code example end -->
@@ -956,7 +956,7 @@ $(document).on('click', 'button.delete-button', function(e) {
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: Our JavaScript code is divided into 3 parts: a script for adding new tasks to the list, a script for marking a task as done and a script for deleting a done task from the list.<br /><br />The first script is executed when a user enters a new task into the input field and clicks on the <b>Add</b> button. A <code>POST</code> request is sent and a new task is created, provided that the <code>taskDescription</code> is not empty. The new task will be added at the bottom of the list. Otherwise an error message will be displayed.<br /><br />The second script is executed when a user clicks on the <b>Mark as done</b> button of a task. A <code>PUT</code> request is sent and the <code>isDone</code> status of the task is updated. The <code>done-button</code> class will be removed and the <code>delete-button</code> class will be added to the button that was clicked. This switches the <b>Mark as done</b> button into the <b>Delete from list</b> button. <code>$("#" + id).prev().addClass("done")</code> is used to add the <code>done</code> class to the task. The text of the task will be lined through.<br /><br />The third script is executed when a user clicks on the <b>Delete from list</b> button of a task. A <code>DELETE</code> request is sent and the task will be removed from the list and the data base.
+    <b>Explanation</b>: Our JavaScript code is divided into 3 parts: a script for adding a new task to the list, a script for marking a task as done and a script for deleting a done task from the list.<br /><br />The first script is executed when a user enters a new task into the input field and clicks on the <b>Add</b> button. A <code>POST</code> request is sent and a new task is created, provided that the <code>taskDescription</code> is not empty. The new task will be added at the bottom of the list. Otherwise an error message will be displayed.<br /><br />The second script is executed when a user clicks on the <b>Mark as done</b> button of a task. A <code>PUT</code> request is sent and the <code>isDone</code> status of the task is updated. The <code>done-button</code> class will be removed and the <code>delete-button</code> class will be added to the button that was clicked. This switches the <b>Mark as done</b> button into the <b>Delete from list</b> button.<br /><br /><code>$("#" + id).prev().addClass("done")</code> is used to add the <code>done</code> class to the task. The text of the task will be lined through.<br /><br />The third script is executed when a user clicks on the <b>Delete from list</b> button of a task. A <code>DELETE</code> request is sent and the task will be removed from the list and the data base.
 </div>
 <!-- Code example end -->
 
