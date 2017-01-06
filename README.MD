@@ -4,7 +4,7 @@
 
 This is the sample plugin for plentymarkets plugin development. Find all the information that you need to develop your own plugins on [plentymarkets developers](https://developers.plentymarkets.com). The content of this plugin is updated regularly.
 
-## Requirements and stuff
+## Requirements
 
 This is a plugin for [plentymarkets 7](https://www.plentymarkets.com). No other plugins are required for running the plugin.
 
