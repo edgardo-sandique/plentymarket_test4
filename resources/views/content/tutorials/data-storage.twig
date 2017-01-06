@@ -408,7 +408,7 @@ class ToDoRepository implements ToDoRepositoryContract
 
         $toDo = pluginApp(ToDo::class);
 
-        $toDo->task = $data['taskDescription'];
+        $toDo->taskDescription = $data['taskDescription'];
 
         $toDo->userId = $this->getCurrentContactId();
 
@@ -716,7 +716,7 @@ class ContentController extends Controller
 
         &lt;!-- Text field and submit button -->
         &lt;div class="task-add">
-            &lt;input type="text" name="task" placeholder="Enter a new task here." class="input" autocomplete="off">
+            &lt;input type="text" name="taskDescription" placeholder="Enter a new task here." class="input" autocomplete="off">
             &lt;input type="submit" id="addTask" value="Add" class="submit">
         &lt;/div>
     &lt;/div>
