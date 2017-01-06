@@ -155,7 +155,7 @@ class ToDo extends Model
     {
         return 'ToDoList::ToDo';
     }
-    }
+}
 </pre>
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
@@ -217,13 +217,13 @@ class CreateToDoTable
 <div class="code-container">
 <pre class="prettyprint lang-js grey-back linenums code-example">
 {
-      "name":"ToDoList",
-      "description":"A simple To Do list",
-      "namespace":"ToDoList",
-      "author":"Your name",
-      "type":"template",
-      "serviceProvider":"ToDoList\\Providers\\ToDoServiceProvider",
-      "runOnBuild":["ToDoList\\Migrations\\CreateToDoTable"]
+	"name":"ToDoList",
+	"description":"A simple To Do list",
+	"namespace":"ToDoList",
+	"author":"Your name",
+	"type":"template",
+	"serviceProvider":"ToDoList\\Providers\\ToDoServiceProvider",
+	"runOnBuild":["ToDoList\\Migrations\\CreateToDoTable"]
 }
 </pre>
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
@@ -257,39 +257,38 @@ use ToDoList\Models\ToDo;
  * Class ToDoRepositoryContract
  * @package ToDoList\Contracts
  */
-
 interface ToDoRepositoryContract
 {
-	/**
-	 * Add a new task to the To Do list
-	 *
-	 * @param array $data
-	 * @return ToDo
-	 */
-	public function createTask(array $data):ToDo;
+    /**
+     * Add a new task to the To Do list
+     *
+     * @param array $data
+     * @return ToDo
+     */
+    public function createTask(array $data): ToDo;
 
-	/**
-	 * List all tasks of the To Do list
-	 *
-	 * @return ToDo[]
-	 */
-	public function getToDoList():array;
+    /**
+     * List all tasks of the To Do list
+     *
+     * @return ToDo[]
+     */
+    public function getToDoList(): array;
 
-	/**
-	 * Update the status of the task
-	 *
-	 * @param int $id
-	 * @return ToDo
-	 */
-	public function updateTask($id):ToDo;
+    /**
+     * Update the status of the task
+     *
+     * @param int $id
+     * @return ToDo
+     */
+    public function updateTask($id): ToDo;
 
-	/**
-	 * Delete a task from the To Do list
-	 *
-	 * @param int $id
-	 * @return ToDo
-	 */
-	public function deleteTask($id):ToDo;
+    /**
+     * Delete a task from the To Do list
+     *
+     * @param int $id
+     * @return ToDo
+     */
+    public function deleteTask($id): ToDo;
 }
 </pre>
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
@@ -312,7 +311,7 @@ interface ToDoRepositoryContract
 <code>ToDoList/src/Validators/ToDoValidator.php</code>
 </div>
 <div class="code-container">
-<pre class="prettyprint lang-php grey-back linenums code-example">
+<pre class="prettyprint lang-php grey-back linenums">
 &lt;?php
 
 namespace ToDoList\Validators;
@@ -320,17 +319,16 @@ namespace ToDoList\Validators;
 use Plenty\Validation\Validator;
 
 /**
-*  Validator Class
-*/
+ *  Validator Class
+ */
 class ToDoValidator extends Validator
 {
     protected function defineAttributes()
     {
-		$this->addString('taskDescription', true);
+        $this->addString('taskDescription', true);
     }
 }
 </pre>
-<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 
 <div class="alert alert-info" role="alert">
@@ -356,136 +354,134 @@ class ToDoValidator extends Validator
 namespace ToDoList\Repositories;
 
 use Plenty\Exceptions\ValidationException;
-use Plenty\Modules\Frontend\Services\AccountService;
 use Plenty\Modules\Plugin\DataBase\Contracts\DataBase;
 use ToDoList\Contracts\ToDoRepositoryContract;
 use ToDoList\Models\ToDo;
 use ToDoList\Validators\ToDoValidator;
+use Plenty\Modules\Frontend\Services\AccountService;
+
 
 class ToDoRepository implements ToDoRepositoryContract
 {
-	/**
-	 * @var AccountService
-	 */
-	private $accountService;
+    /**
+     * @var AccountService
+     */
+    private $accountService;
 
     /**
      * UserSession constructor.
      * @param AccountService $accountService
      */
-	public function __construct(AccountService $accountService)
-	{
-		$this->accountService = $accountService;
-	}
+    public function __construct(AccountService $accountService)
+    {
+        $this->accountService = $accountService;
+    }
 
     /**
      * Get the current contact ID
      * @return int
      */
-	public function getCurrentContactId():int
-	{
-		return $this->accountService->getAccountContactId();
-	}
+    public function getCurrentContactId(): int
+    {
+        return $this->accountService->getAccountContactId();
+    }
 
-	/**
-	 * Add a new item to the To Do list
-	 *
-	 * @param array $data
-	 * @return ToDo
-	 * @throws ValidationException
-	 */
-	public function createTask(array $data): ToDo
-	{
-		 try
-        {
+    /**
+     * Add a new item to the To Do list
+     *
+     * @param array $data
+     * @return ToDo
+     * @throws ValidationException
+     */
+    public function createTask(array $data): ToDo
+    {
+        try {
             ToDoValidator::validateOrFail($data);
-		}
-		catch (ValidationException $e)
-		{
-			throw $e;
-		}
+        } catch (ValidationException $e) {
+            throw $e;
+        }
 
-		/**
-		 * @var DataBase $database
-		 */
-		$database = pluginApp(DataBase::class);
+        /**
+         * @var DataBase $database
+         */
+        $database = pluginApp(DataBase::class);
 
-		$toDo = pluginApp(ToDo::class);
+        $toDo = pluginApp(ToDo::class);
 
-		$toDo->task = $data['taskDescription'];
+        $toDo->task = $data['taskDescription'];
 
-		$toDo->userId = $this->getCurrentContactId();
+        $toDo->userId = $this->getCurrentContactId();
 
-		$toDo->createdAt = time();
+        $toDo->createdAt = time();
 
-		$database->save($toDo);
+        $database->save($toDo);
 
-		return $toDo;
-	}
+        return $toDo;
+    }
 
-	/**
-	 * List all items of the To Do list
-	 *
-	 * @return ToDo[]
-	 */
-	public function getToDoList(): array
-	{
-		$database = pluginApp(DataBase::class);
+    /**
+     * List all items of the To Do list
+     *
+     * @return ToDo[]
+     */
+    public function getToDoList(): array
+    {
+        $database = pluginApp(DataBase::class);
 
-		$id = $this->getCurrentContactId();
-		/**
-		 * @var ToDo[] $toDoList
-		 */
-		$toDoList = $database->query(ToDo::class)->where('userId', '=', $id)->get();
-		return $toDoList;
-	}
+        $id = $this->getCurrentContactId();
+        /**
+         * @var ToDo[] $toDoList
+         */
+        $toDoList = $database->query(ToDo::class)->where('userId', '=', $id)->get();
+        return $toDoList;
+    }
 
-	/**
-	 * Update the status of the item
-	 *
-	 * @param int $id
-	 * @return ToDo
-	 */
-	public function updateTask($id): ToDo
-	{
-		/**
-		 * @var DataBase $database
-		 */
-		$database = pluginApp(DataBase::class);
+    /**
+     * Update the status of the item
+     *
+     * @param int $id
+     * @return ToDo
+     */
+    public function updateTask($id): ToDo
+    {
+        /**
+         * @var DataBase $database
+         */
+        $database = pluginApp(DataBase::class);
 
-		$toDoList = $database->query(ToDo::class)
-                    ->where('id', '=', $id)
-                    ->get();
+        $toDoList = $database->query(ToDo::class)
+            ->where('id', '=', $id)
+            ->get();
 
-		$toDo = $toDoList[0];
-		$toDo->isDone = true;
-		$database->save($toDo);
+        $toDo = $toDoList[0];
+        $toDo->isDone = true;
+        $database->save($toDo);
 
-		return $toDo;
-	}
+        return $toDo;
+    }
 
-	/**
-	 * Delete an item from the To Do list
-	 *
-	 * @param int   $id
-	 * @return ToDo
-	 */
-	public function deleteTask($id): ToDo
-	{
-		/**
-		 * @var DataBase $database
-		 */
-		$database = pluginApp(DataBase::class);
+    /**
+     * Delete an item from the To Do list
+     *
+     * @param int $id
+     * @return ToDo
+     */
+    public function deleteTask($id): ToDo
+    {
+        /**
+         * @var DataBase $database
+         */
+        $database = pluginApp(DataBase::class);
 
-		$toDoList = $database->query(ToDo::class)
-                    ->where('id', '=', $id)
-                    ->get();
+        $toDoList = $database->query(ToDo::class)
+            ->where('id', '=', $id)
+            ->get();
 
-		$toDo = $toDoList[0];
-		$database->delete($toDo);
+        $toDo = $toDoList[0];
+        $database->delete($toDo);
 
-		return $toDo;
-	}
+        return $toDo;
+    }
 }
 </pre>
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
@@ -518,14 +514,14 @@ use ToDoList\Repositories\ToDoRepository;
  */
 class ToDoServiceProvider extends ServiceProvider
 {
-	/**
-	 * Register the service provider.
-	 */
-	public function register()
-	{
-		$this->getApplication()->register(ToDoRouteServiceProvider::class);
-		$this->getApplication()->bind(ToDoRepositoryContract::class, ToDoRepository::class);
-	}
+    /**
+     * Register the service provider.
+     */
+    public function register()
+    {
+        $this->getApplication()->register(ToDoRouteServiceProvider::class);
+        $this->getApplication()->bind(ToDoRepositoryContract::class, ToDoRepository::class);
+    }
 }
 </pre>
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
@@ -557,16 +553,16 @@ use Plenty\Plugin\Routing\Router;
  */
 class ToDoRouteServiceProvider extends RouteServiceProvider
 {
-	/**
-	 * @param Router $router
-	 */
-	public function map(Router $router)
-	{
-		$router->get('todo', 'ToDoList\Controllers\ContentController@showToDo');
-		$router->post('todo', 'ToDoList\Controllers\ContentController@createToDo');
-		$router->put('todo/{id}', 'ToDoList\Controllers\ContentController@updateToDo')->where('id', '\d+');
-		$router->delete('todo/{id}', 'ToDoList\Controllers\ContentController@deleteToDo')->where('id', '\d+');
-	}
+    /**
+     * @param Router $router
+     */
+    public function map(Router $router)
+    {
+        $router->get('todo', 'ToDoList\Controllers\ContentController@showToDo');
+        $router->post('todo', 'ToDoList\Controllers\ContentController@createToDo');
+        $router->put('todo/{id}', 'ToDoList\Controllers\ContentController@updateToDo')->where('id', '\d+');
+        $router->delete('todo/{id}', 'ToDoList\Controllers\ContentController@deleteToDo')->where('id', '\d+');
+    }
 
 }
 </pre>
@@ -601,50 +597,50 @@ use ToDoList\Contracts\ToDoRepositoryContract;
  */
 class ContentController extends Controller
 {
-	/**
-	 * @param Twig $twig
-	 * @param ToDoRepositoryContract $toDoRepo
-	 * @return string
-	 */
-	public function showToDo(Twig $twig, ToDoRepositoryContract $toDoRepo):string
-	{
-		$toDoList = $toDoRepo->getToDoList();
-		$templateData = array("tasks" => $toDoList);
-		return $twig->render('ToDoList::content.todo', $templateData);
-	}
+    /**
+     * @param Twig                   $twig
+     * @param ToDoRepositoryContract $toDoRepo
+     * @return string
+     */
+    public function showToDo(Twig $twig, ToDoRepositoryContract $toDoRepo): string
+    {
+        $toDoList = $toDoRepo->getToDoList();
+        $templateData = array("tasks" => $toDoList);
+        return $twig->render('ToDoList::content.todo', $templateData);
+    }
 
-	/**
-	 * @param  \Plenty\Plugin\Http\Request $request
-	 * @param ToDoRepositoryContract $toDoRepo
-	 * @return string
-	 */
-	public function createToDo(Request $request, ToDoRepositoryContract $toDoRepo):string
-	{
-		$newToDo = $toDoRepo->createTask($request->all());
-		return json_encode($newToDo);
-	}
+    /**
+     * @param  \Plenty\Plugin\Http\Request $request
+     * @param ToDoRepositoryContract       $toDoRepo
+     * @return string
+     */
+    public function createToDo(Request $request, ToDoRepositoryContract $toDoRepo): string
+    {
+        $newToDo = $toDoRepo->createTask($request->all());
+        return json_encode($newToDo);
+    }
 
-	/**
-	 * @param int $id
-	 * @param ToDoRepositoryContract $toDoRepo
-	 * @return string
-	 */
-	public function updateToDo(int $id, ToDoRepositoryContract $toDoRepo):string
-	{
-		$updateToDo = $toDoRepo->updateTask($id);
-		return json_encode($updateToDo);
-	}
+    /**
+     * @param int                    $id
+     * @param ToDoRepositoryContract $toDoRepo
+     * @return string
+     */
+    public function updateToDo(int $id, ToDoRepositoryContract $toDoRepo): string
+    {
+        $updateToDo = $toDoRepo->updateTask($id);
+        return json_encode($updateToDo);
+    }
 
-	/**
-	 * @param int $id
-	 * @param ToDoRepositoryContract $toDoRepo
-	 * @return string
-	 */
-	public function deleteToDo(int $id, ToDoRepositoryContract $toDoRepo):string
-	{
-		$deleteToDo = $toDoRepo->deleteTask($id);
-		return json_encode($deleteToDo);
-	}
+    /**
+     * @param int                    $id
+     * @param ToDoRepositoryContract $toDoRepo
+     * @return string
+     */
+    public function deleteToDo(int $id, ToDoRepositoryContract $toDoRepo): string
+    {
+        $deleteToDo = $toDoRepo->deleteTask($id);
+        return json_encode($deleteToDo);
+    }
 }
 </pre>
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
