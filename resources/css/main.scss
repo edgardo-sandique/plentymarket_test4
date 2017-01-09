@@ -411,6 +411,10 @@ p.h4 {
     }
   }
 
+  & img {
+    width: 100%;
+  }
+
   .highlight-text {
     -webkit-transition: background-color .2s linear;
     -moz-transition: background-color .2s linear;
@@ -426,9 +430,14 @@ p.h4 {
     z-index: 2;
   }
 
+  @media (max-width: 1200px) {
+    .highlight-text {
+      font-size: 30px;
+    }
+  }
   @media (max-width: 992px) {
     .highlight-text {
-      font-size: 20px;
+      font-size: 24px;
     }
   }
   @media (max-width: 768px) {
@@ -438,7 +447,7 @@ p.h4 {
   }
   @media (max-width: 425px) {
     .highlight-text {
-      font-size: 20px;
+      font-size: 24px;
     }
   }
 }
