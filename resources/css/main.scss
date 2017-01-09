@@ -1493,6 +1493,12 @@ code {
 
 /* RESPONSIVE IMAGES */
 
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
 @media (max-width:1000px) {
   .img-horizontal {
     width:98%;
