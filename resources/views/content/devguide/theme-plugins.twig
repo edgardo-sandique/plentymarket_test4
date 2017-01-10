@@ -2,10 +2,236 @@
 
 {% block Content %}
 
-<h1 id="template-introduction">Introducing theme plugins</h1>
+<h1 id="theme-introduction">Introducing theme plugins</h1>
 <div class="api-docs-basics">
     <p>
-        On this page, you will find an overview of relevant information about theme plugins.
+        On this page, you will find an overview of relevant information about theme plugins. Theme plugins let you change the style of your template in an easy and convenient way. After provisioning a theme once, you can activate or deactivate the theme in the plentymarkets back end without further configuration.
+    </p>
+    <p>
+        Theme plugins make use of a <a href="/tutorials/container">template container</a> in the Ceres template and extend the CSS of Ceres. In doing so, the CSS of the theme will override all concerned classes in the Ceres stylesheet. Classes that are not styled in the CSS of the theme but in the Ceres stylesheet are not affected.
+    </p>
+</div>
+
+<h3 id="theme-further-reading">Further reading</h3>
+
+<div class="api-docs-basics">
+    <ul>
+        <li>
+            <a href="/dev-doc/basics#plugin-structure">Plugin structure</a>
+        </li>
+        <li>
+            <a href="/tutorials/design">Installing a template</a>
+        </li>
+        <li>
+            <a href="/tutorials/container">Template containers</a>
+        </li>
+        <li>
+            <a href="/marketplace/plugin-requirements">Plugin requirements for plentyMarketplace</a>
+        </li>
+    </ul>
+</div>
+
+<h2 id="theme-structure">Theme plugin structure</h2>
+<div class="api-docs-basics">
+    <p>
+        The structure of a theme plugin is very simple. Basic theme plugins consist of a <code>plugin.json</code> file, a ServiceProvider, a Container, a CSS file and a TWIG template.
+    </p>
+</div>
+
+<!-- Folder structure -->
+<div class="code-container">
+<pre class="prettyprint lang-plain grey-back">
+Theme/
+    +-- resources/
+    |   +-- css/
+    |   |   +-- main.css // theme stylesheet
+    |   |
+    |   +-- views/
+    |       +-- content/
+    |           +-- Theme.twig // content to be injected into the Ceres template container
+    +-- src/
+    |   +-- Containers/
+    |   |   +--ThemeContainer.php
+    |   |
+    |   +-- Providers/
+    |       +-- ThemeServiceProvider.php
+    |
+    +-- plugin.json // plugin information
+</pre>
+</div>
+<!-- Folder structure end -->
+
+<h2 id="theme-style">Creating a theme</h2>
+<div class="api-docs-basics">
+    <p>
+        Create the following files and develop a theme that changes the background colour of the template plugin. If you want to offer the theme in the plentyMarketplace, pay attention to our <a href="/marketplace/plugin-requirements">plugin requirements</a>.
+    </p>
+</div>
+
+<h3 id="code-pluginjson">Code for the plugin.json</h3>
+
+<!-- Code example -->
+<div class="route-container">
+    <code>ThemePlugin/plugin.json</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-js grey-back linenums code-example">
+{
+    "name"                  :"Theme",
+    "description"           :"Basic theme plugin",
+    "namespace"             :"Theme",
+    "author"                :"Your name",
+    "keywords"              : ["theme", "Ceres", "template"],
+    "type"                  :"theme",
+    "require"               : [],
+    "serviceProvider"       :"Theme\\Providers\\ThemeServiceProvider",
+    "dataProviders"         :
+    [
+        {
+            "key"           :"Theme\\Containers\\ThemeContainer",
+            "name"          :"Dark background",
+            "description"   :"Change the background colour of the Ceres template"
+        }
+    ]
+}
+</pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: Specify the <code>serviceProvider</code> and the <code>dataProviders</code>.
+</div>
+<!-- Code example end -->
+
+<h3 id="code-serviceprovider">Code for the ServiceProvider</h3>
+
+<!-- Code example -->
+<div class="route-container">
+    <code>Theme/src/Providers/ThemeServiceProvider.php</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums code-example">
+&lt;?php
+
+namespace Theme\Providers;
+
+use Plenty\Plugin\ServiceProvider;
+
+class ThemeServiceProvider extends ServiceProvider
+{
+
+	/**
+	 * Register the service provider.
+	 */
+	public function register()
+	{
+
+	}
+}
+</pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+<!-- Code example end -->
+
+<h3 id="code-themecontainer">Code for the Container</h3>
+
+<!-- Code example -->
+<div class="route-container">
+    <code>Theme/src/ThemeContainer.php</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-php grey-back linenums code-example">
+&lt;?php
+
+namespace Theme\Containers;
+
+use Plenty\Plugin\Templates\Twig;
+
+class ThemeContainer
+{
+    public function call(Twig $twig):string
+    {
+        return $twig->render('Theme::content.theme');
+    }
+}
+</pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: Specify the path to the TWIG template <code>Theme::content.theme</code>.
+</div>
+<!-- Code example end -->
+
+<h3 id="code-template">Code for the TWIG template</h3>
+
+<!-- Code example -->
+<div class="route-container">
+    <code>Theme/resources/views/content/Theme.twig</code>
+</div>
+<div class="code-container">
+{% raw %}
+<pre class="prettyprint lang-twig grey-back linenums code-example">
+&lt;link rel="stylesheet" href="{{ plugin_path('Theme') }}/css/main.css">
+</pre>
+{% endraw %}
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: Specify the path to the CSS file <code><span>{</span>{ plugin_path('Theme') }}/css/main.css</code>. You can link one or multiple stylesheets here. Note that only CSS files are allowed. SCSS files must be compiled into one or multiple CSS files first.
+</div>
+<!-- Code example end -->
+
+<h3 id="code-stylesheet">Code for the CSS file</h3>
+
+<!-- Code example -->
+<div class="route-container">
+    <code>Theme/resources/css/main.css</code>
+</div>
+<div class="code-container">
+<pre class="prettyprint lang-js grey-back linenums code-example">
+/* Change background colour */
+body {
+    background-color: #808080;
+}
+</pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: Change the style in the stylesheet according to your preferences. This stylesheet will extend the existing stylesheet of the template plugin. This CSS will have a higher priority than the CSS of the template plugin.
+</div>
+<!-- Code example end -->
+
+<h2 id="theme-activate">Activating a theme</h2>
+<div class="api-docs-basics">
+    <p>
+        After creating the theme, <a href="/dev-doc/basics#add-repository">add</a> the plugin to the plentymarkets inbox and <a href="/dev-doc/basics#provisioning">provision</a> it in <b>Productive</b>. After provisioning the theme plugin once, you can activate and deactivate it without further configuration.
+    </p>
+    <ol>
+        <li>
+            Open the plentymarkets back end.
+        </li>
+        <li>
+            Go to <b>Start » Plugins</b>.
+        </li>
+        <li>Click on the <b>Content</b> tab.<br />
+            → A list of all plugins that provide data will be displayed.
+        </li>
+        <li>
+            Activate the <b>Template: Style for Ceres - experimental -</b> container in the <b>Dark background (Theme)</b> area.
+        </li>
+        <li>
+            <b>Save</b> the settings.
+        </li>
+        <li>
+            Refresh the browser window.<br />
+            → The new theme will be loaded.
+        </li>
+    </ol>
+</div>
+
+<h2 id="theme-markup">Editing a template</h2>
+<div class="api-docs-basics">
+    <p>
+        A theme plugin can not only extend the CSS file of the template plugin, but also change the entire markup of one or multiple template components. <a href="http://twig.sensiolabs.org/doc/2.x/tags/block.html" target="_blank">TWIG blocks</a> are used for this purpose.
     </p>
 </div>
 
