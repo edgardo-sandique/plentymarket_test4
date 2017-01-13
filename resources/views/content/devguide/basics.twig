@@ -59,6 +59,14 @@
         </tr>
         <tr>
             <td>
+                <a href="{{ url() }}/api-doc/Authorization">Authorization</a>
+            </td>
+            <td>
+                Interface for user permissions and user roles.
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <a href="{{ url() }}/api-doc/Basket">Basket</a>
             </td>
             <td>
@@ -75,10 +83,26 @@
         </tr>
         <tr>
             <td>
+                <a href="{{ url() }}/api-doc/Cloud">Cloud</a>
+            </td>
+            <td>
+                Interface for cloud services, e.g. ElasticSearch and Storage.
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <a href="{{ url() }}/api-doc/Cron">Cron</a>
             </td>
             <td>
                 Interface for accessing cron jobs.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Comment">Comment</a>
+            </td>
+            <td>
+                Contains the Comment model.
             </td>
         </tr>
         <tr>
@@ -95,6 +119,22 @@
             </td>
             <td>
                 Contains the document model.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/EventProcedures">EventProcedures</a>
+            </td>
+            <td>
+                Interface with events and services for event procedures.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Export">Export</a>
+            </td>
+            <td>
+                Contains the Export model.
             </td>
         </tr>
         <tr>
@@ -151,6 +191,14 @@
             </td>
             <td>
                 Contains the sub-modules for payment methods, the payment history, as well as contracts and models for payments and payment properties.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{{ url() }}/api-doc/Plugin">Plugin</a>
+            </td>
+            <td>
+                Contains the sub-modules for storing data in a plugin database or accessing external SDKs.
             </td>
         </tr>
         <tr>
@@ -272,7 +320,8 @@ PluginDirectory/
         <tbody>
             <tr>
                 <td>name</td>
-                <td>The name of your plugin. The plugin name must not yet exist in plentyMarketplace.</td>
+                <td>The name of your plugin. The plugin name must not yet exist in plentyMarketplace. The name must not contain spaces or special characters, must start with a character and must be written in <code>UpperCamelCase</code>.
+                </td>
             </tr>
             <tr>
                 <td>namespace</td>

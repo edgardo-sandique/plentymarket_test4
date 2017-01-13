@@ -62,7 +62,7 @@
         <tbody>
             <tr>
                 <td>name</td>
-                <td>The name of your plugin. The plugin name must not yet exist in plentyMarketplace. The name must not contain spaces, numbers or special characters and must be written in <code>UpperCamelCase</code>. <span class="label label-danger">required</span></td>
+                <td>The name of your plugin. The plugin name must not yet exist in plentyMarketplace. The name must not contain spaces or special characters, must start with a character and must be written in <code>UpperCamelCase</code>. <span class="label label-danger">required</span></td>
             </tr>
             <tr>
                 <td>namespace</td>
@@ -94,7 +94,7 @@
             </tr>
             <tr>
                 <td>pluginIcon</td>
-                <td>The file name with file format of the plugin icon <span class="label label-danger">required</span></td>
+                <td>The file name with file format of the plugin icon, e.g. <code>icon_plugin_xs.png</code> <span class="label label-danger">required</span></td>
             </tr>
             <tr>
                 <td>price</td>
@@ -118,7 +118,7 @@
             </tr>
             <tr>
                 <td>authorIcon</td>
-                <td>The file name with file format of the author icon <span class="label label-danger">required</span></td>
+                <td>The file name with file format of the author icon, e.g. <code>icon_author_xs.png</code> <span class="label label-danger">required</span></td>
             </tr>
             <tr>
                 <td>email</td>
@@ -163,13 +163,13 @@
 <h2 id="marketplace-changelog">Change log</h2>
 <div class="api-docs-basics">
     <p>
-        The <code>CHANGELOG.md</code> file contains necessary information about changes made to the plugin. The file is saved in the <b>root</b> folder of the plugin. The change log must be written in English. Use the following example for your <a href="https://github.com/plentymarkets/plenty-plugin-showcase/blob/master/resources/examples/CHANGELOG.md" target="_blank">change log</a>:
+        The change log for the plugin is saved in the sub-folder <b>documents</b> in the <b>meta</b> folder. The change log must be available in German and English and saved in MD file format, e.g. <code>changelog_de.md</code> and <code>changelog_en.md</code>. Change logs in other languages are optional. Change the language code in the file name accordingly. The following guidelines must be taken into consideration when writing the <a href="https://github.com/plentymarkets/plenty-plugin-showcase/blob/master/resources/examples/changelog_en.md" target="_blank">change log</a>:
     </p>
 </div>
 
 <!-- Code example -->
 <div class="route-container">
-    <code>PluginXY/CHANGELOG.md</code>
+    <code>PluginXY/meta/documents/changelog_en.md</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-plain grey-back linenums code-example">
