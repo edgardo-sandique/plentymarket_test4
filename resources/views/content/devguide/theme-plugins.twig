@@ -31,13 +31,26 @@
         <li>
             <a href="/marketplace/plugin-requirements">Plugin requirements for plentyMarketplace</a>
         </li>
+        <li>
+            <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance" target="_blank">Template inheritance</a>
+        </li>
+        <li>
+            <a href="http://twig.sensiolabs.org/doc/templates.html#including-other-templates" target="_blank">Including other templates</a>
+        </li>
     </ul>
 </div>
 
-<h2 id="theme-structure">Theme plugin structure</h2>
+<h1 id="theme-create-style">Creating a theme</h1>
 <div class="api-docs-basics">
     <p>
-        The structure of a theme plugin is very simple. Basic theme plugins consist of a <code>plugin.json</code> file, a ServiceProvider, a Container, a CSS file and a TWIG template.
+        Create the following files and develop a theme that changes the background colour of the template plugin. If you want to offer the theme in the plentyMarketplace, pay attention to our <a href="/marketplace/plugin-requirements">plugin requirements</a>.
+    </p>
+</div>
+
+<h2 id="theme-structure">Changing the CSS of a template</h2>
+<div class="api-docs-basics">
+    <p>
+        This basic theme plugin for changing the CSS of a template consists of a <code>plugin.json</code> file, a ServiceProvider, a Container, a CSS file and a TWIG template.
     </p>
 </div>
 
@@ -63,13 +76,6 @@ Theme/
 </pre>
 </div>
 <!-- Folder structure end -->
-
-<h2 id="theme-style">Creating a theme</h2>
-<div class="api-docs-basics">
-    <p>
-        Create the following files and develop a theme that changes the background colour of the template plugin. If you want to offer the theme in the plentyMarketplace, pay attention to our <a href="/marketplace/plugin-requirements">plugin requirements</a>.
-    </p>
-</div>
 
 <h3 id="code-pluginjson">Code for the plugin.json</h3>
 
@@ -206,7 +212,7 @@ body {
 <h2 id="theme-activate">Activating a theme</h2>
 <div class="api-docs-basics">
     <p>
-        After creating the theme, <a href="/dev-doc/basics#add-repository">add</a> the plugin to the plentymarkets inbox and <a href="/dev-doc/basics#provisioning">provision</a> it in <b>Productive</b>. After provisioning the theme plugin once, you can activate and deactivate it without further configuration.
+        Create the theme first, then <a href="/dev-doc/basics#add-repository">add</a> the plugin to the plentymarkets inbox and <a href="/dev-doc/basics#provisioning">provision</a> it in <b>Productive</b>. After provisioning the theme plugin once, you can activate and deactivate it without further configuration.
     </p>
     <ol>
         <li>
@@ -231,7 +237,7 @@ body {
     </ol>
 </div>
 
-<h1 id="theme-edit-template">Editing a template</h1>
+<h1 id="theme-edit-template">Editing a template plugin</h1>
 <div class="api-docs-basics">
     <p>
         A theme plugin can not only extend the CSS file of the template plugin, but also change the entire markup of individual template components or the overall page design.
@@ -241,10 +247,10 @@ body {
     </p>
 </div>
 
-<h2 id="theme-change-pagedesign">Changing the page design</h2>
+<h2 id="theme-page-structure">Page structure</h2>
 <div class="api-docs-basics">
     <p>
-        You can change only parts of the page design or edit the page design completely to meet your needs. The page design of Ceres consists of two main sections, the <b>head</b> and the <b>body</b>. The body itself is divided into multiple sub-sections called wrappers. These wrappers include different components or pages. The most important wrapper is the main wrapper containing the <b>header</b>, the <b>body</b> and the <b>footer</b> of your online store.
+        You can either change parts of the page design or edit the page design completely to meet your needs. The page design of Ceres consists of two main sections, the <b>head</b> and the <b>body</b>. The body itself is divided into multiple sub-sections called wrappers. These wrappers include different components or pages. The most important wrapper is the main wrapper containing the <b>header</b>, the <b> page body</b> and the <b>footer</b> of your online store.
     </p>
 </div>
 
@@ -254,10 +260,10 @@ body {
     </a>
 </figure>
 
-<h2 id="theme-change-pagedesign">Changing the page design</h2>
+<h2 id="theme-change-footer">Changing the page design</h2>
 <div class="api-docs-basics">
     <p>
-        The TWIG <a href="http://twig.sensiolabs.org/doc/2.x/tags/include.html" target="_parent">include statement</a> is used for this purpose. In the example below the <code>ThemeFooter.twig</code> file is included in the <code>ThemePageDesign.twig</code> file.
+        The TWIG <a href="http://twig.sensiolabs.org/doc/2.x/tags/include.html" target="_parent">include statement</a> is used for this purpose. In the example below the <code>ThemeFooter.twig</code> file is included in the <code>ThemePageDesign.twig</code> file. You can simply create your own footer template and replace the Ceres footer.
     </p>
 </div>
 
@@ -313,145 +319,6 @@ class ThemeServiceProvider extends ServiceProvider
 </div>
 <!-- Code example end -->
 
-
-
-<h3 id="code-pagedesign">Code for the PageDesign template</h3>
-
-<!-- Code example -->
-<div class="route-container">
-    <code>Theme/resources/views/content/ThemePageDesign.twig</code>
-</div>
-<div class="code-container">
-{% raw %}
-<pre class="prettyprint lang-twig grey-back linenums code-example">
-{% import "PluginCeres::PageDesign.Macros.IncludeComponents" as Loader %}
-{{ component( "PluginCeres::PageDesign.Components.Notifications" ) }}
-{{ component( "PluginCeres::Basket.Components.BasketPreview" ) }}
-{{ component( "PluginCeres::Customer.Components.Login" ) }}
-{{ component( "PluginCeres::Customer.Components.Registration" ) }}
-{{ component( "PluginCeres::Basket.Components.AddItemToBasketOverlay" ) }}
-
-&lt;!DOCTYPE html>
-
-{% set lang = services.sessionStorage.getLang() %}
-{% set fixNavBarPos = config("PluginCeres.header.fixed_navbar") %}
-{% set showItemConfirm = config("PluginCeres.basket.add_item_to_basket_confirm") %}
-
-&lt;html lang="{{ lang }}" data-framework="vue">
-
-    &lt;head>
-        {% include "PluginCeres::PageDesign.Partials.Head" %}
-    &lt;/head>
-
-    &lt;body>
-        &lt;resource name="user" :data="{ isLoggedIn: {{ frontend.Account.getIsAccountLoggedIn | json_encode() }} }" >&lt;/resource>
-        &lt;resource name="basket" route="/rest/basket/" data="{{ services.basket.getBasket() | json_encode() }}" :events="['AfterBasketChanged!basket']">&lt;/resource>
-        &lt;resource name="itemSearch" :data="{}">&lt;/resource>
-        &lt;resource name="basketItem" :data="{ currentBasketItem: { }, quantity: 1 }">&lt;/resource>
-        &lt;resource name="localization" :data="{{ services.localization.getLocalizationData() | json_encode() }}">&lt;/resource>
-        &lt;resource-list name="basketItems" route="/rest/basket/items/" data="{{ services.basket.getBasketItems() | json_encode() }}">&lt;/resource-list>
-
-        &lt;div class="wrapper wrapper-top">
-            <!-- messages -->
-            &lt;notifications
-                :initial-notifications="{{ services.notifications.getNotifications() | json_encode() }}"
-            >&lt;/notifications>
-        &lt;/div>
-
-        &lt;div class="wrapper wrapper-left">
-          <!-- filters -->
-        &lt;/div>
-
-        &lt;div class="wrapper wrapper-main {% if fixNavBarPos == 'true' %}isSticky{% endif %}">
-
-            {% include "PluginCeres::PageDesign.Partials.Header.Header" %}
-
-            &lt;div id="page-body" class="main">
-                {% block PageBody %}
-                    <!-- inject content of inherited templates here -->
-                {% endblock %}
-            &lt;/div>
-
-            {% include "Theme::content.ThemeFooter" %}
-        &lt;/div>
-
-        &lt;div class="wrapper wrapper-right">
-          &lt;basket-preview>&lt;/basket-preview>
-        &lt;/div>
-
-        &lt;div class="wrapper wrapper-bottom">
-            <!-- eventually messages -->
-
-            <!-- LOGIN MODAL -->
-            &lt;div id="login-modal-wrapper">
-                &lt;div class="modal fade login-modal" id="login" tabindex="-1" role="dialog">
-                    &lt;div class="modal-dialog">
-                        &lt;div class="modal-content">
-                            &lt;div class="modal-header">
-                                &lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;&lt;/button>
-                                &lt;h3 class="modal-title">{{ trans("PluginCeres::Template.accLogin") }}&lt;/h3>
-                            &lt;/div>
-                            &lt;div class="modal-body">
-                                &lt;login modal-element="login-modal-wrapper">&lt;/login>
-                            &lt;/div>
-                        &lt;/div>
-                    &lt;/div>
-                &lt;/div>
-            &lt;/div>
-            <!-- ./LOGIN MODAL -->
-
-            <!-- REGISTRATION MODAL -->
-            &lt;div id="simple-registration-modal-wrapper">
-                &lt;div class="modal fade" id="registration" tabindex="-1" role="dialog">
-                    &lt;div class="modal-dialog">
-                        &lt;div class="modal-content">
-                            &lt;div class="modal-header">
-                                &lt;button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;&lt;/button>
-                                &lt;h3 class="modal-title">{{ trans("PluginCeres::Template.accCreateAccount") }}&lt;/h3>
-                            &lt;/div>
-                            &lt;div class="modal-body">
-                                &lt;registration :is-simple-registration="true" modal-element="simple-registration-modal-wrapper">&lt;/registration>
-                            &lt;/div>
-                        &lt;/div>
-                    &lt;/div>
-                &lt;/div>
-            &lt;/div>
-            <!-- ./REGISTRATION MODAL -->
-
-            <!-- BASKET MODAL -->
-            &lt;add-item-to-basket-overlay :show-overlay="{{ showItemConfirm }}">&lt;/add-item-to-basket-overlay>
-            <!-- ./BASKET MODAL -->
-
-        &lt;/div>
-
-        {{ Loader.include_components() }}
-
-        {% set lang = services.sessionStorage.getLang() %}
-
-        {% if config("PluginCeres.log.performance.level") == 'development' %}
-            &lt;script src="{{ plugin_path('PluginCeres') }}/js/lang/{{ lang }}.js">&lt;/script>
-            &lt;script>var Translations = Languages['{{ lang }}'];&lt;/script>
-            &lt;script src="{{ plugin_path('PluginCeres') }}/js/dist/plugin-ceres-vendor.js">&lt;/script>
-            &lt;script src="{{ plugin_path('PluginCeres') }}/js/src/app.config.js">&lt;/script>
-            &lt;script src="{{ plugin_path('PluginCeres') }}/js/dist/plugin-ceres-app.js">&lt;/script>
-        {% else %}
-            {# TODO remove duplicate import #}
-            &lt;script src="{{ plugin_path('PluginCeres') }}/js/lang/{{ lang }}.js">&lt;/script>
-            &lt;script>var Translations = Languages['{{ lang }}'];&lt;/script>
-
-            &lt;script src="{{ plugin_path('PluginCeres') }}/js/dist/plugin-ceres.min.js">&lt;/script>
-        {% endif %}
-    &lt;/body>
-&lt;/html>
-</pre>
-{% endraw %}
-<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
-</div>
-<div class="alert alert-info" role="alert">
-    <b>Explanation</b>: We use the code of the <a href="https://github.com/plentymarkets/plugin-ceres/blob/stable/resources/views/PageDesign/PageDesign.twig" target="_blank">PageDesign.twig</a> of the Ceres template plugin.<br /><br />In line 49, we include our own footer template (here <code><span>{</span>% include "Theme::content.ThemeFooter" %}</code>). We will create this template in the next step.
-</div>
-<!-- Code example end -->
-
 <h3 id="code-footer">Code for the Footer template</h3>
 
 <!-- Code example -->
@@ -473,11 +340,13 @@ class ThemeServiceProvider extends ServiceProvider
 </div>
 <!-- Code example end -->
 
-<h2 id="theme-change-pagedesign">Changing the template of a page</h2>
+<h2 id="theme-change-page">Changing the template of a page</h2>
 <div class="api-docs-basics">
-    <p>The <a href="http://twig.sensiolabs.org/doc/2.x/tags/extends.html" target="_blank">extends tag</a> is used to extend a template from another template. In the example below, the <code>ThemeBasket.twig</code> file extends the <code>ThemePageDesign.twig</code> file.
+    <p>The <a href="http://twig.sensiolabs.org/doc/2.x/tags/extends.html" target="_blank">extends tag</a> is used to extend a template from another template. In the example below, the <code>ThemeBasket.twig</code> file extends the <code>ThemePageDesign.twig</code> file. TWIG blocks are used, to define the content that will be inserted in the main wrapper of the page design. We only have to edit the ServiceProvider of our theme and create the page template, e.g. the basket.
     </p>
 </div>
+
+<!-- Insert code example for service provider where new basket template path is registered -->
 
 <h3 id="code-template-basket">Code for the Basket template</h3>
 
@@ -496,9 +365,18 @@ class ThemeServiceProvider extends ServiceProvider
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: By using the <code>include</code> statement in the <code>ThemePageDesign.twig</code> file, we include the content of this template in our PageDesign template.
+    <b>Explanation</b>: ##
 </div>
 <!-- Code example end -->
+
+<h2 id="theme-change-page-component">Changing the template of a page component</h2>
+<div class="api-docs-basics">
+    <p>
+        ##
+    </p>
+</div>
+
+<!-- Insert code example for service provider where new basket component template path is registered -->
 
 <!-- Modal -->
 <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
