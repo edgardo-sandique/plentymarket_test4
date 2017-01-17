@@ -250,7 +250,7 @@ body {
 <h2 id="theme-page-structure">Page structure</h2>
 <div class="api-docs-basics">
     <p>
-        You can either change parts of the page design or edit the page design completely to meet your needs. The page design of Ceres consists of two main sections, the <b>head</b> and the <b>body</b>. The body itself is divided into multiple sub-sections called wrappers. These wrappers include different components or pages. The most important wrapper is the main wrapper containing the <b>header</b>, the <b> page body</b> and the <b>footer</b> of your online store.
+        You can either change parts of the page design or edit the entire page design to meet your needs. The page design of Ceres consists of two main sections, the <b>head</b> and the <b>body</b>. The body itself is divided into multiple sub-sections called wrappers. These wrappers include different components, partials or pages. The most important wrapper is the main wrapper containing the <b>header</b>, the <b>page body</b> and the <b>footer</b> of your online store.
     </p>
 </div>
 
@@ -342,7 +342,7 @@ class ThemeServiceProvider extends ServiceProvider
 
 <h2 id="theme-change-page">Changing the template of a page</h2>
 <div class="api-docs-basics">
-    <p>The <a href="http://twig.sensiolabs.org/doc/2.x/tags/extends.html" target="_blank">extends tag</a> is used to extend a template from another template. In the example below, the <code>ThemeBasket.twig</code> file extends the <code>ThemePageDesign.twig</code> file. TWIG blocks are used, to define the content that will be inserted in the main wrapper of the page design. We only have to edit the ServiceProvider of our theme and create the page template, e.g. the basket.
+    <p>The <a href="http://twig.sensiolabs.org/doc/2.x/tags/extends.html" target="_blank">extends tag</a> is used to extend a template from another template. In the example below, the <code>ThemeBasket.twig</code> file extends the <code>ThemePageDesign.twig</code> file. TWIG <a href="http://twig.sensiolabs.org/doc/2.x/tags/block.html" target="_blank">blocks</a> are used, to define the content that will be inserted in the main wrapper of the page design. We only have to edit the ServiceProvider of our theme and create the page template, e.g. the basket.
     </p>
 </div>
 
