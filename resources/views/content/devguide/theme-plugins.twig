@@ -5,7 +5,7 @@
 <h1 id="theme-introduction">Introducing theme plugins</h1>
 <div class="api-docs-basics">
     <p>
-        On this page, you will find an overview of relevant information about theme plugins. Theme plugins let you change the colour and style of your template in an easy and convenient way. After provisioning a theme once, you can activate or deactivate the theme in the plentymarkets back end without further configuration.
+        On this page, you will find an overview of relevant information about theme plugins. Theme plugins let you change the colour and style of your template in an easy and convenient way. In contrast to other plugins, you only have to provision a theme once to then activate and deactivate it without further configuration.
     </p>
     <p>
         Theme plugins make use of a <a href="/tutorials/container">template container</a> in the Ceres template and extend the CSS of Ceres. In doing so, the CSS of the theme will override all concerned classes in the Ceres stylesheet. Classes that are not styled in the CSS of the theme but in the Ceres stylesheet are not affected.
@@ -243,7 +243,7 @@ body {
         A theme plugin can not only extend the CSS file of the template plugin, but also change the entire markup of individual template components or the overall page design.
     </p>
     <p>
-        Adding your own markup and style to an existing template plugin is facilitated and maintaining the code of your theme plugin is not directly linked to the code of the template plugin, i.e. changes made in your theme plugin are not overwritten when the template plugin is updated.
+        This facilitates adding your own markup and style to an existing template plugin. Maintaining the code of your theme plugin is not directly linked to the code of the template plugin, i.e. changes made in your theme plugin are not overwritten when the template plugin is updated.
     </p>
 </div>
 
@@ -277,7 +277,7 @@ body {
 <h2 id="theme-change-footer">Changing the page design</h2>
 <div class="api-docs-basics">
     <p>
-        The TWIG <a href="http://twig.sensiolabs.org/doc/2.x/tags/include.html" target="_parent">include statement</a> is used for this purpose. In the example below the <code>ThemeFooter.twig</code> file is included in the <code>ThemePageDesign.twig</code> file. You can simply create your own footer template and replace the Ceres footer.
+        The TWIG <a href="http://twig.sensiolabs.org/doc/2.x/tags/include.html" target="_parent">include statement</a> is used for this purpose. In the example below the <code>ThemeFooter.twig</code> file is included in the <code>PageDesign.twig</code> file of Ceres. You can simply create your own footer template and replace the Ceres footer.
     </p>
 </div>
 
@@ -329,7 +329,7 @@ class ThemeServiceProvider extends ServiceProvider
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: Add the dependencies for the <code>Partial</code> function, as well as the <code>Dispatcher</code> and <code>Twig</code> classes.<br /><br />Add the <code>boot()</code> function and specify one or multiple partials, e.g. <code>IO.init.templates</code>, as well as the TWIG template(s) for the partial(s), e.g. <code>Theme::content.ThemeFooter</code>. We will add the TWIG template in the next step.<br /><br />The priority of the template is set in line 29. Original Ceres templates have a priority of 100. Any number less than 100 will indicate a higher priority.<br /><br />Available partials are: <code>head</code>, <code>header</code>, <code>footer</code> and <code>page-design</code>. You can also add your own partials by using the <code>set('your-partial', 'Plugin::PartialTemplate')</code> method to extend the original page design. Replace <code>your-partial</code> with your own partial and <code>Plugin::PartialTemplate</code> with the template path.<br /><br />Include the partial in the page design template with the TWIG include statement: <code><span>{</span>% include getPartial('your-partial') %}</code>.
+    <b>Explanation</b>: Add the dependencies for the <code>Partial</code> function as well as the <code>Dispatcher</code> and <code>Twig</code> classes.<br /><br />Add the <code>boot()</code> function and specify one or multiple partials, e.g. <code>IO.init.templates</code>, as well as the TWIG template(s) for the partial(s), e.g. <code>Theme::content.ThemeFooter</code>. We will add the TWIG template in the next step.<br /><br />The priority of the template is set in line 29. Original Ceres templates have a priority of 100. Any number less than 100 will indicate a higher priority.<br /><br />Available partials are: <code>head</code>, <code>header</code>, <code>footer</code> and <code>page-design</code>. You can also add your own partials by using the <code>set('your-partial', 'Plugin::PartialTemplate')</code> method to extend the original page design. Replace <code>your-partial</code> with your own partial and <code>Plugin::PartialTemplate</code> with the template path.<br /><br />Include the partial in the page design template with the TWIG include statement: <code><span>{</span>% include getPartial('your-partial') %}</code>.
 </div>
 <!-- Code example end -->
 
@@ -352,13 +352,13 @@ class ThemeServiceProvider extends ServiceProvider
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: By using the <code><span>{</span>% include getPartial('footer') %}</code> statement in the <code>ThemePageDesign.twig</code> file, we include the content of this template in our PageDesign template.
+    <b>Explanation</b>: By using the <code><span>{</span>% include getPartial('footer') %}</code> statement in the <code>PageDesign.twig</code> file, we include the content of this template in our PageDesign template.
 </div>
 <!-- Code example end -->
 
 <h2 id="theme-change-page">Changing the template of a page</h2>
 <div class="api-docs-basics">
-    <p>The <a href="http://twig.sensiolabs.org/doc/2.x/tags/extends.html" target="_blank">extends tag</a> is used to extend a template from another template. In the example below, the <code>ThemeBasket.twig</code> file extends the <code>ThemePageDesign.twig</code> file. TWIG <a href="http://twig.sensiolabs.org/doc/2.x/tags/block.html" target="_blank">blocks</a> are used, to define the content that will be inserted in the main wrapper of the page design. We only have to edit the ServiceProvider of our theme and create the page template, e.g. the basket.
+    <p>The <a href="http://twig.sensiolabs.org/doc/2.x/tags/extends.html" target="_blank">extends tag</a> is used to extend a template from another template. In the example below, the <code>ThemeBasket.twig</code> file extends the <code>PageDesign.twig</code> file of Ceres. TWIG <a href="http://twig.sensiolabs.org/doc/2.x/tags/block.html" target="_blank">blocks</a> are used to define the content that will be inserted in the main wrapper of the page design. We only have to edit the ServiceProvider of our theme and create the page template, e.g. the basket.
     </p>
 </div>
 
@@ -495,7 +495,7 @@ class ThemeServiceProvider extends ServiceProvider
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: In line 6 of the basket template, we specify the template path of the new template component: <code><span>{</span>{ component( "Theme::content.Components.ThemeBasketList" ) }}</code>.<br /><br />In line 22, a new ID for the component must be indicated. Note that, this ID must be the same as in the BasketList template. We will create this template in the next step.
+    <b>Explanation</b>: In line 6 of the basket template, we specify the template path of the new template component: <code><span>{</span>{ component( "Theme::content.Components.ThemeBasketList" ) }}</code>.<br /><br />In line 22, a new ID for the component must be indicated. Note that this ID must be the same as in the BasketList template. We will create this template in the next step.
 </div>
 <!-- Code example end -->
 
@@ -518,7 +518,7 @@ class ThemeServiceProvider extends ServiceProvider
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: In this template, we specify a new unique ID. This is the same ID that we use in the code of the <code>ThemeBasket.twig</code> file. Here, we use <code>id="theme-basket-list"</code>.<br /><br />Note that, component templates are always linked to a specific <a href="http://v1.vuejs.org/" target="_blank">Vue.js</a> component, i.e. <a href="http://v1.vuejs.org/guide/syntax.html#Shorthands" target="_blank">Vue.js shorthand</a> is used in these templates. The prefix <code>v-</code> is one indicator of Vue.js syntax. Other indicators are <code>:</code> representing <code>v-bind</code> and <code>@</code> representing <code>v-on</code>. If you change the Vue.js notation, the linked component might not work properly anymore.
+    <b>Explanation</b>: In this template, we specify a new unique ID. This is the same ID that we use in the code of the <code>ThemeBasket.twig</code> file. Here, we use <code>id="theme-basket-list"</code>.<br /><br />Note that a component template  is always linked to a specific <a href="http://v1.vuejs.org/" target="_blank">Vue.js</a> component, i.e. <a href="http://v1.vuejs.org/guide/syntax.html#Shorthands" target="_blank">Vue.js shorthand</a> is used in the template. The prefix <code>v-</code> is one indicator of Vue.js syntax. Other indicators are <code>:</code> representing <code>v-bind</code> and <code>@</code> representing <code>v-on</code>. If you change the Vue.js notation, the linked component might not work properly anymore.
 </div>
 <!-- Code example end -->
 
@@ -658,7 +658,7 @@ PluginCeres/
 
 <div class="api-docs-basics">
     <p>
-        Individual templates containing the markup of the main pages are used in Ceres. Some templates include partials or components. Find a table of all page templates and their respective location in the <b>resources/views</b> folder below:
+        Ceres uses individual templates containing the markup of the main pages. Some templates include partials or components. Find a table of all page templates and their respective location in the <b>resources/views</b> folder below:
     </p>
 </div>
 
@@ -674,7 +674,7 @@ PluginCeres/
         <tbody>
             <tr>
                 <td>Basket</td>
-                <td>The template for the shopping cart of your online store. This template can be found in the <b>Basket</b> sub-folder of Ceres. This template includes the following components:<br />
+                <td>The template for the shopping cart of your online store. It can be found in the <b>Basket</b> sub-folder of Ceres. This template includes the following components:<br />
                     <ul>
                         <li>
                             BasketList
@@ -689,11 +689,11 @@ PluginCeres/
             </tr>
             <tr>
                 <td>CategoryItem</td>
-                <td>The template for the category view of your online store. This template can be found in the <b>Category/Item</b> sub-folder.</td>
+                <td>The template for the category view of your online store. It can be found in the <b>Category/Item</b> sub-folder.</td>
             </tr>
             <tr>
                 <td>Checkout</td>
-                <td>The template for the checkout of your online store. This template can be found in the <b>Checkout</b> sub-folder. This template includes the following components:<br />
+                <td>The template for the checkout of your online store. It can be found in the <b>Checkout</b> sub-folder. This template includes the following components:<br />
                     <ul>
                         <li>
                             AddressSelect
@@ -721,7 +721,7 @@ PluginCeres/
             </tr>
             <tr>
                 <td>Guest</td>
-                <td>The template for guest orders. This template can be found in the <b>Customer</b> sub-folder. This template includes the following components:<br />
+                <td>The template for guest orders. It can be found in the <b>Customer</b> sub-folder. This template includes the following components:<br />
                     <ul>
                         <li>
                             Registration
@@ -730,11 +730,11 @@ PluginCeres/
             </tr>
             <tr>
                 <td>HomePage</td>
-                <td>The template for the homepage of your online store. This template can be found in the <b>Homepage</b> sub-folder.</td>
+                <td>The template for the homepage of your online store. It can be found in the <b>Homepage</b> sub-folder.</td>
             </tr>
             <tr>
                 <td>ItemListView</td>
-                <td>The template for the item list view of your online store. This template can be found in the <b>ItemList</b> sub-folder. This template includes the following components:<br />
+                <td>The template for the item list view of your online store. It can be found in the <b>ItemList</b> sub-folder. This template includes the following components:<br />
                     <ul>
                         <li>
                             ItemList
@@ -756,11 +756,11 @@ PluginCeres/
             </tr>
             <tr>
                 <td>Login</td>
-                <td>The template for customer login. This template can be found in the <b>Customer</b> sub-folder.</td>
+                <td>The template for customer login. It can be found in the <b>Customer</b> sub-folder.</td>
             </tr>
             <tr>
                 <td>MyAccount</td>
-                <td>The template for the <b>My Account</b> page of your online store. This template can be found in the <b>MyAccount</b> sub-folder. This template includes the following components:<br />
+                <td>The template for the <b>My Account</b> page of your online store. It can be found in the <b>MyAccount</b> sub-folder. This template includes the following components:<br />
                     <ul>
                         <li>
                             AddressSelect
@@ -782,7 +782,7 @@ PluginCeres/
             </tr>
             <tr>
                 <td>OrderConfirmation</td>
-                <td>The template for the order confirmation page. This template can be found in the <b>Checkout</b> sub-folder. This template includes the following components:<br />
+                <td>The template for the order confirmation page. It can be found in the <b>Checkout</b> sub-folder. This template includes the following components:<br />
                     <ul>
                         <li>
                             OrderDetails
@@ -792,7 +792,7 @@ PluginCeres/
             </tr>
             <tr>
                 <td>PageDesign</td>
-                <td>The general template for your online store. This template can be found in the <b>PageDesign</b> sub-folder. This template includes the following partials and components:<br />
+                <td>The general template for your online store. It can be found in the <b>PageDesign</b> sub-folder. This template includes the following partials and components:<br />
                     <ul>
                         <li>
                             Notifications
@@ -823,7 +823,7 @@ PluginCeres/
             </tr>
             <tr>
                 <td>Register</td>
-                <td>The template for customer registration. This template can be found in the <b>Customer</b> sub-folder. This template includes the following components:<br />
+                <td>The template for customer registration. It can be found in the <b>Customer</b> sub-folder. This template includes the following components:<br />
                     <ul>
                         <li>
                             Registration
@@ -833,7 +833,7 @@ PluginCeres/
             </tr>
             <tr>
                 <td>SingleItem</td>
-                <td>The template for the single item view of your online store. This template can be found in the <b>SingleItem</b> sub-folder. This template includes the following components:<br />
+                <td>The template for the single item view of your online store. It can be found in the <b>SingleItem</b> sub-folder. This template includes the following components:<br />
                     <ul>
                         <li>
                             VariationSelect
@@ -849,27 +849,27 @@ PluginCeres/
             </tr>
             <tr>
                 <td>CancellationRights</td>
-                <td>The cancellation rights of your online store. This template can be found in the <b>StaticPages</b> sub-folder.</td>
+                <td>The cancellation rights of your online store. It can be found in the <b>StaticPages</b> sub-folder.</td>
             </tr>
             <tr>
                 <td>ItemNotFound</td>
-                <td>The <b>Item not found</b> page of your online store. This template can be found in the <b>StaticPages</b> sub-folder.</td>
+                <td>The <b>Item not found</b> page of your online store. It can be found in the <b>StaticPages</b> sub-folder.</td>
             </tr>
             <tr>
                 <td>LegalDisclosure</td>
-                <td>The legal disclosure of your online store. This template can be found in the <b>StaticPages</b> sub-folder.</td>
+                <td>The legal disclosure of your online store. It can be found in the <b>StaticPages</b> sub-folder.</td>
             </tr>
             <tr>
                 <td>PageNotFound</td>
-                <td>The <b>Page not found</b> page. This template can be found in the <b>StaticPages</b> sub-folder.</td>
+                <td>The <b>Page not found</b> page. It can be found in the <b>StaticPages</b> sub-folder.</td>
             </tr>
             <tr>
                 <td>PrivacyPolicy</td>
-                <td>The privacy policy of your online store. This template can be found in the <b>StaticPages</b> sub-folder.</td>
+                <td>The privacy policy of your online store. It can be found in the <b>StaticPages</b> sub-folder.</td>
             </tr>
             <tr>
                 <td>TermsAndConditions</td>
-                <td>The general terms and conditions of your online store. This template can be found in the <b>StaticPages</b> sub-folder.</td>
+                <td>The general terms and conditions of your online store. It can be found in the <b>StaticPages</b> sub-folder.</td>
             </tr>
         </tbody>
     </table>
