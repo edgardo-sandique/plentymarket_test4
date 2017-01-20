@@ -145,7 +145,7 @@ class ThemeServiceProvider extends ServiceProvider
 
 <!-- Code example -->
 <div class="route-container">
-    <code>Theme/src/ThemeContainer.php</code>
+    <code>Theme/src/Containers/ThemeContainer.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
@@ -212,7 +212,7 @@ body {
 <h2 id="theme-activate">Activating a theme</h2>
 <div class="api-docs-basics">
     <p>
-        Create the theme first, then <a href="/dev-doc/basics#add-repository">add</a> the plugin to the plentymarkets inbox and <a href="/dev-doc/basics#provisioning">provision</a> it in <b>Productive</b>. After provisioning the theme plugin once, you can activate and deactivate it without further configuration.
+        Create the theme as described, then <a href="/dev-doc/basics#add-repository">add</a> the plugin to the plentymarkets inbox and <a href="/dev-doc/basics#provisioning">provision</a> it in <b>Productive</b>. After provisioning the theme plugin once, you can activate and deactivate it without further configuration.
     </p>
     <ol>
         <li>
@@ -518,7 +518,7 @@ class ThemeServiceProvider extends ServiceProvider
 <button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: In this template, we specify a new unique ID. This is the same ID that we use in the code of the <code>ThemeBasket.twig</code> file. Here, we use <code>id="theme-basket-list"</code>.
+    <b>Explanation</b>: In this template, we specify a new unique ID. This is the same ID that we use in the code of the <code>ThemeBasket.twig</code> file. Here, we use <code>id="theme-basket-list"</code>.<br /><br />Note that, component templates are always linked to a specific <a href="http://v1.vuejs.org/" target="_blank">Vue.js</a> component, i.e. <a href="http://v1.vuejs.org/guide/syntax.html#Shorthands" target="_blank">Vue.js shorthand</a> is used in these templates. The prefix <code>v-</code> is one indicator of Vue.js syntax. Other indicators are <code>:</code> representing <code>v-bind</code> and <code>@</code> representing <code>v-on</code>. If you change the Vue.js notation, the linked component might not work properly anymore.
 </div>
 <!-- Code example end -->
 
