@@ -322,6 +322,14 @@ class PlaceholderContainer
         </thead>
         <tbody>
         <tr>
+            <td colspan="3" style="text-align: center"><b>Template</b></td>
+        </tr>
+        <tr>
+            <td>Template.Style</td>
+            <td>Style</td>
+            <td>Add style to Ceres with a theme plugin</td>
+        </tr>
+        <tr>
             <td colspan="3" style="text-align: center"><b>Homepage</b></td>
         </tr>
         <tr>
@@ -540,6 +548,19 @@ class PlaceholderContainer
             <td>Additional payment information</td>
             <td>Add additional payment information on the order confirmation page</td>
         </tr>
+        <tr>
+            <td colspan="3" style="text-align: center"><b>Category item list</b></td>
+        </tr>
+        <tr>
+            <td>CategoryItem.BeforePrices</td>
+            <td>Before prices container</td>
+            <td>Add content before the prices in the category item view</td>
+        </tr>
+        <tr>
+            <td>CategoryItem.AfterPrices</td>
+            <td>After prices container</td>
+            <td>Add content after the prices in the category item view</td>
+        </tr>
         </tbody>
     </table>
 </div>
@@ -582,7 +603,7 @@ class PlaceholderContainer
 
 <h3 id="container-macro">Container macro</h3>
 <div class="api-docs-basics">
-    <p>The content to be displayed in a container is processed by the <code>show()</code> function in a macro. This macro is stored in the <code>LayoutContainer.twig</code> file.
+    <p>The content to be displayed in a container is processed by the <code>show()</code> function in a macro. This macro is stored in the <code>LayoutContainer.twig</code> file. With the help of this macro, you can also access objects in layout containers, e.g. the <code>item</code> object in the <code>SingleItemView.twig</code> template.
     </p>
 </div>
 
@@ -593,10 +614,16 @@ class PlaceholderContainer
 <div class="code-container">
 {% raw %}
 <pre class="prettyprint lang-twig grey-back linenums code-example">
-{% macro show( containerName ) %}
-    {% for content in container(containerName) %}
-        {{ content.result|raw }}
-    {% endfor %}
+{% macro show( containerName, object ) %}
+    {% if object == null %}
+        {% for content in container(containerName) %}
+            {{ content.result|raw }}
+        {% endfor %}
+    {% else %}
+        {% for content in container(containerName, object) %}
+            {{ content.result|raw }}
+        {% endfor %}
+    {% endif %}
 {% endmacro %}
 </pre>
 {% endraw %}
@@ -618,6 +645,10 @@ class PlaceholderContainer
 <div class="code-container">
 {% raw %}
 <pre class="prettyprint lang-twig grey-back linenums code-example">
+{% import "PluginCeres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+
+...
+
 {% set certifiedContent = LayoutContainer.show("PluginCeres::Homepage.Certified") %}
 {% if certifiedContent|trim is not empty %}
     &lt;div class="services-certificate m-b-1">
@@ -632,6 +663,37 @@ class PlaceholderContainer
 
 <div class="alert alert-info" role="alert">
     <b>Explanation</b>: A Twig function sets the variable <code>certifiedContent</code>. The variable is equal to the content of the <code>Homepage.Certified</code> container defined in the <code>plugin.json</code> file.<br /><br />The title of the container is displayed using the <code><span>{</span>{ trans("PluginCeres::Template.generalCertifiedBy") }}</code> variable. The text for this variable is stored in the <code>Template.properties</code> file.<br /><br />The <code><span>{</span>{ certifiedContent }}</code> variable is used to display the content provided by our <b>Placeholder</b> plugin below the title.
+</div>
+<!-- Code example end -->
+
+<h3 id="container-objects">Objects in containers</h3>
+<div class="api-docs-basics">
+    <p>
+        By using the <code>LayoutContainer.twig</code> macro, we can access objects in layout containers. We specify the object as a parameter in the container and can make use of all the information of the current object.
+    </p>
+</div>
+
+<!-- Code example -->
+<div class="route-container">
+    <code>PluginCeres/resources/views/Item/SingleItem.twig</code>
+</div>
+<div class="code-container">
+{% raw %}
+<pre class="prettyprint lang-twig grey-back linenums code-example">
+{{ LayoutContainer.show("PluginCeres::SingleItem.BeforePrice", item) }}
+{% if ('item.recommendedPrice' in itemData or 'all' in itemData) %}
+    &lt;div class="crossprice" v-resource-if:currentVariation="variationRecommendedRetailPrice.price > 0">
+        &lt;del class="text-muted small" v-resource-bind:currentVariation="variationRecommendedRetailPrice.price" :filters="['currency']">
+            {{ item.variationRecommendedRetailPrice.price | formatMonetary(item.variationRetailPrice.currency) }}
+        &lt;/del>
+    &lt;/div>
+{% endif %}
+</pre>
+{% endraw %}
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
+</div>
+<div class="alert alert-info" role="alert">
+    <b>Explanation</b>: Here, we specify the <code>item</code> object as the second parameter of our layout container. This allows us to use the information saved in the object for further processing, e.g. for calculating the instalments of certain payment methods.
 </div>
 <!-- Code example end -->
 
