@@ -139,7 +139,7 @@ class CreateToDoTable
 <!-- Code example end -->
 
 
-<h3 id="create-migrationproperties">Create the migration properties</h2>
+<h3 id="create-migrationproperties">Create the migration properties</h3>
 <div class="api-docs-basics">
     <p>
         To display messages in all selected languages, we have to set these up in the correct file structure.
@@ -337,7 +337,32 @@ class ToDoServiceProvider extends ServiceProvider
     <p>
         see payment plugin --> BACKEND there: configs like manual In choosing a log level, you set the level from which on every log level will be triggered. If you choose <strong>debug</strong>, the lowest level, every event that occurs will also be logged. If you choose <strong>critical</strong>, only <strong>critical</strong>, <strong>alert</strong>, and <strong>emergency</strong> will be logged. LIST. https://laravel.com/docs/5.3/errors#log-severity-levels
     </p>
+    <figure>
+        <a data-toggle="modal" data-target="#modal1" href="#">
+        <img class="img-responsive img-pretty" src="{{ plugin_path('PlentyPluginShowcase') }}/images/tutorials/logging-backend.png" />
+        </a>
+    </figure>
+</div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog img-horizontal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">The logging back end view</h4>
+            </div>
+            <div class="modal-body">
+                <figure>
+                    <img class="img-responsive" src="{{ plugin_path('PlentyPluginShowcase') }}/images/tutorials/logging-backend.png" />
+                </figure>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
