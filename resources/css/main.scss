@@ -1508,3 +1508,32 @@ code {
     width: 98%;
   }
 }
+
+/* Google custom search */
+
+input.gsc-input,
+.gsc-input-box,
+.gsc-input-box-hover,
+.gsc-input-box-focus,
+.gsc-search-button, input.gsc-search-button-v2 {
+	box-sizing  : content-box;
+	line-height : normal;
+	margin-top  : 0px;
+}
+
+.navbar-google {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  float: left !important;
+  width: 390px;
+}
+
+@media (max-width:1199px) {
+  .navbar-google {
+    width: 100%;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}

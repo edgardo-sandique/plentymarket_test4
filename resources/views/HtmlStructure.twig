@@ -117,6 +117,9 @@
                     </a>
                 </li>
             </ul>
+            <div class="navbar-google">
+                <gcse:searchbox-only resultsUrl="/search"></gcse:searchbox-only>
+            </div>
         </div>
     </div>
 </nav>
@@ -179,6 +182,19 @@
     $(document).ready(function(){
         $('[data-toggle="tooltip"]').tooltip();
     });
+</script>
+
+<!-- Google custom search script -->
+<script>
+  (function() {
+    var cx = '006529590023116108292:ys60yxc0-vm';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
 </script>
 
 {% block AdditionalScripts %}

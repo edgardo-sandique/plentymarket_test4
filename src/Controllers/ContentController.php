@@ -32,6 +32,15 @@ class ContentController extends Controller
 
     /**
      * @param Twig $twig
+     * @return string
+     */
+    public function showSearchResults(Twig $twig):string
+    {
+      return $twig->render('PlentyPluginShowcase::content.GoogleSearch');
+    }
+
+    /**
+     * @param Twig $twig
      * @param string $pageName
      * @return string
      */
