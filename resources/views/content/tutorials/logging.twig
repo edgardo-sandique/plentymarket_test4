@@ -12,7 +12,7 @@
 <h2 id="clone-repository">Step 1: Cloning the ToDoList plugin</h2>
 <div class="api-docs-basics">
     <p>
-        We will extend the functionality of the <a href="/tutorials/plugin-tutorial-todolist">ToDoList</a> plugin by integrating a log function. We then use this log to retrieve certain information.
+        We will extend the functionality of the <a href="/tutorials/data-storage">ToDoList</a> plugin by integrating a log function. We then use this log to retrieve certain information.
     </p>
 </div>
 
@@ -103,7 +103,7 @@ ToDoList/
 <h3 id="extend-createtodotable">Extending the CreateToDoTable</h3>
 <div class="api-docs-basics">
     <p>
-        In order to log the creation of a to do table, we need to enter the functionality in the CreateToDoTable.php file. This example shows a simple log; you can find a reference type log <a href="#extend-todoserviceprovider">here</a>.
+        In order to log the creation of a to do table, we need to enter the functionality in the <code>CreateToDoTable.php</code> file. This example shows a simple log; you can find a reference type log <a href="#extend-todoserviceprovider">here</a>.
     </p>
 </div>
 
@@ -151,7 +151,7 @@ class CreateToDoTable
 <!-- Code example end -->
 
 
-<h3 id="create-migrationproperties">Create the migration properties</h3>
+<h3 id="create-migrationproperties">Creating the migration properties</h3>
 <div class="api-docs-basics">
     <p>
         To display messages in all selected languages, we have to set these up in the correct file structure.
@@ -462,19 +462,19 @@ $this
         <tbody>
         <tr>
             <td><strong>Integration key</strong></td>
-            <td>The loggable trait automatically identifies where it is used. In this example, it displays the namespace of the plugin under <strong>Configure</strong> and <strong>Integration</strong> in the plentymarkets back end.</td>
+            <td>The loggable trait automatically identifies the plugin it is used in and displays the namespace under <strong>Configure</strong> and <strong>Integration</strong> in the menu <strong>Data exchange » Log</strong> in the plentymarkets back end.</td>
         </tr>
         <tr>
             <td><strong>Identifier</strong></td>
-            <td>The identifier will be shown under <strong>Identifier</strong> in the plentymarkets back end. In our example, it is <code>ContentController_createToDo</code>.</td>
+            <td>The identifier will be shown under <strong>Identifier</strong> in the menu <strong>Data exchange » Log</strong> in the plentymarkets back end. In our example, it is <code>ContentController_createToDo</code>.</td>
         </tr>
         <tr>
             <td><strong>Reference type (optional)</strong></td>
-            <td>This part has to be clearly defined and as specific as possible to avoid doublings. In case of a doubling, the <code>try</code> and <code>catch</code> method in the ServiceProvdier will throw an exception. We chose <code>toDoId</code>.</td>
+            <td>This part has to be clearly defined and as specific as possible to avoid doublings. In case of a doubling, the <code>try</code> and <code>catch</code> method in the ServiceProvider will throw an exception. We chose <code>toDoId</code>.</td>
         </tr>
         <tr>
             <td><strong>Reference value (optional)</strong></td>
-            <td>Add the specific value for the reference type, in our example <code>$newToDo->id</code>.</td>
+            <td>Add the specific value for the reference type, In our example, we store the ID of the new task using <code>$newToDo->id</code>.</td>
         </tr>
         <tr>
             <td><strong>Debug level</strong></td>
