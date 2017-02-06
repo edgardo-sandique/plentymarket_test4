@@ -12,7 +12,7 @@
 <h2 id="clone-repository">Step 1: Cloning the ToDoList plugin</h2>
 <div class="api-docs-basics">
     <p>
-        In this tutorial, we will extend the functionality of the <a href="/tutorials/plugin-tutorial-todolist">ToDoList</a> plugin by integrating a log function. We then use this log to retrieve certain information.
+        We will extend the functionality of the <a href="/tutorials/plugin-tutorial-todolist">ToDoList</a> plugin by integrating a log function. We then use this log to retrieve certain information.
     </p>
 </div>
 
@@ -34,36 +34,46 @@
 
 <!-- Plugin structure -->
 <div class="code-container">
-<pre class="prettyprint lang-plain grey-back">
+<pre class="prettyprint lang-plain grey-back code-example">
 ToDoList/
     +-- resources/
     |   +-- css/
-    |       +-- main.css
-    |
+    |   |   +-- main.css
+    |   |
     |   +-- js/
-    |       +-- todo.js
-    |
+    |   |   +-- todo.js
+    |   |
     |   +-- views/
     |       +-- content/
     |           +-- todo.twig
     |
     +-- src/
+    |   +-- Contracts
+    |   |   +-- ToDoRepositoryContract.php
+    |   |
     |   +-- Controllers/
-    |       +-- ContentController.php
-    |
+    |   |   +-- ContentController.php
+    |   |
     |   +-- Migrations/
-    |       +-- CreateToDoTable.php
-    |
+    |   |   +-- CreateToDoTable.php
+    |   |
     |   +-- Models/
-    |       +-- ToDo.php
-    |
+    |   |   +-- ToDo.php
+    |   |
     |   +-- Providers/
-    |       +-- ToDoServiceProvider.php
-    |       +-- ToDoRouteServiceProvider.php
+    |   |   +-- ToDoServiceProvider.php
+    |   |   +-- ToDoRouteServiceProvider.php
+    |   |
+    |   +-- Repositories
+    |   |   +-- ToDoRepository.php
+    |   |
+    |   +-- Validators
+    |       +--ToDoValidators.php
     |
     +-- plugin.json // plugin information
-    +-- // additional files (Readme, license etc.)
+    +-- // additional files (Readme, license, etc.)
 </pre>
+<button type="button" class="btn btn-primary pull-right toggle-code-example">Expand</button>
 </div>
 <!-- Plugin structure end -->
 
@@ -93,7 +103,7 @@ ToDoList/
 <h3 id="extend-createtodotable">Extending the CreateToDoTable</h3>
 <div class="api-docs-basics">
     <p>
-        In order to log the creation of a to do table, we need to enter the functionality in the CreateToDoTable.php. This example shows a simple log; you can find a reference type log below.
+        In order to log the creation of a to do table, we need to enter the functionality in the CreateToDoTable.php file. This example shows a simple log; you can find a reference type log <a href="#extend-todoserviceprovider">here</a>.
     </p>
 </div>
 
@@ -134,9 +144,9 @@ class CreateToDoTable
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: We add <code>use Plenty\Plugin\Log\Loggable</code> and <code>$this->getLogger("CreateToDoTable_run")->debug('ToDoList::migration.successMessage',</code> <code>['tableName' => 'ToDo'])</code>.<br />
-    After the dependency injection in line 9, employ <code>use Loggable</code> in line 15 to introduce the log. In line 24, employ getLogger; it automatically identifies the integration key, in this case the plugin namespace. In it, you have to enter the identifier. In this example, this is the class <strong>CreateToDoTable</strong> with the added method <strong>run</strong>. As an alternative, you can use a <a href="http://php.net/manual/en/language.oop5.magic.php" target="_blank"><strong>php magic method</strong></a>, e.g. <strong>__METHOD__</strong> or <strong>__FUNCTION__</strong>.<br />
-    The employed log level is <strong>debug</strong>. You can find a complete list at the end of the page. In the debug method, the first parameter is the path to the message (which will be provided by the <code>migration.properties</code> file in the next step), the second parameter can provide additional information, in this case, the table name.
+    <b>Explanation</b>: We add <code>use Plenty\Plugin\Log\Loggable</code> and <code>$this->getLogger("CreateToDoTable_run")->debug('ToDoList::migration.successMessage',</code> <code>['tableName' => 'ToDo'])</code>.<br /><br />
+    After the dependency injection in line 9, employ the <code>getLogger()</code> method in line 15 to introduce the log. In line 24, employ getLogger; it automatically identifies the integration key, in this case the plugin namespace. In the <code>getLogger()</code> method, you have to specify the log identifier for display in the back end. In this example, this is the class <code>CreateToDoTable</code> with the added method <code>run</code>. As an alternative, you can use a <a href="http://php.net/manual/en/language.oop5.magic.php" target="_blank"><strong>php magic method</strong></a>, e.g. <code>__METHOD__</code> or <code>__FUNCTION__</code>.<br /><br />
+    The employed log level is <strong>debug</strong>. In the debug method, the first parameter is the path to the message (which will be provided by the <code>migration.properties</code> file in the next step), the second parameter can provide additional information, in this case, the table name.
 </div>
 <!-- Code example end -->
 
@@ -151,10 +161,10 @@ class CreateToDoTable
             Create the <b>resources/lang</b> folder.
         </li>
         <li>
-            Create the <b>resources/lang/EN</b> folder.
+            Create the <b>EN</b> sub-folder.
         </li>
         <li>
-            Create a folder for any language you want to add, e.g. <b>resources/lang/DE</b> for German.
+            Create a sub-folder for any language you want to add, e.g. <b>DE</b> for German.
         </li>
         <li>
             In each folder, create a <code>migration.properties</code> file.
@@ -167,7 +177,7 @@ class CreateToDoTable
 
 <!-- Code example -->
 <div class="route-container">
-  <code>ToDoList/resources/lang/migration.properties</code>
+  <code>ToDoList/resources/lang/EN/migration.properties</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-js grey-back linenums code-example">
@@ -236,7 +246,7 @@ class ToDoServiceProvider extends ServiceProvider
     </div>
 
     <div class="alert alert-info" role="alert">
-        <b>Explanation</b>: We introduce the reference container and reference type exception classes in line 8 and 9. Then we boot a reference container in line 28 to use in the ContentController.<br />We want to log the id of a to do task, so we use the <code>add</code> function to provide a toDoId in an array. If needed, you can add more data.<br />We employ <strong>try</strong> and <strong>catch</strong> to make sure the reference type isn't used yet. If it is used, this will result in an exception. To avoid this, choose a specific reference type.
+        <b>Explanation</b>: We introduce the reference container and reference type exception classes in line 8 and 9. Then we boot a reference container in line 28 to use in the ContentController.<br /><br />We want to log the id of a to do task, so we use the <code>add</code> function to provide a <code>toDoId</code> in an array. If needed, you can add more data.<br /><br />We employ <code>try</code> and <code>catch</code> to make sure the reference type isn't used yet. If it is used, this will result in an exception. To avoid this, choose a specific reference type.
     </div>
     <!-- Code example end -->
 
@@ -329,7 +339,7 @@ class ToDoServiceProvider extends ServiceProvider
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: We use the the Loggable class as in the <code>CreateToDoTable.php</code> file. To ensure we log the creation of the to do, we have to enter the code in the createToDo method, after the task has been created, but before the return. As above, enter the identifier or a magic method. Set the reference type and value as in the service provider - in this case, the id of the to do - and store both in the reference container. Choose a different log level, e.g. <strong>info</strong>. You can offer additional information in an array; in this example, we provide the userId of the task creator.
+    <b>Explanation</b>: We use the the Loggable class as in the <code>CreateToDoTable.php</code> file. To ensure that we log the creation of the to do, we have to enter the code in the <code>createToDo</code>, after the task has been created, but before the return. As above, enter the identifier or a magic method. Set the reference type and value as in the service provider - in this case, the ID of the to do - and store both in the reference container. Choose a different log level, e.g. <strong>info</strong>. You can offer additional information in an array; in this example, we provide the <code>userId</code> of the task creator.
 </div>
 <!-- Code example end -->
 
@@ -350,24 +360,25 @@ class ToDoServiceProvider extends ServiceProvider
         <li>Select the ToDoList plugin.<br />
         </li>
         <li>
-            Pick a time from the <strong>Duration</strong> drop-down menu.<br />
+            Select a time from the <strong>Duration</strong> drop-down menu.<br />
             → This is the time for which the plugin will be logged.
         </li>
         <li>
-            Pick a log level from the <strong>Log level</strong> drop-down menu.
+            Select a log level from the <strong>Log level</strong> drop-down menu.
         </li>
         <li>
             <strong>Save</strong> the settings.
         </li>
     </ol>
-    <p>
+    <div class="alert alert-info" role="alert">
         In choosing a log level, you set the minimum level to be triggered; any higher level occurrence will be triggered as well. If you choose <strong>debug</strong>, the lowest level, every event that occurs will also be logged. If you choose <strong>critical</strong>, only <strong>critical</strong>, <strong>alert</strong>, and <strong>emergency</strong> will be logged. You can find a detailed description <a href="https://laravel.com/docs/5.3/errors#log-severity-levels" target="_blank"><strong>here</strong></a>.
+    </div>
     <p>
         Finally, you can log your newly created tasks in your back end.
     </p>
     <ol>
         <li>
-            Go to your ToDoList plugin.
+            Enter <code>http://your-plentystore.co.uk/todo</code> in your browser to open the ToDoList plugin.
         </li>
         <li>
             Enter one or more tasks.
@@ -408,10 +419,10 @@ class ToDoServiceProvider extends ServiceProvider
     </div>
 </div>
 
-<h2 id="log-structure">Log structure</h2>
+<h1 id="log-structure">Log structure</h1>
 <div class="api-docs-basics">
     <p>
-        This code shows the Loggable trait in the ContentController.php file.
+        This code shows the Loggable trait in the <code>ContentController.php</code> file.
     </p>
 </div>
 <!-- Code example -->
@@ -451,15 +462,15 @@ $this
         <tbody>
         <tr>
             <td><strong>Integration key</strong></td>
-            <td>The loggable trait automatically identifies the used class and employs the namespace of that class, in our example <code>ContentController</code>.</td>
+            <td>The loggable trait automatically identifies where it is used. In this example, it displays the namespace of the plugin under <strong>Configure</strong> and <strong>Integration</strong> in the plentymarkets back end.</td>
         </tr>
         <tr>
             <td><strong>Identifier</strong></td>
-            <td>The developer is free to use any one desired, in our example <code>createToDo</code>.</td>
+            <td>The identifier will be shown under <strong>Identifier</strong> in the plentymarkets back end. In our example, it is <code>ContentController_createToDo</code>.</td>
         </tr>
         <tr>
             <td><strong>Reference type (optional)</strong></td>
-            <td>Is linked to the respective entry, in our example <code>toDoId</code>.</td>
+            <td>This part has to be clearly defined and as specific as possible to avoid doublings. In case of a doubling, the <code>try</code> and <code>catch</code> method in the ServiceProvdier will throw an exception. We chose <code>toDoId</code>.</td>
         </tr>
         <tr>
             <td><strong>Reference value (optional)</strong></td>
@@ -471,11 +482,11 @@ $this
         </tr>
         <tr>
             <td><strong>Code</strong></td>
-            <td>This part has to be clearly defined and as specific as possible to avoid doublings. We have chosen <code>'ToDoList::migration.createToDoInformation'</code></td>
+            <td>This element uses the key-value pairs from the <code>migrations.properties</code> file, in this example, the  <code>createToDoInformation</code> key. It is shown under <strong>Code</strong> in the plentymarkets back end.</td>
         </tr>
         <tr>
             <td><strong>Additional information (optional)</strong></td>
-            <td>After the Code, you can add further information. In this example, we have chosen <code>['userId' => $newToDo->userId ]</code> to get the id of the user who created the to do task.</td>
+            <td>After the code element, you can add further information. In this example, we have chosen <code>['userId' => $newToDo->userId ]</code> to get the ID of the user who created the to do task.</td>
         </tr>
         </tbody>
     </table>
