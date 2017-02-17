@@ -332,7 +332,7 @@ class PlaceholderContainer
 
 <!-- Code example -->
 <div class="route-container">
-<code>PluginCeres/plugin.json</code>
+<code>Ceres/plugin.json</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-js grey-back linenums code-example">
@@ -361,7 +361,7 @@ class PlaceholderContainer
 
 <!-- Code example -->
 <div class="route-container">
-    <code>PluginCeres/resources/views/PageDesign/Macros/LayoutContainer.twig</code>
+    <code>Ceres/resources/views/PageDesign/Macros/LayoutContainer.twig</code>
 </div>
 <div class="code-container">
 {% raw %}
@@ -392,19 +392,19 @@ class PlaceholderContainer
 
 <!-- Code example -->
 <div class="route-container">
-    <code>PluginCeres/resources/views/PageDesign/Partials/Footer.twig</code>
+    <code>Ceres/resources/views/PageDesign/Partials/Footer.twig</code>
 </div>
 <div class="code-container">
 {% raw %}
 <pre class="prettyprint lang-twig grey-back linenums code-example">
-{% import "PluginCeres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 
 ...
 
-{% set certifiedContent = LayoutContainer.show("PluginCeres::Homepage.Certified") %}
+{% set certifiedContent = LayoutContainer.show("Ceres::Homepage.Certified") %}
 {% if certifiedContent|trim is not empty %}
     &lt;div class="services-certificate m-b-1">
-        &lt;strong class="services-title">{{ trans("PluginCeres::Template.generalCertifiedBy") }}&lt;/strong>
+        &lt;strong class="services-title">{{ trans("Ceres::Template.generalCertifiedBy") }}&lt;/strong>
         {{ certifiedContent }}
     &lt;/div>
 {% endif %}
@@ -414,7 +414,7 @@ class PlaceholderContainer
 </div>
 
 <div class="alert alert-info" role="alert">
-    <b>Explanation</b>: A Twig function sets the variable <code>certifiedContent</code>. The variable is equal to the content of the <code>Homepage.Certified</code> container defined in the <code>plugin.json</code> file.<br /><br />The title of the container is displayed using the <code><span>{</span>{ trans("PluginCeres::Template.generalCertifiedBy") }}</code> variable. The text for this variable is stored in the <code>Template.properties</code> file.<br /><br />The <code><span>{</span>{ certifiedContent }}</code> variable is used to display the content provided by our <b>Placeholder</b> plugin below the title.
+    <b>Explanation</b>: A Twig function sets the variable <code>certifiedContent</code>. The variable is equal to the content of the <code>Homepage.Certified</code> container defined in the <code>plugin.json</code> file.<br /><br />The title of the container is displayed using the <code><span>{</span>{ trans("Ceres::Template.generalCertifiedBy") }}</code> variable. The text for this variable is stored in the <code>Template.properties</code> file.<br /><br />The <code><span>{</span>{ certifiedContent }}</code> variable is used to display the content provided by our <b>Placeholder</b> plugin below the title.
 </div>
 <!-- Code example end -->
 
@@ -427,12 +427,12 @@ class PlaceholderContainer
 
 <!-- Code example -->
 <div class="route-container">
-    <code>PluginCeres/resources/views/Item/SingleItem.twig</code>
+    <code>Ceres/resources/views/Item/SingleItem.twig</code>
 </div>
 <div class="code-container">
 {% raw %}
 <pre class="prettyprint lang-twig grey-back linenums code-example">
-{{ LayoutContainer.show("PluginCeres::SingleItem.BeforePrice", item) }}
+{{ LayoutContainer.show("Ceres::SingleItem.BeforePrice", item) }}
 {% if ('item.recommendedPrice' in itemData or 'all' in itemData) %}
     &lt;div class="crossprice" v-resource-if:currentVariation="variationRecommendedRetailPrice.price > 0">
         &lt;del class="text-muted small" v-resource-bind:currentVariation="variationRecommendedRetailPrice.price" :filters="['currency']">

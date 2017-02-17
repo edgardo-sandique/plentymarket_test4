@@ -463,7 +463,7 @@ class ThemeServiceProvider extends ServiceProvider
 {% raw %}
 <pre class="prettyprint lang-twig grey-back linenums code-example">
 {% extends getPartial('page-design') %}
-{% import "PluginCeres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+{% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 
 {% block PageBody %}
 
@@ -475,7 +475,7 @@ class ThemeServiceProvider extends ServiceProvider
 
         &lt;div class="row m-t-1">
             &lt;div class="col-xs-12">
-                &lt;h1 class="h4">{{ trans("PluginCeres::Template.basket") }}&lt;/h1>
+                &lt;h1 class="h4">{{ trans("Ceres::Template.basket") }}&lt;/h1>
             &lt;/div>
         &lt;/div>
 
@@ -540,7 +540,7 @@ class ThemeServiceProvider extends ServiceProvider
 <!-- Folder structure -->
 <div class="code-container">
 <pre class="prettyprint lang-plain grey-back code-example">
-PluginCeres/
+Ceres/
     +-- resources/
         +-- views/
             +-- Basket/
