@@ -6,6 +6,7 @@
 <pre class="prettyprint lang-js grey-back linenums code-example">
 {
     "name"              : "PluginXY",
+    "marketplaceName"   : {"de":"German display name of plugin","en":"English display name of plugin"},
     "namespace"         : "XY",
     "type"              : "template",
     "version"           : "1.0.0",
@@ -46,6 +47,10 @@
             <tr>
                 <td>name</td>
                 <td>The name of your plugin. The plugin name must not yet exist in plentyMarketplace. The name must not contain spaces or special characters, must start with a character and must be written in <code>UpperCamelCase</code>. <span class="label label-danger">required</span></td>
+            </tr>
+            <tr>
+                <td>marketplaceName</td>
+                <td>The name of your plugin which is displayed on the Marketplace. Specify an array for multiple languages, e.g. {"de":"German plugin name","en":"English plugin name"}. You can also set a general name for all languages in a single string: "Name for all languages". The name specified here will be displayed as the name for the item in the category item view and single item view. <span class="label label-danger">required</span></td>
             </tr>
             <tr>
                 <td>namespace</td>
