@@ -250,7 +250,7 @@
 </div>
 
 <div class="route-container">
-    <code>PluginIO/src/Api/Resources/ShippingResource.php</code>
+    <code>IO/src/Api/Resources/ShippingResource.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
@@ -316,7 +316,7 @@ class ShippingResource extends ApiResource
 </div>
 
 <div class="route-container">
-    <code>PluginIO/src/Builder/Item/ItemColumnBuilder.php</code>
+    <code>IO/src/Builder/Item/ItemColumnBuilder.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
@@ -370,7 +370,7 @@ class ItemColumnBuilder
 </div>
 
 <div class="route-container">
-    <code>PluginIO/src/Services/ItemService.php</code>
+    <code>IO/src/Services/ItemService.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
@@ -410,7 +410,7 @@ namespace IO\Services;
 </div>
 
 <div class="route-container">
-    <code>PluginIO/src/Controllers/LoginController.php</code>
+    <code>IO/src/Controllers/LoginController.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
@@ -445,7 +445,7 @@ class LoginController extends LayoutController
 </div>
 
 <div class="route-container">
-    <code>PluginIO/src/Extensions/Filters/NumberFormatFilter.php</code>
+    <code>IO/src/Extensions/Filters/NumberFormatFilter.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
@@ -463,10 +463,10 @@ public function formatCurrency(float $value, string $currencyISO):string
         $formatter->setSymbol(\NumberFormatter::CURRENCY_SYMBOL, $currencyISO);
     }
 
-    if($this->config->get('PluginIO.format.use_locale_currency_format') === "0")
+    if($this->config->get('IO.format.use_locale_currency_format') === "0")
     {
-        $decimal_separator   = $this->config->get('PluginIO.format.separator_decimal');
-        $thousands_separator = $this->config->get('PluginIO.format.separator_thousands');
+        $decimal_separator   = $this->config->get('IO.format.separator_decimal');
+        $thousands_separator = $this->config->get('IO.format.separator_thousands');
         $formatter->setSymbol(\NumberFormatter::MONETARY_SEPARATOR_SYMBOL, $decimal_separator);
         $formatter->setSymbol(\NumberFormatter::MONETARY_GROUPING_SEPARATOR_SYMBOL, $thousands_separator);
     }
@@ -532,7 +532,7 @@ public function formatCurrency(float $value, string $currencyISO):string
     </p>
 </div>
 <div class="route-container">
-    <code>PluginIO/src/Providers/IORouteServiceProvider.php</code>
+    <code>IO/src/Providers/IORouteServiceProvider.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
@@ -574,7 +574,7 @@ class IORouteServiceProvider extends RouteServiceProvider
 </div>
 
 <div class="route-container">
-    <code>PluginIO/src/Services/BasketService.php</code>
+    <code>IO/src/Services/BasketService.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
@@ -601,7 +601,7 @@ public function getBasket():Basket
 </div>
 
 <div class="route-container">
-    <code>PluginIO/src/Api/Resources/BasketResource.php</code>
+    <code>IO/src/Api/Resources/BasketResource.php</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-php grey-back linenums code-example">
@@ -694,11 +694,11 @@ class BasketResource extends ApiResource
     </p>
 </div>
 <div class="route-container">
-    <code>PluginCeres/resources/views/PageDesign.twig</code>
+    <code>Ceres/resources/views/PageDesign.twig</code>
 </div>
 <div class="code-container">
     {% raw %}
-        <pre class="prettyprint lang-twig grey-back code-example"><span><</span>script src="{{ plugin_path('PluginCeres') }}/js/dist/plugin-ceres-app.js"><span><</span>/script></pre>
+        <pre class="prettyprint lang-twig grey-back code-example"><span><</span>script src="{{ plugin_path('Ceres') }}/js/dist/plugin-ceres-app.js"><span><</span>/script></pre>
     {% endraw %}
 </div>
 
@@ -709,7 +709,7 @@ class BasketResource extends ApiResource
 </div>
 
 <div class="route-container">
-    <code>PluginCeres/resources/js/src/app/directives/Logout.js</code>
+    <code>Ceres/resources/js/src/app/directives/Logout.js</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-js grey-back linenums code-example">
@@ -745,7 +745,7 @@ var NotificationService = require('services/NotificationService');
 </div>
 
 <div class="route-container">
-    <code>PluginCeres/resources/js/src/app/services/ApiService.js</code>
+    <code>Ceres/resources/js/src/app/services/ApiService.js</code>
 </div>
 <div class="code-container">
 <pre class="prettyprint lang-js grey-back linenums code-example">
@@ -837,7 +837,7 @@ module.exports = (function($) {
 
 <div class="api-docs-basics">
     <p>
-        In this folder, the <code>PluginCeres.scss</code> file imports all the other SCSS files stored in sub-folders. A grunt task generates the <code>plugin-ceres.css</code> file that can be found in the <strong>resources/css</strong> folder.
+        In this folder, the <code>Ceres.scss</code> file imports all the other SCSS files stored in sub-folders. A grunt task generates the <code>plugin-ceres.css</code> file that can be found in the <strong>resources/css</strong> folder.
     </p>
 </div>
 

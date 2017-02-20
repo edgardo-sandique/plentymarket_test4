@@ -783,21 +783,21 @@ class PayPalExpressButtonDataProvider
 </div>
 
 <div class="route-container">
-    <code>PluginCeres/resources/views/Basket/Components/BasketPreview.twig</code>
+    <code>Ceres/resources/views/Basket/Components/BasketPreview.twig</code>
 </div>
 
 <div class="code-container">
 {% raw %}
 <pre class="prettyprint lang-twig grey-back linenums code-example">
 &lt;div class="col-xs-12 col-sm-6">
-{{ LayoutContainer.show("PluginCeres::BasketPreview.BeforeCheckoutButton") }}
-    &lt;a v-resource-if:user="isLoggedIn" href="/checkout" class="btn btn-primary btn-block checkOutBtn" title="{{ trans("PluginCeres::Ceres.basketToCheckout") }}">
-    {{ trans("PluginCeres::Ceres.basketToCheckout") }} &lt;i class="fa fa-arrow-right" aria-hidden="true">&lt;/i>
+{{ LayoutContainer.show("Ceres::BasketPreview.BeforeCheckoutButton") }}
+    &lt;a v-resource-if:user="isLoggedIn" href="/checkout" class="btn btn-primary btn-block checkOutBtn" title="{{ trans("Ceres::Ceres.basketToCheckout") }}">
+    {{ trans("Ceres::Ceres.basketToCheckout") }} &lt;i class="fa fa-arrow-right" aria-hidden="true">&lt;/i>
     &lt;/a>
-    &lt;a v-resource-if:user="!isLoggedIn" href="/login" class="btn btn-primary btn-block checkOutBtn" title="{{ trans("PluginCeres::Ceres.basketToCheckout") }}">
-    {{ trans("PluginCeres::Ceres.basketToCheckout") }} &lt;i class="fa fa-arrow-right" aria-hidden="true">&lt;/i>
+    &lt;a v-resource-if:user="!isLoggedIn" href="/login" class="btn btn-primary btn-block checkOutBtn" title="{{ trans("Ceres::Ceres.basketToCheckout") }}">
+    {{ trans("Ceres::Ceres.basketToCheckout") }} &lt;i class="fa fa-arrow-right" aria-hidden="true">&lt;/i>
     &lt;/a>
-    {{ LayoutContainer.show("PluginCeres::BasketPreview.AfterCheckoutButton") }}
+    {{ LayoutContainer.show("Ceres::BasketPreview.AfterCheckoutButton") }}
 &lt;/div>
 </pre>
 {% endraw %}
