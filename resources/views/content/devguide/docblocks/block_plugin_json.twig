@@ -11,6 +11,7 @@
     "type"              : "template",
     "version"           : "1.0.0",
     "license"           : "The license for the plugin",
+    "isClosedSource"    : "Determines if your plugin is closed source or open source",
     "pluginIcon"        : "The plugin icon",
     "price"             : 0.00,
     "description"       : "The description for your plugin",
@@ -79,6 +80,13 @@
             <tr>
                 <td>license</td>
                 <td>The license type for your plugin <span class="label label-danger">required</span></td>
+            </tr>
+            <tr>
+                <td>isClosedSource</td>
+                <td>The value of this field must be of type <code>bool</code>.<br />
+                    <strong>True:</strong> Makes the plugin code invisible to all customers who buy the plugin (closed source).<br />
+                    <strong>False:</strong> Makes the plugin code visible to all customers who buy the plugin (open source).<br /> 
+                    If no value is specified, the default value is set to <strong>false</strong>. <span class="label label-default">optional</span></td>
             </tr>
             <tr>
                 <td>pluginIcon</td>
